@@ -1,0 +1,20 @@
+.mat-toolbar.mat-primary {
+    background: #232d54;
+    color: #fff;
+}
+.seconeLineMenu{
+    margin: 5%;
+    cursor: pointer;
+}
+::ng-deep .mat-menu-content{
+    background-color:floralwhite
+  }
+
+  ::ng-deep .mat-menu-item{
+      color: #404e88;
+  }
+
+  button.mat-menu-item:hover {
+    color: red !important;
+}
+

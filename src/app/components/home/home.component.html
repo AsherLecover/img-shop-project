@@ -1,0 +1,79 @@
+
+<p>
+  <mat-toolbar dir="rtl" color="primary">
+    <mat-toolbar-row >
+        <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu" >menu
+            <mat-menu #menu="matMenu">
+
+                <button routerLink="card" mat-menu-item>Card Component</button>
+                <button routerLink="autocomplete" mat-menu-item>Autocomplete Component</button>
+                <button routerLink="buttons" mat-menu-item>buttons Component</button>
+                <button routerLink="calnder" mat-menu-item>calnder Component</button>
+              </mat-menu> 
+              <mat-icon style=" position: relative;right: 7830%;z-index: 9999" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+              <span style=" position:  relative; top: 262%; font-size: 32px; right: 7830%;z-index: 9999" class="material-icons">shopping_cart</span>
+
+        </mat-icon>
+
+            <p style="text-align: center; margin: 45%" >תמונות לסלון לבית ולמשרד</p>
+     
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+
+    <div class="seconeLineMenu">
+          <span>תמונות לבית ולסלון</span>
+        </div>
+       <div class="seconeLineMenu">
+      <span>לפי נושאים</span>
+      <span [matMenuTriggerFor]="menu22" class="material-icons">keyboard_arrow_down
+         
+          <mat-menu  #menu22="matMenu">
+            <button routerLink="pic-subject-main-page" mat-menu-item> תמונות נוף</button>
+            <button mat-menu-item> תמונות אבסטרקט</button>
+            <button mat-menu-item> תמונות טבע</button>
+            <button mat-menu-item> תמונות של ים</button>
+            <button mat-menu-item> אורבני</button>
+            <button mat-menu-item> תמונות לחדר ילדים</button>
+            <button mat-menu-item> טבע דומם </button>
+            <button mat-menu-item>  אביב</button>
+            <button routerLink="pic-sub-main-page" mat-menu-item> נושאים נוספים  </button>
+            
+          </mat-menu>
+
+
+      </span>
+     
+    </div>
+    <div class="seconeLineMenu">
+        <span>מבצעים</span>
+      </div>
+      <div class="seconeLineMenu">
+          <span>חדש</span>
+        </div>
+        <div class="seconeLineMenu">
+            <span>צרו קשר</span>
+          </div>
+          <div class="seconeLineMenu">
+              <span>ממליצים</span>
+            </div>
+            <div class="seconeLineMenu">
+                <span>אודותינו</span>
+              </div>
+              <div class="seconeLineMenu">
+                  <span>חיפוש</span>
+                </div>
+      
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</p>
+      <router-outlet></router-outlet>

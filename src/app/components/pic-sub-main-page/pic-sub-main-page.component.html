@@ -1,0 +1,16 @@
+<h1>קטגורית תמונות לפי נושאים</h1>
+<div style="text-align: center ;">
+<div style="margin-left: 17% ; margin-right: 17%" >
+<div *ngFor="let i of cardImgList" style="display: inline-block">
+
+<mat-card style="cursor: pointer ;     background: rgba(255,255,255,.7); color: #0c2468;"  [class.mat-elevation-z2]="!isActive" [class.mat-elevation-z20]="isActive" class="main-pic-sub-card" >
+    <img mat-card-image src={{i.imgUrl}}>
+        <mat-card-content>
+            <h3>{{i.subject}}</h3>
+        </mat-card-content>
+</mat-card>
+
+</div>
+</div>
+
+

@@ -3,12 +3,12 @@
   <mat-toolbar dir="rtl" color="primary">
     <mat-toolbar-row >
         <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu" >menu
-            <mat-menu #menu="matMenu">
+          <div style="background-color: aqua; ;  display: inline-block"></div> 
+          <mat-menu #menu="matMenu">
 
                 <button routerLink="card" mat-menu-item>Card Component</button>
                 <button routerLink="autocomplete" mat-menu-item>Autocomplete Component</button>
                 <button routerLink="buttons" mat-menu-item>buttons Component</button>
-                <button routerLink="calnder" mat-menu-item>calnder Component</button>
               </mat-menu> 
               <mat-icon style=" position: relative;right: 7830%;z-index: 9999" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
               <span style=" position:  relative; top: 262%; font-size: 32px; right: 7830%;z-index: 9999" class="material-icons">shopping_cart</span>
@@ -34,6 +34,8 @@
             <button routerLink="pic-subject-main-page" mat-menu-item> תמונות נוף</button>
             <button mat-menu-item> תמונות אבסטרקט</button>
             <button mat-menu-item> תמונות טבע</button>
+            <button routerLink="nav" mat-menu-item>calnder Component</button>
+
             <button mat-menu-item> תמונות של ים</button>
             <button mat-menu-item> אורבני</button>
             <button mat-menu-item> תמונות לחדר ילדים</button>

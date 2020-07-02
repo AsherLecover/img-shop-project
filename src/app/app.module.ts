@@ -18,6 +18,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -29,6 +33,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     ButtonsComponent,
     PicSubMainPageComponent,
     PicSubjectMainPageComponent,
+    MainNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

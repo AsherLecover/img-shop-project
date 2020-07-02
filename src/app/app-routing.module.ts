@@ -7,6 +7,7 @@ import { PicSubjectMainPageComponent } from './components/pic-subject-main-page/
 
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
     { path:'buttons',     component:ButtonsComponent},
     { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
     { path:'pic-subject-main-page',     component:PicSubjectMainPageComponent},
+    { path:'nav',     component:MainNavComponent},
+
+
+    
 
     
 

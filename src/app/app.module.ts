@@ -22,6 +22,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
 
 
 
@@ -34,6 +36,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ButtonsComponent,
     PicSubMainPageComponent,
     PicSubjectMainPageComponent,
+    LogInComponent,
+    ValidationErrorComponent,
   ],
   imports: [
     BrowserModule,

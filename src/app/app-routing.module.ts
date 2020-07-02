@@ -17,12 +17,6 @@ const routes: Routes = [
     { path:'buttons',     component:ButtonsComponent},
     { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
     { path:'pic-subject-main-page',     component:PicSubjectMainPageComponent},
-
-
-    
-
-    
-
     { path:'',          redirectTo:'home', pathMatch: 'full'},
     { path:'**',        redirectTo:'home', pathMatch: 'full'},]
   

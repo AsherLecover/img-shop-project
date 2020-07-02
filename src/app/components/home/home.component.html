@@ -1,19 +1,24 @@
 
 <p>
   <mat-toolbar dir="rtl" color="primary">
-    <mat-toolbar-row >
-        <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu" >menu
-          <div style="background-color: aqua; ;  display: inline-block"></div> 
-          <mat-menu #menu="matMenu">
-
-                <button routerLink="card" mat-menu-item>Card Component</button>
-                <button routerLink="autocomplete" mat-menu-item>Autocomplete Component</button>
-                <button routerLink="buttons" mat-menu-item>buttons Component</button>
-              </mat-menu> 
-              <mat-icon style=" position: relative;right: 7830%;z-index: 9999" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-              <span style=" position:  relative; top: 262%; font-size: 32px; right: 7830%;z-index: 9999" class="material-icons">shopping_cart</span>
-
+    <mat-toolbar-row>
+        <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
+          <mat-menu  #menu="matMenu">
+            <button routerLink="card" mat-menu-item>Card Component</button>
+            <button routerLink="autocomplete" mat-menu-item>Autocomplete Component</button>
+            <button routerLink="buttons" mat-menu-item>buttons Component</button> 
+         </mat-menu>
         </mat-icon>
+        <div class="home-icon">
+      <mat-icon>home</mat-icon>
+        </div>
+        <div class="shopping-cart-icon">
+      <mat-icon>shopping_cart</mat-icon> 
+        </div>
+   
+    
+
+    
 
             <p style="text-align: center; margin: 45%" >תמונות לסלון לבית ולמשרד</p>
      

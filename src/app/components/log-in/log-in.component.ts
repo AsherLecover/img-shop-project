@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators, FormBuilder} from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 
 
@@ -9,17 +9,39 @@ import {FormControl, Validators, FormBuilder} from '@angular/forms';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
+  registerForm: FormGroup;
+  submitted = false;
+  ctrl:FormControl;
+  m: string = ''
+
 
   constructor(private fb: FormBuilder) { }
 
-  newRegForm = this.fb.group({
-    name:   ['', Validators.required],
-    age:    ['', [Validators.pattern("^[0-9]*$"), Validators.min(3), Validators.max(17)]],
-    girraf: ['', [Validators.required, Validators.minLength(2)]],
-    email:  ['', Validators.email],
-  })
-
   ngOnInit(): void {
-  }
+    this.registerForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    })}
+    
+
+    email = new FormControl('', [Validators.required, Validators.email]);
+
+    getErrorMessage() {
+      if (this.email.hasError('required')) {
+        return 'שדה חובה';
+      }
+  
+      return this.email.hasError('email') ? 'כתובת דוא"ל אינה חוקית ' : '';
+    }
+
+    onSubmit(){}
+    a(){
+        if( this.registerForm.controls['firstName'].hasError('min')){
+            return  'שם פרטי חייב להחיל 2 אותיות'
+
+        
+      }
+    }
 
 }

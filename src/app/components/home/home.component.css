@@ -18,7 +18,9 @@
     color: red !important;
 }
 
-.home-icon{
+.mat-dialog-container{
+    background: #fff !important;
+  
 }
 
 

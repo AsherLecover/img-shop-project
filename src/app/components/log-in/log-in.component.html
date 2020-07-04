@@ -1,33 +1,115 @@
-<h1 style="text-align: center; margin: 0%">כניסת חברים – ברוכים הבאים</h1><br>
+<h1  style="text-align: center; margin: 0%; color: #232d54;">כניסת חברים – ברוכים הבאים</h1><br>
 
 
-<h3>.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם (חינם) כעת ולקבל הטבות שוות במיוחד</h3>
+<h3 style="color: #232d54;">.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם (חינם) כעת ולקבל הטבות שוות במיוחד</h3>
 
-<form action="">
-    <span>שם פרטי<input type="text" placeholder="שם פרטי"></span><br>
-    <span>שם משפחה<input type="text" placeholder="שם משפחה"></span><br>
-    <span> כתובת מייל<input type="text" placeholder="כתובת מייל"></span><br>
-    <span>סיסמה<input type="text" placeholder="סיסמה "></span><br>
-</form>
 
-    <form [formGroup]="newRegForm">
+  <div style="background-color: rgb(244, 247, 241); display: flex;">
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 40%; margin: 24px;" dir="rtl" action="">
+
+    <input id="inputs0"  formControlName="firstName" type="text" placeholder="הזן שם פרטי" 
+     [ngClass]="{'has-error' :
+    registerForm.get('firstName').errors &&
+    (registerForm.get('firstName').touched || 
+    registerForm.get('firstName').dirty)}
+    ">
+    <span *ngIf="registerForm.get('firstName').errors &&
+    (registerForm.get('firstName').touched || 
+    registerForm.get('firstName').dirty)"><br>
+      <span style="color: red;" *ngIf="registerForm.get('firstName').errors.required">
+        זהו שדה חובה
+      </span>
+      <span style="color: red;" *ngIf="registerForm.get('firstName').errors.minlength">
+       שם פרטי חייב להיות לפחות 2 אותיות
+      </span>
+  </span>
+    <br>
+    <input id="inputs2" formControlName="email" type="text" placeholder='הזן כתובת דוא"ל'
+    [ngClass]="{'has-error' :
+    registerForm.get('email').errors &&
+    (registerForm.get('email').touched || 
+    registerForm.get('email').dirty)}"
+    >
+
+    <span *ngIf="registerForm.get('email').errors &&
+    (registerForm.get('email').touched || 
+    registerForm.get('email').dirty)"><br>
+      <span style="color: red;" *ngIf="registerForm.get('email').errors.required">
+        זהו שדה חובה
+      </span>
+      <span style="color: red;" *ngIf="registerForm.get('email').errors.email">
+       כתובת מייל לא חוקית
+      </span>
+  </span>
+    <br>
+    <input id="inputs3" formControlName="password" class="b" type="text" placeholder="הזן סיסמה"><br>
+    <input id="inputs4" formControlName="password" class="b" type="text" placeholder="הקש סיסמה שנית"><br>
+    <button style="background-color: #232d54; width: 200px; height: 45px;" mat-raised-button color="primary">הרשמה</button>
+    </form>
+
+    <div class="wrapper">
+      <div class="line"></div>
+      <div class="wordwrapper">
+          <div class="word">או</div>                                        
+      </div>
+  </div>
+
+  <div dir="rtl" class="container">
+    <form action="/action_page.php">
+      <div class="row">
+       
   
-            <label> Name: <input formControlName="name"> </label><br>
-            <validation-error [ctrl]="newRegForm.controls.name"></validation-error>
+        <div class="col">
+          <a href="#" class="fb btn">
+            <i class="fa fa-facebook fa-fw"></i>הרשמה מהירה עם פייסבוק
+           </a>
+          <a href="#" class="twitter btn">
+            <i class="fa fa-twitter fa-fw"></i> הרשמה מהירה עם טוויטר  
+          </a>
+          <a href="#" class="google btn"><i class="fa fa-google fa-fw">
+            </i>הרשמה מהירה עם גוגל
+          </a>
+        </div>
+  
+     
         
-            <label> age: <input  formControlName="age"> </label><br>
-            <validation-error [ctrl]="newRegForm.controls.age"></validation-error>
-        
-            <label> girraf: <input  formControlName="girraf"> </label><br>
-            <validation-error [ctrl]="newRegForm.controls.girraf"></validation-error>
-        
-            <label> email: <input  formControlName="email"> </label><br>
-            <validation-error [ctrl]="newRegForm.controls.email"></validation-error>
-        
-            <br><br>
-          
-            <button type="submit" [disabled]="!newRegForm.valid">Submit</button>
-        </form>
+      </div>
+    </form>
+  </div>
+  
+      
+
+</div>
 
 
-ד
+
+<!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label> firstName: <input formControlName="firstName" placeholder="הזן שם פרטי"> </label><br>
+    <validation-error [ctrl]="registerForm.controls.firstName"></validation-error>
+
+    <label> lastName: <input  formControlName="lastName"> </label><br>
+    <validation-error [ctrl]="registerForm.controls.lastName"></validation-error>
+
+    <label> phoneNumber: <input  formControlName="phoneNumber"> </label><br>
+    <validation-error [ctrl]="registerForm.controls.phoneNumber"></validation-error>
+
+    <label> email: <input  formControlName="email"> </label><br>
+    <validation-error [ctrl]="registerForm.controls.email"></validation-error>
+
+    <label> password: <input  formControlName="password"> </label><br>
+    <validation-error [ctrl]="registerForm.controls.password"></validation-error>
+
+    <br><br>
+    <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+</form> -->
+
+
+
+
+
+
+
+
+  
+

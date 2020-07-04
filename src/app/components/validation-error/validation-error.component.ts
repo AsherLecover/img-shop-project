@@ -10,10 +10,12 @@ import { FormControl } from '@angular/forms';
 export class ValidationErrorComponent implements OnInit {
 
   constructor() { }
-  @Input() ctrl:FormControl
+  // @Input() ctrl:FormControl
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+//   logy(){
+//     console.log(this.ctrl);
+// }
 }

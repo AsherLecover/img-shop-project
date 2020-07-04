@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,9 @@ import { MatListModule } from '@angular/material/list';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
+
+import { CommonModule } from '@angular/common';
+
 
 
 
@@ -55,8 +58,12 @@ import { ValidationErrorComponent } from './components/validation-error/validati
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CommonModule
   ],
+
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

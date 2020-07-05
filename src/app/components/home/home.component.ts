@@ -9,20 +9,14 @@ import { LogInComponent } from '../log-in/log-in.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  panelOpenState = false; 
+  // panelOpenState = false; 
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit(): void {}
 
-  openDialog() {
-    const dialogRef = this.dialog.open(LogInComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+  
 }
 
 

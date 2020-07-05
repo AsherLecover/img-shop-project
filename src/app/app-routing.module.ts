@@ -10,19 +10,17 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
 
 
 const routes: Routes = [
-  { path:'',    component:HomeComponent ,
-  children:[
-    { path:'card',   component:CardComponent},
-    { path:'autocomplete',     component:AutocompleteComponent},
-    { path:'buttons',     component:ButtonsComponent},
-    { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
-    { path:'pic-subject-main-page',     component:PicSubjectMainPageComponent},
-    { path:'',          redirectTo:'home', pathMatch: 'full'},
-    { path:'**',        redirectTo:'home', pathMatch: 'full'},]
+  { path:'',    component:HomeComponent} ,
+  { path:'card',   component:CardComponent},
+  { path:'autocomplete',     component:AutocompleteComponent},
+  { path:'buttons',     component:ButtonsComponent},
+  { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
+  { path:'pic-subject-main-page',     component:PicSubjectMainPageComponent},
+  { path:'',          redirectTo:'home', pathMatch: 'full'},
+  { path:'**',        redirectTo:'home', pathMatch: 'full'},
+];
   
-  },]
-
-
+  
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

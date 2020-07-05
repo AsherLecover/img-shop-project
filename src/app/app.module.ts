@@ -26,6 +26,15 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
 
 import { CommonModule } from '@angular/common';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
+ 
 
 
 
@@ -41,8 +50,10 @@ import { CommonModule } from '@angular/common';
     PicSubjectMainPageComponent,
     LogInComponent,
     ValidationErrorComponent,
+    SignUpComponent,
   ],
   imports: [
+    SocialLoginModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -64,7 +75,34 @@ import { CommonModule } from '@angular/common';
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
-  providers: [],
-  bootstrap: [AppComponent]
+
+providers: [
+  {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            'clientId'
+          ),
+        },
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('723513601563548'),
+        },
+        {
+          id: AmazonLoginProvider.PROVIDER_ID,
+          provider: new AmazonLoginProvider(
+            'clientId'
+          ),
+        },
+      ],
+    } as SocialAuthServiceConfig,
+  }
+],
+bootstrap: [AppComponent]
+
 })
 export class AppModule { }

@@ -1,2 +1,81 @@
-
+<p>
+        <mat-toolbar dir="rtl" color="primary">
+          <mat-toolbar-row>
+              <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
+                <mat-menu  #menu="matMenu">
+                  <button routerLink="/card" mat-menu-item>Card Component</button>
+                  <button routerLink="/autocomplete" mat-menu-item>Autocomplete Component</button>
+                  <button routerLink="/buttons" mat-menu-item>buttons Component</button> 
+                </mat-menu>
+              </mat-icon>
+              <button  (click)="openDialog()" >כניסה | הרשמה</button>
+              
+      
+              <mat-icon style="  position: absolute;left: 10px;top: rem 3;">home</mat-icon>
+              <p style="text-align: center; margin: 0%" >תמונות לסלון לבית ולמשרד</p>
+           
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            </button>
+          </mat-toolbar-row>
+      
+          <mat-toolbar-row>
+              <mat-icon style="  position: absolute;
+              left: 10px;
+              top: rem 17;  font-size: 37px">shopping_cart</mat-icon>
+      
+      
+          <div class="seconeLineMenu">
+                <span>תמונות לבית ולסלון</span>
+              </div>
+             <div class="seconeLineMenu">
+            <span>לפי נושאים</span>
+            <span [matMenuTriggerFor]="menu22" class="material-icons">keyboard_arrow_down
+               
+                <mat-menu  #menu22="matMenu">
+                  <button routerLink="/pic-subject-main-page" mat-menu-item> תמונות נוף</button>
+                  <button mat-menu-item> תמונות אבסטרקט</button>
+                  <button mat-menu-item> תמונות טבע</button>
+                  <button routerLink="nav" mat-menu-item>calnder Component</button>
+      
+                  <button mat-menu-item> תמונות של ים</button>
+                  <button mat-menu-item> אורבני</button>
+                  <button mat-menu-item> תמונות לחדר ילדים</button>
+                  <button mat-menu-item> טבע דומם </button>
+                  <button mat-menu-item>  אביב</button>
+                  <button routerLink="/pic-sub-main-page" mat-menu-item> נושאים נוספים  </button>
+                  
+                </mat-menu>
+      
+      
+            </span>
+           
+          </div>
+          <div class="seconeLineMenu">
+              <span>מבצעים</span>
+            </div>
+            <div class="seconeLineMenu">
+                <span>חדש</span>
+              </div>
+              <div class="seconeLineMenu">
+                  <span>צרו קשר</span>
+                </div>
+                <div class="seconeLineMenu">
+                    <span>ממליצים</span>
+                  </div>
+                  <div class="seconeLineMenu">
+                      <span>אודותינו</span>
+                    </div>
+                 
+            
+            <span class="example-spacer"></span>
+            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            </button>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </p>
 <router-outlet></router-outlet>
+
+
+      

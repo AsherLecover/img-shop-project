@@ -1,6 +1,5 @@
 <h1  style="text-align: center; margin: 0%; color: #232d54;">כניסת חברים – ברוכים הבאים</h1><br>
 
-
 <h3 style="color: #232d54;">.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם (חינם) כעת ולקבל הטבות שוות במיוחד</h3>
 
 
@@ -43,9 +42,26 @@
       </span>
   </span>
     <br>
-    <input id="inputs3" formControlName="password" class="b" type="text" placeholder="הזן סיסמה"><br>
-    <input id="inputs4" formControlName="password" class="b" type="text" placeholder="הקש סיסמה שנית"><br>
+    <input id="inputs3" formControlName="password" class="b" type="password" placeholder="הזן סיסמה"
+    [ngClass]="{'has-error' :
+    registerForm.get('password').errors &&
+    (registerForm.get('password').touched || 
+    registerForm.get('password').dirty)}
+    ">
+    <span *ngIf="registerForm.get('password').errors &&
+    (registerForm.get('password').touched || 
+    registerForm.get('password').dirty)"><br>
+      <span style="color: red;" *ngIf="registerForm.get('password').errors.required">
+        זהו שדה חובה
+      </span>
+      <span style="color: red;" *ngIf="registerForm.get('password').errors.minlength">
+        סיסמה חייבת להיות בעלת 8 תווים 
+      </span>
+  </span>
+    <br>
+    <br>
     <button style="background-color: #232d54; width: 200px; height: 45px;" mat-raised-button color="primary">הרשמה</button>
+                <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">ביטול</button> -->
     </form>
 
     <div class="wrapper">
@@ -71,38 +87,22 @@
             </i>הרשמה מהירה עם גוגל
           </a>
         </div>
-  
-     
-        
       </div>
+     
     </form>
   </div>
   
-      
 
 </div>
+<div style="text-align: center; margin: 0%; background-color: #f2f2f2">
+  <i>כבר רשום באתר? כנס בקלות </i><br>
+    <a  class="aaaa" (click)="openDialog()">
+        מכאן</a>
+        </div> 
+    
 
 
 
-<!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <label> firstName: <input formControlName="firstName" placeholder="הזן שם פרטי"> </label><br>
-    <validation-error [ctrl]="registerForm.controls.firstName"></validation-error>
-
-    <label> lastName: <input  formControlName="lastName"> </label><br>
-    <validation-error [ctrl]="registerForm.controls.lastName"></validation-error>
-
-    <label> phoneNumber: <input  formControlName="phoneNumber"> </label><br>
-    <validation-error [ctrl]="registerForm.controls.phoneNumber"></validation-error>
-
-    <label> email: <input  formControlName="email"> </label><br>
-    <validation-error [ctrl]="registerForm.controls.email"></validation-error>
-
-    <label> password: <input  formControlName="password"> </label><br>
-    <validation-error [ctrl]="registerForm.controls.password"></validation-error>
-
-    <br><br>
-    <button type="submit" [disabled]="!registerForm.valid">Submit</button>
-</form> -->
 
 
 

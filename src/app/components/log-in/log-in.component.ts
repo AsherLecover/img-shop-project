@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
-
+import {
+  Validators,
+  FormBuilder,
+  FormGroup,
+  FormControl
+} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { SignUpComponent } from '../sign-up/sign-up.component';
+import { log } from 'util';
 
 @Component({
   selector: 'app-log-in',
@@ -11,37 +17,39 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 export class LogInComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  ctrl:FormControl;
-  m: string = ''
+  ctrl: FormControl;
 
-
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
-    })}
-    
+    this.registerForm = this.fb.group(
+      {
+        firstName: ['', [Validators.required, Validators.minLength(2)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required,Validators.minLength(8)],
+        acceptTerms: [false, Validators.requiredTrue]});}
 
-    email = new FormControl('', [Validators.required, Validators.email]);
-
-    getErrorMessage() {
-      if (this.email.hasError('required')) {
-        return 'שדה חובה';
-      }
-  
-      return this.email.hasError('email') ? 'כתובת דוא"ל אינה חוקית ' : '';
+  onSubmit() {
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
     }
+  }
 
-    onSubmit(){}
-    a(){
-        if( this.registerForm.controls['firstName'].hasError('min')){
-            return  'שם פרטי חייב להחיל 2 אותיות'
+  onReset() {
+    this.submitted = false;
+    this.registerForm.reset();
+  }
 
-        
-      }
-    }
+  openDialog() {
+    const dialogRef = this.dialog.open(SignUpComponent);
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

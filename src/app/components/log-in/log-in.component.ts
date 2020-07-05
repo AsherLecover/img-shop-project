@@ -22,6 +22,7 @@ export class LogInComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
+    public dialog2: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -47,9 +48,9 @@ export class LogInComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(SignUpComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
+  
 }

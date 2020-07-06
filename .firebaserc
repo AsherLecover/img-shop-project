@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "img-shop-project": {
+      "hosting": {
+        "angular-mat": [
+          "img-shop-project"
+        ]
+      }
+    }
+  }
+}

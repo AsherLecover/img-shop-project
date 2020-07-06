@@ -20,13 +20,16 @@ export class LogInComponent implements OnInit {
   submitted = false;
   ctrl: FormControl;
   userName: string;
+  private _authService: ClinetsService
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     public dialog2: MatDialog,
-    public svcClinetsList:ClinetsService
-  ) {}
+    public svcClinet:ClinetsService
+  ) {
+    this._authService = svcClinet;
+  }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
@@ -54,13 +57,15 @@ export class LogInComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  }
+  } 
 
   getUserName(){
-
     console.log(this.registerForm.value.firstName);
-    this.svcClinetsList.userName = ' ' + this.registerForm.value.firstName;
-
+    this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
+  }
+  signInWithGoogle(){
+    this._authService.signInWithGoogle();
+    console.log('asher')
   }
     
   

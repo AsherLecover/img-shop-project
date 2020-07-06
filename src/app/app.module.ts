@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,16 +28,14 @@ import { CommonModule } from '@angular/common';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-  AmazonLoginProvider,
-} from 'angularx-social-login';
+import {GoogleLoginProvider,FacebookLoginProvider,AmazonLoginProvider,} from 'angularx-social-login';
+import { AngularFireModule} from '@angular/fire';
+import { AngularFireAuthModule} from '@angular/fire/auth'
+import { AngularFirestoreModule} from '@angular/fire/firestore'
+import { from } from 'rxjs';
+import { ClinetsService } from './servises/clinets.service';
+import { environment } from 'src/environments/environment';
  
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +50,9 @@ import {
     SignUpComponent,
   ],
   imports: [
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireModule,
     SocialLoginModule,
     BrowserModule,
     AppRoutingModule,
@@ -70,38 +70,17 @@ import {
     MatSidenavModule,
     MatListModule,
     FlexLayoutModule,
-    CommonModule
+    CommonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+
+    
   ],
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
 
-providers: [
-  {
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      autoLogin: false,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider(
-            'clientId'
-          ),
-        },
-        {
-          id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider('723513601563548'),
-        },
-        {
-          id: AmazonLoginProvider.PROVIDER_ID,
-          provider: new AmazonLoginProvider(
-            'clientId'
-          ),
-        },
-      ],
-    } as SocialAuthServiceConfig,
-  }
-],
+providers: [ClinetsService],
 bootstrap: [AppComponent]
 
 })

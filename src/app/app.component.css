@@ -3,13 +3,12 @@
     color: #fff;
 }
 .seconeLineMenu{
-    margin: 5%;
+    justify-content: space-between;
     cursor: pointer;
 }
 .firstLine{
-    margin: 5%;
     cursor: pointer;  
-    display: flex
+    display: flex;
 }
 ::ng-deep .mat-menu-content{
     background-color:floralwhite
@@ -25,5 +24,31 @@
 
 .mat-dialog-container{
     background: #fff !important;
-  
+}
+.footer{
+    position:relative;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0;
+    height: 40%;
+    background-color: #232d54;
+    direction: rtl;
+}
+.hedder{
+    position:relative;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0;
+    height: 15%;
+    direction: rtl;
+    background-color: #232d54
+}
+
+.firstLineHedder{
+    height: 50%;
+}
+.secondeLineHedder{
+    height: 50%;
 }

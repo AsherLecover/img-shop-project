@@ -5,6 +5,7 @@ import { log } from 'util';
 import { SocialAuthService , SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { LogInComponent } from './components/log-in/log-in.component';
+import { ClinetsService } from './servises/clinets.service';
  
 
 @Component({
@@ -13,10 +14,12 @@ import { LogInComponent } from './components/log-in/log-in.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-mat';
+  title = 'Pic Pictre';
   panelOpenState = false;
+  userName:string = ''
 
-  constructor(public dialog: MatDialog ){}
+
+  constructor(public dialog: MatDialog, public svcClinetsList:ClinetsService ){}
 
   openDialog() {
     const dialogRef = this.dialog.open(LogInComponent);
@@ -25,6 +28,8 @@ export class AppComponent {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  
 
  
 

@@ -8,6 +8,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { log } from 'util';
+import { ClinetsService } from '../../servises/clinets.service';
 
 @Component({
   selector: 'app-log-in',
@@ -18,11 +19,13 @@ export class LogInComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   ctrl: FormControl;
+  userName: string;
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
-    public dialog2: MatDialog
+    public dialog2: MatDialog,
+    public svcClinetsList:ClinetsService
   ) {}
 
   ngOnInit(): void {
@@ -52,5 +55,16 @@ export class LogInComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  getUserName(){
+
+    console.log(this.registerForm.value.firstName);
+    this.svcClinetsList.userName = ' ' + this.registerForm.value.firstName;
+
+  }
+    
+  
+
+  
   
 }

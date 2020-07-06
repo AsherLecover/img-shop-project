@@ -1,28 +1,139 @@
-<p>
-        <mat-toolbar dir="rtl" color="primary">
-          <mat-toolbar-row>
-              <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
-                <mat-menu  #menu="matMenu">
-                  <button routerLink="/card" mat-menu-item>Card Component</button>
-                  <button routerLink="/autocomplete" mat-menu-item>Autocomplete Component</button>
-                  <button routerLink="/buttons" mat-menu-item>buttons Component</button> 
-                </mat-menu>
-              </mat-icon>
-              <button  (click)="openDialog()" >כניסה | הרשמה</button>
-              <p>ברוך הבא אורח</p>
-              
+<div class="hedder">
+      <div class="firstLineHedder" style=" display: flex">
+              <div style=" width: 3%;">
+                  <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
+                  <mat-menu  #menu="matMenu">
+                    <button routerLink="/card" mat-menu-item>Card Component</button>
+                    <button routerLink="/autocomplete" mat-menu-item>Autocomplete Component</button>
+                    <button routerLink="/buttons" mat-menu-item>buttons Component</button> 
+                  </mat-menu>
+                </mat-icon>
+            </div>
+
+            <div style=" width: 30%; margin-top: 1%">
+                  <button  (click)="openDialog()" >כניסה | הרשמה</button>
+            </div>
+
+            <div style=" width: 30%; text-align: left; margin-top: 1%">
+                <h1 >תמונות לסלון לבית ולמשרד</h1>
+            </div>
+
+            <div style=" width: 40%; text-align: left; margin-top: 1%">
+                <span *ngIf="svcClinetsList.userName !='' "> ברוך הבא{{svcClinetsList.userName}}</span>
+                <span class="material-icons">face</span>
+            </div>
+
+            <div style="text-align:left; width: 10%; margin-top: 1%">
+                  <mat-icon style="padding-left: 5%" routerLink="" >home</mat-icon>
+            </div>
       
-              <mat-icon style="  position: absolute;left: 10px;top: rem 3;">home</mat-icon>
-              <p style="text-align: center; margin: 0%" >תמונות לסלון לבית ולמשרד</p>
+
+      </div>
+
+      <!-- heeder seconde line----------------------------------------------------- -->
+
+        <div class="secondeLineHedder" style="  display: flex;">
+
+            <div class="seconeLineMenu" style=" width: 17%;">
+                <span style="font-size: 150%; padding: 10%;">תמונות לבית ולסלון</span>
+            </div>
+             <div class="seconeLineMenu" style="width: 15%" >
+                <span style="font-size: 150%;">לפי נושאים</span>
+                    <span [matMenuTriggerFor]="menu22" class="material-icons">keyboard_arrow_down
+               
+                        <mat-menu  #menu22="matMenu">
+                              <button routerLink="/pic-subject-main-page" mat-menu-item> תמונות נוף</button>
+                              <button mat-menu-item> תמונות אבסטרקט</button>
+                              <button mat-menu-item> תמונות טבע</button>
+                              <button routerLink="nav" mat-menu-item>calnder Component</button>
+                  
+                              <button mat-menu-item> תמונות של ים</button>
+                              <button mat-menu-item> אורבני</button>
+                              <button mat-menu-item> תמונות לחדר ילדים</button>
+                              <button mat-menu-item> טבע דומם </button>
+                              <button mat-menu-item>  אביב</button>
+                          <button routerLink="/pic-sub-main-page" mat-menu-item> נושאים נוספים  </button>
+                       </mat-menu>
+                   </span>
+           
+           </div>
+
+          <div class="seconeLineMenu" style="width: 17%" >
+              <span style="font-size: 150%; padding: 10%;">מבצעים</span>
+          </div>
+
+          <div class="seconeLineMenu"style="width: 17%" >
+                 <span style="font-size: 150%; padding: 10%;">חדש</span>
+          </div>
+           <div class="seconeLineMenu"style="width: 17%" >
+                 <span style="font-size: 150%; padding: 10%;">צרו קשר</span>
+          </div>
+           <div class="seconeLineMenu"style="width: 17%" >
+                   <span style="font-size: 150%; padding: 10%;">ממליצים</span>
+           </div>
+            <div class="seconeLineMenu"style="width: 17%" >
+                   <span style="font-size: 150%; padding: 10%;">אודותינו</span>
+          </div>
+
+          <div style="width: 17%; text-align:left; margin-top: 1%" >
+              <span style="padding-left: 5%; font-size: 35px; " class="material-icons">shopping_cart </span>
+          </div>
+                 
+      </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <mat-toolbar dir="rtl" color="primary">
+          <mat-toolbar-row style="border: red solid 3px; display: flex;background-color: palegreen;position: relative;">
+
+                  <div>
+                       <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
+                        <mat-menu  #menu="matMenu">
+                          <button routerLink="/card" mat-menu-item>Card Component</button>
+                          <button routerLink="/autocomplete" mat-menu-item>Autocomplete Component</button>
+                          <button routerLink="/buttons" mat-menu-item>buttons Component</button> 
+                        </mat-menu>
+                      </mat-icon>
+                </div>
+                  <div style="border: black solid 3px;">
+                        <button  (click)="openDialog()" >כניסה | הרשמה</button>
+                  </div>
+
+                  <div>
+                      <p >תמונות לסלון לבית ולמשרד</p>
+                 </div>
+
+                  <div>
+                     <span>ברוך הבא אורח</span>
+                     <span class="material-icons">face</span>
+                 </div>
+
+                 <div style="text-align:left;background-color: palevioletred ;position: absolute;left: 3%;top: rem 17;">
+                        <mat-icon routerLink="" >home</mat-icon>
+                  </div>
            
             <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             </button>
           </mat-toolbar-row>
       
           <mat-toolbar-row>
-              <mat-icon style="  position: absolute;
-              left: 10px;
-              top: rem 17;  font-size: 37px">shopping_cart</mat-icon>
+              <mat-icon style="position: absolute;left: 10px;top: rem 17;  font-size: 37px">shopping_cart</mat-icon>
       
       
           <div class="seconeLineMenu">
@@ -74,9 +185,97 @@
             <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
             </button>
           </mat-toolbar-row>
-        </mat-toolbar>
-      </p>
-<router-outlet></router-outlet>
+        </mat-toolbar> -->
+      <!-- ********************************************************* -->
 
+      <router-outlet></router-outlet>
+
+      <div class="footer">
+          <div class="firstLineFotter"  style="width: 80%;  margin-right: 15%;
+          ; display: flex;">
+
+            <div class="firstElementInFirstLineFooter"  style=" margin: 30px;">
+            <div style="display: flex;">
+                <span style="font-size: 37px; padding: 10px;" class="material-icons">local_shipping</span>
+                <p><strong>משלוחים לכל רחבי הארץ! </strong> <br> לצפון לדרום למרכז ולערבה! </p><br>
+            </div>
+            </div>
+
+            <div class="firstElementInFirstLineFooter"  style=" margin: 30px;">
+                <div style="display: flex;">
+                    <span style="font-size: 37px; padding: 10px;" class="material-icons"> payment </span>
+                    <p><strong>החזר כספי מובטח! </strong> <br> התחרטתם או שיש תמונה שלא בא לכם עליה! </p><br>
+                </div>
+                </div>
+
+                <div class="firstElementInFirstLineFooter"  style=" margin: 30px;">
+                    <div style="display: flex;">
+                        <span style="font-size: 37px; padding: 10px;" class="material-icons"> settings </span>
+                        <p><strong>הדפסה באיכות הגבוהה ביותר! </strong> <br> מדפסות אפסון חדישות באיכות HD </p><br>
+                    </div>
+                    </div>
+
+
+
+            
+          
+          </div>
+          <div style="display: flex;">
+          <div style="width: 80%;  height: 100%; margin-left: 5% ; margin-right: 5%">
+              <h1 style="text-align: center">PicPicture</h1>
+              <p>חברת גאיה התחילה את דרכה בשנת 2006,<br>
+                 הראשונה למכור תמונות קנבס אונליין. אנו בגאיה מייצרים את המוצרים הטובים בשוק תוך שמירה על מחיר הוגן. <br>
+                  עם השנים למדנו להתאים את מוצרינו לשוק הישראלי ועם זאת להישאר בקדמת עולם העיצוב. <br>
+                  את התמונות שלנו ניתן לקבל במיגוון אפשרויות עצום, מאפשרויות חיתוך שונות ועד  בחירת עובי המסגרת,<br>
+                  הכל כדי להתאים את המוצר שלנו לסלון שלך</p>
+          </div>
+          <div style="width: 20%;  height: 100%; margin-left: 5% ; margin-right: 5%">
+              <h2 style="text-align: center">החשבון שלי</h2>
+              <ul>
+                <li>החשבון שלי</li>
+                <li>ההזמנות שלי</li>
+                <li> תוכנית השותפים</li>
+                <li>דוור</li>
+                <li> שובר מתנה</li>
+              </ul>
+              
+          </div>
+          <div style="width: 20%; height: 100%; margin-left: 5% ; margin-right: 5%">
+            <h2 style="text-align: center">מידע</h2>
+              <ul>
+                <li>אודות</li>
+                <li>תשלום ומשלוח</li>
+                <li>שאלות ותשובות</li>
+                <li>תקנון</li>
+                <li>צרו עמנו קשר</li>
+                <li>מיוחדים</li>
+              </ul>
+          </div>
+          <div style="width: 40%;  height: 100%; margin-left: 5% ; margin-right: 5%">
+              <h2 style="text-align: center">דרכי התקשרות</h2>
+              <div style="display: flex;">
+                  <span style="margin-left: 3%" class="material-icons">room</span>
+                      <p><strong>דרך ישראל 10 ת"א</strong> <br>אין תצוגה במקום</p><br>
+              </div>
+
+              <div style="display: flex;">
+                  <span style="margin-left: 3%" class="material-icons">call</span>
+                  <p><strong>058-123-4567 </strong> <br></p><br>
+              </div>
+
+              <div style="display: flex;">
+                  <span style="margin-left: 3%" class="material-icons">mail_outline</span>
+                      <p><strong>CustomerService@PicPicture.co.il</strong> <br></p><br>
+              </div>
+                  
+          </div>
+        </div>
+       
+      </div>
 
       
+
+      
+
+
+

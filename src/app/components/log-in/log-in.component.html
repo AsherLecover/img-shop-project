@@ -8,7 +8,7 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 40%; margin: 24px;" dir="rtl" action="">
 
-    <input id="inputs0" formControlName="firstName" type="text" placeholder="הזן שם פרטי" [ngClass]="{'has-error' :
+    <input  id="inputs0"  formControlName="firstName" type="text" placeholder="הזן שם פרטי" [ngClass]="{'has-error' :
     registerForm.get('firstName').errors &&
     (registerForm.get('firstName').touched || 
     registerForm.get('firstName').dirty)}">
@@ -55,7 +55,7 @@
     </span>
 
     <br>
-    <button style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
+    <button (click)="getUserName()"  style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
       color="primary">הרשמה</button>
     <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">ביטול</button> -->
   </form>

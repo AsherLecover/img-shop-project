@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Validators,
-  FormBuilder,
-  FormGroup,
-  FormControl
-} from '@angular/forms';
+import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { log } from 'util';
 import { ClinetsService, User } from '../../servises/clinets.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/servises/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -17,25 +13,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
-  currentUser$:  Observable<User>;
+  private authSer: AuthService;
+  currentUser: Observable<User>;
+
 
   registerForm: FormGroup;
   submitted = false;
   ctrl: FormControl;
   userName: string;
-  private _authService: ClinetsService;
+  public _authService: ClinetsService;
 
-  constructor(
-    private fb: FormBuilder,
-    public dialog: MatDialog,
-    public dialog2: MatDialog,
-    public svcClinet:ClinetsService
-  ) {
-    this._authService = svcClinet;
+  constructor(private fb: FormBuilder,public dialog: MatDialog,public dialog2: MatDialog,
+              public svcClinet:ClinetsService,authSer: AuthService) {
+              this.authSer = authSer;
   }
 
   ngOnInit(): void {
-    this.currentUser$ = this._authService.courentUser$
+    this.currentUser = this.authSer.currentUser$;
 
     this.registerForm = this.fb.group(
       {
@@ -68,9 +62,11 @@ export class LogInComponent implements OnInit {
     console.log(this.registerForm.value.firstName);
     this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
   }
-  signInWithGoogle(){
-    this._authService.signInWithGoogle();
-    console.log('asher')
+  signInGoogle() {
+    this.authSer.signInWithGoogle();
+  }
+  signOut() {
+    this.authSer.signOut();
   }
     
   

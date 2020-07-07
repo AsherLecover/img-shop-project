@@ -9,55 +9,43 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase';
 import { switchMap } from 'rxjs/operators';
-
-export interface User {
-  uid?: string;
-  email: string;
-  display_name: string;
-  image_url: string;
-  roles: any;
-}
+import { User } from './clinets.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClinetsService {
-  clinetList: ClinetModel[];
-  userName: string = ' אורח';
+export class AuthService {
 
+
+  readonly currentUser$: Observable<any>;
   private _afAuth: AngularFireAuth;
   private _afStore: AngularFirestore;
   private _router: Router;
 
-  readonly courentUser$: Observable<any>;
+  constructor(afAuth: AngularFireAuth, afStore: AngularFirestore, router: Router) {
 
-  constructor(
-    afAuth: AngularFireAuth,
-    afStore: AngularFirestore,
-    router: Router
-  ) {
     this._afAuth = afAuth;
     this._afStore = afStore;
     this._router = router;
 
-    this.courentUser$ = this._afAuth.authState.pipe(
+    this.currentUser$ = this._afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this._afStore.doc(`${user.uid}`).valueChanges();
+          return this._afStore.doc(`user/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
       })
     );
-  }
 
+  }
   public async signInWithGoogle(): Promise<void> {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this._afAuth.signInWithPopup(provider);
+    console.log("this user new ",credential);
+    
 
-    const userRef: AngularFirestoreDocument = this._afStore.doc(
-      `users/${credential.user.uid}/`
-    );
+    const userRef: AngularFirestoreDocument<User> = this._afStore.doc(`user/${credential.user.uid}/`);
 
     const userData: User = {
       uid: credential.user.uid,
@@ -66,11 +54,12 @@ export class ClinetsService {
       image_url: credential.user.photoURL,
       roles: { member: true }
     };
-    console.log(userData)
+
     return userRef.set(userData, { merge: true });
   }
 
-  public async signOutFromGoogle() {
+  public async signOut() {
     await this._afAuth.signOut();
+    await this._router.navigate(['/home'])
   }
 }

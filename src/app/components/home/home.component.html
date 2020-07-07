@@ -1,24 +1,32 @@
 
 <h1>home page</h1>
-<h1>home page</h1>
 
-<h1>home page</h1>
+<a  style="cursor: pointer;" (click)="signInWithGoogle()" class="google btn">
+    <i class="fa fa-google fa-fw">
+    </i>הרשמה מהירה עם גוגל
+  </a>
 
-<h1>home page</h1>
 
-<h1>home page</h1>
 
-<h1>home page</h1>
+<ng-container *ngIf="currentUser$ | async as user; then memberTemplate; else loginButton"></ng-container>
+<ng-template #memberTemplate let-user>
+    <div class="card">
+        <div class="card-body">
+            <img [src]="user.image_url" alt="">
+            <h5 class="card-title">{{ user.display_name }}</h5>
+        </div>
+    </div></ng-template>
 
-<h1>home page</h1>
+    <ng-template #loginButton >
+      <div class="card">
+          <p>asher</p>
+      </div>
 
-<h1>home page</h1>
+    
+</ng-template>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<p>ggggggggg</p>
 
-<h1>home page</h1>
-
-<h1>home page</h1>
-
-<h1>home page</h1>
 
 
 

@@ -7,10 +7,11 @@ import { PicSubjectMainPageComponent } from './components/pic-subject-main-page/
 
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
+import { AaaaComponent } from './components/aaaa/aaaa.component';
 
 
 const routes: Routes = [
-  { path:'',    component:HomeComponent} ,
+  { path:'',    component:PicSubMainPageComponent} ,
   { path:'card',   component:CardComponent},
   { path:'autocomplete',     component:AutocompleteComponent},
   { path:'buttons',     component:ButtonsComponent},

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { LogInComponent } from '../log-in/log-in.component';
+import { ClinetsService, User } from 'src/app/servises/clinets.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,11 +12,27 @@ import { LogInComponent } from '../log-in/log-in.component';
 })
 export class HomeComponent implements OnInit {
   // panelOpenState = false; 
+  currentUser$:  Observable<User>;
+
+  public _authService: ClinetsService;
 
 
-  constructor() { }
 
-  ngOnInit(): void {}
+
+  constructor(public svcClinet:ClinetsService) { 
+    this._authService = svcClinet;
+
+  }
+
+  ngOnInit(): void {
+    this.currentUser$ = this._authService.courentUser$
+
+  }
+
+  signInWithGoogle(){
+    this._authService.signInWithGoogle();
+    console.log('asher')
+  }
 
   
 }

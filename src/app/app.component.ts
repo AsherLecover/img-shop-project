@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import { log } from 'util';
 import { SocialAuthService , SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { LogInComponent } from './components/log-in/log-in.component';
-import { ClinetsService } from './servises/clinets.service';
+import { ClinetsService, User } from './servises/clinets.service';
+import { AuthService } from './servises/auth.service';
+import { Observable } from 'rxjs';
  
 
 @Component({
@@ -13,13 +15,21 @@ import { ClinetsService } from './servises/clinets.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  implements OnInit {
   title = 'Pic Pictre';
   panelOpenState = false;
   userName:string = ''
+  private authSer: AuthService;
+  currentUser: Observable<User>;
 
 
-  constructor(public dialog: MatDialog, public svcClinetsList:ClinetsService ){}
+  constructor(public dialog: MatDialog, public svcClinets:ClinetsService, authSer: AuthService ){
+    this.authSer = authSer;
+  }
+  ngOnInit(): void {
+    this.currentUser = this.authSer.currentUser$;
+
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(LogInComponent);

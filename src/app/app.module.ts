@@ -35,6 +35,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore'
 import { from } from 'rxjs';
 import { ClinetsService } from './servises/clinets.service';
 import { environment } from 'src/environments/environment';
+import { AaaaComponent } from './components/aaaa/aaaa.component';
  
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { environment } from 'src/environments/environment';
     LogInComponent,
     ValidationErrorComponent,
     SignUpComponent,
+    AaaaComponent,
   ],
   imports: [
     AngularFirestoreModule,

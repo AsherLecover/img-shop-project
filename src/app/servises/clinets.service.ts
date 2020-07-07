@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 
-interface User{
-  uid? : string;
-  email : string;
+interface User {
+  uid?: string;
+  email: string;
 }
 
 @Injectable({
@@ -23,16 +23,21 @@ export class ClinetsService {
   private _router: Router;
 
   readonly courentUser$: Observable<User>
-  
 
-  constructor(afAuth: AngularFireAuth, afStore: AngularFirestore, router: Router ) {
+
+  constructor(afAuth: AngularFireAuth, afStore: AngularFirestore, router: Router) {
     this._afAuth = afAuth;
     this._afStore = afStore;
     this._router = router
-   }
+  }
 
-   public async signInWithGoogle(){
-     const provider = new firebase.auth.GoogleAuthProvider();
-     return await  this._afAuth.signInWithPopup(provider);
-   }
+  public async signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return await this._afAuth.signInWithPopup(provider);
+  }
+
+  public async signOutFromGoogle() {
+    await this._afAuth.signOut()
+  }
+
 }

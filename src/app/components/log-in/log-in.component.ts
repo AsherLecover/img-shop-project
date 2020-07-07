@@ -8,7 +8,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { log } from 'util';
-import { ClinetsService } from '../../servises/clinets.service';
+import { ClinetsService, User } from '../../servises/clinets.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-log-in',
@@ -16,11 +17,13 @@ import { ClinetsService } from '../../servises/clinets.service';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
+  currentUser$:  Observable<User>;
+
   registerForm: FormGroup;
   submitted = false;
   ctrl: FormControl;
   userName: string;
-  private _authService: ClinetsService
+  private _authService: ClinetsService;
 
   constructor(
     private fb: FormBuilder,
@@ -32,6 +35,8 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUser$ = this._authService.courentUser$
+
     this.registerForm = this.fb.group(
       {
         firstName: ['', [Validators.required, Validators.minLength(2)]],

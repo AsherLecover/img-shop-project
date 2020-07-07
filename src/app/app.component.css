@@ -42,7 +42,7 @@
     bottom: 0;
     width: 100%;
     flex-shrink: 0;
-    height: 46%;
+    height: 50%;
     background-color: #232d54;
     direction: rtl;
 }
@@ -52,7 +52,7 @@
     bottom: 0;
     width: 100%;
     flex-shrink: 0;
-    height: 13%;
+    height: 16%;
     direction: rtl;
     background-color: #232d54
 }

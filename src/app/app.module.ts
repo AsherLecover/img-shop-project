@@ -36,6 +36,7 @@ import { from } from 'rxjs';
 import { ClinetsService } from './servises/clinets.service';
 import { environment } from 'src/environments/environment';
 import { AaaaComponent } from './components/aaaa/aaaa.component';
+import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main-sub-list.component';
  
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AaaaComponent } from './components/aaaa/aaaa.component';
     ValidationErrorComponent,
     SignUpComponent,
     AaaaComponent,
+    PicMainSubListComponent,
   ],
   imports: [
     AngularFirestoreModule,

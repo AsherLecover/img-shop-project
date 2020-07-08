@@ -8,17 +8,22 @@ import { PicSubjectMainPageComponent } from './components/pic-subject-main-page/
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { AaaaComponent } from './components/aaaa/aaaa.component';
+import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main-sub-list.component';
 
 
 const routes: Routes = [
-  { path:'',    component:PicSubMainPageComponent} ,
+  { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
+  { path:'pic-main-list-subjects/:id',   component:PicMainSubListComponent},
+
+
   { path:'card',   component:CardComponent},
   { path:'autocomplete',     component:AutocompleteComponent},
   { path:'buttons',     component:ButtonsComponent},
-  { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
   { path:'pic-subject-main-page',     component:PicSubjectMainPageComponent},
   { path:'',          redirectTo:'home', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},
+
+ 
 ];
   
   

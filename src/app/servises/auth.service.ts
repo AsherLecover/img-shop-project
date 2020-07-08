@@ -60,6 +60,5 @@ export class AuthService {
 
   public async signOut() {
     await this._afAuth.signOut();
-    await this._router.navigate(['/home'])
   }
 }

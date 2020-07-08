@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { LogInComponent } from '../log-in/log-in.component';
-import { ClinetsService, User } from 'src/app/servises/clinets.service';
+
 import { Observable } from 'rxjs';
+import { User } from 'firebase';
+import { ClinetsService } from '../../servises/clinets.service';
 
 
 @Component({

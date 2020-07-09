@@ -1,15 +1,19 @@
 <h1 style="text-align: center">{{this.svc.imgSubList[imgIdListSubject].subject}}</h1>
 
-<div style="text-align: center ; margin-left: 17% ; margin-right: 17%;"*ngFor="let ImgSubList of imgListBySubjects">
-        <div  style="display: inline-block" *ngFor="let i of ImgSubList.listOfImgUrlBysub">
-                <div style="display: inline-block; " *ngIf="imgIdListSubject == ImgSubList.subId">
+<div  style=" text-align: center ; margin-left: 10% ; margin-right: 10%;"*ngFor="let ImgSubList of imgListBySubjects">
+        <div  style=" display: inline-block" *ngFor="let i of ImgSubList.listOfImgUrlBysub">
+                <div  *ngIf="imgIdListSubject == ImgSubList.subId">
 
-                    <div style=" justify-content : space-around; background-color: azure"  (click)="onImgSelected(i)" >
-                            <img src={{i.imgUrl}} alt="PicPicture">
-                                    <p>{{i.imgDes}}</p>
-                                    <!-- <mat-icon style=" font-size: 35px; text-align: center" >shopping_cart</mat-icon>
-                                    <button mat-button>SHARE</button> -->
+                    <div style="cursor: pointer;" (click)="onImgSelected(i)" style="margin-right: 5px; margin-left: 5px;" >
+                            <img  [class.mat-elevation-z20]="true"   src={{i.imgUrl}} alt="PicPicture">
+                                    
+                  </div>
+                  <div style="display: flex;">
+                      <mat-icon  >shopping_cart</mat-icon>
+                      <p style="margin-left: 22%;"> {{i.imgDes}}</p>
+                      
                  </div>
+
             </div>
     </div>
 </div> 

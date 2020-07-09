@@ -37,6 +37,9 @@ import { ClinetsService } from './servises/clinets.service';
 import { environment } from 'src/environments/environment';
 import { AaaaComponent } from './components/aaaa/aaaa.component';
 import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main-sub-list.component';
+import { HedderComponent } from './components/hedder/hedder.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ImageDetailsComponent } from './components/image-details/image-details.component';
  
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main
     SignUpComponent,
     AaaaComponent,
     PicMainSubListComponent,
+    HedderComponent,
+    FooterComponent,
+    ImageDetailsComponent,
   ],
   imports: [
     AngularFirestoreModule,

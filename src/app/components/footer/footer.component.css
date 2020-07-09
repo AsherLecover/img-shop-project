@@ -1,0 +1,10 @@
+.footer{
+    position:relative;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0;
+    height: 68%;
+    background-color: #232d54;
+    direction: rtl;
+}

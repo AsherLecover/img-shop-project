@@ -1,0 +1,54 @@
+/* <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.15.5/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.15.5/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script> */
+.hedder{
+    position:relative;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0;
+    height: 20%;
+    direction: rtl;
+    background-color: #232d54
+}
+
+.firstLineHedder{
+    height: 50%;
+}
+.secondeLineHedder{
+    height: 50%;
+}
+
+.mat-toolbar.mat-primary {
+    background: #232d54;
+    color: #fff;
+}
+.seconeLineMenu{
+    justify-content: space-between;
+    cursor: pointer;
+}
+.firstLine{
+    cursor: pointer;  
+    display: flex;
+}
+::ng-deep .mat-menu-content{
+    background-color:floralwhite
+  }
+
+  ::ng-deep .mat-menu-item{
+      color: #404e88;
+  }
+
+  button.mat-menu-item:hover {
+    color: red !important;
+}
+
+.mat-dialog-container{
+    background: #fff !important;
+}

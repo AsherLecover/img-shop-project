@@ -1,13 +1,35 @@
-<p>pic-main-sub-list works!</p>
-<p>the id of this subject is {{imgIdListSubject}}</p>
 <h1 style="text-align: center">{{this.svc.imgSubList[imgIdListSubject].subject}}</h1>
 
-<div *ngFor="let ImgSubList of imgListBySubjects">
-    <div *ngFor="let i of ImgSubList.listOfImgUrlBysub">
-        <div *ngIf="imgIdListSubject == ImgSubList.id">
-                <mat-card>Simple card</mat-card>
-            <img src={{i}}>
-        </div>
-    </div>
-</div>
+<div style="text-align: center ; margin-left: 17% ; margin-right: 17%;"*ngFor="let ImgSubList of imgListBySubjects">
+        <div  style="display: inline-block" *ngFor="let i of ImgSubList.listOfImgUrlBysub">
+                <div style="display: inline-block; " *ngIf="imgIdListSubject == ImgSubList.subId">
 
+                    <div style=" justify-content : space-around; background-color: azure"  (click)="onImgSelected(i)" >
+                            <img src={{i.imgUrl}} alt="PicPicture">
+                                    <p>{{i.imgDes}}</p>
+                                    <!-- <mat-icon style=" font-size: 35px; text-align: center" >shopping_cart</mat-icon>
+                                    <button mat-button>SHARE</button> -->
+                 </div>
+            </div>
+    </div>
+</div> 
+        
+            
+
+
+<!-- <h1 style="text-align: center">{{this.svc.imgSubList[imgIdListSubject].subject}}</h1>
+
+<div style="text-align: center ; margin-left: 17% ; margin-right: 17%;"
+ *ngFor="let ImgSubList of imgListBySubjects">
+    <div  style="display: inline-block" *ngFor="let i of ImgSubList.listOfImgUrlBysub">
+        <div style="display: inline-block" *ngIf="imgIdListSubject == ImgSubList.subId">
+            <button (click)="onImgSelected(i)">
+                <img src={{i.imgUrl}}>
+                <p>{{i.imgDes}}</p>
+                <p>{{i.imgId}}</p>
+      
+        </button>
+      </div>
+   </div>
+</div>
+ -->

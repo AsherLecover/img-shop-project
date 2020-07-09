@@ -17,32 +17,9 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent  implements OnInit {
   title = 'Pic Pictre';
-  panelOpenState = false;
-  userName:string = ''
-  private authSer: AuthService;
-  currentUser: Observable<User>;
 
+  constructor(){ }
 
-  constructor(public dialog: MatDialog, public svcClinets:ClinetsService, authSer: AuthService ){
-    this.authSer = authSer;
-  }
-  ngOnInit(): void {
-    this.currentUser = this.authSer.currentUser$;
+  ngOnInit(): void {}
   
-
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(LogInComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  
-
- 
-
- 
 }

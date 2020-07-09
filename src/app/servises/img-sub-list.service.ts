@@ -4,7 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ImgSubListService {
-  imgSubList =[]
+  imgSubList = []
+  imgListOrderBySobjects = []
+  imgId: number;
+  imgurlSelected: string;
+  imgDescription: string
 
   constructor() { }
 }

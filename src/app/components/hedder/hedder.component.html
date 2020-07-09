@@ -1,0 +1,112 @@
+<div class="hedder">
+    <div class="firstLineHedder" style=" display: flex">
+            <div style=" width: 3%;">
+                <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
+                <mat-menu  #menu="matMenu">
+                  <button routerLink="/card" mat-menu-item>Card Component</button>
+                  <button routerLink="/autocomplete" mat-menu-item>Autocomplete Component</button>
+                  <button routerLink="/buttons" mat-menu-item>buttons Component</button> 
+                </mat-menu>
+              </mat-icon>
+          </div>
+
+          <div style=" width: 30%; margin-top: 1%">
+                <button  (click)="openDialog()" >כניסה | הרשמה</button>
+          </div>
+
+          <div style=" width: 30%; text-align: left; margin-top:  1%">
+              <h1 >תמונות לסלון לבית ולמשרד</h1>
+          </div>
+
+
+<ng-container *ngIf="currentUser | async as user; then memberLogIn; else loginGust"></ng-container>
+<div *isUser></div>
+<ng-template #loginGust>
+
+  <div style=" width: 40%; text-align: left; margin-top: 1%; display: flex; direction: ltr; ">
+      <div style="padding-right: 5px"><span class="material-icons">face</span> </div>
+      <span style="direction: ltr" *ngIf="svcClinets.userName !='' "> ברוך הבא{{svcClinets.userName}}</span>
+     
+  </div>
+
+</ng-template>
+
+
+<ng-template #memberLogIn let-user>
+    <div (click)="authSer.signOut()" style="width: 30%; text-align: left; padding-left: 1%; margin-top: 1%; display: flex; ; direction: ltr; ">
+        <div style="display: flex; margin-right: 5%; cursor: pointer">
+            <span style="margin-right: 2%; text-align: center"  class="material-icons">exit_to_app</span>
+            <span>יציאה </span>
+        </div>
+        <div style="padding-right: 5px">
+            <img style="border-radius: 50%;" 
+                [src]="user.image_url" alt="" width="25" height="25px;">
+    </div>
+         <span  style="direction: rtl" *ngIf="svcClinets.userName !='' "> ברוך הבא {{user.display_name}} </span>
+     
+    </div>
+</ng-template>
+
+
+          <div style="text-align:left; width: 10%; margin-top: 1%">
+                <mat-icon style="padding-left: 5%" routerLink="" >home</mat-icon>
+          </div>
+    </div>
+
+<!-- heeder seconde line----------------------------------------------------- -->
+
+      <div class="secondeLineHedder" style="  display: flex;">
+
+          <div class="seconeLineMenu" style=" width: 17%;">
+              <span style="font-size: 150%; padding: 10%;">תמונות לבית ולסלון</span>
+          </div>
+           <div class="seconeLineMenu" style="width: 15%" >
+              <span style="font-size: 150%;">לפי נושאים</span>
+                  <span [matMenuTriggerFor]="menu22" class="material-icons">keyboard_arrow_down
+             
+                      <mat-menu  #menu22="matMenu">
+                            <button routerLink="/pic-subject-main-page" mat-menu-item> תמונות נוף</button>
+                            <button mat-menu-item> תמונות אבסטרקט</button>
+                            <button mat-menu-item> תמונות טבע</button>
+                            <button routerLink="nav" mat-menu-item>calnder Component</button>
+                
+                            <button mat-menu-item> תמונות של ים</button>
+                            <button mat-menu-item> אורבני</button>
+                            <button mat-menu-item> תמונות לחדר ילדים</button>
+                            <button mat-menu-item> טבע דומם </button>
+                            <button mat-menu-item>  אביב</button>
+                        <button routerLink="/pic-sub-main-page" mat-menu-item> נושאים נוספים  </button>
+                     </mat-menu>
+                 </span>
+         
+         </div>
+
+        <div class="seconeLineMenu" style="width: 17%" >
+            <span style="font-size: 150%; padding: 10%;">מבצעים</span>
+        </div>
+
+        <div class="seconeLineMenu"style="width: 17%" >
+               <span style="font-size: 150%; padding: 10%;">חדש</span>
+        </div>
+         <div class="seconeLineMenu"style="width: 17%" >
+               <span style="font-size: 150%; padding: 10%;">צרו קשר</span>
+        </div>
+         <div class="seconeLineMenu"style="width: 17%" >
+                 <span style="font-size: 150%; padding: 10%;">ממליצים</span>
+         </div>
+          <div class="seconeLineMenu"style="width: 17%" >
+                 <span style="font-size: 150%; padding: 10%;">אודותינו</span>
+        </div>
+
+        <div style="width: 17%; text-align:left; margin-top: 1%" >
+
+         <p style="margin-left: 10%">עגלת הקניות
+                <mat-icon style="padding-left: 5%; margin-right: 5% ; font-size: 35px;" matBadge="0" matBadgeColor="warn">shopping_cart</mat-icon>
+                <span class="cdk-visually-hidden"></span>
+        </p>
+
+
+        </div>
+               
+    </div>
+</div>

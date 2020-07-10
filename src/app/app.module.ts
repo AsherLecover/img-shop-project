@@ -40,6 +40,7 @@ import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main
 import { HedderComponent } from './components/hedder/hedder.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
+import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';
  
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ImageDetailsComponent } from './components/image-details/image-details.
     HedderComponent,
     FooterComponent,
     ImageDetailsComponent,
+    ShoppingBagComponent,
   ],
   imports: [
     AngularFirestoreModule,

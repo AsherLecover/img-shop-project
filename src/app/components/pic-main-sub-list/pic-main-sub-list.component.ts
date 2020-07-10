@@ -14,7 +14,7 @@ import { ImgModel } from 'src/app/models/img-model';
 export class PicMainSubListComponent implements OnInit {
   public imgIdListSubject;
   public imgUserChoseToBuy: ImgModel
-  public listOfItemsInBag: [{}] = [{}]
+  public listOfItemsInBag:any [] = []
 
   
 
@@ -71,18 +71,17 @@ export class PicMainSubListComponent implements OnInit {
     this.buyingSvc.itemAmount +=1;
 
     this.buyingSvc.itemImgIdToBeDisplayInBag = img.imgId;
-    this.buyingSvc.itemImgUrlToBeDisplayInBag = img.imgUrl;
-    this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price;
     this.buyingSvc.itemImgDesToBeDisplayInBag = img.imgDes;
+    this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price;
+    this.buyingSvc.itemImgUrlToBeDisplayInBag = img.imgUrl;
 
-
-
-    console.log('url user chose: ',this.buyingSvc.itemImgUrlToBeDisplayInBag)
-    console.log('price  user chose: ',this.buyingSvc.itemImgPriceToBeDisplayInBag)
-    console.log('dec user chose: ',this.buyingSvc.itemImgDesToBeDisplayInBag)
-
-    this.listOfItemsInBag.push({imgId: this.buyingSvc.itemImgIdToBeDisplayInBag})
-    console.log(this.listOfItemsInBag);
+    this.listOfItemsInBag.push(
+      {imgId: this.buyingSvc.itemImgIdToBeDisplayInBag},
+      {imgDes: this.buyingSvc.itemImgDesToBeDisplayInBag},
+      {price: this.buyingSvc.itemImgPriceToBeDisplayInBag},
+      {imgUrl: this.buyingSvc.itemImgUrlToBeDisplayInBag})
+      this.buyingSvc.listOfItemToBeDisplay = this.listOfItemsInBag
+      console.log(this.listOfItemsInBag);
     
 
     // this.buyingSvc.itemImgIdToBeDisplayInBag = img.imgId

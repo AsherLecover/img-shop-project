@@ -11,6 +11,7 @@ export class ShoppingBagComponent implements OnInit {
   constructor(public buyerSvc: BuyingProcessService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

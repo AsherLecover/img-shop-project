@@ -6,18 +6,18 @@
       </div>
 
       <!-- Product #1 -->
-      <div class="item">
+      <div  *ngFor="let item of buyerSvc.listOfItemToBeDisplay" class="item">
         <div class="buttons">
           <span class="delete-btn"></span>
           <span class="like-btn"></span>
         </div>
 
         <div class="image">
-          <img style="width: 120px; height: 80px;" src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/viewImg/view1.jpg" alt="" />
+          <img style="width: 120px; height: 80px;" src={{item.imgUrl}} alt="" />
         </div>
 
         <div class="description">
-          <span>Common Projects</span>
+          <span>{{item.des}}</span>
           <span>Bball High</span>
           <span>White</span>
         </div>
@@ -32,11 +32,11 @@
           </button>
         </div>
 
-        <div class="total-price">$549</div>
+        <div class="total-price">{{item.price}}</div>
       </div>
 
       <!-- Product #2 -->
-      <div class="item">
+      <!-- <div class="item">
         <div class="buttons">
           <span class="delete-btn"></span>
           <span class="like-btn"></span>
@@ -63,10 +63,10 @@
         </div>
 
         <div class="total-price">$870</div>
-      </div>
+      </div> -->
 
       <!-- Product #3 -->
-      <div class="item">
+      <!-- <div class="item">
         <div class="buttons">
           <span class="delete-btn"></span>
           <span class="like-btn"></span>
@@ -94,7 +94,9 @@
 
         <div class="total-price">$349</div>
       </div>
-    </div>
+    </div> -->
+
+    <!-- ---------------------------------------------------------------------------------------- -->
 
     <script type="text/javascript">
       $('.minus-btn').on('click', function(e) {

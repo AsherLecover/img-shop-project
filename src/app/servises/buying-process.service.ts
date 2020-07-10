@@ -10,7 +10,8 @@ export class BuyingProcessService {
   itemImgDesToBeDisplayInBag: string;
   itemImgUrlToBeDisplayInBag: string;
   itemImgPriceToBeDisplayInBag: number;
-  itemImgIdToBeDisplayInBag: number
+  itemImgIdToBeDisplayInBag: number;
+  listOfItemToBeDisplay:any[];
 
   constructor() { }
 }

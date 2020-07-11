@@ -7,10 +7,12 @@ import { BuyingProcessService } from 'src/app/servises/buying-process.service';
   styleUrls: ['./shopping-bag.component.css']
 })
 export class ShoppingBagComponent implements OnInit {
+  bagIsNotEmpty: boolean;
 
   constructor(public buyerSvc: BuyingProcessService) { }
 
   ngOnInit(): void {
+    this.bagIsNotEmpty = this.buyerSvc.bagIsNotEmpty;
     
   }
 

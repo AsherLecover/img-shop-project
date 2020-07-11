@@ -6,12 +6,14 @@ import { ImgModel } from '../models/img-model'
 })
 export class BuyingProcessService {
   itemAmount: number = 0;
-  // imgToBeDisplayInBag: ImgModel
-  itemImgDesToBeDisplayInBag: string;
-  itemImgUrlToBeDisplayInBag: string;
-  itemImgPriceToBeDisplayInBag: number;
-  itemImgIdToBeDisplayInBag: number;
-  listOfItemToBeDisplay:any[];
+
+  imgToBeDisplayInBagModel: ImgModel
+  itemImgDesToBeDisplayInBag: string = '';
+  itemImgUrlToBeDisplayInBag: string = '';
+  itemImgPriceToBeDisplayInBag: number = -1;
+  itemImgIdToBeDisplayInBag: number = -1;
+  listOfItemToBeDisplay:any[] = [];
+  bagIsNotEmpty: boolean = false;
 
   constructor() { }
 }

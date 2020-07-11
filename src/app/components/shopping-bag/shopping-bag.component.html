@@ -1,42 +1,47 @@
+<div class="shopping-cart">
+  <div class="title">
+    Shopping Bag
+</div>
 
-    <div class="shopping-cart">
-      <!-- Title -->
-      <div class="title">
-        Shopping Bag
-      </div>
+<div  *ngFor="let item of buyerSvc.listOfItemToBeDisplay">
+  
+  <div *ngFor="let i of item">
 
-      <!-- Product #1 -->
-      <div  *ngFor="let item of buyerSvc.listOfItemToBeDisplay" class="item">
+  <div class="item">
         <div class="buttons">
           <span class="delete-btn"></span>
           <span class="like-btn"></span>
         </div>
 
-        <div class="image">
-          <img style="width: 120px; height: 80px;" src={{item.imgUrl}} alt="" />
-        </div>
+    <div class="image">
+      <img style="width: 120px; height: 80px;" src={{i.url}} alt="" />
+    </div>
 
-        <div class="description">
-          <span>{{item.des}}</span>
-          <span>Bball High</span>
-          <span>White</span>
-        </div>
+    <div class="description">
+      <span>{{i.price | currency:'ILS'}}</span>
+      <span>Bball High</span>
+      <span>White</span>
+    </div>
 
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <img src="./assets/plus.svg" alt="" />
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <img src="./assets/minus.svg" alt="" />
-          </button>
-        </div>
+    <div class="quantity">
+      <button class="plus-btn" type="button" name="button">
+        <img src="./assets/plus.svg" alt="" />
+      </button>
+      <input type="text" name="name" value="1">
+      <button class="minus-btn" type="button" name="button">
+        <img src="./assets/minus.svg" alt="" />
+      </button>
+    </div>
 
-        <div class="total-price">{{item.price}}</div>
-      </div>
+    <div class="total-price">{{i.price | currency:'ILS'}}</div>
+  </div>
+    </div>
 
-      <!-- Product #2 -->
-      <!-- <div class="item">
+  </div>
+
+
+  <!-- Product #2 -->
+  <!-- <div class="item">
         <div class="buttons">
           <span class="delete-btn"></span>
           <span class="like-btn"></span>
@@ -65,8 +70,8 @@
         <div class="total-price">$870</div>
       </div> -->
 
-      <!-- Product #3 -->
-      <!-- <div class="item">
+  <!-- Product #3 -->
+  <!-- <div class="item">
         <div class="buttons">
           <span class="delete-btn"></span>
           <span class="like-btn"></span>
@@ -96,9 +101,9 @@
       </div>
     </div> -->
 
-    <!-- ---------------------------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------------------------- -->
 
-    <script type="text/javascript">
+  <!-- <script type="text/javascript">
       $('.minus-btn').on('click', function(e) {
     		e.preventDefault();
     		var $this = $(this);
@@ -134,4 +139,4 @@
         $(this).toggleClass('is-active');
       });
     </script>
- 
+  -->

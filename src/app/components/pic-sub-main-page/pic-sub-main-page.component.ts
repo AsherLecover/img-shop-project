@@ -10,6 +10,7 @@ import { ImgSubListService } from '../../servises/img-sub-list.service';
 })
 export class PicSubMainPageComponent implements OnInit {
   isActive: boolean = false;
+  aaa: string = ""
   arr = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10];
   num = 0;
   cardImgList = [
@@ -42,6 +43,10 @@ export class PicSubMainPageComponent implements OnInit {
   }
   onImgSubjectSelect(imgTitleListSubject){
     this.router.navigate(['/pic-main-list-subjects' ,imgTitleListSubject.imgId])
+    this.aaa = imgTitleListSubject.subject;
+    console.log(this.aaa);
+    this.svc.aaa = this.aaa
+    
 
   }
 

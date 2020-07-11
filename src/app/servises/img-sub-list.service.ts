@@ -8,7 +8,8 @@ export class ImgSubListService {
   imgListOrderBySobjects = []
   imgId: number;
   imgurlSelected: string;
-  imgDescription: string
+  imgDescription: string;
+  aaa: string
 
   constructor() { }
 }

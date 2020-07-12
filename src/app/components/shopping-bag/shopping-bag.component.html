@@ -4,13 +4,13 @@
 </div>
 
 
-<div  *ngFor="let item of buyerSvc.listOfItemToBeDisplay">
+<div  *ngFor="let item of buyerSvc.listOfItemToBeDisplay; let j = index">
   
   <div *ngFor="let i of item">
 
   <div class="item">
         <div class="buttons">
-          <span class="delete-btn"></span>
+          <span (click)="removeItemFromBag(j)" class="delete-btn"></span>
           <span class="like-btn"></span>
         </div>
 

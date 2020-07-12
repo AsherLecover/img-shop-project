@@ -27,6 +27,11 @@ export class ShoppingBagComponent implements OnInit {
   plusTheItemToBagFn(item){
     item.numOfItems +=1;
    }
+   removeItemFromBag(index){
+     this.buyerSvc.listOfItemToBeDisplay.splice(index,1);
+     this.buyerSvc.itemAmount -= 1
+     console.log("index: ",index)
+   }
 
 
 

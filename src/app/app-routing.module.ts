@@ -25,7 +25,7 @@ const routes: Routes = [
   { path:'card',   component:CardComponent},
   { path:'autocomplete',     component:AutocompleteComponent},
   { path:'buttons',     component:ButtonsComponent},
-  { path:'',          redirectTo:'home', pathMatch: 'full'},
+  { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},
 
  

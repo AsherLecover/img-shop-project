@@ -19,7 +19,7 @@ export class ShoppingBagComponent implements OnInit {
   }
  
   minusTheItemToBagFn(item){
-    if(this.plusOrMinusTheItemToBag > 1){
+    if(item.numOfItems > 1){
       item.numOfItems -= 1;
     }
     

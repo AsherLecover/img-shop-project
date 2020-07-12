@@ -2179,7 +2179,7 @@ class ShoppingBagComponent {
         this.listOfItemsInBag = this.buyerSvc.listOfItemToBeDisplay;
     }
     minusTheItemToBagFn(item) {
-        if (this.plusOrMinusTheItemToBag > 1) {
+        if (item.numOfItems > 1) {
             item.numOfItems -= 1;
         }
     }

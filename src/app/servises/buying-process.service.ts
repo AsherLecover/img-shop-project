@@ -12,8 +12,11 @@ export class BuyingProcessService {
   itemImgUrlToBeDisplayInBag: string = '';
   itemImgPriceToBeDisplayInBag: number = -1;
   itemImgIdToBeDisplayInBag: number = -1;
+  itemNumOfItemToBeDisplayInBag: number = 1;
+  numOfItems: number = 1;
   listOfItemToBeDisplay:any[] = [];
   bagIsNotEmpty: boolean = false;
+  
 
   constructor() { }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { log } from 'util';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ImgSubListService } from '../../servises/img-sub-list.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ImgSubListService } from '../../servises/img-sub-list.service';
   styleUrls: ['./pic-sub-main-page.component.css']
 })
 export class PicSubMainPageComponent implements OnInit {
+  imgIdListSubject: number;
   isActive: boolean = false;
   aaa: string = ""
   arr = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10];
@@ -36,16 +37,21 @@ export class PicSubMainPageComponent implements OnInit {
     {"imgId": 19,"imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS7xYkQ1fAW0Kql7uRkw0yc5P43Au0d8-yI6g&usqp=CAU", "subject": "פיסול באבן"},
   ]
 
-  constructor(private router: Router, public svc: ImgSubListService) { }
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    public svc: ImgSubListService) { }
 
   ngOnInit(): void {
     this.svc.imgSubList = this.cardImgList;
+    console.log('id from subject ' + this.route.snapshot.paramMap.get('id'))
+
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.imgIdListSubject = id;
+
   }
   onImgSubjectSelect(imgTitleListSubject){
-    this.router.navigate(['/pic-main-list-subjects' ,imgTitleListSubject.imgId])
-    this.aaa = imgTitleListSubject.subject;
-    console.log(this.aaa);
-    this.svc.aaa = this.aaa
+    this.router.navigate(['/pic-main-list-subjects'  ,imgTitleListSubject])
+  
     
 
   }

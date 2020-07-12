@@ -19,22 +19,22 @@
     </div>
 
     <div class="description">
-      <span>{{i.price | currency:'ILS'}}</span>
-      <span>Bball High</span>
+      <span>{{i.des}}</span>
+      <span>{{i.id}}</span>
       <span>White</span>
     </div>
 
     <div class="quantity">
-      <button class="plus-btn" type="button" name="button">
+      <button (click)="plusTheItemToBagFn(i)" class="plus-btn" type="button" name="button">
         <img src="./assets/plus.svg" alt="" />
       </button>
-      <input type="text" name="name" value="1">
-      <button class="minus-btn" type="button" name="button">
+      <input type="text" name="name" [value]="i.numOfItems">
+      <button (click)="minusTheItemToBagFn(i)" class="minus-btn"  type="button" name="button">
         <img src="./assets/minus.svg" alt="" />
       </button>
     </div>
 
-    <div class="total-price">{{i.price | currency:'ILS'}}</div>
+    <div class="total-price">{{i.price * i.numOfItems | currency:'ILS'}}</div>
   </div>
     </div>
 

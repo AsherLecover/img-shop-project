@@ -29,7 +29,8 @@ export class HedderComponent implements OnInit {
     public dialog: MatDialog,
     public svcClinets:ClinetsService,
     authSer: AuthService,
-    public buyingSvc: BuyingProcessService 
+    public buyingSvc: BuyingProcessService,
+    
     ){
 
     this.authSer = authSer;

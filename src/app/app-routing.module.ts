@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/card/card.component';
 import { PicSubMainPageComponent } from './components/pic-sub-main-page/pic-sub-main-page.component';
-import { PicSubjectMainPageComponent } from './components/pic-subject-main-page/pic-subject-main-page.component';
 
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
@@ -26,7 +25,6 @@ const routes: Routes = [
   { path:'card',   component:CardComponent},
   { path:'autocomplete',     component:AutocompleteComponent},
   { path:'buttons',     component:ButtonsComponent},
-  { path:'pic-subject-main-page',     component:PicSubjectMainPageComponent},
   { path:'',          redirectTo:'home', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},
 

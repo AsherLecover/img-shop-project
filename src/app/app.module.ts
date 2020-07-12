@@ -10,7 +10,6 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsComponent } from './components/buttons/buttons.component';
 import { PicSubMainPageComponent } from './components/pic-sub-main-page/pic-sub-main-page.component';
-import { PicSubjectMainPageComponent } from './components/pic-subject-main-page/pic-subject-main-page.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -50,7 +49,6 @@ import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.com
     AutocompleteComponent,
     ButtonsComponent,
     PicSubMainPageComponent,
-    PicSubjectMainPageComponent,
     LogInComponent,
     ValidationErrorComponent,
     SignUpComponent,

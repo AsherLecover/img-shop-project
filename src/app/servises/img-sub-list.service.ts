@@ -9,7 +9,9 @@ export class ImgSubListService {
   imgId: number;
   imgurlSelected: string;
   imgDescription: string;
-  aaa: string
+  imgPrice: string;
+  photographer: string;
+  imgLongDes: string;
 
   constructor() { }
 }

@@ -1,3 +1,49 @@
+<div style="width: 100%; display: flex">
+    <div  style="width: 40%;">
+        <div style="width: 35%; margin-left: 60%;  margin-top: 5%; direction: rtl">
+            <h1>{{desToBeDisplay}}</h1>
+        <h3> <strong>מחיר:</strong> {{imgPrice | currency:'ILS'}}</h3>
+         <span><strong>צלם: </strong> {{photographer}}</span>
+        <p>{{imgLongDes}}</p>
+        <img class="hand-img" src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/hand/hand4.jpg" alt="">
+        <br>
+        <p>לחץ כאן</p>
+        <hr>
+        <br>
+        <p>אנא בחרו בסוג ההדפסה: </p>
+        <mat-radio-group  >
+            <div style="display: flex">
+                
+                <mat-radio-button (change)="onChange($event)" class="example-margin" value="canvas">{{s}} קנבס </mat-radio-button><br><br>
+                <span mat-raised-button  matTooltipPosition="left"  matTooltip=" התמונות מודפסות על גבי קנבס אמנים איכותי, נמתחות על גבי מסגרת עץ בעיטוף לבן או גלריה על פי בחירתכם. " 
+                class="material-icons"> help</span>
+            </div>
+            <div style="display: flex">
+                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="glass">{{s}} זכוכית אקרילית (פרספקס) </mat-radio-button><br><br>
+                    <span mat-raised-button  matTooltipPosition="left"  matTooltip=" לא הדבקה! תהליך כימי (Diasec) באיכות גבוהה מאוד על גבי זכוכית אקרילית איכותית מבריקה או מאט על פי בחירתכם."  class="material-icons"> help</span>
+            </div>
+            <div style="display: flex">
+                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="alominiom" >{{s}} אלומיניום </mat-radio-button><br><br>
+                    <span mat-raised-button  matTooltipPosition="left"  matTooltip=" הטמעת התמונה על גבי לוח אלומיניום באיכות גבוה מאוד. המוצר הינו בעל עמידות גבוה מאוד (ChromaLuxe USA)."  class="material-icons"> help</span>
+            </div>
+            <div style="display: flex">
+                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="self">{{s}} עצמית </mat-radio-button><br><br>
+                    <span mat-raised-button  matTooltipPosition="left" matTooltipHideDelay="5000" matTooltip="הוסף לסל"  class="material-icons"> help</span>
+            </div>
+        <p>{{expOnRadio}}</p>
+              </mat-radio-group>
+              
+      
+        </div>
+</div>
 
-<img src={{ingUrlToBedisplay}}>
-<p>{{desToBeDisplay}}</p>
+    <div style="width: 60%;">
+            <div class="thumbnail">
+                    <div class="image">
+                            <img class="main-img" src={{ingUrlToBedisplay}} alt="Some awesome text"/>
+                    </div>
+                </div>
+        
+    </div>
+</div>
+

@@ -10,6 +10,7 @@ export class ShoppingBagComponent implements OnInit {
   bagIsNotEmpty: boolean;
   plusOrMinusTheItemToBag: number = 1
   listOfItemsInBag = [];
+  likeBtn = false;
 
   constructor(public buyerSvc: BuyingProcessService) { }
 
@@ -31,6 +32,9 @@ export class ShoppingBagComponent implements OnInit {
      this.buyerSvc.listOfItemToBeDisplay.splice(index,1);
      this.buyerSvc.itemAmount -= 1
      console.log("index: ",index)
+   }
+   likeStatus(){
+     this.likeBtn = !this.likeBtn;
    }
 
 

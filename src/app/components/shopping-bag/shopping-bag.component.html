@@ -2,16 +2,18 @@
   <div class="title">
     Shopping Bag
 </div>
-
-
 <div  *ngFor="let item of buyerSvc.listOfItemToBeDisplay; let j = index">
   
   <div *ngFor="let i of item">
 
+
+
   <div class="item">
         <div class="buttons">
-          <span (click)="removeItemFromBag(j)" class="delete-btn"></span>
-          <span class="like-btn"></span>
+            <span (click)="removeItemFromBag(j)" class="material-icons delete-btn"> clear </span>
+            <span (click)="likeStatus()"class="material-icons like-btn ">favorite</span>
+            <!-- [ngClass]="{'like-status':  likeBtn, 'like-btn': !likeBtn}" -->
+            
         </div>
 
     <div class="image">

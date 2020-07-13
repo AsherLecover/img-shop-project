@@ -49,29 +49,43 @@ body {
 /* Buttons -  Delete and Like */
 .buttons {
   position: relative;
-  padding-top: 30px;
-  margin-right: 60px;
+  padding-top: 60px;
+  margin-right: 90px;
 }
 
 .delete-btn {
+  position: absolute;
   display: inline-block;
   cursor: pointer;
   width: 18px;
   height: 17px;
-  background: url("src/assets/delete-icn.svg") no-repeat center;
+  top: 25px;
+  /* left: 0px; */
+  /* background: url("src/assets/delete-icn.svg") no-repeat center; */
   margin-right: 20px;
+  color: #86939E;
 }
 
 .like-btn {
   position: absolute;
-  top: 9px;
-  left: 15px;
+  top: 25px;
+  left: 40px;
   display: inline-block;
-  background: url('src/assets/twitter-heart.png');
+  /* background: url('src/assets/twitter-heart.png'); */
   width: 60px;
   height: 60px;
-  background-size: 2900%;
-  background-repeat: no-repeat;
+  cursor: pointer;
+  color: #86939E;
+}
+.like-status{
+  color: red;
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  display: inline-block;
+  /* background: url('src/assets/twitter-heart.png'); */
+  width: 60px;
+  height: 60px;
   cursor: pointer;
 }
 

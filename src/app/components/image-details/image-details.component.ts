@@ -21,6 +21,7 @@ export class ImageDetailsComponent implements OnInit {
   panelOpenState = false;
   radioBtnValue: string = "";
   expOnRadio:string = ""
+  self: boolean = false;
 
   
   
@@ -41,21 +42,21 @@ export class ImageDetailsComponent implements OnInit {
   
   onChange(radio: MatRadioChange) {
     if(radio.value == "canvas"){
-      this.expOnRadio = "aaaa";
+      this.expOnRadio = "בד הקנבס העוטף את מסגרת התמונה צבוע בלבן";
     }
     else if(radio.value == "glass"){
-      this.expOnRadio = "bbbbb";
+      this.expOnRadio = "לא הדבקה! תהליך כימי (דיאסק) באיכות גבוהה מאוד על גבי זכוכית אקרילית איכותית מבריקה או מאט על פי בחירתכם.";
     }
     else if(radio.value == "alominiom"){
-      this.expOnRadio = "ccccc";
+      this.expOnRadio = "הטמעה/הדבקה על אלומיניום באיכות גבוהה ובאמידות גבוהה מאוד.";
     }
     else if(radio.value == "self"){
-      this.expOnRadio = "ddddd";
+      this.expOnRadio = "אנו נשלח את קובץ המקור לבית הדפוס שאתם בחרתם וכך תוכלו להדפיס בכל גודל, על גבי כל משטח כרצונכם (אלומינים מוברש, זכוכית, עץ, פרספקס ועוד').";
+      this.self = true;
     }
-
-
-    console.log(radio)
   }
+
+  
   
   
 }

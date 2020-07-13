@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~10.0.0",
     "@iconify/icons-mdi": "^1.0.115",
+    "@ngx-share/buttons": "^7.1.4",
     "@visurel/iconify-angular": "0.0.7",
     "angularx-social-login": "^3.1.1",
     "bootstrap": "^4.5.0",

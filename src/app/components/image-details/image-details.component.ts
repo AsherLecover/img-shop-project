@@ -13,7 +13,7 @@ import { BuyingProcessService } from '../../servises/buying-process.service';
 export class ImageDetailsComponent implements OnInit {
   imagesList = [];
   public imgId;
-  ingUrlToBedisplay: string;
+  imgUrlToBedisplay: string;
   desToBeDisplay: string;
   imgPrice: string;
   photographer: string;
@@ -23,16 +23,23 @@ export class ImageDetailsComponent implements OnInit {
   radioBtnValue: string = "";
   expOnRadio:string = ""
   self: boolean = false;
+  imgIdToBeDisplayInBag: number;
+  imgPriceToBedisplay: number;
+  imgNumOfItemsToBeDisplayInBag: number = 1;
+  imgDesOfItemsToBeDisplayInBag: string;
 
   
   
-  constructor(public svc: ImgSubListService, private route: ActivatedRoute, public butSvc: BuyingProcessService) {
+  constructor(public svc: ImgSubListService, private route: ActivatedRoute, public buyingSvc: BuyingProcessService) {
     this.imagesList = svc.imgListOrderBySobjects
-    this.ingUrlToBedisplay = this.svc.imgurlSelected;
+    this.imgUrlToBedisplay = this.svc.imgurlSelected;
     this.desToBeDisplay = this.svc.imgDescription;
     this.imgPrice = this.svc.imgPrice;
     this.photographer = this.svc.photographer; 
     this.imgLongDes = this.svc.imgLongDes;
+    this.imgIdToBeDisplayInBag = this.buyingSvc.itemImgIdToBeDisplayInBag;
+
+
   }
   
   
@@ -57,8 +64,15 @@ export class ImageDetailsComponent implements OnInit {
     }
   }
   addItemToBag(){
+    this.buyingSvc.itemAmount += 1;
+    let url = this.buyingSvc.itemImgUrlToBeDisplayInBag = this.imgUrlToBedisplay;
+    let imgId = this.buyingSvc.itemImgIdToBeDisplayInBag = this.imgId;
+    let price = this.buyingSvc.itemImgPriceToBeDisplayInBag = this.imgPrice;
     
-    this.butSvc.itemAmount += 1;
+    let numOfItems = this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag;
+    let des = this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay;
+    this.buyingSvc.listOfItemToBeDisplay.push([{id: imgId,des: des,price: price, url: url, numOfItems: numOfItems}]);
+
   }
 
   

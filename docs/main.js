@@ -1537,22 +1537,24 @@ function ImageDetailsComponent_div_55_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 class ImageDetailsComponent {
-    constructor(svc, route, butSvc) {
+    constructor(svc, route, buyingSvc) {
         this.svc = svc;
         this.route = route;
-        this.butSvc = butSvc;
+        this.buyingSvc = buyingSvc;
         this.imagesList = [];
         this.s = ".    ";
         this.panelOpenState = false;
         this.radioBtnValue = "";
         this.expOnRadio = "";
         this.self = false;
+        this.imgNumOfItemsToBeDisplayInBag = 1;
         this.imagesList = svc.imgListOrderBySobjects;
-        this.ingUrlToBedisplay = this.svc.imgurlSelected;
+        this.imgUrlToBedisplay = this.svc.imgurlSelected;
         this.desToBeDisplay = this.svc.imgDescription;
         this.imgPrice = this.svc.imgPrice;
         this.photographer = this.svc.photographer;
         this.imgLongDes = this.svc.imgLongDes;
+        this.imgIdToBeDisplayInBag = this.buyingSvc.itemImgIdToBeDisplayInBag;
     }
     ngOnInit() {
         let id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -1574,7 +1576,13 @@ class ImageDetailsComponent {
         }
     }
     addItemToBag() {
-        this.butSvc.itemAmount += 1;
+        this.buyingSvc.itemAmount += 1;
+        let url = this.buyingSvc.itemImgUrlToBeDisplayInBag = this.imgUrlToBedisplay;
+        let imgId = this.buyingSvc.itemImgIdToBeDisplayInBag = this.imgId;
+        let price = this.buyingSvc.itemImgPriceToBeDisplayInBag = this.imgPrice;
+        let numOfItems = this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag;
+        let des = this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay;
+        this.buyingSvc.listOfItemToBeDisplay.push([{ id: imgId, des: des, price: price, url: url, numOfItems: numOfItems }]);
     }
 }
 ImageDetailsComponent.ɵfac = function ImageDetailsComponent_Factory(t) { return new (t || ImageDetailsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_servises_img_sub_list_service__WEBPACK_IMPORTED_MODULE_1__["ImgSubListService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_servises_buying_process_service__WEBPACK_IMPORTED_MODULE_3__["BuyingProcessService"])); };
@@ -1734,7 +1742,7 @@ ImageDetailsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](61, 15, ctx.imgPrice, "ILS"), "");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](24);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx.ingUrlToBedisplay, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx.imgUrlToBedisplay, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
     } }, directives: [_angular_material_radio__WEBPACK_IMPORTED_MODULE_4__["MatRadioGroup"], _angular_material_radio__WEBPACK_IMPORTED_MODULE_4__["MatRadioButton"], _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_5__["MatTooltip"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"]], pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["CurrencyPipe"]], styles: [".tp-radio-button[_ngcontent-%COMP%] {\r\n    margin: 5px;\r\n }\r\n .tp-selected-value[_ngcontent-%COMP%] {\r\n    margin: 15px 0;\r\n }\r\n .main-img[_ngcontent-%COMP%]{\r\n    width: 65%;\r\n    height: 65%;\r\n    margin-right: 30%;\r\n    margin-left: 15%;\r\n    margin-top: 15%\r\n}\r\n .thumbnail[_ngcontent-%COMP%] {\r\n    width: 960px;\r\n    height: 720px;\r\n}\r\n .image[_ngcontent-%COMP%] {\r\n    width: 100%;\r\n    height: 100%;    \r\n}\r\n .image[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {    \r\n    transition: all 1s ease;\r\n}\r\n .image[_ngcontent-%COMP%]:hover   img[_ngcontent-%COMP%] {    \r\n    transform:scale(1.25);\r\n}\r\n .mat-radio-outer-circle[_ngcontent-%COMP%] {\r\n    border-color: blue !important;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9pbWFnZS1kZXRhaWxzL2ltYWdlLWRldGFpbHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSxXQUFXO0NBQ2Q7Q0FDQTtJQUNHLGNBQWM7Q0FDakI7Q0FDRDtJQUNJLFVBQVU7SUFDVixXQUFXO0lBQ1gsaUJBQWlCO0lBQ2pCLGdCQUFnQjtJQUNoQjtBQUNKO0NBRUE7SUFDSSxZQUFZO0lBQ1osYUFBYTtBQUNqQjtDQUVBO0lBQ0ksV0FBVztJQUNYLFlBQVk7QUFDaEI7Q0FFQSxhQUNxQyxzQkFBc0IsRUFDekIsWUFBWSxFQUNiLFNBQVMsRUFDVixVQUFVO0lBQ3RDLHVCQUF1QjtBQUMzQjtDQUVBLG1CQUNtQyxzQkFBc0IsRUFDekIsWUFBWSxFQUNiLFNBQVMsRUFDVixVQUFVO0lBQ25DLHFCQUFxQjtBQUMxQjtDQUVBO0lBQ0ksNkJBQTZCO0FBQ2pDIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9pbWFnZS1kZXRhaWxzL2ltYWdlLWRldGFpbHMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4udHAtcmFkaW8tYnV0dG9uIHtcclxuICAgIG1hcmdpbjogNXB4O1xyXG4gfVxyXG4gLnRwLXNlbGVjdGVkLXZhbHVlIHtcclxuICAgIG1hcmdpbjogMTVweCAwO1xyXG4gfVxyXG4ubWFpbi1pbWd7XHJcbiAgICB3aWR0aDogNjUlO1xyXG4gICAgaGVpZ2h0OiA2NSU7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDMwJTtcclxuICAgIG1hcmdpbi1sZWZ0OiAxNSU7XHJcbiAgICBtYXJnaW4tdG9wOiAxNSVcclxufVxyXG5cclxuLnRodW1ibmFpbCB7XHJcbiAgICB3aWR0aDogOTYwcHg7XHJcbiAgICBoZWlnaHQ6IDcyMHB4O1xyXG59XHJcblxyXG4uaW1hZ2Uge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7ICAgIFxyXG59XHJcblxyXG4uaW1hZ2UgaW1nIHtcclxuICAgIC13ZWJraXQtdHJhbnNpdGlvbjogYWxsIDFzIGVhc2U7IC8qIFNhZmFyaSBhbmQgQ2hyb21lICovXHJcbiAgICAtbW96LXRyYW5zaXRpb246IGFsbCAxcyBlYXNlOyAvKiBGaXJlZm94ICovXHJcbiAgICAtbXMtdHJhbnNpdGlvbjogYWxsIDFzIGVhc2U7IC8qIElFIDkgKi9cclxuICAgIC1vLXRyYW5zaXRpb246IGFsbCAxcyBlYXNlOyAvKiBPcGVyYSAqL1xyXG4gICAgdHJhbnNpdGlvbjogYWxsIDFzIGVhc2U7XHJcbn1cclxuXHJcbi5pbWFnZTpob3ZlciBpbWcge1xyXG4gICAgLXdlYmtpdC10cmFuc2Zvcm06c2NhbGUoMS4yNSk7IC8qIFNhZmFyaSBhbmQgQ2hyb21lICovXHJcbiAgICAtbW96LXRyYW5zZm9ybTpzY2FsZSgxLjI1KTsgLyogRmlyZWZveCAqL1xyXG4gICAgLW1zLXRyYW5zZm9ybTpzY2FsZSgxLjI1KTsgLyogSUUgOSAqL1xyXG4gICAgLW8tdHJhbnNmb3JtOnNjYWxlKDEuMjUpOyAvKiBPcGVyYSAqL1xyXG4gICAgIHRyYW5zZm9ybTpzY2FsZSgxLjI1KTtcclxufVxyXG5cclxuLm1hdC1yYWRpby1vdXRlci1jaXJjbGUge1xyXG4gICAgYm9yZGVyLWNvbG9yOiBibHVlICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcblxyXG5cclxuIl19 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ImageDetailsComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
@@ -2116,6 +2124,7 @@ class PicMainSubListComponent {
                     { imgId: 0, numOfItems: 1, photographer: "יוסי כהן", imgDes: "some nice img 2", price: "180", imgLongDes: "צבעי שלכת חמים ומלטפים – אדום עמוק, ורוד כתום, ורוד פוקסיה וצהוב לימוני על רקע דשא ירוק בהיר. תמונה מקסימה המשדרת אופטימיות וחום מתוך מגוון תמונות מיוחדות לסלון מסוגנן בעיצוב מודרני נקי. הדפסות איכותיות על מבחר חומרים באתר התמונות פוטו ארט", imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGohAh3dNhzAIKNgsMmEPRW4Wbq1g7zjsrTw&usqp=CAU" },
                     { imgId: 1, numOfItems: 1, photographer: "יוסי כהן", imgDes: "some nice img 3", price: "220", imgLongDes: "צבעי שלכת חמים ומלטפים – אדום עמוק, ורוד כתום, ורוד פוקסיה וצהוב לימוני על רקע דשא ירוק בהיר. תמונה מקסימה המשדרת אופטימיות וחום מתוך מגוון תמונות מיוחדות לסלון מסוגנן בעיצוב מודרני נקי. הדפסות איכותיות על מבחר חומרים באתר התמונות פוטו ארט", imgUrl: "https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/rabanim/rabanim2.jpg" },
                     { imgId: 2, numOfItems: 1, photographer: "יוסי כהן", imgDes: "some nice img 4", price: "220", imgLongDes: "צבעי שלכת חמים ומלטפים – אדום עמוק, ורוד כתום, ורוד פוקסיה וצהוב לימוני על רקע דשא ירוק בהיר. תמונה מקסימה המשדרת אופטימיות וחום מתוך מגוון תמונות מיוחדות לסלון מסוגנן בעיצוב מודרני נקי. הדפסות איכותיות על מבחר חומרים באתר התמונות פוטו ארט", imgUrl: "https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/rabanim/rabanim3.jpg" },
+                    { imgId: 4, numOfItems: 1, photographer: "יוסי כהן", imgDes: "הרה'ג שלמה יוספי", price: "0.1", imgLongDes: "הרב שלמה יוספי ידוע כגדול המתמידים בכולל אברטק כמו כן מתמקצע בזמנו החופשי במשחק הפינגפונג , ידוע כמו כן שמתכנת בשעות הפנאי מומחה בבנית אתרי פרחים ", imgUrl: "https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/rabanim/rabanim4.jpg" },
                 ]
             },
             {
@@ -2918,7 +2927,7 @@ class BuyingProcessService {
         this.itemAmount = 0;
         this.itemImgDesToBeDisplayInBag = '';
         this.itemImgUrlToBeDisplayInBag = '';
-        this.itemImgPriceToBeDisplayInBag = -1;
+        this.itemImgPriceToBeDisplayInBag = "-1";
         this.itemImgIdToBeDisplayInBag = -1;
         this.itemNumOfItemToBeDisplayInBag = 1;
         this.numOfItems = 1;

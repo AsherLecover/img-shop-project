@@ -10,7 +10,7 @@ export class BuyingProcessService {
   imgToBeDisplayInBagModel: ImgModel
   itemImgDesToBeDisplayInBag: string = '';
   itemImgUrlToBeDisplayInBag: string = '';
-  itemImgPriceToBeDisplayInBag: number = -1;
+  itemImgPriceToBeDisplayInBag: string = "-1";
   itemImgIdToBeDisplayInBag: number = -1;
   itemNumOfItemToBeDisplayInBag: number = 1;
   numOfItems: number = 1;

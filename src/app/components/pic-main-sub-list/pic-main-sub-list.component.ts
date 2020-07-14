@@ -46,7 +46,10 @@ export class PicMainSubListComponent implements OnInit {
           { imgId: 0, numOfItems: 1,photographer:"יוסי כהן",imgDes: "some nice img 2", price: "180",imgLongDes:"צבעי שלכת חמים ומלטפים – אדום עמוק, ורוד כתום, ורוד פוקסיה וצהוב לימוני על רקע דשא ירוק בהיר. תמונה מקסימה המשדרת אופטימיות וחום מתוך מגוון תמונות מיוחדות לסלון מסוגנן בעיצוב מודרני נקי. הדפסות איכותיות על מבחר חומרים באתר התמונות פוטו ארט",imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGohAh3dNhzAIKNgsMmEPRW4Wbq1g7zjsrTw&usqp=CAU" },
           { imgId: 1, numOfItems: 1,photographer:"יוסי כהן",imgDes: "some nice img 3", price: "220",imgLongDes:"צבעי שלכת חמים ומלטפים – אדום עמוק, ורוד כתום, ורוד פוקסיה וצהוב לימוני על רקע דשא ירוק בהיר. תמונה מקסימה המשדרת אופטימיות וחום מתוך מגוון תמונות מיוחדות לסלון מסוגנן בעיצוב מודרני נקי. הדפסות איכותיות על מבחר חומרים באתר התמונות פוטו ארט",imgUrl: "https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/rabanim/rabanim2.jpg" },
           { imgId: 2, numOfItems: 1,photographer:"יוסי כהן",imgDes: "some nice img 4", price: "220",imgLongDes:"צבעי שלכת חמים ומלטפים – אדום עמוק, ורוד כתום, ורוד פוקסיה וצהוב לימוני על רקע דשא ירוק בהיר. תמונה מקסימה המשדרת אופטימיות וחום מתוך מגוון תמונות מיוחדות לסלון מסוגנן בעיצוב מודרני נקי. הדפסות איכותיות על מבחר חומרים באתר התמונות פוטו ארט",imgUrl: "https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/rabanim/rabanim3.jpg" },
+          { imgId: 4, numOfItems: 1,photographer:"יוסי כהן",imgDes: "הרה'ג שלמה יוספי", price: "0.1",imgLongDes:"הרב שלמה יוספי ידוע כגדול המתמידים בכולל אברטק כמו כן מתמקצע בזמנו החופשי במשחק הפינגפונג , ידוע כמו כן שמתכנת בשעות הפנאי מומחה בבנית אתרי פרחים ",imgUrl: "https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/rabanim/rabanim4.jpg" },
 
+
+          
         ]
     },
     {

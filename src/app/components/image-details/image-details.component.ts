@@ -3,6 +3,7 @@ import { ImgSubListService } from '../../servises/img-sub-list.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatRadioChange } from "@angular/material/radio";
 import { MatExpansionPanel } from "@angular/material/expansion";
+import { BuyingProcessService } from '../../servises/buying-process.service';
 
 @Component({
   selector: 'app-image-details',
@@ -25,7 +26,7 @@ export class ImageDetailsComponent implements OnInit {
 
   
   
-  constructor(public svc: ImgSubListService, private route: ActivatedRoute) {
+  constructor(public svc: ImgSubListService, private route: ActivatedRoute, public butSvc: BuyingProcessService) {
     this.imagesList = svc.imgListOrderBySobjects
     this.ingUrlToBedisplay = this.svc.imgurlSelected;
     this.desToBeDisplay = this.svc.imgDescription;
@@ -55,6 +56,12 @@ export class ImageDetailsComponent implements OnInit {
       this.self = true;
     }
   }
+  addItemToBag(){
+    
+    this.butSvc.itemAmount += 1;
+  }
+
+  
 
   
   

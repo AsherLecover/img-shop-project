@@ -150,8 +150,6 @@ export class PicMainSubListComponent implements OnInit {
     this.buyingSvc.listOfItemToBeDisplay.push([{id: id,des: des,price: price, url: url, numOfItems: numOfItems}]);
  
     this.buyingSvc.itemAmount += 1;
-
-   
   }
 
   openSnackBar(message: string, action: string) {

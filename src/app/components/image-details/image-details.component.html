@@ -41,7 +41,7 @@
         <hr>
         <h3 style="color: #77a464;"> <strong> סח"ה:</strong> {{imgPrice | currency:'ILS'}}</h3>
         <span style="margin-left: 20%;">לא כולל משלוח</span>
-        <button style="color: white; background-color: #232d54;;">הוספה לסל</button>
+        <button (click)="addItemToBag()" style="color: white; background-color: #232d54;;">הוספה לסל</button>
         <br><br>
               </mat-radio-group>
               <div>
@@ -50,14 +50,14 @@
         
             <div style="margin: 5%; display: flex;"> 
                 <div style="margin: 5%;">
-                    <a href="whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר www.google.com PicPicture" data-action="share/whatsapp/share">
+                    <a href="whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר https://asherlecover.github.io/img-shop-project/ PicPicture" data-action="share/whatsapp/share">
                         <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675;'></i>
                     </a>
 
                 </div>
 
                 <div style="margin: 5%;">
-                    <a href="">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://asherlecover.github.io/img-shop-project/" target="_blank">
                         <i class="fa fa-facebook-square" style="font-size:48px;color:#4267B2"></i>
                     </a>
                 </div>
@@ -67,6 +67,7 @@
                         <i class="fa fa-pinterest-square" style="font-size:48px;color:#e60023"></i>
                     </a>  
                 </div>
+              
             </div>
               
       

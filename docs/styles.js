@@ -58,7 +58,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(true);
 // Module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.mat-dialog-container {\r\n    background: white;\r\n    color:black;\r\n\r\n}\r\n", "",{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,8EAA8E;;AAE9E,aAAa,YAAY,EAAE;;AAC3B,OAAO,SAAS,EAAE,iDAAiD,EAAE;;AAErE;IACI,iBAAiB;IACjB,WAAW;;AAEf","file":"styles.css","sourcesContent":["/* You can add global styles to this file, and also import other style files */\r\n\r\nhtml, body { height: 100%; }\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.mat-dialog-container {\r\n    background: white;\r\n    color:black;\r\n\r\n}\r\n"]}]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\r\n\r\n\r\nhtml, body { height: 100%; }\r\n\r\n\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n\r\n.mat-dialog-container {\r\n    background: white;\r\n    color:black;\r\n}\r\n\r\n\r\n.mat-radio-outer-circle {\r\n    border-color: black !important;\r\n}\r\n\r\n\r\n.mat-radio-label-content {\r\n    left: 20%;\r\n}\r\n\r\n\r\n.mat-tooltip.tooltip {\r\n    background-color: darkblue;\r\n    font-size: 12px;\r\n  }", "",{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,8EAA8E;;;AAG9E,aAAa,YAAY,EAAE;;;AAC3B,OAAO,SAAS,EAAE,iDAAiD,EAAE;;;AAErE;IACI,iBAAiB;IACjB,WAAW;AACf;;;AACA;IACI,8BAA8B;AAClC;;;AACA;IACI,SAAS;AACb;;;AACA;IACI,0BAA0B;IAC1B,eAAe;EACjB","file":"styles.css","sourcesContent":["/* You can add global styles to this file, and also import other style files */\r\n\r\n\r\nhtml, body { height: 100%; }\r\nbody { margin: 0; font-family: Roboto, \"Helvetica Neue\", sans-serif; }\r\n\r\n.mat-dialog-container {\r\n    background: white;\r\n    color:black;\r\n}\r\n.mat-radio-outer-circle {\r\n    border-color: black !important;\r\n}\r\n.mat-radio-label-content {\r\n    left: 20%;\r\n}\r\n.mat-tooltip.tooltip {\r\n    background-color: darkblue;\r\n    font-size: 12px;\r\n  }"]}]);
 // Exports
 module.exports = exports;
 
@@ -486,8 +486,8 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Asher\Desktop\img-shop-project\node_modules\@angular\material\prebuilt-themes\purple-green.css */"./node_modules/@angular/material/prebuilt-themes/purple-green.css");
-module.exports = __webpack_require__(/*! C:\Users\Asher\Desktop\img-shop-project\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! C:\Users\stu\Desktop\img-shop-project\node_modules\@angular\material\prebuilt-themes\purple-green.css */"./node_modules/@angular/material/prebuilt-themes/purple-green.css");
+module.exports = __webpack_require__(/*! C:\Users\stu\Desktop\img-shop-project\src\styles.css */"./src/styles.css");
 
 
 /***/ })

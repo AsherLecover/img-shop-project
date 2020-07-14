@@ -1,24 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ImgSubListService } from '../../servises/img-sub-list.service';
-import { BuyingProcessService } from '../../servises/buying-process.service';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-
-
-
-@Component({
-  selector: 'app-pic-main-sub-list',
-  templateUrl: './pic-main-sub-list.component.html',
-  styleUrls: ['./pic-main-sub-list.component.css']
-})
-export class PicMainSubListComponent implements OnInit {
-  public imgIdListSubject: number;
-  public listOfItemsInBag: any[] = []
-  public imgListSubject: string =  ""
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-
-
+export class ImgData{
 
   imgListBySubjects = [
     {
@@ -116,52 +96,4 @@ export class PicMainSubListComponent implements OnInit {
     },
     
   ]
- 
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    public svc: ImgSubListService,
-    public buyingSvc: BuyingProcessService,
-    private _snackBar: MatSnackBar,
-  ) {
-    this.svc.imgListOrderBySobjects = this.imgListBySubjects;
-
-  }
-
-  ngOnInit(): void {
-
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.imgIdListSubject = id;
-  
-    
-  }
-
-  onImgSelected(img) {
-    this.router.navigate(['/img-details', "imgId:"+ img.imgId + "subId:" + img.subId])
-    this.svc.imgurlSelected = img.imgUrl;
-    this.svc.imgDescription = img.imgDes;
-    this.svc.imgPrice = img.price
-    this.svc.photographer = img.photographer;
-    this.svc.imgLongDes = img.imgLongDes;
-  }
-  omImgSelectedToBuy(img) {
-    let id = this.buyingSvc.itemImgIdToBeDisplayInBag = img.imgId;
-    let des = this.buyingSvc.itemImgDesToBeDisplayInBag = img.imgDes;
-    let price = this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price;
-    let url = this.buyingSvc.itemImgUrlToBeDisplayInBag = img.imgUrl;
-    let numOfItems = this.buyingSvc.numOfItems;
-    this.buyingSvc.listOfItemToBeDisplay.push([{id: id,des: des,price: price, url: url, numOfItems: numOfItems}]);
- 
-    this.buyingSvc.itemAmount += 1;
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }
-
 }

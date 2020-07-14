@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatRadioChange } from "@angular/material/radio";
 import { MatExpansionPanel } from "@angular/material/expansion";
 import { BuyingProcessService } from '../../servises/buying-process.service';
+import { ImgDataService } from '../../servises/img-data.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-image-details',
@@ -27,10 +29,12 @@ export class ImageDetailsComponent implements OnInit {
   imgPriceToBedisplay: number;
   imgNumOfItemsToBeDisplayInBag: number = 1;
   imgDesOfItemsToBeDisplayInBag: string;
+  newList 
+  
 
   
   
-  constructor(public svc: ImgSubListService, private route: ActivatedRoute, public buyingSvc: BuyingProcessService) {
+  constructor(public svc: ImgSubListService, private route: ActivatedRoute, public buyingSvc: BuyingProcessService,public dataSVC: ImgDataService) {
     this.imagesList = svc.imgListOrderBySobjects
     this.imgUrlToBedisplay = this.svc.imgurlSelected;
     this.desToBeDisplay = this.svc.imgDescription;
@@ -39,6 +43,8 @@ export class ImageDetailsComponent implements OnInit {
     this.imgLongDes = this.svc.imgLongDes;
     this.imgIdToBeDisplayInBag = this.buyingSvc.itemImgIdToBeDisplayInBag;
 
+    
+
 
   }
   
@@ -46,6 +52,30 @@ export class ImageDetailsComponent implements OnInit {
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.imgId = id;
+    let ii: string
+    let jj: string
+    if(this.imagesList.length == 0){
+
+      for (let [i, v] of this.dataSVC.imgDataList.imgListBySubjects.entries()) {
+        ii = i.toString()
+        for (let [j,w] of v.listOfImgUrlBysub.entries()) {
+          jj = j.toString()
+
+          if(this.route.snapshot.paramMap.get('id') == "imgId:" + ii + "subId:" + jj){
+            console.log("yessssssssssss")
+            this.imgUrlToBedisplay = this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgUrl
+            this.desToBeDisplay = this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgDes
+            this.imgPrice= this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].price
+            this.photographer= this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].photographer
+            this.imgLongDes= this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgLongDes
+            this.imgIdToBeDisplayInBag = this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgId
+          }
+          
+        }
+      }
+    }
+    console.log("aaaaaaaaa", this.route.snapshot.paramMap.get('id'))
+
   }
   
   onChange(radio: MatRadioChange) {
@@ -66,7 +96,7 @@ export class ImageDetailsComponent implements OnInit {
   addItemToBag(){
     this.buyingSvc.itemAmount += 1;
     let url = this.buyingSvc.itemImgUrlToBeDisplayInBag = this.imgUrlToBedisplay;
-    let imgId = this.buyingSvc.itemImgIdToBeDisplayInBag = this.imgId;
+    let imgId = this.buyingSvc.itemImgIdToBeDisplayInBag = this.imgIdToBeDisplayInBag;
     let price = this.buyingSvc.itemImgPriceToBeDisplayInBag = this.imgPrice;
     
     let numOfItems = this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag;

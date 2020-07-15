@@ -15,7 +15,7 @@ import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.com
 const routes: Routes = [
   { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
   { path:'pic-main-list-subjects/:id',   component:PicMainSubListComponent},
-  { path:'img-details/:id',   component:ImageDetailsComponent},
+  { path:'img-details/:subId/:id',   component:ImageDetailsComponent},
   { path:'shpping-cart',   component:ShoppingBagComponent},
 
 

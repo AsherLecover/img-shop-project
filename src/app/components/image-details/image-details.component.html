@@ -1,10 +1,10 @@
 <div style="width: 100%; display: flex">
     <div  style="width: 40%;">
         <div style="width: 35%; margin-left: 60%;  margin-top: 5%; direction: rtl">
-            <h1>{{desToBeDisplay}}</h1>
-        <h3> <strong>מחיר:</strong> {{imgPrice | currency:'ILS'}}</h3>
-         <span><strong>צלם: </strong> {{photographer}}</span>
-        <p>{{imgLongDes}}</p>
+            <h1>{{desToBeDisplay1}}</h1>
+        <h3> <strong>מחיר:</strong> {{imgPrice1 | currency:'ILS'}}</h3>
+         <span><strong>צלם: </strong> {{photographer1}}</span>
+        <p>{{imgLongDes1}}</p>
         <img class="hand-img" src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/hand/hand4.jpg" alt="">
         <br>
         <p>לחץ כאן</p>
@@ -39,9 +39,9 @@
             </ul>
         </div>
         <hr>
-        <h3 style="color: #77a464;"> <strong> סח"ה:</strong> {{imgPrice | currency:'ILS'}}</h3>
+        <h3 style="color: #77a464;"> <strong> סח"ה:</strong> {{imgPrice1 | currency:'ILS'}}</h3>
         <span style="margin-left: 20%;">לא כולל משלוח</span>
-        <button (click)="addItemToBag()" style="color: white; background-color: #232d54;;">הוספה לסל</button>
+        <button (click)="addItemToBag()" style="color:  white; background-color: #232d54;;">הוספה לסל</button>
         <br><br>
               </mat-radio-group>
               <div>
@@ -53,8 +53,9 @@
                     <a href="whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר https://asherlecover.github.io/img-shop-project/ PicPicture" data-action="share/whatsapp/share">
                         <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675;'></i>
                     </a>
-
                 </div>
+
+                <
 
                 <div style="margin: 5%;">
                     <a href="https://www.facebook.com/sharer/sharer.php?u=https://asherlecover.github.io/img-shop-project/" target="_blank">
@@ -77,7 +78,7 @@
     <div style="width: 60%;">
             <div class="thumbnail">
                     <div class="image">
-                            <img class="main-img" src={{imgUrlToBedisplay}} alt="Some awesome text"/>
+                            <img class="main-img" src={{imgUrlToBedisplay1}} alt="Some awesome text"/>
                     </div>
                 </div>
         

@@ -5,7 +5,7 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 import { log } from 'util';
 import { ClinetsService, User } from '../../servises/clinets.service';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/servises/auth.service';
+import { AuthService } from '../../servises/auth.service';
 
 @Component({
   selector: 'app-log-in',

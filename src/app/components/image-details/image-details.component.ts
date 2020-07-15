@@ -6,6 +6,7 @@ import { MatExpansionPanel } from "@angular/material/expansion";
 import { BuyingProcessService } from '../../servises/buying-process.service';
 import { ImgDataService } from '../../servises/img-data.service';
 import { log } from 'util';
+import { ImgSubjectDataService } from '../../servises/img-subject-data.service';
 
 @Component({
   selector: 'app-image-details',
@@ -29,55 +30,59 @@ export class ImageDetailsComponent implements OnInit {
   imgPriceToBedisplay: number;
   imgNumOfItemsToBeDisplayInBag: number = 1;
   imgDesOfItemsToBeDisplayInBag: string;
-  newList 
+  newList;
+  imgSubId: number;
+  imgUrlToBedisplay1: string;
+  desToBeDisplay1: string;
+  imgPrice1: string;
+  photographer1: string;
+  imgLongDes1: string;
+  sub1: string;
+  numOfItem1: number;
+
+  link: string 
   
 
   
   
-  constructor(public svc: ImgSubListService, private route: ActivatedRoute, public buyingSvc: BuyingProcessService,public dataSVC: ImgDataService) {
-    this.imagesList = svc.imgListOrderBySobjects
-    this.imgUrlToBedisplay = this.svc.imgurlSelected;
-    this.desToBeDisplay = this.svc.imgDescription;
-    this.imgPrice = this.svc.imgPrice;
-    this.photographer = this.svc.photographer; 
-    this.imgLongDes = this.svc.imgLongDes;
-    this.imgIdToBeDisplayInBag = this.buyingSvc.itemImgIdToBeDisplayInBag;
-
-    
-
+  constructor(public svc: ImgSubListService,
+     private route: ActivatedRoute, 
+     public buyingSvc: BuyingProcessService,
+     public dataSVC: ImgDataService,
+     private imgSubDataSVC: ImgSubjectDataService) {
 
   }
   
   
   ngOnInit(): void {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.imgId = id;
-    let ii: string
-    let jj: string
-    if(this.imagesList.length == 0){
 
-      for (let [i, v] of this.dataSVC.imgDataList.imgListBySubjects.entries()) {
-        ii = i.toString()
-        for (let [j,w] of v.listOfImgUrlBysub.entries()) {
-          jj = j.toString()
+    this.imgSubId = parseInt(this.route.snapshot.paramMap.get('subId'))
+    console.log("imgSubId:: ", this.imgSubId)
+    this.imgId = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log("this.imgId:: ", this.imgId)
+    this.newList = this.dataSVC.imgDataList.imgListBySubjects;
 
-          if(this.route.snapshot.paramMap.get('id') == "imgId:" + ii + "subId:" + jj){
-            console.log("yessssssssssss")
-            this.imgUrlToBedisplay = this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgUrl
-            this.desToBeDisplay = this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgDes
-            this.imgPrice= this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].price
-            this.photographer= this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].photographer
-            this.imgLongDes= this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgLongDes
-            this.imgIdToBeDisplayInBag = this.dataSVC.imgDataList.imgListBySubjects[j].listOfImgUrlBysub[i].imgId
-          }
-          
+
+
+    for(let item of this.newList){
+      if(this.imgSubId == item.subId){
+        this.sub1 = item.imagesSubject
+     
+      for(let img of item.listOfImgUrlBysub){
+        if(this.imgId == img.imgId){
+          this.imgUrlToBedisplay1 = img.imgUrl;
+          this.desToBeDisplay1 = img.imgDes;
+          this.imgPrice1 = img.price;
+          this.photographer1 = img.photographer;
+          this.imgLongDes1 = img.imgLongDes
         }
       }
     }
-    console.log("aaaaaaaaa", this.route.snapshot.paramMap.get('id'))
-
   }
-  
+
+}
+
+
   onChange(radio: MatRadioChange) {
     if(radio.value == "canvas"){
       this.expOnRadio = "בד הקנבס העוטף את מסגרת התמונה צבוע בלבן";
@@ -95,19 +100,12 @@ export class ImageDetailsComponent implements OnInit {
   }
   addItemToBag(){
     this.buyingSvc.itemAmount += 1;
-    let url = this.buyingSvc.itemImgUrlToBeDisplayInBag = this.imgUrlToBedisplay;
-    let imgId = this.buyingSvc.itemImgIdToBeDisplayInBag = this.imgIdToBeDisplayInBag;
-    let price = this.buyingSvc.itemImgPriceToBeDisplayInBag = this.imgPrice;
-    
+    let url = this.imgUrlToBedisplay1
+    let imgId = this.imgId
+    let price =    this.imgPrice1
     let numOfItems = this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag;
     let des = this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay;
     this.buyingSvc.listOfItemToBeDisplay.push([{id: imgId,des: des,price: price, url: url, numOfItems: numOfItems}]);
 
   }
-
-  
-
-  
-  
-  
 }

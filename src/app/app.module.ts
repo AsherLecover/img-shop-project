@@ -21,7 +21,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { LogInComponent } from './components/log-in/log-in.component';
-import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
 
 import { CommonModule } from '@angular/common';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -50,7 +49,6 @@ import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.com
     ButtonsComponent,
     PicSubMainPageComponent,
     LogInComponent,
-    ValidationErrorComponent,
     SignUpComponent,
     AaaaComponent,
     PicMainSubListComponent,

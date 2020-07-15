@@ -8,28 +8,30 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 40%; margin: 24px;" dir="rtl" action="">
 
-    <input  id="inputs0"  formControlName="firstName" type="text" placeholder="הזן שם פרטי" [ngClass]="{'has-error' :
+    <input  id="inputs0"  formControlName="firstName" type="text" placeholder="הזן שם משתמש" [ngClass]="{'has-error' :
+
     registerForm.get('firstName').errors &&
-    (registerForm.get('firstName').touched || 
-    registerForm.get('firstName').dirty)}">
+    (registerForm.get('firstName').dirty)}">
+
     <span *ngIf="registerForm.get('firstName').errors &&
-    (registerForm.get('firstName').touched || 
-    registerForm.get('firstName').dirty)">
+    (registerForm.get('firstName').dirty)">
+
       <span style="color: red;" *ngIf="registerForm.get('firstName').errors.required">
         זהו שדה חובה
       </span>
+
       <span style="color: red;" *ngIf="registerForm.get('firstName').errors.minlength">
         שם פרטי חייב להיות לפחות 2 אותיות
       </span>
     </span>
+
     <input id="inputs2" formControlName="email" type="text" placeholder='הזן כתובת דוא"ל' [ngClass]="{'has-error' :
     registerForm.get('email').errors &&
-    (registerForm.get('email').touched || 
-    registerForm.get('email').dirty)}">
+    (registerForm.get('email').dirty)}">
 
     <span *ngIf="registerForm.get('email').errors &&
-    (registerForm.get('email').touched || 
-    registerForm.get('email').dirty)">
+    (registerForm.get('email').dirty)">
+
       <span style="color: red;" *ngIf="registerForm.get('email').errors.required">
         זהו שדה חובה
       </span>
@@ -39,13 +41,11 @@
     </span>
 
     <input id="inputs3" formControlName="password" class="b" type="password" placeholder="הזן סיסמה" [ngClass]="{'has-error' :
-    registerForm.get('password').errors &&
-    (registerForm.get('password').touched || 
-    registerForm.get('password').dirty)}
-    ">
-    <span *ngIf="registerForm.get('password').errors &&
-    (registerForm.get('password').touched || 
-    registerForm.get('password').dirty)">
+      registerForm.get('password').errors &&
+      (registerForm.get('password').dirty)}">
+
+    <span *ngIf="registerForm.get('password').errors && (registerForm.get('password').dirty)">
+
       <span style="color: red;" *ngIf="registerForm.get('password').errors.required">
         זהו שדה חובה
       </span>
@@ -55,9 +55,12 @@
     </span>
 
     <br>
-    <button (click)="getUserName()"  style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
+    <button  type="submit" [disabled]="!registerForm.valid"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
       color="primary">הרשמה</button>
-    <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">ביטול</button> -->
+
+      <button (click)="onSubmit()" [disabled]="!registerForm.valid" style="background-color: red; width: 77%; height: 45px;" mat-raised-button
+      color="primary">2הרשמה</button>
+
   </form>
 
   <div class="wrapper">

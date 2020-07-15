@@ -43,7 +43,7 @@ export class ImageDetailsComponent implements OnInit {
   link: string 
   
 
-  
+  href = "http://localhost:4200/img-details/0/0"
   
   constructor(public svc: ImgSubListService,
      private route: ActivatedRoute, 

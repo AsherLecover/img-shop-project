@@ -40,14 +40,16 @@ export class LogInComponent implements OnInit {
         acceptTerms: [false, Validators.requiredTrue]});}
 
   onSubmit() {
-    this.submitted = true;
-    if (this.registerForm.invalid) {
-      return;
+    console.log("(this.submitted",this.submitted)
+    if (this.registerForm.valid) {
+      this.submitted = true;
+      console.log(this.submitted)
     }
   }
 
   onReset() {
     this.submitted = false;
+    this.registerForm.valid
     this.registerForm.reset();
   }
 

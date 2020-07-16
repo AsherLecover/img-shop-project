@@ -49,11 +49,24 @@
             </div>
         
             <div style="margin: 5%; display: flex;"> 
-                <div style="margin: 5%;">
-                    <a href="whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture" data-action="share/whatsapp/share">
+
+                <!-- <div style="margin: 5%;">
+                    <a href="whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com" data-action="share/whatsapp/share">
                         <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675;'></i>
                     </a>
-                </div>
+                </div> -->
+
+                <div style="margin: 5%;">
+                        <a [href]="iframeSrc" data-action="share/whatsapp/share">
+                            <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675'></i>
+                        </a>
+                        
+                    </div>
+
+                  
+
+                  
+
 
 
                 <div style="margin: 5%;">
@@ -61,6 +74,8 @@
                         <i class="fa fa-facebook-square" style="font-size:48px;color:#4267B2"></i>
                     </a>
                 </div>
+
+                
 
                 <div style="margin: 5%;">
                     <a href="">

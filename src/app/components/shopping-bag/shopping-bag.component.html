@@ -1,16 +1,12 @@
-<div class="shopping-cart">
-  <div class="title">
-    Shopping Bag
+<div  class="shopping-cart">
+  <div  style="direction: rtl" class="title">
+    סל הקניות
 </div>
 <div  *ngFor="let item of buyerSvc.listOfItemToBeDisplay; let j = index">
-  
   <div *ngFor="let i of item">
-
-
-
   <div class="item">
         <div class="buttons">
-            <span (click)="removeItemFromBag(j)" class="material-icons delete-btn"> clear </span>
+            <span (click)="removeItemFromBag(j, i)" class="material-icons delete-btn"> clear </span>
             <span (click)="likeStatus()"class="material-icons like-btn ">favorite</span>
             <!-- [ngClass]="{'like-status':  likeBtn, 'like-btn': !likeBtn}" -->
             
@@ -39,107 +35,33 @@
     <div class="total-price">{{i.price * i.numOfItems | currency:'ILS'}}</div>
   </div>
     </div>
-
   </div>
 
+<div *ngIf="bagIsNotEmpty" class="total-payment-section">
 
-  <!-- Product #2 -->
-  <!-- <div class="item">
-        <div class="buttons">
-          <span class="delete-btn"></span>
-          <span class="like-btn"></span>
-        </div>
+  <div class="total-order-title">
+    <p>סה"כ לתשלום</p>
+  </div>
 
-        <div class="image">
-          <img style="width: 120px; height: 80px;" src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/viewImg/view2.jpg" alt=""/>
-        </div>
+  <div class="midd-total-price">
+    <div style="display: flex">
+    <b style="width: 90%">סכום ביינים</b>
+    <p >{{totalPrice | currency:'ILS'}}</p>
+    </div>
+  </div>
 
-        <div class="description">
-          <span>Maison Margiela</span>
-          <span>Future Sneakers</span>
-          <span>White</span>
-        </div>
+  <div class="end-total-price">
+    <div style="display: flex; ">
+    <b style="width: 90%">סח"כ</b>
+    <p >{{totalPrice | currency:'ILS'}}</p>
+    </div>
+  </div>
 
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <img src="./assets/plus.svg" alt="" />
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <img src="./assets/minus.svg" alt="" />
-          </button>
-        </div>
+  <div class="btn-go-to-payment">
+    <h3 id="text-payment" style="color: #fff; cursor: pointer"> מעבר לתשלום</h3>
+  </div>
 
-        <div class="total-price">$870</div>
-      </div> -->
+</div>
 
-  <!-- Product #3 -->
-  <!-- <div class="item">
-        <div class="buttons">
-          <span class="delete-btn"></span>
-          <span class="like-btn"></span>
-        </div>
 
-        <div class="image">
-          <img style="width: 120px; height: 80px;" src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/viewImg/view3.jpg" alt="" />
-        </div>
 
-        <div class="description">
-          <span>Our Legacy</span>
-          <span>Brushed Scarf</span>
-          <span>Brown</span>
-        </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <img src="./assets/plus.svg" alt="" />
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <img src="./assets/minus.svg" alt="" />
-          </button>
-        </div>
-
-        <div class="total-price">$349</div>
-      </div>
-    </div> -->
-
-  <!-- ---------------------------------------------------------------------------------------- -->
-
-  <!-- <script type="text/javascript">
-      $('.minus-btn').on('click', function(e) {
-    		e.preventDefault();
-    		var $this = $(this);
-    		var $input = $this.closest('div').find('input');
-    		var value = parseInt($input.val());
-
-    		if (value > 1) {
-    			value = value - 1;
-    		} else {
-    			value = 0;
-    		}
-
-        $input.val(value);
-
-    	});
-
-    	$('.plus-btn').on('click', function(e) {
-    		e.preventDefault();
-    		var $this = $(this);
-    		var $input = $this.closest('div').find('input');
-    		var value = parseInt($input.val());
-
-    		if (value < 100) {
-      		value = value + 1;
-    		} else {
-    			value =100;
-    		}
-
-    		$input.val(value);
-    	});
-
-      $('.like-btn').on('click', function() {
-        $(this).toggleClass('is-active');
-      });
-    </script>
-  -->

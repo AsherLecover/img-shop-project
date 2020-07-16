@@ -15,7 +15,7 @@ export class BuyingProcessService {
   itemNumOfItemToBeDisplayInBag: number = 1;
   numOfItems: number = 1;
   listOfItemToBeDisplay:any[] = [];
-  bagIsNotEmpty: boolean = false;
+  bagIsEmpty: boolean;
   
 
   constructor() { }

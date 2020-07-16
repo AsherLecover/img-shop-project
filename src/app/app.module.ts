@@ -32,7 +32,7 @@ import { AngularFireAuthModule} from '@angular/fire/auth'
 import { AngularFirestoreModule} from '@angular/fire/firestore'
 import { from } from 'rxjs';
 import { ClinetsService } from './servises/clinets.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment.prod';
 import { AaaaComponent } from './components/aaaa/aaaa.component';
 import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main-sub-list.component';
 import { HedderComponent } from './components/hedder/hedder.component';

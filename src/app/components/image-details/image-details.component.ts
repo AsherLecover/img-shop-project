@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ImgSubListService } from '../../servises/img-sub-list.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatRadioChange } from "@angular/material/radio";
 import { MatExpansionPanel } from "@angular/material/expansion";
 import { BuyingProcessService } from '../../servises/buying-process.service';
 import { ImgDataService } from '../../servises/img-data.service';
 import { log } from 'util';
 import { ImgSubjectDataService } from '../../servises/img-subject-data.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-image-details',
@@ -41,16 +43,24 @@ export class ImageDetailsComponent implements OnInit {
   numOfItem1: number;
 
   link: string 
-  
-
+  stst=`whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com`
   href = "http://localhost:4200/img-details/0/0"
+  iframeSrc: SafeUrl;
+  google = "www.google.com"
+
   
   constructor(public svc: ImgSubListService,
      private route: ActivatedRoute, 
      public buyingSvc: BuyingProcessService,
      public dataSVC: ImgDataService,
-     private imgSubDataSVC: ImgSubjectDataService) {
+     private imgSubDataSVC: ImgSubjectDataService,
+     private router: Router,
+     private sanitizer: DomSanitizer) {
 
+      this.link = this.router.url
+      
+      let url = `whatsapp://send?text= PicPicture רציתי לשתף אותך בתמונה יפה מהאתר http://localhost:4200/${this.link}`;
+      this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
   
   

@@ -26,7 +26,7 @@ export class ShoppingBagComponent implements OnInit {
       this.buyerSvc.bagIsEmpty = false
       for (let item of this.listOfItemsInBag) {
         for (let img of item) {
-          this.totalPrice += parseInt(img.price);
+          this.totalPrice += img.price;
         }
       }
     }
@@ -35,7 +35,8 @@ export class ShoppingBagComponent implements OnInit {
   minusTheItemToBagFn(item) {
     if (item.numOfItems > 1) {
       item.numOfItems -= 1;
-      console.log("item minus: ", item)
+     
+      
       this.totalPrice -= parseInt(item.price);
     
      
@@ -44,8 +45,8 @@ export class ShoppingBagComponent implements OnInit {
   }
   plusTheItemToBagFn(item) {
     item.numOfItems += 1;
-    console.log("item plus: ", item)
     this.totalPrice += parseInt(item.price);
+  
   }
    
   removeItemFromBag(index, item) {

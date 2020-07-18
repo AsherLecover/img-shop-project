@@ -59,9 +59,11 @@ export class PicMainSubListComponent implements OnInit {
     let id = this.buyingSvc.itemImgIdToBeDisplayInBag = img.imgId;
     let des = this.buyingSvc.itemImgDesToBeDisplayInBag = img.imgDes;
     let price = this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price;
+    let originalPrice = this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price;
     let url = this.buyingSvc.itemImgUrlToBeDisplayInBag = img.imgUrl;
     let numOfItems = this.buyingSvc.numOfItems;
-    this.buyingSvc.listOfItemToBeDisplay.push([{id: id,des: des,price: price, url: url, numOfItems: numOfItems}]);
+    this.buyingSvc.listOfItemToBeDisplay.push(
+      [{id: id,des: des,price: price, url: url, numOfItems: numOfItems, originalPrice: originalPrice}]);
  
     this.buyingSvc.itemAmount += 1;
   }

@@ -13,6 +13,7 @@ export class ShoppingBagComponent implements OnInit {
   likeBtn = false;
   totalPrice: number = 0;
   bagIsNotEmpty: boolean = false;
+  totalItemPrice: number
 
 
 
@@ -35,27 +36,25 @@ export class ShoppingBagComponent implements OnInit {
   minusTheItemToBagFn(item) {
     if (item.numOfItems > 1) {
       item.numOfItems -= 1;
-     
-      
-      this.totalPrice -= parseInt(item.price);
-    
-     
-      
+      item.price -= item.originalPrice      
+      this.totalPrice -= item.originalPrice;
     }
   }
+
   plusTheItemToBagFn(item) {
     item.numOfItems += 1;
-    this.totalPrice += parseInt(item.price);
+    item.price += item.originalPrice
+    this.totalPrice += item.originalPrice;
+
   
   }
    
   removeItemFromBag(index, item) {
-    console.log(item.price)
 
     this.buyerSvc.listOfItemToBeDisplay.splice(index, 1);
     this.buyerSvc.itemAmount -= 1;
     console.log("index", index)
-    this.totalPrice -= parseInt(item.price)
+    this.totalPrice -= item.price
 
   }
   likeStatus() {

@@ -41,6 +41,8 @@ export class ImageDetailsComponent implements OnInit {
   imgLongDes1: string;
   sub1: string;
   numOfItem1: number;
+  originalPrice1: number
+
 
   link: string 
   stst=`whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com`
@@ -84,7 +86,8 @@ export class ImageDetailsComponent implements OnInit {
           this.desToBeDisplay1 = img.imgDes;
           this.imgPrice1 = img.price;
           this.photographer1 = img.photographer;
-          this.imgLongDes1 = img.imgLongDes
+          this.imgLongDes1 = img.imgLongDes;
+          this.originalPrice1 = img.price
         }
       }
     }
@@ -113,9 +116,11 @@ export class ImageDetailsComponent implements OnInit {
     let url = this.imgUrlToBedisplay1
     let imgId = this.imgId
     let price =    this.imgPrice1
+    let originalPrice = this.originalPrice1;
+
     let numOfItems = this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag;
     let des = this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay;
-    this.buyingSvc.listOfItemToBeDisplay.push([{id: imgId,des: des,price: price, url: url, numOfItems: numOfItems}]);
+    this.buyingSvc.listOfItemToBeDisplay.push([{id: imgId,des: des,price: price, url: url, numOfItems: numOfItems,  originalPrice: originalPrice}]);
 
   }
 }

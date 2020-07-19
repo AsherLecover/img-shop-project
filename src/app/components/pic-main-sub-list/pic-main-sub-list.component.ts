@@ -41,7 +41,6 @@ export class PicMainSubListComponent implements OnInit {
 
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.imgIdListSubject = id;
-    console.log("iddddddddddd", id)
     this.imgSubDataSVC.imgSubIddddd = id;
   
     

@@ -4,7 +4,7 @@
   (חינם) כעת ולקבל הטבות שוות במיוחד</h3>
 
 
-<div style="background-color: rgb(244, 247, 241); display: flex;">
+<div style="background-color: #f2f2f2; display: flex;">
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 40%; margin: 24px;" dir="rtl" action="">
 
@@ -58,9 +58,6 @@
     <button  type="submit" [disabled]="!registerForm.valid"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
       color="primary">הרשמה</button>
 
-      <button (click)="onSubmit()" [disabled]="!registerForm.valid" style="background-color: red; width: 77%; height: 45px;" mat-raised-button
-      color="primary">2הרשמה</button>
-
   </form>
 
   <div class="wrapper">
@@ -70,11 +67,9 @@
     </div>
   </div>
 
-  <div dir="rtl" class="container">
+  <div style="background-color: #f2f2f2;" dir="rtl" class="container">
     <form action="/action_page.php">
       <div class="row">
-
-
         <div class="col">
           <a href="#" class="fb btn">
             <i class="fa fa-facebook fa-fw"></i>הרשמה מהירה עם פייסבוק
@@ -86,8 +81,6 @@
             <i class="fa fa-google fa-fw">
             </i>הרשמה מהירה עם גוגל
           </a>
-
-
         </div>
       </div>
 
@@ -96,7 +89,7 @@
 
 
 </div>
-<div style="text-align: center; margin: 0%; background-color: #f2f2f2">
+<div style="text-align: center; margin: 0%; background-color: #f2f2f2"> 
   <i>כבר רשום באתר? כנס בקלות </i><br>
   <button style="color: red; cursor: pointer;" (click)="openDialog()" mat-button mat-dialog-close> מכאן</button>
 </div>

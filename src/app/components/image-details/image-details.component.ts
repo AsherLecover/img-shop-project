@@ -48,7 +48,6 @@ export class ImageDetailsComponent implements OnInit {
   stst=`whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com`
   href = "http://localhost:4200/img-details/0/0"
   iframeSrc: SafeUrl;
-  google = "www.google.com"
 
   
   constructor(public svc: ImgSubListService,

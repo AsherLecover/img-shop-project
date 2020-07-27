@@ -39,6 +39,7 @@ import { HedderComponent } from './components/hedder/hedder.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
  
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.com
     FooterComponent,
     ImageDetailsComponent,
     ShoppingBagComponent,
+    PaymentFormComponent,
   ],
   imports: [
     AngularFirestoreModule,

@@ -10,6 +10,7 @@ import { AaaaComponent } from './components/aaaa/aaaa.component';
 import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main-sub-list.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path:'pic-main-list-subjects/:id',   component:PicMainSubListComponent},
   { path:'img-details/:subId/:id',   component:ImageDetailsComponent},
   { path:'shpping-cart',   component:ShoppingBagComponent},
+  { path:'app-payment-form',   component:PaymentFormComponent},
+
+  
 
 
   

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ImgSubListService } from '../../servises/img-sub-list.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatRadioChange } from "@angular/material/radio";
@@ -8,6 +8,9 @@ import { ImgDataService } from '../../servises/img-data.service';
 import { log } from 'util';
 import { ImgSubjectDataService } from '../../servises/img-subject-data.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
+
+
 
 
 @Component({
@@ -42,14 +45,16 @@ export class ImageDetailsComponent implements OnInit {
   sub1: string;
   numOfItem1: number;
   originalPrice1: number
-
-
   link: string 
   stst=`whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com`
   href = "http://localhost:4200/img-details/0/0"
   iframeSrc: SafeUrl;
+  flag = true
+  message: string = "המוצר התווסף לסל בהצלחה!"
+  fff = false
 
-  
+
+
   constructor(public svc: ImgSubListService,
      private route: ActivatedRoute, 
      public buyingSvc: BuyingProcessService,
@@ -57,9 +62,7 @@ export class ImageDetailsComponent implements OnInit {
      private imgSubDataSVC: ImgSubjectDataService,
      private router: Router,
      private sanitizer: DomSanitizer) {
-
       this.link = this.router.url
-      
       let url = `whatsapp://send?text= PicPicture רציתי לשתף אותך בתמונה יפה מהאתר http://localhost:4200/${this.link}`;
       this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
@@ -72,6 +75,9 @@ export class ImageDetailsComponent implements OnInit {
     this.imgId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log("this.imgId:: ", this.imgId)
     this.newList = this.dataSVC.imgDataList.imgListBySubjects;
+
+ 
+
 
 
 
@@ -95,6 +101,8 @@ export class ImageDetailsComponent implements OnInit {
 }
 
 
+
+
   onChange(radio: MatRadioChange) {
     if(radio.value == "canvas"){
       this.expOnRadio = "בד הקנבס העוטף את מסגרת התמונה צבוע בלבן";
@@ -116,10 +124,16 @@ export class ImageDetailsComponent implements OnInit {
     let imgId = this.imgId
     let price =    this.imgPrice1
     let originalPrice = this.originalPrice1;
-
+    
     let numOfItems = this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag;
     let des = this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay;
     this.buyingSvc.listOfItemToBeDisplay.push([{id: imgId,des: des,price: price, url: url, numOfItems: numOfItems,  originalPrice: originalPrice}]);
+    this.flag = false;
+    this.fff = true
 
+  }
+
+  onClose(){
+    this.fff = false
   }
 }

@@ -33,7 +33,6 @@ import { AngularFirestoreModule} from '@angular/fire/firestore'
 import { from } from 'rxjs';
 import { ClinetsService } from './servises/clinets.service';
 import { environment } from '../environments/environment.prod';
-import { AaaaComponent } from './components/aaaa/aaaa.component';
 import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main-sub-list.component';
 import { HedderComponent } from './components/hedder/hedder.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -51,7 +50,6 @@ import { PaymentFormComponent } from './components/payment-form/payment-form.com
     PicSubMainPageComponent,
     LogInComponent,
     SignUpComponent,
-    AaaaComponent,
     PicMainSubListComponent,
     HedderComponent,
     FooterComponent,

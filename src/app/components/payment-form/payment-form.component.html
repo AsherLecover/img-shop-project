@@ -1,19 +1,188 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<p>payment-form works!</p>
+<div style="direction: rtl; margin-left: 20%; margin-right: 20%">
+  <h1 class="title"> סל הקניות</h1>
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" >
+  <!----------------------------------------------------------------------------------------->
+  <h1>פרטי חיוב</h1>
 
-<form style="width: 30%">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <input id="firstName" formControlName="firstName" type="text" placeholder="firstName"
+         [ngClass]="{'has-error' :
+        paymentForm.get('firstName').errors &&
+        (paymentForm.get('firstName').dirty)}">
+    
+        <span *ngIf="paymentForm.get('firstName').errors &&
+        (paymentForm.get('firstName').dirty)">
+    
+          <p style="color: red;" *ngIf="paymentForm.get('firstName').errors.required">
+            זהו שדה חובה
+          </p>
+          <p style="color: red;" *ngIf="paymentForm.get('firstName').errors.minlength">
+            שם פרטי חייב להיות בעל 2 תווים   
+          </p>
+        </span>
+       
+    
+    <!---------------------------------------------------------------------------------------->
+    <input id="lastName" formControlName="lastName" type="text" placeholder="lastname"
+         [ngClass]="{'has-error' :
+        paymentForm.get('lastName').errors &&
+        (paymentForm.get('lastName').dirty)}">
+    
+        <span *ngIf="paymentForm.get('lastName').errors &&
+        (paymentForm.get('lastName').dirty)">
+    
+          <p style="color: red;" *ngIf="paymentForm.get('lastName').errors.required">
+            זהו שדה חובה
+          </p>
+          <p style="color: red;" *ngIf="paymentForm.get('lastName').errors.minlength">
+            שם משפחה חייב להיות בעל 2 תווים   
+          </p>
+        </span><br><br>
+      
+        
+
+       <!---------------------------------------------------------------------------------------->
+
+       <input id="companyName" formControlName="companyName" type="text" placeholder="companyName"
+       [ngClass]="{'has-error' :
+      paymentForm.get('companyName').errors &&
+      (paymentForm.get('companyName').dirty)}">
+  
+      <span *ngIf="paymentForm.get('companyName').errors &&
+      (paymentForm.get('companyName').dirty)">
+  
+        <p style="color: red;" *ngIf="paymentForm.get('Company Name').errors.minlength">
+          שם חברה חייב להיות בעל 2 תווים   
+        </p>
+      </span><br><br>
+     
+
+   <!---------------------------------------------------------------------------------------->
+
+   <input id="id" formControlName="id" type="text" placeholder="id"
+   [ngClass]="{'has-error' :
+  paymentForm.get('id').errors &&
+  (paymentForm.get('id').dirty)}">
+
+  <span *ngIf="paymentForm.get('id').errors &&
+  (paymentForm.get('id').dirty)">
+
+    <p style="color: red;" *ngIf="paymentForm.get('id').errors.required">
+      זהו שדה חובה
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('id').errors.minlength">
+      תעודת זהות חייבת להיות בעלת 9 ספרות       
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('id').errors.pattern">
+      תעודת זהות חייבת לכלול מספרים בלבד       
+    </p>
+  </span><br><br>
+ 
+
+   <!---------------------------------------------------------------------------------------->
+
+   <input id="addrassSt" formControlName="addrassSt" type="text" placeholder="st"
+   [ngClass]="{'has-error' :
+  paymentForm.get('addrassSt').errors &&
+  (paymentForm.get('addrassSt').dirty)}">
+
+  <span *ngIf="paymentForm.get('addrassSt').errors &&
+  (paymentForm.get('addrassSt').dirty)">
+
+    <p style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.required">
+      זהו שדה חובה
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.minlength">
+      שם רחוב חייב להיות בעל 2 תווים   
+    </p>
+  </span><br><br>
+  
+
+  <!---------------------------------------------------------------------------------------->
+
+   <input id="addrassCity" formControlName="addrassCity" type="text" placeholder="addrassCity"
+   [ngClass]="{'has-error' :
+  paymentForm.get('addrassCity').errors &&
+  (paymentForm.get('addrassCity').dirty)}">
+
+  <span *ngIf="paymentForm.get('addrassCity').errors &&
+  (paymentForm.get('addrassCity').dirty)">
+
+    <p style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.required">
+      זהו שדה חובה
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.minlength">
+      שם עיר חייב להיות בעל 2 תווים   
+    </p>
+  </span><br><br>
+
+
+   <!---------------------------------------------------------------------------------------->
+
+   <input id="postNum" formControlName="postNum" type="text" placeholder="postNum"
+   [ngClass]="{'has-error' :
+  paymentForm.get('postNum').errors &&
+  (paymentForm.get('postNum').dirty)}">
+
+  <span *ngIf="paymentForm.get('postNum').errors &&
+  (paymentForm.get('postNum').dirty)">
+
+    <p style="color: red;" *ngIf="paymentForm.get('postNum').errors.required">
+      זהו שדה חובה
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('postNum').errors.minlength">
+     מיקוד חייב להיות בעל 2 ספרות      
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('postNum').errors.pattern">
+       מיקוד חייבת לכלול מספרים בלבד       
+    </p>
+  </span><br><br>
+ 
+
+   <!---------------------------------------------------------------------------------------->
+
+   <input id="phone" formControlName="phone" type="text" placeholder="phone"
+   [ngClass]="{'has-error' :
+  paymentForm.get('phone').errors &&
+  (paymentForm.get('phone').dirty)}">
+
+  <span *ngIf="paymentForm.get('phone').errors &&
+  (paymentForm.get('phone').dirty)">
+
+    <p style="color: red;" *ngIf="paymentForm.get('phone').errors.required">
+      זהו שדה חובה
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('phone').errors.minlength">
+     מספר טלפון חייב להיות בעל 2 ספרות      
+    </p>
+    <p style="color: red;" *ngIf="paymentForm.get('phone').errors.pattern">
+       מספר טלפון חייבת לכלול מספרים בלבד       
+    </p>
+  </span><br><br>
+ 
+
+    <!---------------------------------------------------------------------------------------->
+
+    <input id="email" formControlName="email" type="text" placeholder="email"
+    [ngClass]="{'has-error' :
+   paymentForm.get('email').errors &&
+   (paymentForm.get('email').dirty)}">
+ 
+   <span *ngIf="paymentForm.get('email').errors &&
+   (paymentForm.get('email').dirty)">
+ 
+     <p style="color: red;" *ngIf="paymentForm.get('email').errors.required">
+       זהו שדה חובה
+     </p>
+     <p style="color: red;" *ngIf="paymentForm.get('email').errors.email">
+     כתובת מייל לא חוקית      
+     </p>
+   
+   </span>
+   <br><br> 
+   <button  type="submit" [disabled]="!paymentForm.valid">Sign in</button>
   </form>
+</div>
+
+

@@ -41,7 +41,7 @@
         <hr>
         <h3 style="color: #77a464;"> <strong> סח"ה:</strong> {{imgPrice1 | currency:'ILS'}}</h3>
         <span style="margin-left: 20%;">לא כולל משלוח</span>
-        <button (click)="addItemToBag()" style="color:  white; background-color: #232d54;;">הוספה לסל</button>
+        <button  class="closeBtnOrbuy"[disabled]="!flag" (click)="addItemToBag()">הוספה לסל</button>
         <br><br>
               </mat-radio-group>
               <div>
@@ -75,13 +75,27 @@
                     </a>
                 </div>
 
-                
+
 
                 <div style="margin: 5%;">
                     <a href="">
                         <i class="fa fa-pinterest-square" style="font-size:48px;color:#e60023"></i>
                     </a>  
                 </div>
+
+                <!-- //------------------------------------------------------------- -->
+                <div *ngIf="fff" class="backdrop" (click)="onClose()">
+
+                </div>
+                
+                <div *ngIf="fff" class="alert-box">
+                  <p>{{ message }}</p>
+                  <div class="alert-box-actions">
+                    <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
+                  </div>
+                </div>
+                <!-- //------------------------------------------------------------ -->
+
               
             </div>
               
@@ -98,4 +112,6 @@
         
     </div>
 </div>
+<!-- ------------------------------------------------------------- -->
+
 

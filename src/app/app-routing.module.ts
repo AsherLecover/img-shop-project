@@ -6,7 +6,6 @@ import { PicSubMainPageComponent } from './components/pic-sub-main-page/pic-sub-
 
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
-import { AaaaComponent } from './components/aaaa/aaaa.component';
 import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main-sub-list.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';

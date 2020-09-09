@@ -76,6 +76,8 @@
     text-align: right;
   }
   .closeBtnOrbuy{
+      width: 100px;
+      height: 30px;
     color: white;
      background-color: #232d54;
       cursor: pointer;

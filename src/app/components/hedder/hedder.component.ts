@@ -37,7 +37,6 @@ export class HedderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.currentUser = this.authSer.currentUser$;
-    console.log('heeder', this.sumOfItems)
 
   }
 

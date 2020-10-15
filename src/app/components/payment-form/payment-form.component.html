@@ -1,188 +1,124 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<div style="direction: rtl; margin-left: 20%; margin-right: 20%">
-  <h1 class="title"> סל הקניות</h1>
-<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" >
-  <!----------------------------------------------------------------------------------------->
-  <h1>פרטי חיוב</h1>
-
-
-    <input id="firstName" formControlName="firstName" type="text" placeholder="firstName"
-         [ngClass]="{'has-error' :
-        paymentForm.get('firstName').errors &&
-        (paymentForm.get('firstName').dirty)}">
-    
-        <span *ngIf="paymentForm.get('firstName').errors &&
-        (paymentForm.get('firstName').dirty)">
-    
-          <p style="color: red;" *ngIf="paymentForm.get('firstName').errors.required">
-            זהו שדה חובה
-          </p>
-          <p style="color: red;" *ngIf="paymentForm.get('firstName').errors.minlength">
-            שם פרטי חייב להיות בעל 2 תווים   
-          </p>
-        </span>
-       
-    
-    <!---------------------------------------------------------------------------------------->
-    <input id="lastName" formControlName="lastName" type="text" placeholder="lastname"
-         [ngClass]="{'has-error' :
-        paymentForm.get('lastName').errors &&
-        (paymentForm.get('lastName').dirty)}">
-    
-        <span *ngIf="paymentForm.get('lastName').errors &&
-        (paymentForm.get('lastName').dirty)">
-    
-          <p style="color: red;" *ngIf="paymentForm.get('lastName').errors.required">
-            זהו שדה חובה
-          </p>
-          <p style="color: red;" *ngIf="paymentForm.get('lastName').errors.minlength">
-            שם משפחה חייב להיות בעל 2 תווים   
-          </p>
-        </span><br><br>
+<div style="display: flex;">
+<div style="width: 65%; margin-left: 10%; margin-right: 10%;margin-top: 3%; margin-bottom: 3%; direction: rtl;">
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php">
       
+        <div class="row">
+          <div class="col-50">
+            <h3>פרטי חיוב</h3>
+            <label for="fname"><i class="fa fa-user"></i> שם מלא</label>
+            <input type="text" id="fname" name="firstname">
+            <label for="email"><i class="fa fa-envelope"></i> כתובת מייל</label>
+            <input type="text" id="email" name="email">
+            <label for="adr"><i class="fa fa-address-card-o"></i> כתובת</label>
+            <input type="text" id="adr" name="address" >
+            <label for="city"><i class="fa fa-institution"></i> עיר</label>
+            <input type="text" id="city" name="city">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">אזור</label>
+                <input type="text" id="state" name="מדינה">
+              </div>
+              <div class="col-50">
+                <label for="zip">מיקוד</label>
+                <input type="text" id="zip" name="מיקוד" >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            <h3>תשלום</h3>
+            <div class="icon-container">
         
+              <div class="credit-cards-container">
+                <div class="card-pic"><img class="card-icon" id="CardMastercard" alt="Mastercard" src="https://cashcow-cdn.azureedge.net/system/credit_cards/h50/mastercard.png"  
+                     style="display: inline-block; "></div>
 
-       <!---------------------------------------------------------------------------------------->
+                <div class="card-pic"><img class="card-icon" id="CardAmericanExpress" alt="American Express" src="https://cashcow-cdn.azureedge.net/system/credit_cards/h50/american.png"
+                    style="display: inline-block;"></div>
+                
+                <div class="card-pic"><img class="card-icon" id="CardVisa" alt="Visa" src="https://cashcow-cdn.azureedge.net/system/credit_cards/h50/visa.png"  
+                  style="display: inline-block;"></div>
+                
+                <div class="card-pic"><img class="card-icon" id="CarCardPcidPaypal" alt="PCI" src="https://cashcow-cdn.azureedge.net/system/credit_cards/h50/pci.png" 
+                    style="display: inline-block;"></div>
+                
+                <div class="card-pic"><img class="card-icon" id="CardSSl" alt="SSL secured" src="https://cashcow-cdn.azureedge.net/system/credit_cards/h50/ssl.png" 
+                 style="display: inline-block;"></div>
+                
+              </div>
+            </div>
+            <label for="cname">שם בעל הכרטיס</label>
+            <input type="text" id="cname" name="cardname" >
+            <label for="ccnum">מספר הכרטיס</label>
+            <input type="text" id="ccnum" name="cardnumber">
+            <label for="expmonth">תוקף כרטיס: חודש</label>
+            <input type="text" id="expmonth" name="expmonth" >
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">תוקף כרטיס: שנה</label>
+                <input type="text" id="expyear" name="expyear">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" >
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <label>
+          <input type="checkbox" name="sameadr"> אני מאשר את התקנון
+        </label>
+        <input type="submit" value="לתשלום מאובטח" class="btn">
+      </form>
+    </div>
+  </div>
 
-       <input id="companyName" formControlName="companyName" type="text" placeholder="companyName"
-       [ngClass]="{'has-error' :
-      paymentForm.get('companyName').errors &&
-      (paymentForm.get('companyName').dirty)}">
-  
-      <span *ngIf="paymentForm.get('companyName').errors &&
-      (paymentForm.get('companyName').dirty)">
-  
-        <p style="color: red;" *ngIf="paymentForm.get('Company Name').errors.minlength">
-          שם חברה חייב להיות בעל 2 תווים   
-        </p>
-      </span><br><br>
-     
-
-   <!---------------------------------------------------------------------------------------->
-
-   <input id="id" formControlName="id" type="text" placeholder="id"
-   [ngClass]="{'has-error' :
-  paymentForm.get('id').errors &&
-  (paymentForm.get('id').dirty)}">
-
-  <span *ngIf="paymentForm.get('id').errors &&
-  (paymentForm.get('id').dirty)">
-
-    <p style="color: red;" *ngIf="paymentForm.get('id').errors.required">
-      זהו שדה חובה
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('id').errors.minlength">
-      תעודת זהות חייבת להיות בעלת 9 ספרות       
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('id').errors.pattern">
-      תעודת זהות חייבת לכלול מספרים בלבד       
-    </p>
-  </span><br><br>
- 
-
-   <!---------------------------------------------------------------------------------------->
-
-   <input id="addrassSt" formControlName="addrassSt" type="text" placeholder="st"
-   [ngClass]="{'has-error' :
-  paymentForm.get('addrassSt').errors &&
-  (paymentForm.get('addrassSt').dirty)}">
-
-  <span *ngIf="paymentForm.get('addrassSt').errors &&
-  (paymentForm.get('addrassSt').dirty)">
-
-    <p style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.required">
-      זהו שדה חובה
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.minlength">
-      שם רחוב חייב להיות בעל 2 תווים   
-    </p>
-  </span><br><br>
-  
-
-  <!---------------------------------------------------------------------------------------->
-
-   <input id="addrassCity" formControlName="addrassCity" type="text" placeholder="addrassCity"
-   [ngClass]="{'has-error' :
-  paymentForm.get('addrassCity').errors &&
-  (paymentForm.get('addrassCity').dirty)}">
-
-  <span *ngIf="paymentForm.get('addrassCity').errors &&
-  (paymentForm.get('addrassCity').dirty)">
-
-    <p style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.required">
-      זהו שדה חובה
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.minlength">
-      שם עיר חייב להיות בעל 2 תווים   
-    </p>
-  </span><br><br>
-
-
-   <!---------------------------------------------------------------------------------------->
-
-   <input id="postNum" formControlName="postNum" type="text" placeholder="postNum"
-   [ngClass]="{'has-error' :
-  paymentForm.get('postNum').errors &&
-  (paymentForm.get('postNum').dirty)}">
-
-  <span *ngIf="paymentForm.get('postNum').errors &&
-  (paymentForm.get('postNum').dirty)">
-
-    <p style="color: red;" *ngIf="paymentForm.get('postNum').errors.required">
-      זהו שדה חובה
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('postNum').errors.minlength">
-     מיקוד חייב להיות בעל 2 ספרות      
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('postNum').errors.pattern">
-       מיקוד חייבת לכלול מספרים בלבד       
-    </p>
-  </span><br><br>
- 
-
-   <!---------------------------------------------------------------------------------------->
-
-   <input id="phone" formControlName="phone" type="text" placeholder="phone"
-   [ngClass]="{'has-error' :
-  paymentForm.get('phone').errors &&
-  (paymentForm.get('phone').dirty)}">
-
-  <span *ngIf="paymentForm.get('phone').errors &&
-  (paymentForm.get('phone').dirty)">
-
-    <p style="color: red;" *ngIf="paymentForm.get('phone').errors.required">
-      זהו שדה חובה
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('phone').errors.minlength">
-     מספר טלפון חייב להיות בעל 2 ספרות      
-    </p>
-    <p style="color: red;" *ngIf="paymentForm.get('phone').errors.pattern">
-       מספר טלפון חייבת לכלול מספרים בלבד       
-    </p>
-  </span><br><br>
- 
-
-    <!---------------------------------------------------------------------------------------->
-
-    <input id="email" formControlName="email" type="text" placeholder="email"
-    [ngClass]="{'has-error' :
-   paymentForm.get('email').errors &&
-   (paymentForm.get('email').dirty)}">
- 
-   <span *ngIf="paymentForm.get('email').errors &&
-   (paymentForm.get('email').dirty)">
- 
-     <p style="color: red;" *ngIf="paymentForm.get('email').errors.required">
-       זהו שדה חובה
-     </p>
-     <p style="color: red;" *ngIf="paymentForm.get('email').errors.email">
-     כתובת מייל לא חוקית      
-     </p>
-   
-   </span>
-   <br><br> 
-   <button  type="submit" [disabled]="!paymentForm.valid">Sign in</button>
-  </form>
+</div>
 </div>
 
 
+<!-- ------------------------------------------------------------------------------------------------------ -->
+
+<div style="width: 35%; margin-left: 10%; margin-right: 10%;margin-top: 3%; margin-bottom: 3%; direction: rtl;">
+  <div class="row">
+    <div class="col-75">
+      <div class="container">
+
+        <h2 > פרטי ההזמנה  </h2>
+        <table>
+          <tr>
+            <th>מוצר</th>
+            <th>סכום ביניים</th>
+          </tr>
+          
+          <tr *ngFor="let item of listOfItemsInBag; let j = index" >
+            <td 
+              *ngFor="let i of item" >
+              <p>{{i.des }}</p>
+              <p>{{i.printType }}</p>
+              <p>{{i.printSize }}</p>
+              <img style="width: 60px; height: 40px;" src={{i.url}} alt="" />
+
+              
+             </td>
+            <td *ngFor="let i of item">{{i.price | currency:'ILS'}}</td>
+          </tr>
+        
+          <td>סח"ה</td>
+        
+
+            <td  *ngFor="let item of listOfItemsInBag;">{{item.totalPrice  | currency:'ILS'}}</td>
+         
+        </table>
+
+
+
+    </div>
+  </div>
+ </div>
+</div>

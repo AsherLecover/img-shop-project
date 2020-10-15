@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
+import { BuyingProcessService } from 'src/app/servises/buying-process.service';
 
 @Component({
   selector: 'app-payment-form',
@@ -11,10 +12,15 @@ export class PaymentFormComponent implements OnInit {
   paymentForm: FormGroup;
   submited = false;
   ctrl: FormControl;
+  listOfItemsInBag = [];
 
-  constructor(private fb: FormBuilder) { }
+
+  constructor(private fb: FormBuilder, public buyerSVC: BuyingProcessService) { }
 
   ngOnInit(): void {
+    
+    this.listOfItemsInBag = this.buyerSVC.listOfItemToBeDisplay;
+    console.log('listOfItemsInBag::::', this.listOfItemsInBag);
 
     this.paymentForm = this.fb.group({
       firstName: ['',[Validators.required, Validators.minLength(2)]],

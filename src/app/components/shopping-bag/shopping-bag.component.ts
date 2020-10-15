@@ -9,17 +9,22 @@ import { BuyingProcessService } from '../../servises/buying-process.service';
 export class ShoppingBagComponent implements OnInit {
   bagIsEmpty: boolean = true;
   plusOrMinusTheItemToBag: number = 1;
-  listOfItemsInBag = [];
+  listOfItemsInBag 
   likeBtn = false;
   totalPrice: number = 0;
   bagIsNotEmpty: boolean = false;
   totalItemPrice: number
+
+  printType: string; 
+  printSize: string;
 
 
 
   constructor(public buyerSvc: BuyingProcessService) {}
 
   ngOnInit(): void {
+  
+    
     this.bagIsEmpty = this.buyerSvc.bagIsEmpty;
     this.listOfItemsInBag = this.buyerSvc.listOfItemToBeDisplay;
     if (this.listOfItemsInBag.length > 0) {
@@ -28,6 +33,7 @@ export class ShoppingBagComponent implements OnInit {
       for (let item of this.listOfItemsInBag) {
         for (let img of item) {
           this.totalPrice += img.price;
+          this.buyerSvc.listOfItemToBeDisplay[0].totalPrice = this.totalPrice
         }
       }
     }
@@ -38,6 +44,8 @@ export class ShoppingBagComponent implements OnInit {
       item.numOfItems -= 1;
       item.price -= item.originalPrice      
       this.totalPrice -= item.originalPrice;
+      this.buyerSvc.listOfItemToBeDisplay[0].totalPrice = this.totalPrice
+
     }
   }
 
@@ -45,6 +53,8 @@ export class ShoppingBagComponent implements OnInit {
     item.numOfItems += 1;
     item.price += item.originalPrice
     this.totalPrice += item.originalPrice;
+    this.buyerSvc.listOfItemToBeDisplay[0].totalPrice = this.totalPrice
+
 
   
   }
@@ -55,6 +65,8 @@ export class ShoppingBagComponent implements OnInit {
     this.buyerSvc.itemAmount -= 1;
     console.log("index", index)
     this.totalPrice -= item.price
+    this.buyerSvc.listOfItemToBeDisplay[0].totalPrice = this.totalPrice
+
 
   }
   likeStatus() {

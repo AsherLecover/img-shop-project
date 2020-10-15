@@ -30,6 +30,16 @@
                     <mat-radio-button (change)="onChange($event)" class="example-margin" value="self">{{s}} עצמית </mat-radio-button><br><br>
                     <span mat-raised-button  matTooltipPosition="left" matTooltipHideDelay="5000" matTooltip="הוסף לסל"  class="material-icons"> help</span>
             </div>
+            <label class="tc-cell tm-epo-element-label tcwidth-100">גודל הדפסה בס"מ</label><br>
+            
+            <select [(ngModel)]="printSize">
+                <option *ngFor="let o of options">
+                   {{o.name}}
+                </option>
+             </select>
+           
+      
+
         <p>{{expOnRadio}}</p>
         <div *ngIf="self == true"> 
             <b>חשוב!</b>
@@ -50,23 +60,13 @@
         
             <div style="margin: 5%; display: flex;"> 
 
-                <!-- <div style="margin: 5%;">
-                    <a href="whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com" data-action="share/whatsapp/share">
-                        <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675;'></i>
-                    </a>
-                </div> -->
-
+        
                 <div style="margin: 5%;">
                         <a [href]="iframeSrc" data-action="share/whatsapp/share">
                             <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675'></i>
                         </a>
                         
                     </div>
-
-                  
-
-                  
-
 
 
                 <div style="margin: 5%;">

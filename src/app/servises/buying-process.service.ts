@@ -16,6 +16,9 @@ export class BuyingProcessService {
   numOfItems: number = 1;
   listOfItemToBeDisplay:any[] = [];
   bagIsEmpty: boolean;
+
+  printType: string = ''
+  printSize: string = ''
   
 
   constructor() { }

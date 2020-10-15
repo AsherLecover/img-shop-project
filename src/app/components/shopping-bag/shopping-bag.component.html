@@ -8,7 +8,6 @@
         <div class="buttons">
             <span (click)="removeItemFromBag(j, i)" class="material-icons delete-btn"> clear </span>
             <span (click)="likeStatus()"class="material-icons like-btn ">favorite</span>
-            <!-- [ngClass]="{'like-status':  likeBtn, 'like-btn': !likeBtn}" -->
             
         </div>
 
@@ -18,8 +17,8 @@
 
     <div class="description">
       <span>{{i.des}}</span>
-      <span>{{i.id}}</span>
-      <span>White</span>
+      <span>{{i.printType}}</span>
+      <span>{{i.printSize}}</span>
     </div>
 
     <div class="quantity">

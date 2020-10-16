@@ -106,10 +106,10 @@
 
               
              </td>
-            <td *ngFor="let i of item">{{i.price | currency:'ILS'}}</td>
+            <td *ngFor="let i of item">{{ i.price | currency:'ILS'}}</td>
           </tr>
         
-          <td>סח"ה</td>
+          <td>סח"ה</td> 
         
 
             <td  *ngFor="let item of listOfItemsInBag;">{{item.totalPrice  | currency:'ILS'}}</td>

@@ -154,7 +154,7 @@ export class ImageDetailsComponent implements OnInit {
         originalPrice: originalPrice,
         printType: this.printType,
         printSize: this.printSize,
-        totalPrice: 7
+        totalPrice: 0
       },
     ]);
     console.log('bugArr:', this.buyingSvc.listOfItemToBeDisplay);

@@ -68,12 +68,28 @@ body {
     border-radius: 3px;
   }
   
-  input[type=text] {
+  input {
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 3px;
+  }
+
+  select{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  .has-error{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 2px solid red;
+    border-radius: 3px;
+  
   }
   
   label {

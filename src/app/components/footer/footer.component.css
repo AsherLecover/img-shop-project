@@ -8,3 +8,16 @@
     background-color: #232d54;
     direction: rtl;
 }
+
+.firstLineFotter{
+    width: 80%;
+    margin-right: 15%;
+    display: flex;  
+}
+
+.firstElementInFirstLineFooter{
+    margin: 30px;  
+}
+.scondeElementInFirstLineFooter{
+    display: flex;
+}

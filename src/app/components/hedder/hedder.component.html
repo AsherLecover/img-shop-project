@@ -4,9 +4,9 @@
             <div style=" width: 3%;">
                 <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
                 <mat-menu  #menu="matMenu">
-                  <button routerLink="/card" mat-menu-item>Card Component</button>
-                  <button routerLink="/autocomplete" mat-menu-item>Autocomplete Component</button>
-                  <button routerLink="/buttons" mat-menu-item>buttons Component</button> 
+                  <button routerLink="/option_a" mat-menu-item>Option A</button>
+                  <button routerLink="/option_b" mat-menu-item>Option B</button>
+                  <button routerLink="/option_c" mat-menu-item>Option C</button> 
                 </mat-menu>
               </mat-icon>
           </div>
@@ -58,7 +58,7 @@
       <div class="secondeLineHedder" style="  display: flex;">
 
           <div class="seconeLineMenu" style=" width: 17%;">
-              <span style="font-size: 150%; padding: 10%;">תמונות לבית ולסלון</span>
+              <span  routerLink="/pic-sub-main-page" style="font-size: 150%; padding: 10%;">תמונות לבית ולסלון</span>
           </div>
            <div class="seconeLineMenu" style="width: 15%" >
               <span routerLink="/pic-sub-main-page" style="font-size: 150%;">לפי נושאים</span>

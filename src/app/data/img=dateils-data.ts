@@ -138,7 +138,7 @@ export class ImgData {
     },
 
     {
-      imagesSubject: "  זריחות ושקיעות",
+      imagesSubject: "  זריחות ושקיעות", 
       subId: 7,
       listOfImgUrlBysub:
         [

@@ -13,7 +13,7 @@
 
             <span *ngIf="paymentForm.get('fullName').errors &&
                (paymentForm.get('fullName').dirty)">
-                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.required">
+                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.required  || !flag">
                   זהו שדה חובה
                 </span>
                  <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.minlength">
@@ -23,7 +23,8 @@
 
             <input type="text" id="fname" name="fullName" formControlName="fullName" [ngClass]="{'has-error':
             paymentForm.get('fullName').errors &&
-            (paymentForm.get('fullName').dirty)}">
+            (paymentForm.get('fullName').dirty)
+          }">
 
   <!-- ------------------------------------------------------------------------------------------------------------- -->
 
@@ -177,30 +178,32 @@
 
             <label for="ccnum">מספר הכרטיס</label>
 
-            <span *ngIf="paymentForm.get('cardNum').errors &&
-            (paymentForm.get('cardNum').dirty)">
-              <span style="color: red;" *ngIf="paymentForm.get('cardNum').errors.required">
+            <span *ngIf="paymentForm.get('cardNumber').errors &&
+            (paymentForm.get('cardNumber').dirty)">
+              <span style="color: red;" *ngIf="paymentForm.get('cardNumber').errors.required">
                זהו שדה חובה
              </span>
-              <span style="color: red;" *ngIf="paymentForm.get('cardNum').errors.minlength">
-                 מספר טלפון חייב להיות  בעל 16 תווים
-              </span>
-              <span style="color: red;" *ngIf="paymentForm.get('cardNum').errors.pattern">
-                מספר טלפון חייב להחיל מספרים בלבד
+           
+              <span style="color: red;" *ngIf="paymentForm.get('cardNumber').errors.pattern">
+                מספר הכרטיס חייב להחיל מספרים בלבד
              </span>  
             </span>
 
-            <input type="text" id="ccnum" name="cardnumber"formControlName="cardNum" name="cardNum"[ngClass]="{'has-error':
-            paymentForm.get('cardNum').errors &&
-            (paymentForm.get('cardNum').dirty)}">
+            <input maxlength="20" placeholder="xxxx xxxx xxxx xxxx" formControlName="cardNumber" type="tel" #ccNumber (keyup)="cardNumberSpacing()" 
+            [ngClass]="{'has-error':
+            paymentForm.get('cardNumber').errors &&
+            (paymentForm.get('cardNumber').dirty)}">
+
+            
 
  <!----------------------------------------------------------------------------------------------------------------->
 
             <h4 for="expmonth">תוקף כרטיס </h4>
             <span>חודש</span><br>
-            <select  formControlName="cardValidityMonth" name="id"[ngClass]="{'has-error':
-            paymentForm.get('id').errors &&
-            (paymentForm.get('id').dirty)}" >
+            <select  formControlName="cardValidityMonth" name="cardValidityMonth"[ngClass]="{'has-error':
+            paymentForm.get('cardValidityMonth').errors &&
+            (paymentForm.get('cardValidityMonth').dirty)}" >
+               <option  value=""disabled >  בחר חודש  </option>
               <option  *ngFor="let month of monthList">{{month}}</option>
           </select>
 
@@ -218,10 +221,11 @@
       <div class="row">
         <div class="col-50">
         <label for="expyear"> שנה</label>
-        <select class=""  formControlName="cardValidityYear" name="id"[ngClass]="{'has-error':
-        paymentForm.get('id').errors &&
-        (paymentForm.get('id').dirty)}" >
-          <option *ngFor="let year of yearList" > {{year}}</option>
+        <select class=""  formControlName="cardValidityYear" name="cardValidityYear"[ngClass]="{'has-error':
+        paymentForm.get('cardValidityYear').errors &&
+        (paymentForm.get('cardValidityYear').dirty)}" >
+        <option value="" disabled >  בחר שנה  </option>
+        <option [ngValue]="year" *ngFor="let year of yearList" > {{year}}</option>
 
         </select>
 
@@ -234,7 +238,9 @@
                 <label for="cvv">CVV</label>
                 <input type="text" id="cvv" name="cvv" formControlName="cvv" name="cvv"[ngClass]="{'has-error':
                 paymentForm.get('cvv').errors &&
-                (paymentForm.get('cvv').dirty)}">
+                (paymentForm.get('cvv').dirty)
+              && !paymentForm.valid
+              }">
 
                 <span *ngIf="paymentForm.get('cvv').errors &&
                 (paymentForm.get('cvv').dirty)">
@@ -266,7 +272,7 @@
 
               <span *ngIf="paymentForm.get('id').errors &&
               (paymentForm.get('id').dirty)">
-                <span style="color: red;" *ngIf="paymentForm.get('id').errors.required">
+                <span style="color: red;" *ngIf="paymentForm.get('id').errors.required ">
                  זהו שדה חובה
                </span>
                 <span style="color: red;" *ngIf="paymentForm.get('id').errors.minlength">
@@ -284,7 +290,8 @@
           </div>
         </div>
        
-        <input  (click)="onSubmit()" type="submit" value="לתשלום מאובטח"  [disabled]="!paymentForm.valid"  class="btn">
+        <input (click)="onSubmit()" type="submit" value="לתשלום מאובטח"  [disabled]="!paymentForm.valid"  class="btn">
+
         
       </form>
     </div>

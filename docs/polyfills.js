@@ -3033,7 +3033,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Asher\Desktop\img-shop-project\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! C:\Users\stu\Desktop\img-shop-pro\img-shop-project\src\polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

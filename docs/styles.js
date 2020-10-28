@@ -486,8 +486,8 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Asher\Desktop\img-shop-project\node_modules\@angular\material\prebuilt-themes\purple-green.css */"./node_modules/@angular/material/prebuilt-themes/purple-green.css");
-module.exports = __webpack_require__(/*! C:\Users\Asher\Desktop\img-shop-project\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! C:\Users\stu\Desktop\img-shop-pro\img-shop-project\node_modules\@angular\material\prebuilt-themes\purple-green.css */"./node_modules/@angular/material/prebuilt-themes/purple-green.css");
+module.exports = __webpack_require__(/*! C:\Users\stu\Desktop\img-shop-pro\img-shop-project\src\styles.css */"./src/styles.css");
 
 
 /***/ })

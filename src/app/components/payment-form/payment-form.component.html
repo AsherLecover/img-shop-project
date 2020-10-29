@@ -9,11 +9,13 @@
           <div class="col-50">
             <h3>פרטי חיוב</h3>
             
-            <label for="fname"><i class="fa fa-user"></i> שם מלא \ שם חברה</label> 
+            <label for="fname"><i class="fa fa-user"></i> שם מלא \ שם חברה  <span style="color: red;"> * </span></label> 
 
-            <span *ngIf="paymentForm.get('fullName').errors &&
-               (paymentForm.get('fullName').dirty)">
-                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.required  || !flag">
+            <span *ngIf="( paymentForm.get('fullName').errors &&
+               (paymentForm.get('fullName').dirty) )
+                || (!formIsInValid &&  paymentForm.get('fullName').errors )">
+
+                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.required ">
                   זהו שדה חובה
                 </span>
                  <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.minlength">
@@ -22,16 +24,18 @@
            </span>
 
             <input type="text" id="fname" name="fullName" formControlName="fullName" [ngClass]="{'has-error':
-            paymentForm.get('fullName').errors &&
-            (paymentForm.get('fullName').dirty)
-          }">
+              (paymentForm.get('fullName').errors &&
+            (paymentForm.get('fullName').dirty) )
+          || ( !formIsInValid  &&  paymentForm.get('fullName').errors )
+          } ">
 
   <!-- ------------------------------------------------------------------------------------------------------------- -->
 
-            <label for="email"><i class="fa fa-envelope"></i> כתובת מייל</label> 
+            <label for="email"><i class="fa fa-envelope"></i> כתובת מייל <span style="color: red;"> * </span></label> 
 
-            <span *ngIf="paymentForm.get('email').errors &&
-            (paymentForm.get('email').dirty)">
+            <span  *ngIf="( paymentForm.get('email').errors &&
+            (paymentForm.get('email').dirty) )
+             || (!formIsInValid &&  paymentForm.get('email').errors )">
               <span style="color: red;" *ngIf="paymentForm.get('email').errors.required">
                זהו שדה חובה
              </span>
@@ -41,15 +45,18 @@
         </span>
 
             <input type="text" id="email" name="email"  formControlName="email" [ngClass]="{'has-error':
-            paymentForm.get('email').errors &&
-            (paymentForm.get('email').dirty)}">
+            (paymentForm.get('email').errors &&
+          (paymentForm.get('email').dirty) )
+        || ( !formIsInValid  &&  paymentForm.get('email').errors )
+        }">
 
   <!-- ------------------------------------------------------------------------------------------------------------- -->
 
-            <label for="adr"><i class="fa fa-address-card-o"></i>  כתובת</label>
+            <label for="adr"><i class="fa fa-address-card-o"></i>  כתובת <span style="color: red;"> * </span></label>
 
-        <span *ngIf="paymentForm.get('addrassSt').errors &&
-            (paymentForm.get('addrassSt').dirty)">
+        <span  *ngIf="( paymentForm.get('addrassSt').errors &&
+        (paymentForm.get('addrassSt').dirty) )
+         || (!formIsInValid &&  paymentForm.get('addrassSt').errors )">
               <span style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.required">
                זהו שדה חובה
              </span>
@@ -59,15 +66,17 @@
         </span>
 
             <input type="text" id="adr"name="addrassSt" formControlName="addrassSt" [ngClass]="{'has-error':
-            paymentForm.get('addrassSt').errors &&
-            (paymentForm.get('addrassSt').dirty)}">
+            (paymentForm.get('addrassSt').errors &&
+          (paymentForm.get('addrassSt').dirty) )
+        || ( !formIsInValid  &&  paymentForm.get('addrassSt').errors)}">
 
   <!---------------------------------------------------------------------------------------------------------------->
 
-            <label for="city"><i class="fa fa-institution"></i> עיר</label>
+            <label for="city"><i class="fa fa-institution"></i> עיר <span style="color: red;"> * </span></label>
 
-            <span *ngIf="paymentForm.get('addrassCity').errors &&
-               (paymentForm.get('addrassCity').dirty)">
+            <span  *ngIf="( paymentForm.get('addrassCity').errors &&
+            (paymentForm.get('addrassCity').dirty) )
+             || (!formIsInValid &&  paymentForm.get('addrassCity').errors )">
                  <span style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.required">
                   זהו שדה חובה
                 </span>
@@ -77,23 +86,21 @@
            </span>
 
 
-            <input type="text" id="city" formControlName="addrassCity" name="addrassCity"[ngClass]="{'has-error':
-            paymentForm.get('addrassCity').errors &&
-            (paymentForm.get('addrassCity').dirty)}">
+            <input type="text" id="city" formControlName="addrassCity" name="addrassCity" [ngClass]="{'has-error':
+            (paymentForm.get('addrassCity').errors &&
+          (paymentForm.get('addrassCity').dirty) )
+        || ( !formIsInValid  &&  paymentForm.get('addrassCity').errors)}">
 
   <!----------------------------------------------------------------------------------------------------------------->
 
 
             <div class="row">
               <div class="col-50">
-                <label for="zip">מיקוד</label>
-  
-                <input type="text" id="zip" name="מיקוד" formControlName="postNum" name="postNum"[ngClass]="{'has-error':
-                paymentForm.get('postNum').errors &&
-                (paymentForm.get('postNum').dirty)}">
+                <label for="zip">מיקוד <span style="color: red;"> * </span></label>
 
-                <span *ngIf="paymentForm.get('postNum').errors &&
-                (paymentForm.get('postNum').dirty)">
+                <span *ngIf="( paymentForm.get('postNum').errors &&
+                (paymentForm.get('postNum').dirty) )
+                 || (!formIsInValid &&  paymentForm.get('postNum').errors )">
                   <span style="color: red;" *ngIf="paymentForm.get('postNum').errors.required">
                    זהו שדה חובה
                  </span>
@@ -104,17 +111,22 @@
                     מיקוד חייב להחיל מספרים בלבד
                  </span>  
             </span>
+  
+                <input type="text" id="zip" name="מיקוד" formControlName="postNum" name="postNum" [ngClass]="{'has-error':
+                (paymentForm.get('postNum').errors &&
+              (paymentForm.get('postNum').dirty) )
+            || ( !formIsInValid  &&  paymentForm.get('postNum').errors)}">
+    
+          
+
               </div>
  <!----------------------------------------------------------------------------------------------------------------->
 
               <div class="col-50">
-                <label for="phone"> <i class="fas fa-phone"></i> טלפון</label>
-                <input type="text" id="phone" name="phone" formControlName="phone" name="phone"[ngClass]="{'has-error':
-                paymentForm.get('phone').errors &&
-                (paymentForm.get('phone').dirty)}">
-
-                <span *ngIf="paymentForm.get('phone').errors &&
-                (paymentForm.get('phone').dirty)">
+                <label for="phone">  <i class="fas fa-phone"></i> טלפון <span style="color: red;"> * </span> </label>
+                <span *ngIf="( paymentForm.get('phone').errors &&
+                (paymentForm.get('phone').dirty) )
+                 || (!formIsInValid &&  paymentForm.get('phone').errors )">
                   <span style="color: red;" *ngIf="paymentForm.get('phone').errors.required">
                    זהו שדה חובה
                  </span>
@@ -126,6 +138,13 @@
                  </span>  
                 </span>
 
+                <input type="text" id="phone" name="phone" formControlName="phone" name="phone" [ngClass]="{'has-error':
+                (paymentForm.get('phone').errors &&
+              (paymentForm.get('phone').dirty) )
+            || ( !formIsInValid  &&  paymentForm.get('phone').errors)}">
+    
+
+               
  <!----------------------------------------------------------------------------------------------------------------->
             </div>
             
@@ -158,10 +177,11 @@
 
  <!----------------------------------------------------------------------------------------------------------------->
 
-            <label for="cname">שם בעל הכרטיס</label>
+            <label for="cname">שם בעל הכרטיס <span style="color: red;"> * </span></label>
 
-            <span *ngIf="paymentForm.get('cardOwnerName').errors &&
-            (paymentForm.get('cardOwnerName').dirty)">
+            <span  *ngIf="( paymentForm.get('cardOwnerName').errors &&
+            (paymentForm.get('cardOwnerName').dirty) )
+             || (!formIsInValid &&  paymentForm.get('cardOwnerName').errors )">
               <span style="color: red;" *ngIf="paymentForm.get('cardOwnerName').errors.required">
                זהו שדה חובה
              </span>
@@ -171,15 +191,17 @@
         </span>
 
             <input type="text" id="cname" name="cardname" formControlName="cardOwnerName" [ngClass]="{'has-error':
-            paymentForm.get('cardOwnerName').errors &&
-            (paymentForm.get('cardOwnerName').dirty)}">
+            (paymentForm.get('cardOwnerName').errors &&
+          (paymentForm.get('cardOwnerName').dirty) )
+        || ( !formIsInValid  &&  paymentForm.get('cardOwnerName').errors)}">
 
  <!----------------------------------------------------------------------------------------------------------------->
 
-            <label for="ccnum">מספר הכרטיס</label>
+            <label for="ccnum">מספר הכרטיס <span style="color: red;"> * </span></label>
 
-            <span *ngIf="paymentForm.get('cardNumber').errors &&
-            (paymentForm.get('cardNumber').dirty)">
+            <span  *ngIf="( paymentForm.get('cardNumber').errors &&
+            (paymentForm.get('cardNumber').dirty) )
+             || (!formIsInValid &&  paymentForm.get('cardNumber').errors )">
               <span style="color: red;" *ngIf="paymentForm.get('cardNumber').errors.required">
                זהו שדה חובה
              </span>
@@ -189,45 +211,62 @@
              </span>  
             </span>
 
-            <input maxlength="20" placeholder="xxxx xxxx xxxx xxxx" formControlName="cardNumber" type="tel" #ccNumber (keyup)="cardNumberSpacing()" 
+            <input style="direction: ltr;" maxlength="20"  formControlName="cardNumber" type="tel" #ccNumber (keyup)="cardNumberSpacing()" 
             [ngClass]="{'has-error':
-            paymentForm.get('cardNumber').errors &&
-            (paymentForm.get('cardNumber').dirty)}">
-
+            (paymentForm.get('cardNumber').errors &&
+          (paymentForm.get('cardNumber').dirty) )
+        || ( !formIsInValid  &&  paymentForm.get('cardNumber').errors)}">
             
 
  <!----------------------------------------------------------------------------------------------------------------->
 
             <h4 for="expmonth">תוקף כרטיס </h4>
-            <span>חודש</span><br>
-            <select  formControlName="cardValidityMonth" name="cardValidityMonth"[ngClass]="{'has-error':
-            paymentForm.get('cardValidityMonth').errors &&
-            (paymentForm.get('cardValidityMonth').dirty)}" >
+            <span>חודש</span><span style="color: red;"> * </span><br>
+
+            <span   *ngIf="( paymentForm.get('cardValidityMonth').errors &&
+            (paymentForm.get('cardValidityMonth').dirty) )
+             || (!formIsInValid &&  paymentForm.get('cardValidityMonth').errors )">
+              <span style="color: red;" *ngIf="paymentForm.get('cardValidityMonth').errors.required">
+               זהו שדה חובה
+             </span>
+            </span>
+
+            <select  formControlName="cardValidityMonth" name="cardValidityMonth"  [ngClass]="{'has-error':
+            (paymentForm.get('cardValidityMonth').errors &&
+          (paymentForm.get('cardValidityMonth').dirty) )
+        || ( !formIsInValid  &&  paymentForm.get('cardValidityMonth').errors)}">
+            
+
                <option  value=""disabled >  בחר חודש  </option>
               <option  *ngFor="let month of monthList">{{month}}</option>
           </select>
 
-          <span *ngIf="paymentForm.get('cardValidityMonth').errors &&
-          (paymentForm.get('cardValidityMonth').dirty)">
-            <span style="color: red;" *ngIf="paymentForm.get('cardValidityMonth').errors.required">
-             זהו שדה חובה
-           </span>
-        
-         
-          </span>
+    
 
   
  <!----------------------------------------------------------------------------------------------------------------->
       <div class="row">
         <div class="col-50">
-        <label for="expyear"> שנה</label>
-        <select class=""  formControlName="cardValidityYear" name="cardValidityYear"[ngClass]="{'has-error':
-        paymentForm.get('cardValidityYear').errors &&
-        (paymentForm.get('cardValidityYear').dirty)}" >
+        <span for="expyear"> שנה</span><span style="color: red;"> * </span>
+
+        <span   *ngIf="( paymentForm.get('cardValidityYear').errors &&
+        (paymentForm.get('cardValidityYear').dirty) )
+         || (!formIsInValid &&  paymentForm.get('cardValidityYear').errors )">
+          <span style="color: red;" *ngIf="paymentForm.get('cardValidityYear').errors.required">
+           זהו שדה חובה
+         </span>
+        </span>
+
+        <select  class=""  formControlName="cardValidityYear" name="cardValidityYear" [ngClass]="{'has-error':
+        (paymentForm.get('cardValidityYear').errors &&
+      (paymentForm.get('cardValidityYear').dirty) )
+    || ( !formIsInValid  &&  paymentForm.get('cardValidityYear').errors)}">
+
         <option value="" disabled >  בחר שנה  </option>
         <option [ngValue]="year" *ngFor="let year of yearList" > {{year}}</option>
-
         </select>
+
+      
 
  <!----------------------------------------------------------------------------------------------------------------->
 
@@ -235,15 +274,11 @@
               <div class="col-50">
 
 
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" formControlName="cvv" name="cvv"[ngClass]="{'has-error':
-                paymentForm.get('cvv').errors &&
-                (paymentForm.get('cvv').dirty)
-              && !paymentForm.valid
-              }">
+                <label for="cvv">CVV <span style="color: red;"> * </span></label>
 
-                <span *ngIf="paymentForm.get('cvv').errors &&
-                (paymentForm.get('cvv').dirty)">
+                <span *ngIf="( paymentForm.get('cvv').errors &&
+                (paymentForm.get('cvv').dirty) )
+                 || (!formIsInValid &&  paymentForm.get('cvv').errors )">
                   <span style="color: red;" *ngIf="paymentForm.get('cvv').errors.required">
                    זהו שדה חובה
                  </span>
@@ -254,6 +289,13 @@
                     קוד CVV חייב להחיל מספרים בלבד
                  </span>  
                 </span>
+                
+                <input type="text" id="cvv" name="cvv" formControlName="cvv" name="cvv" [ngClass]="{'has-error':
+                (paymentForm.get('cvv').errors &&
+              (paymentForm.get('cvv').dirty) )
+            || ( !formIsInValid  &&  paymentForm.get('cvv').errors)}">
+
+            
 
 
  <!----------------------------------------------------------------------------------------------------------------->
@@ -265,13 +307,11 @@
 
  <!----------------------------------------------------------------------------------------------------------------->
 
-              <label for="expyear">ת.ז בעל הכרטיס</label>
-              <input type="text" id="expyear" name="expyear" formControlName="id" name="id"[ngClass]="{'has-error':
-              paymentForm.get('id').errors &&
-              (paymentForm.get('id').dirty)}">
+              <label for="expyear">ת.ז בעל הכרטיס <span style="color: red;"> * </span></label>
 
-              <span *ngIf="paymentForm.get('id').errors &&
-              (paymentForm.get('id').dirty)">
+              <span *ngIf="( paymentForm.get('id').errors &&
+              (paymentForm.get('id').dirty) )
+               || (!formIsInValid &&  paymentForm.get('id').errors )">
                 <span style="color: red;" *ngIf="paymentForm.get('id').errors.required ">
                  זהו שדה חובה
                </span>
@@ -283,6 +323,13 @@
                </span>  
               </span>
 
+              <input type="text" id="expyear" name="expyear" formControlName="id" name="id"[ngClass]="{'has-error':
+              (paymentForm.get('id').errors &&
+            (paymentForm.get('id').dirty) )
+          || ( !formIsInValid  &&  paymentForm.get('id').errors)}">
+
+           
+
 
  <!----------------------------------------------------------------------------------------------------------------->
 
@@ -290,7 +337,7 @@
           </div>
         </div>
        
-        <input (click)="onSubmit()" type="submit" value="לתשלום מאובטח"  [disabled]="!paymentForm.valid"  class="btn">
+        <input (click)="onSubmit()" type="submit" value="לתשלום מאובטח"    class="btn">
 
         
       </form>

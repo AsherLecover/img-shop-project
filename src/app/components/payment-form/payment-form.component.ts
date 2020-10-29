@@ -17,8 +17,9 @@ export class PaymentFormComponent implements OnInit {
   listOfItemsInBag = [];
   monthList:string[] = ['ינואר', 'פבואר', 'מרס', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר', ]
   yearList:string[] = ['2025','2024','2023','2022','2021','2020','2019','2018','2017','2016','2015','2014','2013','2012','2011','2010','2009','2008'];
-
   @ViewChild('ccNumber') ccNumberField: ElementRef;
+
+  formIsInValid: boolean = true
 
 
 
@@ -35,7 +36,6 @@ export class PaymentFormComponent implements OnInit {
       addrassCity: ['',[Validators.required, Validators.minLength(2)]],
       postNum: ['',[Validators.required, Validators.minLength(2), Validators.pattern('^[0-9]+$')]],
       phone: ['',[Validators.required,Validators.minLength(9), Validators.pattern('^[0-9]+$')]],
-
       cardOwnerName: ['',[Validators.required, Validators.minLength(2)]],
       cardNumber:  ['',[Validators.required, Validators.pattern('^[ 0-9]*$'), Validators.minLength(17)]],
       cardValidityMonth: ['',[Validators.required]],
@@ -50,9 +50,14 @@ export class PaymentFormComponent implements OnInit {
 
  
   onSubmit(){
+    console.log('before if ', this.formIsInValid);
     
+    if(this.paymentForm.invalid){
+      this.formIsInValid = false
+      console.log('after if ', this.formIsInValid);
+      
+    }
     
-    console.log('sumbut form: out if ', this.submited);
     console.log('form', this.paymentForm.value);
     
     if(this.paymentForm.valid){

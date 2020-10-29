@@ -46,9 +46,6 @@ export class PaymentFormComponent implements OnInit {
     });
   }
 
-
-
- 
   onSubmit(){
     console.log('before if ', this.formIsInValid);
     

@@ -23,7 +23,7 @@
                  </span>
            </span>
 
-            <input type="text" id="fname" name="fullName" formControlName="fullName" [ngClass]="{'has-error':
+            <input [ngStyle]="{ border: paymentForm.get('fullName').valid ? '2px solid #6dc22e' : '' }" type="text" id="fname" name="fullName" formControlName="fullName" [ngClass]="{'has-error':
               (paymentForm.get('fullName').errors &&
             (paymentForm.get('fullName').dirty) )
           || ( !formIsInValid  &&  paymentForm.get('fullName').errors )
@@ -44,7 +44,7 @@
               </span>
         </span>
 
-            <input type="text" id="email" name="email"  formControlName="email" [ngClass]="{'has-error':
+            <input [ngStyle]="{ border: paymentForm.get('email').valid ? '2px solid #6dc22e' : '' }" type="text" id="email" name="email"  formControlName="email" [ngClass]="{'has-error':
             (paymentForm.get('email').errors &&
           (paymentForm.get('email').dirty) )
         || ( !formIsInValid  &&  paymentForm.get('email').errors )
@@ -65,7 +65,7 @@
               </span>
         </span>
 
-            <input type="text" id="adr"name="addrassSt" formControlName="addrassSt" [ngClass]="{'has-error':
+            <input [ngStyle]="{ border: paymentForm.get('addrassSt').valid ? '2px solid #6dc22e' : '' }" type="text" id="adr"name="addrassSt" formControlName="addrassSt" [ngClass]="{'has-error':
             (paymentForm.get('addrassSt').errors &&
           (paymentForm.get('addrassSt').dirty) )
         || ( !formIsInValid  &&  paymentForm.get('addrassSt').errors)}">
@@ -86,7 +86,7 @@
            </span>
 
 
-            <input type="text" id="city" formControlName="addrassCity" name="addrassCity" [ngClass]="{'has-error':
+            <input  [ngStyle]="{ border: paymentForm.get('addrassCity').valid ? '2px solid #6dc22e' : '' }" type="text" id="city" formControlName="addrassCity" name="addrassCity" [ngClass]="{'has-error':
             (paymentForm.get('addrassCity').errors &&
           (paymentForm.get('addrassCity').dirty) )
         || ( !formIsInValid  &&  paymentForm.get('addrassCity').errors)}">
@@ -112,7 +112,7 @@
                  </span>  
             </span>
   
-                <input type="text" id="zip" name="מיקוד" formControlName="postNum" name="postNum" [ngClass]="{'has-error':
+                <input [ngStyle]="{ border: paymentForm.get('postNum').valid ? '2px solid #6dc22e' : '' }" type="text" id="zip" name="מיקוד" formControlName="postNum" name="postNum" [ngClass]="{'has-error':
                 (paymentForm.get('postNum').errors &&
               (paymentForm.get('postNum').dirty) )
             || ( !formIsInValid  &&  paymentForm.get('postNum').errors)}">
@@ -138,7 +138,7 @@
                  </span>  
                 </span>
 
-                <input type="text" id="phone" name="phone" formControlName="phone" name="phone" [ngClass]="{'has-error':
+                <input [ngStyle]="{ border: paymentForm.get('phone').valid ? '2px solid #6dc22e' : '' }" type="text" id="phone" name="phone" formControlName="phone" name="phone" [ngClass]="{'has-error':
                 (paymentForm.get('phone').errors &&
               (paymentForm.get('phone').dirty) )
             || ( !formIsInValid  &&  paymentForm.get('phone').errors)}">
@@ -190,7 +190,8 @@
               </span>
         </span>
 
-            <input type="text" id="cname" name="cardname" formControlName="cardOwnerName" [ngClass]="{'has-error':
+            <input [ngStyle]="{ border: paymentForm.get('cardOwnerName').valid ? '2px solid #6dc22e' : '' }" 
+            type="text" id="cname" name="cardname" formControlName="cardOwnerName" [ngClass]="{'has-error':
             (paymentForm.get('cardOwnerName').errors &&
           (paymentForm.get('cardOwnerName').dirty) )
         || ( !formIsInValid  &&  paymentForm.get('cardOwnerName').errors)}">
@@ -211,7 +212,7 @@
              </span>  
             </span>
 
-            <input style="direction: ltr;" maxlength="20"  formControlName="cardNumber" type="tel" #ccNumber (keyup)="cardNumberSpacing()" 
+            <input [ngStyle]="{ border: paymentForm.get('cardNumber').valid ? '2px solid #6dc22e' : '' }" style="direction: ltr;" maxlength="20"  formControlName="cardNumber" type="tel" #ccNumber (keyup)="cardNumberSpacing()" 
             [ngClass]="{'has-error':
             (paymentForm.get('cardNumber').errors &&
           (paymentForm.get('cardNumber').dirty) )
@@ -231,7 +232,8 @@
              </span>
             </span>
 
-            <select  formControlName="cardValidityMonth" name="cardValidityMonth"  [ngClass]="{'has-error':
+            <select [ngStyle]="{ border: paymentForm.get('cardValidityMonth').valid ? '2px solid #6dc22e' : '' }"
+             formControlName="cardValidityMonth" name="cardValidityMonth"  [ngClass]="{'has-error':
             (paymentForm.get('cardValidityMonth').errors &&
           (paymentForm.get('cardValidityMonth').dirty) )
         || ( !formIsInValid  &&  paymentForm.get('cardValidityMonth').errors)}">
@@ -257,7 +259,8 @@
          </span>
         </span>
 
-        <select  class=""  formControlName="cardValidityYear" name="cardValidityYear" [ngClass]="{'has-error':
+        <select [ngStyle]="{ border: paymentForm.get('cardValidityYear').valid ? '2px solid #6dc22e' : '' }"
+         class=""  formControlName="cardValidityYear" name="cardValidityYear" [ngClass]="{'has-error':
         (paymentForm.get('cardValidityYear').errors &&
       (paymentForm.get('cardValidityYear').dirty) )
     || ( !formIsInValid  &&  paymentForm.get('cardValidityYear').errors)}">
@@ -290,7 +293,8 @@
                  </span>  
                 </span>
                 
-                <input type="text" id="cvv" name="cvv" formControlName="cvv" name="cvv" [ngClass]="{'has-error':
+                <input [ngStyle]="{ border: paymentForm.get('cvv').valid ? '2px solid #6dc22e' : '' }"
+                type="text" id="cvv" name="cvv" formControlName="cvv" name="cvv" [ngClass]="{'has-error':
                 (paymentForm.get('cvv').errors &&
               (paymentForm.get('cvv').dirty) )
             || ( !formIsInValid  &&  paymentForm.get('cvv').errors)}">
@@ -323,7 +327,8 @@
                </span>  
               </span>
 
-              <input type="text" id="expyear" name="expyear" formControlName="id" name="id"[ngClass]="{'has-error':
+              <input [ngStyle]="{ border: paymentForm.get('id').valid ? '2px solid #6dc22e' : '' }"
+               type="text" id="expyear" name="expyear" formControlName="id" name="id"[ngClass]="{'has-error':
               (paymentForm.get('id').errors &&
             (paymentForm.get('id').dirty) )
           || ( !formIsInValid  &&  paymentForm.get('id').errors)}">

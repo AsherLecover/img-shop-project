@@ -21,3 +21,8 @@
 .scondeElementInFirstLineFooter{
     display: flex;
 }
+li{
+    cursor: pointer;
+}
+
+

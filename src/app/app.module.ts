@@ -36,6 +36,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/img-home-living-room.component';
  
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { PaymentFormComponent } from './components/payment-form/payment-form.com
     ImageDetailsComponent,
     ShoppingBagComponent,
     PaymentFormComponent,
+    ImgHomeLivingRoomComponent,
   ],
   imports: [
     AngularFirestoreModule,

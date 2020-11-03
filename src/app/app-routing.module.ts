@@ -6,6 +6,7 @@ import { PicMainSubListComponent } from './components/pic-main-sub-list/pic-main
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/img-home-living-room.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path:'img-details/:subId/:id',   component:ImageDetailsComponent},
   { path:'shpping-cart',   component:ShoppingBagComponent},
   { path:'app-payment-form',   component:PaymentFormComponent},
+  { path:'img-home-living-room',   component:ImgHomeLivingRoomComponent},
   { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},
 

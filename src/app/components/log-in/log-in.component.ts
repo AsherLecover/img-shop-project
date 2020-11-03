@@ -35,15 +35,19 @@ export class LogInComponent implements OnInit {
       {
         firstName: ['', [Validators.required, Validators.minLength(2)]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required,Validators.minLength(8)],
-        acceptTerms: [false, Validators.requiredTrue]});}
+        password: ['', [Validators.required, Validators.minLength(6)]]
+      });}
 
   onSubmit() {
     console.log("(this.submitted",this.submitted)
     if (this.registerForm.valid) {
       this.submitted = true;
       console.log(this.submitted)
+      console.log('form::',this.registerForm.value.firstName);
+      this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
+
+      
+      this.userName = this.registerForm.value
     }
   }
 

@@ -30,13 +30,18 @@ export class HedderComponent implements OnInit {
     public svcClinets:ClinetsService,
     authSer: AuthService,
     public buyingSvc: BuyingProcessService,
-    
     ){
 
     this.authSer = authSer;
   }
   ngOnInit(): void {
-    this.currentUser = this.authSer.currentUser$;
+    if(this.authSer.currentUser$){
+      this.currentUser = this.authSer.currentUser$;
+    }
+    else{
+      this.userName =  this.svcClinets.userName;
+    }
+    
 
   }
 

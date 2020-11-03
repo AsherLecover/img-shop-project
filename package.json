@@ -26,7 +26,6 @@
     "@iconify/icons-mdi": "^1.0.115",
     "@ngx-share/buttons": "^7.1.4",
     "@visurel/iconify-angular": "0.0.7",
-    "angular-font-awesome": "^3.1.2",
     "angularx-social-login": "^3.1.1",
     "bootstrap": "^4.5.0",
     "firebase": "^7.15.5",

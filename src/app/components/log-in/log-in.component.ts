@@ -13,10 +13,9 @@ import { AuthService } from '../../servises/auth.service';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
+
   private authSer: AuthService;
   currentUser: Observable<User>;
-
-
   registerForm: FormGroup;
   submitted = false;
   ctrl: FormControl;
@@ -74,9 +73,7 @@ export class LogInComponent implements OnInit {
   signOut() {
     this.authSer.signOut();
   }
-    
-  
-
-  
-  
 }
+
+
+

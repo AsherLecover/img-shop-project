@@ -15,17 +15,19 @@
                (paymentForm.get('fullName').dirty) )
                 || (!formIsInValid &&  paymentForm.get('fullName').errors )">
 
-                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.required ">
+                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.required && paymentForm.get('fullName').touched
+                 || ( !formIsInValid  &&  paymentForm.get('fullName').errors  && paymentForm.get('fullName').errors.required )
+                 ">
                   זהו שדה חובה
                 </span>
-                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.minlength">
+                 <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.minlength && paymentForm.get('fullName').touched">
                    שם משתמש חייב להיות בעלת 2 תווים
                  </span>
            </span>
 
             <input [ngStyle]="{ border: paymentForm.get('fullName').valid ? '2px solid #6dc22e' : '' }" type="text" id="fname" name="fullName" formControlName="fullName" [ngClass]="{'has-error':
               (paymentForm.get('fullName').errors &&
-            (paymentForm.get('fullName').dirty) )
+            (paymentForm.get('fullName').touched) )
           || ( !formIsInValid  &&  paymentForm.get('fullName').errors )
           } ">
 
@@ -36,17 +38,18 @@
             <span  *ngIf="( paymentForm.get('email').errors &&
             (paymentForm.get('email').dirty) )
              || (!formIsInValid &&  paymentForm.get('email').errors )">
-              <span style="color: red;" *ngIf="paymentForm.get('email').errors.required">
+              <span style="color: red;" *ngIf="paymentForm.get('email').errors.required && paymentForm.get('email').touched
+              || ( !formIsInValid  &&  paymentForm.get('email').errors && paymentForm.get('email').errors.required  )">
                זהו שדה חובה
              </span>
-              <span style="color: red;" *ngIf="paymentForm.get('email').errors.email">
+              <span style="color: red;" *ngIf="paymentForm.get('email').errors.email && paymentForm.get('email').touched">
                 כתובת מייל לא חוקית
               </span>
         </span>
 
             <input [ngStyle]="{ border: paymentForm.get('email').valid ? '2px solid #6dc22e' : '' }" type="text" id="email" name="email"  formControlName="email" [ngClass]="{'has-error':
             (paymentForm.get('email').errors &&
-          (paymentForm.get('email').dirty) )
+          (paymentForm.get('email').touched) )
         || ( !formIsInValid  &&  paymentForm.get('email').errors )
         }">
 
@@ -57,17 +60,18 @@
         <span  *ngIf="( paymentForm.get('addrassSt').errors &&
         (paymentForm.get('addrassSt').dirty) )
          || (!formIsInValid &&  paymentForm.get('addrassSt').errors )">
-              <span style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.required">
+              <span style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.required && paymentForm.get('addrassSt').touched
+              || ( !formIsInValid  &&  paymentForm.get('addrassSt').errors && paymentForm.get('addrassSt').errors.required )">
                זהו שדה חובה
              </span>
-              <span style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.minlength">
+              <span style="color: red;" *ngIf="paymentForm.get('addrassSt').errors.minlength && paymentForm.get('addrassSt').touched">
                 רחוב חייב להיות בעל 2 תווים
               </span>
         </span>
 
             <input [ngStyle]="{ border: paymentForm.get('addrassSt').valid ? '2px solid #6dc22e' : '' }" type="text" id="adr"name="addrassSt" formControlName="addrassSt" [ngClass]="{'has-error':
             (paymentForm.get('addrassSt').errors &&
-          (paymentForm.get('addrassSt').dirty) )
+          (paymentForm.get('addrassSt').touched) )
         || ( !formIsInValid  &&  paymentForm.get('addrassSt').errors)}">
 
   <!---------------------------------------------------------------------------------------------------------------->
@@ -77,10 +81,11 @@
             <span  *ngIf="( paymentForm.get('addrassCity').errors &&
             (paymentForm.get('addrassCity').dirty) )
              || (!formIsInValid &&  paymentForm.get('addrassCity').errors )">
-                 <span style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.required">
+                 <span style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.required && paymentForm.get('addrassCity').touched
+                 || ( !formIsInValid  &&  paymentForm.get('addrassCity').errors && paymentForm.get('addrassCity').errors.required )">
                   זהו שדה חובה
                 </span>
-                 <span style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.minlength">
+                 <span style="color: red;" *ngIf="paymentForm.get('addrassCity').errors.minlength && paymentForm.get('addrassCity').touched">
                     עיר חייב להיות בעלת 2 תווים
                  </span>
            </span>
@@ -88,7 +93,7 @@
 
             <input  [ngStyle]="{ border: paymentForm.get('addrassCity').valid ? '2px solid #6dc22e' : '' }" type="text" id="city" formControlName="addrassCity" name="addrassCity" [ngClass]="{'has-error':
             (paymentForm.get('addrassCity').errors &&
-          (paymentForm.get('addrassCity').dirty) )
+          (paymentForm.get('addrassCity').touched) )
         || ( !formIsInValid  &&  paymentForm.get('addrassCity').errors)}">
 
   <!----------------------------------------------------------------------------------------------------------------->
@@ -101,20 +106,21 @@
                 <span *ngIf="( paymentForm.get('postNum').errors &&
                 (paymentForm.get('postNum').dirty) )
                  || (!formIsInValid &&  paymentForm.get('postNum').errors )">
-                  <span style="color: red;" *ngIf="paymentForm.get('postNum').errors.required">
+                  <span style="color: red;" *ngIf="paymentForm.get('postNum').errors.required  && paymentForm.get('postNum').touched
+                  || ( !formIsInValid  &&  paymentForm.get('postNum').errors && paymentForm.get('postNum').errors.required )">
                    זהו שדה חובה
                  </span>
-                  <span style="color: red;" *ngIf="paymentForm.get('postNum').errors.minlength">
+                  <span style="color: red;" *ngIf="paymentForm.get('postNum').errors.minlength  && paymentForm.get('postNum').touched">
                      מיקוד חייב להיות לפחות בעל 2 תווים
                   </span><br>
-                  <span style="color: red;" *ngIf="paymentForm.get('postNum').errors.pattern">
+                  <span style="color: red;" *ngIf="paymentForm.get('postNum').errors.pattern  && paymentForm.get('postNum').touched">
                     מיקוד חייב להחיל מספרים בלבד
                  </span>  
             </span>
   
                 <input [ngStyle]="{ border: paymentForm.get('postNum').valid ? '2px solid #6dc22e' : '' }" type="text" id="zip" name="מיקוד" formControlName="postNum" name="postNum" [ngClass]="{'has-error':
                 (paymentForm.get('postNum').errors &&
-              (paymentForm.get('postNum').dirty) )
+              (paymentForm.get('postNum').touched) )
             || ( !formIsInValid  &&  paymentForm.get('postNum').errors)}">
     
           
@@ -127,21 +133,22 @@
                 <span *ngIf="( paymentForm.get('phone').errors &&
                 (paymentForm.get('phone').dirty) )
                  || (!formIsInValid &&  paymentForm.get('phone').errors )">
-                  <span style="color: red;" *ngIf="paymentForm.get('phone').errors.required">
+                  <span style="color: red;" *ngIf="paymentForm.get('phone').errors.required  && paymentForm.get('phone').touched
+                  ||(!formIsInValid  &&  paymentForm.get('phone').errors && paymentForm.get('phone').errors.required )">
                    זהו שדה חובה
                  </span>
-                  <span style="color: red;" *ngIf="paymentForm.get('phone').errors.minlength">
+                  <span style="color: red;" *ngIf="paymentForm.get('phone').errors.minlength  && paymentForm.get('phone').touched">
                      מספר טלפון חייב להיות לפחות בעל 9 תווים
                   </span><br>
-                  <span style="color: red;" *ngIf="paymentForm.get('phone').errors.pattern">
+                  <span style="color: red;" *ngIf="paymentForm.get('phone').errors.pattern  && paymentForm.get('phone').touched">
                     מספר טלפון חייב להחיל מספרים בלבד
                  </span>  
                 </span>
 
                 <input [ngStyle]="{ border: paymentForm.get('phone').valid ? '2px solid #6dc22e' : '' }" type="text" id="phone" name="phone" formControlName="phone" name="phone" [ngClass]="{'has-error':
                 (paymentForm.get('phone').errors &&
-              (paymentForm.get('phone').dirty) )
-            || ( !formIsInValid  &&  paymentForm.get('phone').errors)}">
+              (paymentForm.get('phone').touched) )
+            ||(!formIsInValid  &&  paymentForm.get('phone').errors)}">
     
 
                
@@ -182,10 +189,11 @@
             <span  *ngIf="( paymentForm.get('cardOwnerName').errors &&
             (paymentForm.get('cardOwnerName').dirty) )
              || (!formIsInValid &&  paymentForm.get('cardOwnerName').errors )">
-              <span style="color: red;" *ngIf="paymentForm.get('cardOwnerName').errors.required">
+              <span style="color: red;" *ngIf="paymentForm.get('cardOwnerName').errors.required  && paymentForm.get('cardOwnerName').touched
+              || ( !formIsInValid  &&  paymentForm.get('cardOwnerName').errors && paymentForm.get('cardOwnerName').errors.required ) ">
                זהו שדה חובה
              </span>
-              <span style="color: red;" *ngIf="paymentForm.get('cardOwnerName').errors.minlength">
+              <span style="color: red;" *ngIf="paymentForm.get('cardOwnerName').errors.minlength  && paymentForm.get('cardOwnerName').touched">
                 שם בעל הכרטיס חייב להיות בעלת 2 תווים
               </span>
         </span>
@@ -193,7 +201,7 @@
             <input [ngStyle]="{ border: paymentForm.get('cardOwnerName').valid ? '2px solid #6dc22e' : '' }" 
             type="text" id="cname" name="cardname" formControlName="cardOwnerName" [ngClass]="{'has-error':
             (paymentForm.get('cardOwnerName').errors &&
-          (paymentForm.get('cardOwnerName').dirty) )
+          (paymentForm.get('cardOwnerName').touched) )
         || ( !formIsInValid  &&  paymentForm.get('cardOwnerName').errors)}">
 
  <!----------------------------------------------------------------------------------------------------------------->
@@ -203,11 +211,12 @@
             <span  *ngIf="( paymentForm.get('cardNumber').errors &&
             (paymentForm.get('cardNumber').dirty) )
              || (!formIsInValid &&  paymentForm.get('cardNumber').errors )">
-              <span style="color: red;" *ngIf="paymentForm.get('cardNumber').errors.required">
+              <span style="color: red;" *ngIf="paymentForm.get('cardNumber').errors.required && paymentForm.get('cardNumber').touched
+              || ( !formIsInValid  &&  paymentForm.get('cardNumber').errors && paymentForm.get('cardNumber').errors.required )">
                זהו שדה חובה
              </span>
            
-              <span style="color: red;" *ngIf="paymentForm.get('cardNumber').errors.pattern">
+              <span style="color: red;" *ngIf="paymentForm.get('cardNumber').errors.pattern && paymentForm.get('cardNumber').touched">
                 מספר הכרטיס חייב להחיל מספרים בלבד
              </span>  
             </span>
@@ -215,7 +224,7 @@
             <input [ngStyle]="{ border: paymentForm.get('cardNumber').valid ? '2px solid #6dc22e' : '' }" style="direction: ltr;" maxlength="20"  formControlName="cardNumber" type="tel" #ccNumber (keyup)="cardNumberSpacing()" 
             [ngClass]="{'has-error':
             (paymentForm.get('cardNumber').errors &&
-          (paymentForm.get('cardNumber').dirty) )
+          (paymentForm.get('cardNumber').touched) )
         || ( !formIsInValid  &&  paymentForm.get('cardNumber').errors)}">
             
 
@@ -227,7 +236,8 @@
             <span   *ngIf="( paymentForm.get('cardValidityMonth').errors &&
             (paymentForm.get('cardValidityMonth').dirty) )
              || (!formIsInValid &&  paymentForm.get('cardValidityMonth').errors )">
-              <span style="color: red;" *ngIf="paymentForm.get('cardValidityMonth').errors.required">
+              <span style="color: red;" *ngIf="paymentForm.get('cardValidityMonth').errors.required && paymentForm.get('cardValidityMonth').touched
+              || ( !formIsInValid  &&  paymentForm.get('cardValidityMonth').errors && paymentForm.get('cardValidityMonth').errors.required )">
                זהו שדה חובה
              </span>
             </span>
@@ -235,7 +245,7 @@
             <select [ngStyle]="{ border: paymentForm.get('cardValidityMonth').valid ? '2px solid #6dc22e' : '' }"
              formControlName="cardValidityMonth" name="cardValidityMonth"  [ngClass]="{'has-error':
             (paymentForm.get('cardValidityMonth').errors &&
-          (paymentForm.get('cardValidityMonth').dirty) )
+          (paymentForm.get('cardValidityMonth').touched) )
         || ( !formIsInValid  &&  paymentForm.get('cardValidityMonth').errors)}">
             
 
@@ -254,7 +264,8 @@
         <span   *ngIf="( paymentForm.get('cardValidityYear').errors &&
         (paymentForm.get('cardValidityYear').dirty) )
          || (!formIsInValid &&  paymentForm.get('cardValidityYear').errors )">
-          <span style="color: red;" *ngIf="paymentForm.get('cardValidityYear').errors.required">
+          <span style="color: red;" *ngIf="paymentForm.get('cardValidityYear').errors.required  && paymentForm.get('cardValidityYear').touched
+          || ( !formIsInValid  &&  paymentForm.get('cardValidityYear').errors && paymentForm.get('cardValidityYear').errors.required )">
            זהו שדה חובה
          </span>
         </span>
@@ -262,7 +273,7 @@
         <select [ngStyle]="{ border: paymentForm.get('cardValidityYear').valid ? '2px solid #6dc22e' : '' }"
          class=""  formControlName="cardValidityYear" name="cardValidityYear" [ngClass]="{'has-error':
         (paymentForm.get('cardValidityYear').errors &&
-      (paymentForm.get('cardValidityYear').dirty) )
+      (paymentForm.get('cardValidityYear').touched) )
     || ( !formIsInValid  &&  paymentForm.get('cardValidityYear').errors)}">
 
         <option value="" disabled >  בחר שנה  </option>
@@ -282,13 +293,14 @@
                 <span *ngIf="( paymentForm.get('cvv').errors &&
                 (paymentForm.get('cvv').dirty) )
                  || (!formIsInValid &&  paymentForm.get('cvv').errors )">
-                  <span style="color: red;" *ngIf="paymentForm.get('cvv').errors.required">
+                  <span style="color: red;" *ngIf="paymentForm.get('cvv').errors.required  && paymentForm.get('cvv').touched
+                  || ( !formIsInValid  &&  paymentForm.get('cvv').errors && paymentForm.get('cvv').errors.required )">
                    זהו שדה חובה
                  </span>
-                  <span style="color: red;" *ngIf="paymentForm.get('cvv').errors.minlength">
+                  <span style="color: red;" *ngIf="paymentForm.get('cvv').errors.minlength  && paymentForm.get('cvv').touched">
                       קוד CVV חייב להיות לפחות בעל 3 תווים
                   </span><br>
-                  <span style="color: red;" *ngIf="paymentForm.get('cvv').errors.pattern">
+                  <span style="color: red;" *ngIf="paymentForm.get('cvv').errors.pattern && paymentForm.get('cvv').touched">
                     קוד CVV חייב להחיל מספרים בלבד
                  </span>  
                 </span>
@@ -296,7 +308,7 @@
                 <input [ngStyle]="{ border: paymentForm.get('cvv').valid ? '2px solid #6dc22e' : '' }"
                 type="text" id="cvv" name="cvv" formControlName="cvv" name="cvv" [ngClass]="{'has-error':
                 (paymentForm.get('cvv').errors &&
-              (paymentForm.get('cvv').dirty) )
+              (paymentForm.get('cvv').touched) )
             || ( !formIsInValid  &&  paymentForm.get('cvv').errors)}">
 
             
@@ -316,13 +328,14 @@
               <span *ngIf="( paymentForm.get('id').errors &&
               (paymentForm.get('id').dirty) )
                || (!formIsInValid &&  paymentForm.get('id').errors )">
-                <span style="color: red;" *ngIf="paymentForm.get('id').errors.required ">
+                <span style="color: red;" *ngIf="paymentForm.get('id').errors.required  && paymentForm.get('id').touched
+                || ( !formIsInValid  &&  paymentForm.get('id').errors && paymentForm.get('id').errors.required )">
                  זהו שדה חובה
                </span>
-                <span style="color: red;" *ngIf="paymentForm.get('id').errors.minlength">
+                <span style="color: red;" *ngIf="paymentForm.get('id').errors.minlength && paymentForm.get('id').touched">
                     תעודת זהות חייבת להיות בעלת 9 ספרות
                 </span><br>
-                <span style="color: red;" *ngIf="paymentForm.get('id').errors.pattern">
+                <span style="color: red;" *ngIf="paymentForm.get('id').errors.pattern && paymentForm.get('id').touched">
                   תעודת זהות חייבת להחיל מספרים בלבד
                </span>  
               </span>
@@ -330,7 +343,7 @@
               <input [ngStyle]="{ border: paymentForm.get('id').valid ? '2px solid #6dc22e' : '' }"
                type="text" id="expyear" name="expyear" formControlName="id" name="id"[ngClass]="{'has-error':
               (paymentForm.get('id').errors &&
-            (paymentForm.get('id').dirty) )
+            (paymentForm.get('id').touched) )
           || ( !formIsInValid  &&  paymentForm.get('id').errors)}">
 
            
@@ -342,7 +355,7 @@
           </div>
         </div>
        
-        <input (click)="onSubmit()" type="submit" value="לתשלום מאובטח"    class="btn">
+        <input (click)="onSubmit()" type="submit" value="לתשלום מאובטח" class="btn">
 
         
       </form>

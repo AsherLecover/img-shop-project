@@ -1,28 +1,104 @@
+<h1 style="text-align: center; margin: 0%; color: #232d54;">כניסת חברים – ברוכים הבאים</h1><br>
+
+<h3 style="color: #232d54;">.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם
+  (חינם) כעת ולקבל הטבות שוות במיוחד</h3>
 
 
-<div id="id01" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
+<div style="background-color: #f2f2f2; display: flex;">
 
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 40%; margin: 24px;" dir="rtl" action="">
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
+    <input id="inputs2" formControlName="email" type="text" placeholder='הזן כתובת דוא"ל' [ngClass]="{'has-error' :
+    registerForm.get('email').errors &&
+    (registerForm.get('email').dirty)}">
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
+    <span *ngIf="registerForm.get('email').errors &&
+    (registerForm.get('email').dirty)">
+
+      <span style="color: red;" *ngIf="registerForm.get('email').errors.required">
+        זהו שדה חובה
+      </span>
+      <span style="color: red;" *ngIf="registerForm.get('email').errors.email">
+        כתובת מייל לא חוקית
+      </span>
+    </span>
+
+    <input id="inputs3" formControlName="password" class="b" type="password" placeholder="הזן סיסמה" [ngClass]="{'has-error' :
+      registerForm.get('password').errors &&
+      (registerForm.get('password').dirty)}">
+
+    <span *ngIf="registerForm.get('password').errors && (registerForm.get('password').dirty)">
+
+      <span style="color: red;" *ngIf="registerForm.get('password').errors.required">
+        זהו שדה חובה
+      </span>
+      <span style="color: red;" *ngIf="registerForm.get('password').errors.minlength">
+        סיסמה חייבת להיות בעלת 6 תווים
+      </span>
+    </span>
+
+    <br>
+    <button  type="submit"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
+      color="primary">כניסה</button>
+
   </form>
+
+  <div class="wrapper">
+    <div class="line"></div>
+    <div class="wordwrapper">
+      <div class="word">או</div>
+    </div>
+  </div>
+
+  <div style="background-color: #f2f2f2;" dir="rtl" class="container">
+    <form action="/action_page.php">
+      <div class="row">
+        <div class="col">
+          <a href="#" class="fb btn">
+            <i class="fa fa-facebook fa-fw"></i>כניסה מהירה עם פייסבוק
+          </a>
+          <a href="#" class="twitter btn">
+            <i class="fa fa-twitter fa-fw"></i> כניסה מהירה עם טוויטר
+          </a>
+          <a  style="cursor: pointer;"  class="google btn">
+            <i class="fa fa-google fa-fw">
+            </i>כניסה מהירה עם גוגל
+          </a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+<div style="text-align: center; margin: 0%; background-color: #f2f2f2"> 
+  <i>עדיין לא רשום? הרשם בקלות </i><br>
+  <button style="color: red; cursor: pointer;" mat-button mat-dialog-close> מכאן</button>
+  <!-- <h1>PicPicture הצטרף עכשיו חינם למועדון הלקוחות של </h1> -->
+  <br>
+
+
+
+
+
+  
+  <div class="usertips-block  padding-bottom-40">
+    <div class="usertips-block__label text-center">הצטרף עכשיו חינם למועדון הלקוחות של מסגרת וקבל:</div>
+
+          <div class="table">
+              <div class="cell">
+            <ul class="usertips-list usertips-list_do">
+              <li>25% הנחה מיידית בקנייה זו!</li>
+                      <li>5% צבירת נקודות להזמנה הבאה! (1 נק'=1₪)</li>
+            </ul>
+              </div>
+              <div class="cell">
+            <ul class="usertips-list usertips-list_do">
+                      <li>כרטיס מועדון אישי המקנה הנחה קבועה באתר!</li>
+                      <li>הפתעה ביום ההולדת!</li>
+            </ul>
+              </div>
+          </div>
+                  </div>
+
 </div>

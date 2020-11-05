@@ -35,10 +35,14 @@
       <span style="color: red;" *ngIf="registerForm.get('password').errors.minlength">
         סיסמה חייבת להיות בעלת 6 תווים
       </span>
+
+      <span style="color: red;" *ngIf="registerForm.get('password').errors.pattern">
+        סיסמה חייבת להיות לפחות בעלת אות גדולה אות קטנה מספר ותו מיוחד 
+      </span>
     </span>
 
     <br>
-    <button  type="submit"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
+    <button [disabled]="!registerForm.valid"  (click)="onSubmit()" type="submit"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
       color="primary">כניסה</button>
 
   </form>
@@ -81,8 +85,8 @@
 
 
 
-  
-  <div class="usertips-block  padding-bottom-40">
+  <hr><hr><hr><hr><hr>
+  <!-- <div class="usertips-block  padding-bottom-40">
     <div class="usertips-block__label text-center">הצטרף עכשיו חינם למועדון הלקוחות של מסגרת וקבל:</div>
 
           <div class="table">
@@ -99,6 +103,6 @@
             </ul>
               </div>
           </div>
-                  </div>
+                  </div> -->
 
 </div>

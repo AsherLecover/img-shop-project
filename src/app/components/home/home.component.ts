@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { LogInComponent } from '../log-in/log-in.component';
+import { SignupComponent } from '../sign-up/signup.component';
 
 import { Observable } from 'rxjs';
 import { User } from 'firebase';

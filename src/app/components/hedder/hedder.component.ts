@@ -8,9 +8,9 @@ import { BuyingProcessService } from '../../servises/buying-process.service';
 
 
 
-import { LogInComponent } from '../log-in/log-in.component';
 import home from "@iconify/icons-mdi/home";
 import accountCheck from "@iconify/icons-mdi/account-check";
+import { SignupComponent } from '../sign-up/signup.component';
 
 @Component({
   selector: 'app-hedder',
@@ -46,7 +46,7 @@ export class HedderComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(LogInComponent);
+    const dialogRef = this.dialog.open(SignupComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

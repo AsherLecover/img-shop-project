@@ -52,10 +52,13 @@
       <span style="color: red;" *ngIf="registerForm.get('password').errors.minlength">
         סיסמה חייבת להיות בעלת 6 תווים
       </span>
+      <span style="color: red;" *ngIf="registerForm.get('password').errors.pattern">
+        סיסמה חייבת להיות לפחות בעלת אות גדולה אות קטנה מספר ותו מיוחד 
+      </span>
     </span>
 
     <br>
-    <button  type="submit" [disabled]="!registerForm.valid"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
+    <button mat-button mat-dialog-close type="submit" [disabled]="!registerForm.valid"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
       color="primary">הרשמה</button>
 
   </form>
@@ -91,6 +94,6 @@
 </div>
 <div style="text-align: center; margin: 0%; background-color: #f2f2f2"> 
   <i>כבר רשום באתר? כנס בקלות </i><br>
-  <button style="color: red; cursor: pointer;" (click)="openDialog()" mat-button mat-dialog-close> מכאן</button>
+  <button routerLink="/auth/signin" style="color: red; cursor: pointer;" (click)="openDialog()" mat-button mat-dialog-close> מכאן</button>
 
 </div>

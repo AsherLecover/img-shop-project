@@ -17,11 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { LogInComponent } from './components/log-in/log-in.component';
-
 import { CommonModule } from '@angular/common';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {GoogleLoginProvider,FacebookLoginProvider,AmazonLoginProvider,} from 'angularx-social-login';
 import { AngularFireModule} from '@angular/fire';
@@ -36,15 +32,19 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ImageDetailsComponent } from './components/image-details/image-details.component';
 import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { SignupComponent } from './components/sign-up/signup.component';
+import { SignInComponent } from './components/sign-in/signin.component';
 import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/img-home-living-room.component';
+import { HttpClientModule } from '@angular/common/http';
+
  
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PicSubMainPageComponent,
-    LogInComponent,
-    SignUpComponent,
+    SignupComponent,
+    SignInComponent,
     PicMainSubListComponent,
     HedderComponent,
     FooterComponent,
@@ -76,7 +76,8 @@ import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/im
     FlexLayoutModule,
     CommonModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule
 
     
   ],

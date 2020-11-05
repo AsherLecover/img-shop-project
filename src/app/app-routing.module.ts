@@ -16,6 +16,8 @@ const routes: Routes = [
   { path:'shpping-cart',   component:ShoppingBagComponent},
   { path:'app-payment-form',   component:PaymentFormComponent},
   { path:'img-home-living-room',   component:ImgHomeLivingRoomComponent},
+  { path:'auth/signup',   component:PicSubMainPageComponent},
+  { path:'auth/signin',   component:PicSubMainPageComponent},
   { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},
 

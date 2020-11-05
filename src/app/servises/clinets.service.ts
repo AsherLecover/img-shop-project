@@ -3,12 +3,14 @@ import { ClinetModel } from '../models/clinet-model/clinetModel';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import {
   AngularFirestore,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase';
 import { switchMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 export interface User {
   uid?: string;
@@ -19,7 +21,7 @@ export interface User {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClinetsService {
   clinetList: ClinetModel[];
@@ -34,14 +36,15 @@ export class ClinetsService {
   constructor(
     afAuth: AngularFireAuth,
     afStore: AngularFirestore,
-    router: Router
+    router: Router,
+    private http: HttpClient
   ) {
     this._afAuth = afAuth;
     this._afStore = afStore;
     this._router = router;
 
     this.courentUser$ = this._afAuth.authState.pipe(
-      switchMap(user => {
+      switchMap((user) => {
         if (user) {
           return this._afStore.doc(`${user.uid}`).valueChanges();
         } else {
@@ -50,6 +53,23 @@ export class ClinetsService {
       })
     );
   }
+  //--------from here working on nestjs side ------------
+
+  signup(username: string, email: string, password: string) {
+    return this.http.post<any>(`${environment.apiUrl}/auth/signup`, { username,email, password })
+  }
+
+  signin(email: string, password: string) {
+    console.log('eeee:',email, password);
+    
+    return this.http.post<any>(`${environment.apiUrl}/auth/signin`, { email, password })
+    
+
+  }
+
+
+
+  //-----------------------------------------------------
 
   public async signInWithGoogle(): Promise<void> {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -64,9 +84,9 @@ export class ClinetsService {
       display_name: credential.user.displayName,
       email: credential.user.email,
       image_url: credential.user.photoURL,
-      roles: { member: true }
+      roles: { member: true },
     };
-    console.log(userData)
+    console.log(userData);
     return userRef.set(userData, { merge: true });
   }
 

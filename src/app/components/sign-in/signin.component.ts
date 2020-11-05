@@ -29,7 +29,6 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("(this.submitted",this.submitted)
     if (this.registerForm.valid) {
       this.submitted = true;
       // this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
@@ -41,6 +40,8 @@ export class SignInComponent implements OnInit {
   signin(){
     this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
       data =>{
+        console.log('succsessssssssssssssssss', data);
+        
       },
       error => {
         this.errorMessageFromServerrr = error

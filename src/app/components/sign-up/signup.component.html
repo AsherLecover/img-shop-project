@@ -11,10 +11,10 @@
     <input  id="inputs0"  formControlName="firstName" type="text" placeholder="הזן שם משתמש" [ngClass]="{'has-error' :
 
     registerForm.get('firstName').errors &&
-    (registerForm.get('firstName').dirty)}">
+    (registerForm.get('firstName').touched)}">
 
     <span *ngIf="registerForm.get('firstName').errors &&
-    (registerForm.get('firstName').dirty)">
+    (registerForm.get('firstName').touched)">
 
       <span style="color: red;" *ngIf="registerForm.get('firstName').errors.required">
         זהו שדה חובה
@@ -27,10 +27,10 @@
 
     <input id="inputs2" formControlName="email" type="text" placeholder='הזן כתובת דוא"ל' [ngClass]="{'has-error' :
     registerForm.get('email').errors &&
-    (registerForm.get('email').dirty)}">
+    (registerForm.get('email').touched)}">
 
     <span *ngIf="registerForm.get('email').errors &&
-    (registerForm.get('email').dirty)">
+    (registerForm.get('email').touched)">
 
       <span style="color: red;" *ngIf="registerForm.get('email').errors.required">
         זהו שדה חובה
@@ -44,7 +44,7 @@
       registerForm.get('password').errors &&
       (registerForm.get('password').dirty)}">
 
-    <span *ngIf="registerForm.get('password').errors && (registerForm.get('password').dirty)">
+    <span *ngIf="registerForm.get('password').errors && (registerForm.get('password').touched)">
 
       <span style="color: red;" *ngIf="registerForm.get('password').errors.required">
         זהו שדה חובה
@@ -52,14 +52,14 @@
       <span style="color: red;" *ngIf="registerForm.get('password').errors.minlength">
         סיסמה חייבת להיות בעלת 6 תווים
       </span>
+      <br>
       <span style="color: red;" *ngIf="registerForm.get('password').errors.pattern">
-        סיסמה חייבת להיות לפחות בעלת אות גדולה אות קטנה מספר ותו מיוחד 
+        סיסמה חייבת להיות לפחות בעלת אות גדולה אות קטנה ומספר.   
       </span>
     </span>
     <span style="color: red;" *ngIf="errorFromServiceEmailExixt.length > 0">
       {{errorFromServiceEmailExixt}}
       <br>
-      אנא הרשם עם מייל אחר
     </span>
 
 

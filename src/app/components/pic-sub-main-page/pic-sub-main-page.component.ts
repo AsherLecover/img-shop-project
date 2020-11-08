@@ -13,7 +13,7 @@ import { ImgSubjectDataService } from '../../servises/img-subject-data.service';
 export class PicSubMainPageComponent implements OnInit {
   imgIdListSubject: number;
   isActive: boolean = false;
-  cardImgList = []
+  cardImgList:any = []
   
 
   constructor(private router: Router,
@@ -23,12 +23,15 @@ export class PicSubMainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.svc.imgSubList = this.cardImgList;
-    this.cardImgList = this.imgSubSVC.imgSubjecData.cardImgList;
-    console.log('id from subject ' + this.route.snapshot.paramMap.get('id'))
-
+    // this.cardImgList = this.imgSubSVC.imgSubjecData.cardImgList;
+    // this.cardImgList = this.imgSubSVC.getAllSubjectsImg()
+    console.log('id from subject ' + this.route.snapshot.paramMap.get('id'));
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.imgIdListSubject = id;
-
+    
+    this.imgSubSVC.getAllSubjectsImg().subscribe( data => {
+      this.cardImgList = data
+    })
   }
   onImgSubjectSelect(imgTitleListSubject){
     this.router.navigate(['/pic-main-list-subjects'  ,imgTitleListSubject])

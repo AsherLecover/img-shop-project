@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase';
 import { map, switchMap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 export interface User {
@@ -61,7 +61,10 @@ export class ClinetsService {
 
   signin(email: string, password: string) {
     
-    return this.http.post<any>(`${environment.apiUrl}/auth/signin`, { email, password }).pipe( 
+    return this.http.post<any>(`${environment.apiUrl}/auth/signin`,
+    
+    
+    { headers: new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('accessToken')}), email, password }).pipe( 
       map ( (token) => {
         console.log('token', token);
         localStorage.setItem('accessToken', token);

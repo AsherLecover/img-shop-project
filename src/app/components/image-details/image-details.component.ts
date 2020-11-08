@@ -6,7 +6,6 @@ import { MatExpansionPanel } from '@angular/material/expansion';
 import { BuyingProcessService } from '../../servises/buying-process.service';
 import { ImgDataService } from '../../servises/img-data.service';
 import { log } from 'util';
-import { ImgSubjectDataService } from '../../servises/img-subject-data.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -78,7 +77,6 @@ export class ImageDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     public buyingSvc: BuyingProcessService,
     public dataSVC: ImgDataService,
-    private imgSubDataSVC: ImgSubjectDataService,
     private router: Router,
     private sanitizer: DomSanitizer
   ) {

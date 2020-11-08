@@ -21,7 +21,8 @@ export class SignupComponent implements OnInit {
   ctrl: FormControl;
   userName: string;
   public _authService: ClinetsService;
-  errorMessageFromServer:string[]
+  errorMessageFromServer:string[] = [];
+  errorFromServiceEmailExixt: string = ''
 
 
 
@@ -49,8 +50,10 @@ export class SignupComponent implements OnInit {
       this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
       this.userName = this.registerForm.value
       console.log('register datails: ', this.registerForm.value);
-      this.signup()
-      
+      this.signup();
+     
+  
+   
     }
   }
 
@@ -60,11 +63,16 @@ export class SignupComponent implements OnInit {
       this.registerForm.value.email,
       this.registerForm.value.password).subscribe(
         data =>{
+          this.dialog.closeAll()
+
         },
         error => {
-          this.errorMessageFromServer = error.error.message
+          console.log('eeee:', error.error);
+          
+          this.errorFromServiceEmailExixt = error.error.message;
+     
 
-          console.log('error from servic: ', this.errorMessageFromServer);
+          console.log('error from servic: ', this.errorFromServiceEmailExixt);
           
           
       });

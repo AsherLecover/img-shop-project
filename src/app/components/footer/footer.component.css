@@ -24,11 +24,11 @@
 li{
     cursor: pointer;
 }
-/* 
-@media screen and (max-height: 700px) {
+
+@media screen and (max-width: 500px) {
     .footer{
         position:relative;
-        color: #fff;
+        color: red;
         bottom: 0;
         width: 100%;
         flex-shrink: 0;
@@ -36,6 +36,6 @@ li{
         background-color: #232d54;
         direction: rtl;
     }
-} */
+}
 
 

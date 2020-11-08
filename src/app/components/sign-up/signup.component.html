@@ -56,9 +56,16 @@
         סיסמה חייבת להיות לפחות בעלת אות גדולה אות קטנה מספר ותו מיוחד 
       </span>
     </span>
+    <span style="color: red;" *ngIf="errorFromServiceEmailExixt.length > 0">
+      {{errorFromServiceEmailExixt}}
+      <br>
+      אנא הרשם עם מייל אחר
+    </span>
+
 
     <br>
-    <button mat-button mat-dialog-close type="submit" [disabled]="!registerForm.valid"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
+    <button  mat-button type="submit"  [disabled]="!registerForm.valid " 
+      style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
       color="primary">הרשמה</button>
 
   </form>

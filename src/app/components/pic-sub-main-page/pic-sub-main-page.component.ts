@@ -33,12 +33,10 @@ export class PicSubMainPageComponent implements OnInit {
       this.cardImgList = data
     })
   }
-  onImgSubjectSelect(imgTitleListSubject){
-    this.router.navigate(['/pic-main-list-subjects'  ,imgTitleListSubject])
-  
+
+  onImgSubjectSelect(imgIdSubject){
+    console.log('id og img sub user selected: ',imgIdSubject);
     
-
+    this.router.navigate(['/pic-main-list-subjects'  ,imgIdSubject])
   }
-
-  
 }

@@ -1,4 +1,6 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,14 @@ export class ImgSubListService {
   imgPrice: string;
   photographer: string;
   imgLongDes: string;
+   params = new HttpParams()
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getImgById(id){
+      return this.http.get<any>(`${environment.apiUrl}/pic-main-list-subjects`)
+    }
+  
+
+  
 }

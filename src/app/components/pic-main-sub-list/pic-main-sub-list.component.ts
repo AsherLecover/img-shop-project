@@ -38,10 +38,17 @@ export class PicMainSubListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.imgIdListSubject = id;
     this.imgSubDataSVC.imgSubIddddd = id;
+    console.log('img shjkhkjhkjuuub id', this.imgSubDataSVC.imgSubIddddd);
+
+    //---------------server side--------------
+    this.svc.getImgById(this.imgSubDataSVC.imgSubIddddd).subscribe( data => {
+      console.log('data from server:', data);
+      
+    })
+    
     
   
     

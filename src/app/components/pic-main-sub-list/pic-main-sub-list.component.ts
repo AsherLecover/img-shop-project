@@ -19,6 +19,7 @@ export class PicMainSubListComponent implements OnInit {
   public imgListSubject: string =  ""
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  imgDataFromServre: [] = []
 
   imgListBySubjects = []
 
@@ -42,11 +43,11 @@ export class PicMainSubListComponent implements OnInit {
     this.imgIdListSubject = id;
     this.imgSubDataSVC.imgSubIddddd = id;
     this.svc.imgSubIdSelected = id;
-    console.log('img shjkhkjhkjuuub id', this.imgSubDataSVC.imgSubIddddd);
 
     //---------------server side--------------
     this.svc.getImgById().subscribe( data => {
       console.log('data from server:', data);
+      this.imgDataFromServre = data;
       
     })
     

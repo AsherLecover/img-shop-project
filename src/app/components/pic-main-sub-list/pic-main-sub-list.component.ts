@@ -41,10 +41,11 @@ export class PicMainSubListComponent implements OnInit {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.imgIdListSubject = id;
     this.imgSubDataSVC.imgSubIddddd = id;
+    this.svc.imgSubIdSelected = id;
     console.log('img shjkhkjhkjuuub id', this.imgSubDataSVC.imgSubIddddd);
 
     //---------------server side--------------
-    this.svc.getImgById(this.imgSubDataSVC.imgSubIddddd).subscribe( data => {
+    this.svc.getImgById().subscribe( data => {
       console.log('data from server:', data);
       
     })

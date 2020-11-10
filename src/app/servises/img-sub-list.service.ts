@@ -15,11 +15,12 @@ export class ImgSubListService {
   photographer: string;
   imgLongDes: string;
    params = new HttpParams()
+   imgSubIdSelected: number;
 
   constructor(private http: HttpClient) { }
 
-  getImgById(id){
-      return this.http.get<any>(`${environment.apiUrl}/pic-main-list-subjects`)
+  getImgById(){
+      return this.http.get<any>(`${environment.apiUrl}/pic-main-list-subjects/${this.imgSubIdSelected}`)
     }
   
 

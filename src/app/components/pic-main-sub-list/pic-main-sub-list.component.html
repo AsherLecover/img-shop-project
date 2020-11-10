@@ -1,27 +1,28 @@
 <div *ngFor="let imgSubList of imgListBySubjects">
-     <h1  *ngIf="imgIdListSubject == imgSubList.subId" style="text-align: center">{{imgSubList.imagesSubject}} </h1>
+        <h1 *ngIf="imgIdListSubject == imgSubList.subId" style="text-align: center">{{imgSubList.imagesSubject}} </h1>
 </div>
-<div  style=" text-align: center ; margin-left: 10% ; margin-right: 10%;"*ngFor="let ImgSubList of imgListBySubjects">
-        <div  style=" display: inline-block" *ngFor="let i of ImgSubList.listOfImgUrlBysub">
-                <div  *ngIf="imgIdListSubject == ImgSubList.subId">
+<div style=" text-align: center ; margin-left: 10% ; margin-right: 10%;" *ngFor="let ImgSubList of imgListBySubjects">
+        <div style=" display: inline-block" *ngFor="let i of ImgSubList.listOfImgUrlBysub">
+                <div *ngIf="imgIdListSubject == ImgSubList.subId">
 
-                    <div style="cursor: pointer;" (click)="onImgSelected(i)" style="margin-right: 5px; margin-left: 5px;" >
-                            <img  [class.mat-elevation-z20]="true"   src={{i.imgUrl}} alt="PicPicture">        
-                  </div>
-                  <div  style="display: flex;">
-                      <mat-icon mat-stroked-button (click)="omImgSelectedToBuy(i);  openSnackBar('המוצר התווסף לסל', action)" style="cursor: pointer;"
-                       mat-raised-button  matTooltip="הוסף לסל">shopping_cart</mat-icon>
-                      <p style="margin-left: 22%;"> {{i.imgDes}}</p>
-                 </div>
-
-                 
-                 <hr style="width: 50%;">
-                 <p>מחיר: {{i.price | currency:'ILS'}}</p>
-
+                        <div style="cursor: pointer;" (click)="onImgSelected(i)"
+                                style="margin-right: 5px; margin-left: 5px;">
+                                <img [class.mat-elevation-z20]="true" src={{i.imgUrl}} alt="PicPicture">
+                        </div>
+                        <div style="display: flex;">
+                                <mat-icon mat-stroked-button
+                                        (click)="omImgSelectedToBuy(i);  openSnackBar('המוצר התווסף לסל', action)"
+                                        style="cursor: pointer;" mat-raised-button matTooltip="הוסף לסל">shopping_cart
+                                </mat-icon>
+                                <p style="margin-left: 22%;"> {{i.imgDes}}</p>
+                        </div>
 
 
-            </div>
-    </div>
-</div> 
-        
-        
+                        <hr style="width: 50%;">
+                        <p>מחיר: {{i.price | currency:'ILS'}}</p>
+
+
+
+                </div>
+        </div>
+</div>

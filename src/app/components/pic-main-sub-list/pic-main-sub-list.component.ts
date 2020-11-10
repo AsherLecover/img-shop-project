@@ -48,6 +48,7 @@ export class PicMainSubListComponent implements OnInit {
     this.svc.getImgById().subscribe( data => {
       console.log('data from server:', data);
       this.imgDataFromServre = data;
+      this.imgListSubject = data[0].imagesSubject
       
     })
     

@@ -60,14 +60,15 @@ export class ClinetsService {
   }
 
   signin(email: string, password: string) {
-    
+    let headers = new HttpHeaders()
+    headers = headers.set('Authorization','Bearer '+localStorage.getItem('accessToken') )
+    // {'Authorization': 'Bearer '+localStorage.getItem('accessToken')}
     return this.http.post<any>(`${environment.apiUrl}/auth/signin`,
-    
-    
-    { headers: new HttpHeaders({'Authorization': 'Bearer '+localStorage.getItem('accessToken')}), email, password }).pipe( 
+
+    { headers , email, password }).pipe( 
       map ( (token) => {
-        console.log('token', token);
-        localStorage.setItem('accessToken', token);
+        console.log('token yuri!!!', token);
+        localStorage.setItem('accessToken', token.accessToken);
         return token
       } )
     )

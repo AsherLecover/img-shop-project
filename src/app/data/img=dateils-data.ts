@@ -3,7 +3,7 @@ export class ImgData {
   imgListBySubjects = [
 
     {
-      imagesSubject: "תמונות רבנים",
+      imagesSubject: "תמונות רבנים", 
       subId: 1,
       listOfImgUrlBysub:
         [
@@ -36,7 +36,7 @@ export class ImgData {
         ]
     },
     {
-      imagesSubject: "תמונות טבע",
+      imagesSubject: "תמונות טבע", 
       subId: 3,
       listOfImgUrlBysub:
         [
@@ -62,7 +62,7 @@ export class ImgData {
         ]
     },
     {
-      imagesSubject: "תמונות של ים",
+      imagesSubject: "תמונות של ים", 
       subId: 4,
       listOfImgUrlBysub: [
 
@@ -78,7 +78,7 @@ export class ImgData {
       ]
     },
     {
-      imagesSubject: "תמונות אורבני",
+      imagesSubject: "תמונות אורבני", 
       subId: 5,
       listOfImgUrlBysub:
         [
@@ -100,7 +100,7 @@ export class ImgData {
     },
 
     {
-      imagesSubject: "תמונות שחור לבן",
+      imagesSubject: "תמונות שחור לבן", 
       subId: 6,
       listOfImgUrlBysub:
         [
@@ -143,7 +143,7 @@ export class ImgData {
         ]
     },
     {
-      imagesSubject: "תמונות נוף",
+      imagesSubject: "תמונות נוף", 
       subId: 20,
       listOfImgUrlBysub:
         [

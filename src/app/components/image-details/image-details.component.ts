@@ -5,8 +5,9 @@ import { MatRadioChange } from '@angular/material/radio';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { BuyingProcessService } from '../../servises/buying-process.service';
 import { ImgDataService } from '../../servises/img-data.service';
-import { log } from 'util';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-image-details',
@@ -30,7 +31,7 @@ export class ImageDetailsComponent implements OnInit {
   imgPriceToBedisplay: number;
   imgNumOfItemsToBeDisplayInBag: number = 1;
   imgDesOfItemsToBeDisplayInBag: string;
-  newList;
+  newList:[{}];
   imgSubId: number;
 
   imgUrlToBedisplay1: string;
@@ -41,7 +42,6 @@ export class ImageDetailsComponent implements OnInit {
   sub1: string;
   numOfItem1: number;
   originalPrice1: number;
-
   link: string;
   stst = `whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com`;
   href = 'http://localhost:4200/img-details/0/0';
@@ -49,9 +49,9 @@ export class ImageDetailsComponent implements OnInit {
   flag = true;
   message: string = 'המוצר התווסף לסל בהצלחה!';
   fff = false;
-
   printType: string = '';
   printSize: string = '';
+
 
   options = [
     { name: '50X33' },
@@ -73,6 +73,7 @@ export class ImageDetailsComponent implements OnInit {
   ];
 
   imgDataFromServer
+  userEmail: string;
 
   constructor(
     public svc: ImgSubListService,
@@ -88,13 +89,15 @@ export class ImageDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userEmail = this.getDecodedAccessToken(localStorage.getItem('accessToken')).email;
+
+
     
 
 
     this.imgSubId = parseInt(this.route.snapshot.paramMap.get('subId'));
     this.imgId = parseInt(this.route.snapshot.paramMap.get('id'));
-    console.log('iimmgg  id: ', this.imgId);
-    console.log(' subbbb iimmgg  id: ', this.imgSubId);
+  
     
 
     //---------------------------------
@@ -103,35 +106,54 @@ export class ImageDetailsComponent implements OnInit {
 
     this.dataSVC.getImg().subscribe( data => {
       this.imgDataFromServer = data;
-      console.log('ddddaaaaaaaaaaabibi data: ', data);
+      console.log(data);
+      
       
     })
 
-    
-
-
     //---------------------------------
-    this.newList = this.dataSVC.imgDataList.imgListBySubjects;
-    console.log('newList: ', this.newList);
-    
+    // this.newList = this.dataSVC.imgDataList.imgListBySubjects;
 
-    for (let item of this.newList) {
-      if (this.imgSubId == item.subId) {
-        this.sub1 = item.imagesSubject;
+    // for (let item of this.newList) {
+    //   if (this.imgSubId == item.subId) {
+    //     this.sub1 = item.imagesSubject;
 
-        for (let img of item.listOfImgUrlBysub) {
-          if (this.imgId == img.imgId) {
-            this.imgUrlToBedisplay1 = img.imgUrl;
-            // this.desToBeDisplay1 = img.imgDes;
-            // this.imgPrice1 = img.price;
-            // this.photographer1 = img.photographer;
-            // this.imgLongDes1 = img.imgLongDes;
-            this.originalPrice1 = img.price;
-          }
-        }
-      }
+    //     for (let img of item.listOfImgUrlBysub) {
+    //       if (this.imgId == img.imgId) {
+    //         this.imgUrlToBedisplay1 = img.imgUrl;
+    //         this.desToBeDisplay1 = img.imgDes;
+    //         this.imgPrice1 = img.price;
+    //         this.photographer1 = img.photographer;
+    //         this.imgLongDes1 = img.imgLongDes;
+    //         this.originalPrice1 = img.price;
+    //       }
+    //     }
+    //   }
+    // }
+  }
+
+  addImgToLoacalList(){
+    if(this.userEmail != null){
+      this.newList.push({
+        userEmail: this.userEmail,
+        imgId: this.imgId,
+        numOfItems: 1,
+        printSize: this.printSize,
+        printType: this.printType,
+  
+      })
     }
   }
+
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
+  }
+
 
   onChange(radio: MatRadioChange) {
     if (radio.value == 'canvas') {
@@ -157,8 +179,7 @@ export class ImageDetailsComponent implements OnInit {
     }
   }
   addItemToBag() {
-    console.log('imgId from img details: ', this.imgId);
-    console.log('imgId from img details: ');
+  
 
     this.buyingSvc.printSize = this.printSize;
     this.buyingSvc.itemAmount += 1;
@@ -180,6 +201,7 @@ export class ImageDetailsComponent implements OnInit {
         printSize: this.printSize,
         totalPrice: 0
       },
+
     ]);
     this.flag = false;
     this.fff = true;

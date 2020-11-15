@@ -72,6 +72,8 @@ export class ImageDetailsComponent implements OnInit {
     { name: '200X133' },
   ];
 
+  imgDataFromServer
+
   constructor(
     public svc: ImgSubListService,
     private route: ActivatedRoute,
@@ -86,9 +88,32 @@ export class ImageDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+
+
     this.imgSubId = parseInt(this.route.snapshot.paramMap.get('subId'));
     this.imgId = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log('iimmgg  id: ', this.imgId);
+    console.log(' subbbb iimmgg  id: ', this.imgSubId);
+    
+
+    //---------------------------------
+    this.dataSVC.subId = this.imgSubId;
+    this.dataSVC.imgId = this.imgId;
+
+    this.dataSVC.getImg().subscribe( data => {
+      this.imgDataFromServer = data;
+      console.log('ddddaaaaaaaaaaabibi data: ', data);
+      
+    })
+
+    
+
+
+    //---------------------------------
     this.newList = this.dataSVC.imgDataList.imgListBySubjects;
+    console.log('newList: ', this.newList);
+    
 
     for (let item of this.newList) {
       if (this.imgSubId == item.subId) {
@@ -132,14 +157,15 @@ export class ImageDetailsComponent implements OnInit {
     }
   }
   addItemToBag() {
-    this.buyingSvc.printSize = this.printSize;
+    console.log('imgId from img details: ', this.imgId);
+    console.log('imgId from img details: ');
 
+    this.buyingSvc.printSize = this.printSize;
     this.buyingSvc.itemAmount += 1;
     let imgId = this.imgId;
     let url = this.imgUrlToBedisplay1;
     let price = this.imgPrice1;
     let originalPrice = this.originalPrice1;
-
     let numOfItems = (this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag);
     let des = (this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay1);
     this.buyingSvc.listOfItemToBeDisplay.push([
@@ -155,9 +181,6 @@ export class ImageDetailsComponent implements OnInit {
         totalPrice: 0
       },
     ]);
-    console.log('bugArr:', this.buyingSvc.listOfItemToBeDisplay);
-    console.log('BugArr.length:', this.buyingSvc.listOfItemToBeDisplay.length);
-
     this.flag = false;
     this.fff = true;
   }

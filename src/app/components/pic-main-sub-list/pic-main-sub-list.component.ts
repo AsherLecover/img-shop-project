@@ -46,18 +46,19 @@ export class PicMainSubListComponent implements OnInit {
 
     //---------------server side--------------
     this.svc.getImgById().subscribe( data => {
-      console.log('data from server:', data);
+      // console.log('data from server:', data);
       this.imgDataFromServre = data;
       this.imgListSubject = data[0].imagesSubject
       
     })
-    
-    
   
-    
+    // console.log('DATA FROM SERVER',this.imgDataFromServre);
+
   }
 
   onImgSelected(img) {
+    console.log('img selecteddddd:', img);
+    
     this.router.navigate(['/img-details',this.imgIdListSubject,  img.imgId])
     this.svc.imgurlSelected = img.imgUrl;
     this.svc.imgDescription = img.imgDes;

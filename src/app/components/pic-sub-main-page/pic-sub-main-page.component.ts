@@ -19,7 +19,8 @@ export class PicSubMainPageComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     public svc: ImgSubListService,
-    private imgSubSVC: ImgSubjectDataService) { }
+    private imgSubSVC: ImgSubjectDataService
+    ) { }
 
   ngOnInit(): void {
     this.svc.imgSubList = this.cardImgList;
@@ -30,7 +31,10 @@ export class PicSubMainPageComponent implements OnInit {
     this.imgIdListSubject = id;
     
     this.imgSubSVC.getAllSubjectsImg().subscribe( data => {
-      this.cardImgList = data
+      this.cardImgList = data;
+      this.imgSubSVC.lliisstt = data
+      console.log('ALL IMG: ', data);
+      
     })
   }
 

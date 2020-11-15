@@ -9,6 +9,7 @@ import { ImgSubjectData } from '../data/img-subject-data';
 export class ImgSubjectDataService {
   imgSubjecData = new ImgSubjectData()
   imgSubIddddd: number;
+  lliisstt:any = []
 
   constructor(private http: HttpClient) {
    }

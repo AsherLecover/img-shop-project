@@ -45,14 +45,10 @@ export class SignInComponent implements OnInit {
         console.log('succsessssssssssssssssss', data);
         let ddd = this.getDecodedAccessToken(data.accessToken)
         console.log(ddd);
-        
-        
       },
       error => {
         this.errorMessageFromServerrr = error
-
         console.log('error from server: ', this.errorMessageFromServerrr);
-        
     });
   }
 

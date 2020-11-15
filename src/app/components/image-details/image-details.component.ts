@@ -31,7 +31,7 @@ export class ImageDetailsComponent implements OnInit {
   imgPriceToBedisplay: number;
   imgNumOfItemsToBeDisplayInBag: number = 1;
   imgDesOfItemsToBeDisplayInBag: string;
-  newList:[{}];
+  newList = []
   imgSubId: number;
 
   imgUrlToBedisplay1: string;
@@ -81,7 +81,8 @@ export class ImageDetailsComponent implements OnInit {
     public buyingSvc: BuyingProcessService,
     public dataSVC: ImgDataService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+  
   ) {
     this.link = this.router.url;
     let url = `whatsapp://send?text= PicPicture רציתי לשתף אותך בתמונה יפה מהאתר http://localhost:4200/${this.link}`;
@@ -89,30 +90,26 @@ export class ImageDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userEmail = this.getDecodedAccessToken(localStorage.getItem('accessToken')).email;
-
-
-    
-
+    if( this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null){
+      this.userEmail = this.getDecodedAccessToken(localStorage.getItem('accessToken')).email;
+    }
 
     this.imgSubId = parseInt(this.route.snapshot.paramMap.get('subId'));
     this.imgId = parseInt(this.route.snapshot.paramMap.get('id'));
-  
-    
 
     //---------------------------------
     this.dataSVC.subId = this.imgSubId;
     this.dataSVC.imgId = this.imgId;
 
-    this.dataSVC.getImg().subscribe( data => {
+    this.dataSVC.getImg().subscribe(data => {
       this.imgDataFromServer = data;
       console.log(data);
-      
-      
+
+
     })
 
     //---------------------------------
-    // this.newList = this.dataSVC.imgDataList.imgListBySubjects;
+    this.newList = this.dataSVC.imgDataList.imgListBySubjects;
 
     // for (let item of this.newList) {
     //   if (this.imgSubId == item.subId) {
@@ -132,46 +129,61 @@ export class ImageDetailsComponent implements OnInit {
     // }
   }
 
-  addImgToLoacalList(){
-    if(this.userEmail != null){
-      this.newList.push({
-        userEmail: this.userEmail,
-        imgId: this.imgId,
-        numOfItems: 1,
-        printSize: this.printSize,
-        printType: this.printType,
-  
-      })
+  addImgToLoacalList() {
+    if (this.userEmail != null) {
+      this.dataSVC.imgListToBePushToServer.push(
+        {
+          userEmail: this.userEmail,
+          imgId: this.imgId,
+          numOfItems: 1,
+          printSize: this.printSize,
+          printType: this.printType,
+        }
+      )
+    }
+    this.newList = this.dataSVC.imgListToBePushToServer
+    console.log('list to be push to server: ', this.newList);
+    this.dataSVC.addImgListToServer(this.newList).subscribe( data => {
+      console.log(data);
+    })
+
+
+  }
+
+
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    }
+    catch (Error) {
+      return null;
     }
   }
 
-  getDecodedAccessToken(token: string): any {
-    try{
-        return jwt_decode(token);
-    }
-    catch(Error){
-        return null;
-    }
-  }
+  // <!-- CANVAS ='CANVAS',
+  // ACRYLIC_GLASS = 'ACRYLIC_GLASS',
+  // ALUMINUM = 'ALUMINUM',
+  // SWLF = 'SELF' -->
 
 
   onChange(radio: MatRadioChange) {
-    if (radio.value == 'canvas') {
-      this.printType = 'קנבס';
+    if (radio.value == 'CANVAS') {
+      this.printType = 'CANVAS';
       this.buyingSvc.printType = this.printType;
       this.expOnRadio = 'בד הקנבס העוטף את מסגרת התמונה צבוע בלבן';
-    } else if (radio.value == 'glass') {
-      this.printType = 'זכוכית אקרילית';
+    } else if (radio.value == 'ACRYLIC_GLASS') {
+      this.printType = 'ACRYLIC_GLASS';
       this.buyingSvc.printType = this.printType;
       this.expOnRadio =
         'לא הדבקה! תהליך כימי (דיאסק) באיכות גבוהה מאוד על גבי זכוכית אקרילית איכותית מבריקה או מאט על פי בחירתכם.';
-    } else if (radio.value == 'alominiom') {
-      this.printType = 'אלומניום';
+    } else if (radio.value == 'ALUMINUM') {
+      this.printType = 'ALUMINUM';
       this.buyingSvc.printType = this.printType;
       this.expOnRadio =
         'הטמעה/הדבקה על אלומיניום באיכות גבוהה ובאמידות גבוהה מאוד.';
-    } else if (radio.value == 'self') {
-      this.printType = 'הדפסה עצמית';
+    } else if (radio.value == 'SELF') {
+      this.printType = 'SELF';
       this.buyingSvc.printType = this.printType;
       this.expOnRadio =
         "אנו נשלח את קובץ המקור לבית הדפוס שאתם בחרתם וכך תוכלו להדפיס בכל גודל, על גבי כל משטח כרצונכם (אלומינים מוברש, זכוכית, עץ, פרספקס ועוד').";
@@ -179,7 +191,7 @@ export class ImageDetailsComponent implements OnInit {
     }
   }
   addItemToBag() {
-  
+    this.addImgToLoacalList()
 
     this.buyingSvc.printSize = this.printSize;
     this.buyingSvc.itemAmount += 1;

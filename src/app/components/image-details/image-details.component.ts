@@ -122,10 +122,10 @@ export class ImageDetailsComponent implements OnInit {
         for (let img of item.listOfImgUrlBysub) {
           if (this.imgId == img.imgId) {
             this.imgUrlToBedisplay1 = img.imgUrl;
-            this.desToBeDisplay1 = img.imgDes;
-            this.imgPrice1 = img.price;
-            this.photographer1 = img.photographer;
-            this.imgLongDes1 = img.imgLongDes;
+            // this.desToBeDisplay1 = img.imgDes;
+            // this.imgPrice1 = img.price;
+            // this.photographer1 = img.photographer;
+            // this.imgLongDes1 = img.imgLongDes;
             this.originalPrice1 = img.price;
           }
         }

@@ -1,76 +1,91 @@
 <div style="width: 100%; display: flex">
-    <div  style="width: 40%;">
-        <div style="width: 35%; margin-left: 60%;  margin-top: 5%; direction: rtl">
-            <h1>{{imgDataFromServer.imgDes}} desToBeDisplay1 </h1>
-        <h3> <strong>מחיר:</strong> {{imgPrice1 | currency:'ILS'}}</h3>
-         <span><strong>צלם: </strong> {{photographer1}}</span>
-        <p>{{imgLongDes1}}</p>
-        <img class="hand-img" src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/hand/hand4.jpg" alt="">
-        <br>
-        <p>לחץ כאן</p>
-        <hr>
-        <br>
-        <p>אנא בחרו בסוג ההדפסה: </p>
-        <mat-radio-group  >
-            <div style="display: flex">
-                
-                <mat-radio-button (change)="onChange($event)" class="example-margin" value="canvas"> <span class="white-space">{{s}}</span> קנבס </mat-radio-button><br><br>
-                <span mat-raised-button  matTooltipPosition="left"  matTooltip=" התמונות מודפסות על גבי קנבס אמנים איכותי, נמתחות על גבי מסגרת עץ בעיטוף לבן או גלריה על פי בחירתכם. " 
-                class="material-icons"> help</span>
-            </div>
-            <div style="display: flex">
-                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="glass"><span class="white-space">{{s}}</span> זכוכית אקרילית (פרספקס) </mat-radio-button><br><br>
-                    <span mat-raised-button  matTooltipPosition="left"  matTooltip=" לא הדבקה! תהליך כימי (Diasec) באיכות גבוהה מאוד על גבי זכוכית אקרילית איכותית מבריקה או מאט על פי בחירתכם."  class="material-icons"> help</span>
-            </div>
-            <div style="display: flex">
-                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="alominiom" ><span class="white-space">{{s}}</span> אלומיניום </mat-radio-button><br><br>
-                    <span mat-raised-button  matTooltipPosition="left"  matTooltip=" הטמעת התמונה על גבי לוח אלומיניום באיכות גבוה מאוד. המוצר הינו בעל עמידות גבוה מאוד (ChromaLuxe USA)."  class="material-icons"> help</span>
-            </div>
-            <div style="display: flex">
-                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="self"><span class="white-space">{{s}}</span> עצמית </mat-radio-button><br><br>
-                    <span mat-raised-button  matTooltipPosition="left" matTooltipHideDelay="5000" matTooltip="הוסף לסל"  class="material-icons"> help</span>
-            </div>
-            <label class="tc-cell tm-epo-element-label tcwidth-100">גודל הדפסה בס"מ</label><br>
-            
-            <select [(ngModel)]="printSize">
-                <option *ngFor="let o of options">
-                   {{o.name}}
-                </option>
-             </select>
-           
-      
+    <div style="width: 40%;">
+        <div *ngIf="imgDataFromServer != undefined"
+            style="width: 35%; margin-left: 60%;  margin-top: 5%; direction: rtl">
+            <h1>{{imgDataFromServer.imgDes}} </h1>
+            <h3> <strong>מחיר:</strong> {{imgDataFromServer.price | currency:'ILS'}}</h3>
+            <span><strong>צלם: </strong> {{imgDataFromServer.photographer}}</span>
+            <p>{{imgDataFromServer.imgLongDes}}</p>
+            <img class="hand-img"
+                src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/hand/hand4.jpg" alt="">
+            <br>
+            <p>לחץ כאן</p>
+            <hr>
+            <br>
+            <p>אנא בחרו בסוג ההדפסה: </p>
+            <mat-radio-group>
+                <div style="display: flex">
 
-        <p>{{expOnRadio}}</p>
-        <div *ngIf="self == true"> 
-            <b>חשוב!</b>
-            <ul>
-                <li>קובץ המקור ישלח לבית הדפוס רק לאחר שהנ"ל חתם על הסכם שישלח אליו מאתנו. התשלום בפועל יגבה מכם רק לאחר חתימת בית הדפוס</li>
-                <li>לכל תמונה קיימת מגבלה לגודל ההדפסה המקסימאלי. בעת התשלום הטלפוני נעדכן אתכם בגודל המקסימאלי להדפסה. במידה והגודל אינו מתאים לכם לא תחוייבו במאומה והעסקה תבוטל.</li>
-            </ul>
-        </div>
-        <hr>
-        <h3 style="color: #77a464;"> <strong> סח"ה:</strong> {{imgPrice1 | currency:'ILS'}}</h3>
-        <span style="margin-left: 20%;">לא כולל משלוח</span>
-        <button  class="closeBtnOrbuy"[disabled]="!flag" (click)="addItemToBag()">הוספה לסל</button>
-        <br><br>
-              </mat-radio-group>
-              <div>
+                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="canvas"> <span
+                            class="white-space">{{s}}</span> קנבס </mat-radio-button><br><br>
+                    <span mat-raised-button matTooltipPosition="left"
+                        matTooltip=" התמונות מודפסות על גבי קנבס אמנים איכותי, נמתחות על גבי מסגרת עץ בעיטוף לבן או גלריה על פי בחירתכם. "
+                        class="material-icons"> help</span>
+                </div>
+                <div style="display: flex">
+                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="glass"><span
+                            class="white-space">{{s}}</span> זכוכית אקרילית (פרספקס) </mat-radio-button><br><br>
+                    <span mat-raised-button matTooltipPosition="left"
+                        matTooltip=" לא הדבקה! תהליך כימי (Diasec) באיכות גבוהה מאוד על גבי זכוכית אקרילית איכותית מבריקה או מאט על פי בחירתכם."
+                        class="material-icons"> help</span>
+                </div>
+                <div style="display: flex">
+                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="alominiom"><span
+                            class="white-space">{{s}}</span> אלומיניום </mat-radio-button><br><br>
+                    <span mat-raised-button matTooltipPosition="left"
+                        matTooltip=" הטמעת התמונה על גבי לוח אלומיניום באיכות גבוה מאוד. המוצר הינו בעל עמידות גבוה מאוד (ChromaLuxe USA)."
+                        class="material-icons"> help</span>
+                </div>
+                <div style="display: flex">
+                    <mat-radio-button (change)="onChange($event)" class="example-margin" value="self"><span
+                            class="white-space">{{s}}</span> עצמית </mat-radio-button><br><br>
+                    <span mat-raised-button matTooltipPosition="left" matTooltipHideDelay="5000" matTooltip="הוסף לסל"
+                        class="material-icons"> help</span>
+                </div>
+                <label class="tc-cell tm-epo-element-label tcwidth-100">גודל הדפסה בס"מ</label><br>
+
+                <select [(ngModel)]="printSize">
+                    <option *ngFor="let o of options">
+                        {{o.name}}
+                    </option>
+                </select>
+
+
+
+                <p>{{expOnRadio}}</p>
+                <div *ngIf="self == true">
+                    <b>חשוב!</b>
+                    <ul>
+                        <li>קובץ המקור ישלח לבית הדפוס רק לאחר שהנ"ל חתם על הסכם שישלח אליו מאתנו. התשלום בפועל יגבה מכם
+                            רק לאחר חתימת בית הדפוס</li>
+                        <li>לכל תמונה קיימת מגבלה לגודל ההדפסה המקסימאלי. בעת התשלום הטלפוני נעדכן אתכם בגודל המקסימאלי
+                            להדפסה. במידה והגודל אינו מתאים לכם לא תחוייבו במאומה והעסקה תבוטל.</li>
+                    </ul>
+                </div>
+                <hr>
+                <h3 style="color: #77a464;"> <strong> סח"ה:</strong> {{imgDataFromServer.price | currency:'ILS'}}</h3>
+                <span style="margin-left: 20%;">לא כולל משלוח</span>
+                <button class="closeBtnOrbuy" [disabled]="!flag" (click)="addItemToBag()">הוספה לסל</button>
+                <br><br>
+            </mat-radio-group>
+            <div>
                 <h3>שתפו את התמונה שגם האחרים יהנו!</h3>
             </div>
-        
-            <div style="margin: 5%; display: flex;"> 
 
-        
-                <div style="margin: 5%;">
-                        <a [href]="iframeSrc" data-action="share/whatsapp/share">
-                            <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675'></i>
-                        </a>
-                        
-                    </div>
+            <div style="margin: 5%; display: flex;">
 
 
                 <div style="margin: 5%;">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://asherlecover.github.io/img-shop-project/" target="_blank">
+                    <a [href]="iframeSrc" data-action="share/whatsapp/share">
+                        <i class='fab fa-whatsapp-square' style='font-size:48px;color:#01e675'></i>
+                    </a>
+
+                </div>
+
+
+                <div style="margin: 5%;">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://asherlecover.github.io/img-shop-project/"
+                        target="_blank">
                         <i class="fa fa-facebook-square" style="font-size:48px;color:#4267B2"></i>
                     </a>
                 </div>
@@ -80,38 +95,36 @@
                 <div style="margin: 5%;">
                     <a href="">
                         <i class="fa fa-pinterest-square" style="font-size:48px;color:#e60023"></i>
-                    </a>  
+                    </a>
                 </div>
 
                 <!-- //------------------------------------------------------------- -->
                 <div *ngIf="fff" class="backdrop" (click)="onClose()">
 
                 </div>
-                
+
                 <div *ngIf="fff" class="alert-box">
-                  <p>{{ message }}</p>
-                  <div class="alert-box-actions">
-                    <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
-                  </div>
+                    <p>{{ message }}</p>
+                    <div class="alert-box-actions">
+                        <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
+                    </div>
                 </div>
                 <!-- //------------------------------------------------------------ -->
 
-              
+
             </div>
-              
-      
+
+
         </div>
-</div>
+    </div>
 
     <div style="width: 60%;">
-            <div class="thumbnail">
-                    <div class="image">
-                            <img class="main-img" src={{imgUrlToBedisplay1}} alt="Some awesome text"/>
-                    </div>
-                </div>
-        
+        <div class="thumbnail">
+            <div *ngIf="imgDataFromServer != undefined" class="image">
+                <img class="main-img" src={{imgDataFromServer.imgUrl}} alt="Some awesome text" />
+            </div>
+        </div>
+
     </div>
 </div>
 <!-- ------------------------------------------------------------- -->
-
-

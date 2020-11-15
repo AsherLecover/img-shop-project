@@ -9,22 +9,22 @@ import { BuyingProcessService } from '../../servises/buying-process.service';
 export class ShoppingBagComponent implements OnInit {
   bagIsEmpty: boolean = true;
   plusOrMinusTheItemToBag: number = 1;
-  listOfItemsInBag 
+  listOfItemsInBag
   likeBtn = false;
   totalPrice: number = 0;
   bagIsNotEmpty: boolean = false;
   totalItemPrice: number
 
-  printType: string; 
+  printType: string;
   printSize: string;
 
 
 
-  constructor(public buyerSvc: BuyingProcessService) {}
+  constructor(public buyerSvc: BuyingProcessService) { }
 
   ngOnInit(): void {
-  
-    
+
+
     this.bagIsEmpty = this.buyerSvc.bagIsEmpty;
     this.listOfItemsInBag = this.buyerSvc.listOfItemToBeDisplay;
     if (this.listOfItemsInBag.length > 0) {
@@ -42,7 +42,7 @@ export class ShoppingBagComponent implements OnInit {
   minusTheItemToBagFn(item) {
     if (item.numOfItems > 1) {
       item.numOfItems -= 1;
-      item.price -= item.originalPrice      
+      item.price -= item.originalPrice
       this.totalPrice -= item.originalPrice;
       this.buyerSvc.listOfItemToBeDisplay[0].totalPrice = this.totalPrice
 
@@ -55,10 +55,8 @@ export class ShoppingBagComponent implements OnInit {
     this.totalPrice += item.originalPrice;
     this.buyerSvc.listOfItemToBeDisplay[0].totalPrice = this.totalPrice
 
-
-  
   }
-   
+
   removeItemFromBag(index, item) {
 
     this.buyerSvc.listOfItemToBeDisplay.splice(index, 1);

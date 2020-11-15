@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
 import { ClinetsService } from 'src/app/servises/clinets.service';
+import jwt_decode from 'jwt-decode';
+
 
 
 @Component({
@@ -41,6 +43,9 @@ export class SignInComponent implements OnInit {
     this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
       data =>{
         console.log('succsessssssssssssssssss', data);
+        let ddd = this.getDecodedAccessToken(data.accessToken)
+        console.log(ddd);
+        
         
       },
       error => {
@@ -49,10 +54,16 @@ export class SignInComponent implements OnInit {
         console.log('error from server: ', this.errorMessageFromServerrr);
         
     });
-
-    
-
-    
   }
+
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
+  }
+
 
 }

@@ -7,7 +7,7 @@ import { BuyingProcessService } from '../../servises/buying-process.service';
 import { ImgDataService } from '../../servises/img-data.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import jwt_decode from 'jwt-decode';
-import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -69,7 +69,7 @@ export class ImageDetailsComponent implements OnInit {
     { name: '180X120' },
     { name: '190X127' },
     { name: '200X133' },
- ];
+  ];
 
   imgDataFromServer;
   userEmail: string;
@@ -94,9 +94,9 @@ export class ImageDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.imgDetailsForm = this.fb.group({
-      printType: ['',[Validators.required]],
-      printSize:  ['',[Validators.required]],
-      });
+      printType: ['', [Validators.required]],
+      printSize: ['', [Validators.required]],
+    });
     if (
       this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null
     ) {
@@ -140,26 +140,26 @@ export class ImageDetailsComponent implements OnInit {
   }
 
   addImgToLoacalList() {
-   // if (this.printSize != '' && this.printType != '') {
-      if (this.userEmail != null) {
-        this.dataSVC.imgListToBePushToServer.push({
-          email: this.userEmail,
-          imgId: this.imgDataFromServer.id,
-          numOfItems: 1,
-          printSize: this.printSize,
-          printType: this.printType,
-        });
-    //  }
+    // if (this.printSize != '' && this.printType != '') {
+    if (this.userEmail != null) {
+      this.dataSVC.imgListToBePushToServer.push({
+        email: this.userEmail,
+        imgId: this.imgDataFromServer.id,
+        numOfItems: 1,
+        printSize: this.printSize,
+        printType: this.printType,
+      });
+      //  }
       this.newList = this.dataSVC.imgListToBePushToServer;
       console.log('list to be push to server: ', this.newList);
       this.dataSVC.addImgListToServer(this.newList).subscribe((data) => {
-        
-        console.log('YOUUUUWWWW!!!!',data);
+
+        console.log('YOUUUUWWWW!!!!', data);
       });
     }
 
     // this.dataSVC.getBag().subscribe( data => {
-      
+
     // })
 
 
@@ -227,21 +227,26 @@ export class ImageDetailsComponent implements OnInit {
     ]);
 
   }
-  
-  onSubmit(){
-    console.log(11111);
-    
-    if(this.imgDetailsForm.valid){
+
+  onSubmit() {
+
+    if (this.imgDetailsForm.valid) {
       this.formIsInValid = false
       this.flag = false;
       this.alertBox = true;
       this.addImgToLoacalList();
       this.addItemToBag()
-  
+      this.getImgByImgIdData()
+
       console.log('on submit: ', this.imgDetailsForm.value);
     }
-    
+  }
 
+  getImgByImgIdData(){
+    this.dataSVC.getImgByImgIdData().subscribe(data => {
+      console.log('img full data by id :', data);
+      
+    })
   }
 
   onClose() {

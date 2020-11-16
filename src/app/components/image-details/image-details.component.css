@@ -43,6 +43,14 @@
     border-color: blue !important;
 }
 
+.has-error{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 1px;
+    border: 1px solid red;
+    border-radius: 3px;
+  }
+
 
 
 /* ------------------------------------------------ */

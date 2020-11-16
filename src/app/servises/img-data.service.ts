@@ -22,15 +22,22 @@ export class ImgDataService {
   }
 
   addImgListToServer(list) {
-    let headers = new HttpHeaders()
-    headers = headers.set(`Authorization`,`Bearer ${localStorage.getItem("accessToken")}` )
+    // let headers = new HttpHeaders()
+    // headers = headers.set(`Authorization`,`Bearer ${localStorage.getItem("accessToken")}` )
+    console.log('ffffffff', localStorage.getItem("accessToken"));
+    
     return this.http.post<any>(`${environment.apiUrl}/shpping-cart`, list, 
-    { headers }).pipe( 
-      map ( (token) => {
-        console.log('token yuri!!!', token);
-        localStorage.setItem('accessToken', token.accessToken);
-        return token
-      } )
+    // { headers }).pipe( 
+    //   map ( (token) => {
+    //     console.log('token yuri!!!', token);
+    //     localStorage.setItem('accessToken', token.accessToken);
+    //     return token
+    //   } )
     )
   }
+
+  // getBag(){
+  //   return this.http.get(`${environment.apiUrl}/shpping-cart`)
+  // }
+    
 }

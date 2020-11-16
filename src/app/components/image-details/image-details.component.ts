@@ -7,6 +7,7 @@ import { BuyingProcessService } from '../../servises/buying-process.service';
 import { ImgDataService } from '../../servises/img-data.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import jwt_decode from 'jwt-decode';
+import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class ImageDetailsComponent implements OnInit {
   imgPriceToBedisplay: number;
   imgNumOfItemsToBeDisplayInBag: number = 1;
   imgDesOfItemsToBeDisplayInBag: string;
-  newList = []
+  newList = [];
   imgSubId: number;
 
   imgUrlToBedisplay1: string;
@@ -48,11 +49,9 @@ export class ImageDetailsComponent implements OnInit {
   iframeSrc: SafeUrl;
   flag = true;
   message: string = 'המוצר התווסף לסל בהצלחה!';
-  fff = false;
+  alertBox = false;
   printType: string = '';
   printSize: string = '';
-
-
   options = [
     { name: '50X33' },
     { name: '60X40' },
@@ -70,10 +69,14 @@ export class ImageDetailsComponent implements OnInit {
     { name: '180X120' },
     { name: '190X127' },
     { name: '200X133' },
-  ];
+ ];
 
-  imgDataFromServer
+  imgDataFromServer;
   userEmail: string;
+  imgDetailsForm: FormGroup;
+  formIsInValid: boolean = true
+
+
 
   constructor(
     public svc: ImgSubListService,
@@ -82,7 +85,7 @@ export class ImageDetailsComponent implements OnInit {
     public dataSVC: ImgDataService,
     private router: Router,
     private sanitizer: DomSanitizer,
-  
+    private fb: FormBuilder,
   ) {
     this.link = this.router.url;
     let url = `whatsapp://send?text= PicPicture רציתי לשתף אותך בתמונה יפה מהאתר http://localhost:4200/${this.link}`;
@@ -90,8 +93,16 @@ export class ImageDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if( this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null){
-      this.userEmail = this.getDecodedAccessToken(localStorage.getItem('accessToken')).email;
+    this.imgDetailsForm = this.fb.group({
+      printType: ['',[Validators.required]],
+      printSize:  ['',[Validators.required]],
+      });
+    if (
+      this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null
+    ) {
+      this.userEmail = this.getDecodedAccessToken(
+        localStorage.getItem('accessToken')
+      ).email;
     }
 
     this.imgSubId = parseInt(this.route.snapshot.paramMap.get('subId'));
@@ -101,12 +112,10 @@ export class ImageDetailsComponent implements OnInit {
     this.dataSVC.subId = this.imgSubId;
     this.dataSVC.imgId = this.imgId;
 
-    this.dataSVC.getImg().subscribe(data => {
+    this.dataSVC.getImg().subscribe((data) => {
       this.imgDataFromServer = data;
       console.log(data);
-
-
-    })
+    });
 
     //---------------------------------
     this.newList = this.dataSVC.imgDataList.imgListBySubjects;
@@ -127,71 +136,72 @@ export class ImageDetailsComponent implements OnInit {
     //     }
     //   }
     // }
+
   }
 
   addImgToLoacalList() {
-    if (this.userEmail != null) {
-      this.dataSVC.imgListToBePushToServer.push(
-        {
-          userEmail: this.userEmail,
-          imgId: this.imgId,
+   // if (this.printSize != '' && this.printType != '') {
+      if (this.userEmail != null) {
+        this.dataSVC.imgListToBePushToServer.push({
+          email: this.userEmail,
+          imgId: this.imgDataFromServer.id,
           numOfItems: 1,
           printSize: this.printSize,
           printType: this.printType,
-        }
-      )
+        });
+    //  }
+      this.newList = this.dataSVC.imgListToBePushToServer;
+      console.log('list to be push to server: ', this.newList);
+      this.dataSVC.addImgListToServer(this.newList).subscribe((data) => {
+        
+        console.log('YOUUUUWWWW!!!!',data);
+      });
     }
-    this.newList = this.dataSVC.imgListToBePushToServer
-    console.log('list to be push to server: ', this.newList);
-    this.dataSVC.addImgListToServer(this.newList).subscribe( data => {
-      console.log(data);
-    })
+
+    // this.dataSVC.getBag().subscribe( data => {
+      
+    // })
 
 
   }
-
-
 
   getDecodedAccessToken(token: string): any {
     try {
       return jwt_decode(token);
-    }
-    catch (Error) {
+    } catch (Error) {
       return null;
     }
   }
 
-  // <!-- CANVAS ='CANVAS',
-  // ACRYLIC_GLASS = 'ACRYLIC_GLASS',
-  // ALUMINUM = 'ALUMINUM',
-  // SWLF = 'SELF' -->
-
-
   onChange(radio: MatRadioChange) {
     if (radio.value == 'CANVAS') {
+      console.log('radio: ', radio);
+
       this.printType = 'CANVAS';
-      this.buyingSvc.printType = this.printType;
+      this.self = false;
+      // this.buyingSvc.printType = this.printType;
       this.expOnRadio = 'בד הקנבס העוטף את מסגרת התמונה צבוע בלבן';
     } else if (radio.value == 'ACRYLIC_GLASS') {
+      this.self = false;
       this.printType = 'ACRYLIC_GLASS';
-      this.buyingSvc.printType = this.printType;
+      // this.buyingSvc.printType = this.printType;
       this.expOnRadio =
         'לא הדבקה! תהליך כימי (דיאסק) באיכות גבוהה מאוד על גבי זכוכית אקרילית איכותית מבריקה או מאט על פי בחירתכם.';
     } else if (radio.value == 'ALUMINUM') {
+      this.self = false;
       this.printType = 'ALUMINUM';
-      this.buyingSvc.printType = this.printType;
+      // this.buyingSvc.printType = this.printType;
       this.expOnRadio =
         'הטמעה/הדבקה על אלומיניום באיכות גבוהה ובאמידות גבוהה מאוד.';
     } else if (radio.value == 'SELF') {
       this.printType = 'SELF';
-      this.buyingSvc.printType = this.printType;
+      // this.buyingSvc.printType = this.printType;
       this.expOnRadio =
         "אנו נשלח את קובץ המקור לבית הדפוס שאתם בחרתם וכך תוכלו להדפיס בכל גודל, על גבי כל משטח כרצונכם (אלומינים מוברש, זכוכית, עץ, פרספקס ועוד').";
       this.self = true;
     }
   }
   addItemToBag() {
-    this.addImgToLoacalList()
 
     this.buyingSvc.printSize = this.printSize;
     this.buyingSvc.itemAmount += 1;
@@ -215,11 +225,27 @@ export class ImageDetailsComponent implements OnInit {
       },
 
     ]);
-    this.flag = false;
-    this.fff = true;
+
+  }
+  
+  onSubmit(){
+    console.log(11111);
+    
+    if(this.imgDetailsForm.valid){
+      this.formIsInValid = false
+      this.flag = false;
+      this.alertBox = true;
+      this.addImgToLoacalList();
+      this.addItemToBag()
+  
+      console.log('on submit: ', this.imgDetailsForm.value);
+    }
+    
+
   }
 
   onClose() {
-    this.fff = false;
+    this.alertBox = false;
   }
+
 }

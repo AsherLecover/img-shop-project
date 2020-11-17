@@ -7,8 +7,12 @@ import { BuyingProcessService } from '../../servises/buying-process.service';
 import { ImgDataService } from '../../servises/img-data.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import jwt_decode from 'jwt-decode';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
+import {
+  Validators,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-image-details',
@@ -74,9 +78,7 @@ export class ImageDetailsComponent implements OnInit {
   imgDataFromServer;
   userEmail: string;
   imgDetailsForm: FormGroup;
-  formIsInValid: boolean = true
-
-
+  formIsInValid: boolean = true;
 
   constructor(
     public svc: ImgSubListService,
@@ -85,7 +87,7 @@ export class ImageDetailsComponent implements OnInit {
     public dataSVC: ImgDataService,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {
     this.link = this.router.url;
     let url = `whatsapp://send?text= PicPicture רציתי לשתף אותך בתמונה יפה מהאתר http://localhost:4200/${this.link}`;
@@ -136,7 +138,6 @@ export class ImageDetailsComponent implements OnInit {
     //     }
     //   }
     // }
-
   }
 
   addImgToLoacalList() {
@@ -153,16 +154,13 @@ export class ImageDetailsComponent implements OnInit {
       this.newList = this.dataSVC.imgListToBePushToServer;
       console.log('list to be push to server: ', this.newList);
       this.dataSVC.addImgListToServer(this.newList).subscribe((data) => {
-
         console.log('YOUUUUWWWW!!!!', data);
       });
     }
 
-    // this.dataSVC.getBag().subscribe( data => {
-
-    // })
-
-
+    this.dataSVC.getBag().subscribe((data) => {
+      console.log('YOUUUUWWWW@@@@****!!!!$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data);
+    });
   }
 
   getDecodedAccessToken(token: string): any {
@@ -202,7 +200,6 @@ export class ImageDetailsComponent implements OnInit {
     }
   }
   addItemToBag() {
-
     this.buyingSvc.printSize = this.printSize;
     this.buyingSvc.itemAmount += 1;
     let imgId = this.imgId;
@@ -221,36 +218,26 @@ export class ImageDetailsComponent implements OnInit {
         originalPrice: originalPrice,
         printType: this.printType,
         printSize: this.printSize,
-        totalPrice: 0
+        totalPrice: 0,
       },
-
     ]);
-
   }
 
   onSubmit() {
-
     if (this.imgDetailsForm.valid) {
-      this.formIsInValid = false
+      this.formIsInValid = false;
       this.flag = false;
       this.alertBox = true;
       this.addImgToLoacalList();
-      this.addItemToBag()
-      this.getImgByImgIdData()
+      this.addItemToBag();
 
       console.log('on submit: ', this.imgDetailsForm.value);
     }
   }
 
-  getImgByImgIdData(){
-    this.dataSVC.getImgByImgIdData().subscribe(data => {
-      console.log('img full data by id :', data);
-      
-    })
-  }
+ 
 
   onClose() {
     this.alertBox = false;
   }
-
 }

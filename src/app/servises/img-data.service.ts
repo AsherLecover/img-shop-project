@@ -36,14 +36,10 @@ export class ImgDataService {
     )
   }
 
-  getImgByImgIdData() {
-    return this.http.get<any>(`${environment.apiUrl}/shpping-cart` 
+ 
 
-    )
+  getBag(){
+    return this.http.get(`${environment.apiUrl}/shpping-cart`)
   }
-
-  // getBag(){
-  //   return this.http.get(`${environment.apiUrl}/shpping-cart`)
-  // }
     
 }

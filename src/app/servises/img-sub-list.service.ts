@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ImgSubListService {
   imgSubList = []
   imgListOrderBySobjects = []
-  imgId: number;
+  img_id: number;
   imgurlSelected: string;
   imgDescription: string;
   imgPrice: string;

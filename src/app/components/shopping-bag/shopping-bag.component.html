@@ -2,41 +2,41 @@
   <div  style="direction: rtl" class="title">
     סל הקניות
 </div>
-<div  *ngFor="let item of listOfItemsInBag; let j = index">
-  <div *ngFor="let i of item">
+<div  *ngFor="let item of buyingBagPerUser">
   <div class="item">
         <div class="buttons">
-            <span (click)="removeItemFromBag(j, i)" class="material-icons delete-btn"> clear </span>
+            <span
+             class="material-icons delete-btn"> clear </span>
             <span (click)="likeStatus()"class="material-icons like-btn ">favorite</span>
             
         </div>
 
     <div class="image">
-      <img style="width: 120px; height: 80px;" src={{i.url}} alt="" />
+      <img style="width: 120px; height: 80px;" src={{item.imgdata.imgUrl}} alt="" />
     </div>
 
     <div class="description">
-      <span>{{i.des}}</span>
-      <span>{{i.printType}}</span>
-      <span>{{i.printSize}}</span>
+      <span>{{item.imgdata.imgDes}}</span>
+      <span>{{item.printType}}</span>
+      <span>{{item.printSize}}</span>
     </div>
 
     <div class="quantity">
-      <button (click)="plusTheItemToBagFn(i)" class="plus-btn" type="button" name="button">
+      <button  class="plus-btn" type="button" name="button">
         <img src="./assets/plus.svg" alt="" />
       </button>
-      <input type="text" name="name" [value]="i.numOfItems">
-      <button (click)="minusTheItemToBagFn(i)" class="minus-btn"  type="button" name="button">
+      <input type="text" name="name">
+      <button  class="minus-btn"  type="button" name="button">
         <img src="./assets/minus.svg" alt="" />
       </button>
     </div>
 
-    <div class="total-price">{{i.price | currency:'ILS'}}</div>
+    <div class="total-price">{{item.imgdata.price | currency:'ILS'}}</div>
   </div>
-    </div>
   </div>
 
-<div *ngIf="bagIsNotEmpty" class="total-payment-section">
+
+<div *ngIf="!bagIsNotEmpty" class="total-payment-section">
 
   <div class="total-order-title">
     <p>סה"כ לתשלום</p>

@@ -13,7 +13,7 @@ const routes: Routes = [
   { path:'pic-sub-main-page',     component:PicSubMainPageComponent},
   { path:'pic-main-list-subjects/:id',   component:PicMainSubListComponent},
   { path:'img-details/:subId/:id',   component:ImageDetailsComponent},
-  { path:'shpping-cart',   component:ShoppingBagComponent},
+  { path:'img-details/shpping-cart',   component:ShoppingBagComponent},
   { path:'app-payment-form',   component:PaymentFormComponent},
   { path:'img-home-living-room',   component:ImgHomeLivingRoomComponent},
   { path:'auth/signup',   component:PicSubMainPageComponent},

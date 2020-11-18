@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -12,17 +12,18 @@ import jwt_decode from 'jwt-decode';
 export class ImgDataService {
   imgDataList = new ImgData()
   subId: number = 0;
-   imgId: number = 0;
+   img_id: number = 0;
    imgListToBePushToServer = []
    userId: number;
    userEmail:string;
+   shppingcCartOrMainPageUrl = '/img-details/shpping-cart'
 
 
 
   constructor(private http: HttpClient) { }
 
   getImg(){
-    return this.http.get<any>(`${environment.apiUrl}/img-details/${this.subId}/${this.imgId}`)
+    return this.http.get<any>(`${environment.apiUrl}/img-details/${this.subId}/${this.img_id}`)
   }
 
   getDecodedAccessToken(token: string): any {
@@ -55,7 +56,7 @@ export class ImgDataService {
     // headers = headers.set(`Authorization`,`Bearer ${localStorage.getItem("accessToken")}` )
     console.log('ffffffff', localStorage.getItem("accessToken"));
     
-    return this.http.post<any>(`${environment.apiUrl}/shpping-cart`, {list}, 
+    return this.http.post<any>(`${environment.apiUrl}/img-details`, {list}, 
     // { headers }).pipe( 
     //   map ( (token) => {
     //     console.log('token yuri!!!', token);
@@ -67,8 +68,18 @@ export class ImgDataService {
 
  
 
-  getBag(){
-    return this.http.get(`${environment.apiUrl}/shpping-cart`)
+  getBag(user_id: number){
+    this.shppingcCartOrMainPageUrl = '/img-details/shpping-cart'
+
+    this.getPaylowdData()
+    return this.http.post(`${environment.apiUrl}${this.shppingcCartOrMainPageUrl}`, {user_id}); 
+  }
+
+  getBagInHomePage(user_id: number){
+    this.shppingcCartOrMainPageUrl = '/pic-sub-main-page'
+
+    this.getPaylowdData()
+    return this.http.post(`${environment.apiUrl}${this.shppingcCartOrMainPageUrl}`, {user_id}); 
   }
     
 }

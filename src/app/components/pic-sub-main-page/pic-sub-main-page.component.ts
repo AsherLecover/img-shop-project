@@ -34,7 +34,6 @@ export class PicSubMainPageComponent implements OnInit {
       this.cardImgList = data;
       this.imgSubSVC.lliisstt = data
       console.log('ALL IMG: ', data);
-      
     })
   }
 
@@ -43,4 +42,6 @@ export class PicSubMainPageComponent implements OnInit {
     
     this.router.navigate(['/pic-main-list-subjects'  ,imgIdSubject])
   }
+
+  // getBagInHomePage
 }

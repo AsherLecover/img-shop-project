@@ -14,7 +14,7 @@ ImgDataService
   styleUrls: ['./pic-main-sub-list.component.css']
 })
 export class PicMainSubListComponent implements OnInit {
-  public imgIdListSubject: number;
+  public img_idListSubject: number;
   public listOfItemsInBag: any[] = []
   public imgListSubject: string =  ""
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -40,7 +40,7 @@ export class PicMainSubListComponent implements OnInit {
 
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.imgIdListSubject = id;
+    this.img_idListSubject = id;
     this.imgSubDataSVC.imgSubIddddd = id;
     this.svc.imgSubIdSelected = id;
 
@@ -59,7 +59,7 @@ export class PicMainSubListComponent implements OnInit {
   onImgSelected(img) {
     console.log('img selecteddddd:', img);
     
-    this.router.navigate(['/img-details',this.imgIdListSubject,  img.imgId])
+    this.router.navigate(['/img-details',this.img_idListSubject,  img.img_id])
     this.svc.imgurlSelected = img.imgUrl;
     this.svc.imgDescription = img.imgDes;
     this.svc.imgPrice = img.price
@@ -67,7 +67,7 @@ export class PicMainSubListComponent implements OnInit {
     this.svc.imgLongDes = img.imgLongDes;
   }
   omImgSelectedToBuy(img) {
-    let id = this.buyingSvc.itemImgIdToBeDisplayInBag = img.imgId;
+    let id = this.buyingSvc.itemimg_idToBeDisplayInBag = img.img_id;
     let des = this.buyingSvc.itemImgDesToBeDisplayInBag = img.imgDes;
     let price = this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price;
     let originalPrice = this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price;

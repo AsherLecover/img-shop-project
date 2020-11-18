@@ -21,7 +21,7 @@ import {
 })
 export class ImageDetailsComponent implements OnInit {
   imagesList = [];
-  public imgId;
+  public img_id;
   imgUrlToBedisplay: string;
   desToBeDisplay: string;
   imgPrice: string;
@@ -32,7 +32,7 @@ export class ImageDetailsComponent implements OnInit {
   radioBtnValue: string = '';
   expOnRadio: string = '';
   self: boolean = false;
-  imgIdToBeDisplayInBag: number;
+  img_idToBeDisplayInBag: number;
   imgPriceToBedisplay: number;
   imgNumOfItemsToBeDisplayInBag: number = 1;
   imgDesOfItemsToBeDisplayInBag: string;
@@ -114,11 +114,11 @@ export class ImageDetailsComponent implements OnInit {
     }
 
     this.imgSubId = parseInt(this.route.snapshot.paramMap.get('subId'));
-    this.imgId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.img_id = parseInt(this.route.snapshot.paramMap.get('id'));
 
     //---------------------------------
     this.dataSVC.subId = this.imgSubId;
-    this.dataSVC.imgId = this.imgId;
+    this.dataSVC.img_id = this.img_id;
 
     this.dataSVC.getImg().subscribe((data) => {
       this.imgDataFromServer = data;
@@ -133,7 +133,7 @@ export class ImageDetailsComponent implements OnInit {
     //     this.sub1 = item.imagesSubject;
 
     //     for (let img of item.listOfImgUrlBysub) {
-    //       if (this.imgId == img.imgId) {
+    //       if (this.img_id == img.img_id) {
     //         this.imgUrlToBedisplay1 = img.imgUrl;
     //         this.desToBeDisplay1 = img.imgDes;
     //         this.imgPrice1 = img.price;
@@ -152,7 +152,7 @@ export class ImageDetailsComponent implements OnInit {
       this.dataSVC.imgListToBePushToServer.push({
         user_id: this.dataSVC.userId,
         email: this.userEmail,
-        imgId: this.imgDataFromServer.id,
+        img_id: this.imgDataFromServer.id,
         numOfItems: 1,
         printSize: this.printSize,
         printType: this.printType,
@@ -162,10 +162,11 @@ export class ImageDetailsComponent implements OnInit {
       console.log('list to be push to server: ', this.newList);
       this.dataSVC.addImgListToServer(this.newList).subscribe((data) => {
         console.log('YOUUUUWWWW!!!!', data);
+        this.buyingSvc.bagListPerUserFromServer = data
       });
     }
 
-    this.dataSVC.getBag().subscribe((data) => {
+    this.dataSVC.getBag(this.userId).subscribe((data) => {
       console.log('YOUUUUWWWW@@@@****!!!!$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data);
     });
   }
@@ -177,6 +178,8 @@ export class ImageDetailsComponent implements OnInit {
       return null;
     }
   }
+
+  
 
   onChange(radio: MatRadioChange) {
     if (radio.value == 'CANVAS') {
@@ -209,7 +212,7 @@ export class ImageDetailsComponent implements OnInit {
   addItemToBag() {
     this.buyingSvc.printSize = this.printSize;
     this.buyingSvc.itemAmount += 1;
-    let imgId = this.imgId;
+    let img_id = this.img_id;
     let url = this.imgUrlToBedisplay1;
     let price = this.imgPrice1;
     let originalPrice = this.originalPrice1;
@@ -217,7 +220,7 @@ export class ImageDetailsComponent implements OnInit {
     let des = (this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay1);
     this.buyingSvc.listOfItemToBeDisplay.push([
       {
-        id: imgId,
+        id: img_id,
         des: des,
         price: price,
         url: url,

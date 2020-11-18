@@ -1,5 +1,5 @@
 export interface ImgModel{
-    imgId?: number;
+    img_id?: number;
     imgDes: string;
     price: string;
     imgUrl: string;

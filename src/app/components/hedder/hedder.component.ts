@@ -35,6 +35,7 @@ export class HedderComponent implements OnInit {
     this.authSer = authSer;
   }
   ngOnInit(): void {
+    
     if(this.authSer.currentUser$){
       this.currentUser = this.authSer.currentUser$;
     }
@@ -49,7 +50,6 @@ export class HedderComponent implements OnInit {
     const dialogRef = this.dialog.open(SignupComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

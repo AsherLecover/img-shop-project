@@ -77,6 +77,7 @@ export class ImageDetailsComponent implements OnInit {
 
   imgDataFromServer;
   userEmail: string;
+  userId: number;
   imgDetailsForm: FormGroup;
   formIsInValid: boolean = true;
 
@@ -105,6 +106,11 @@ export class ImageDetailsComponent implements OnInit {
       this.userEmail = this.getDecodedAccessToken(
         localStorage.getItem('accessToken')
       ).email;
+
+      this.dataSVC.userId = this.getDecodedAccessToken(
+        localStorage.getItem('accessToken')
+      ).id;
+      this.userId = this.dataSVC.userId;
     }
 
     this.imgSubId = parseInt(this.route.snapshot.paramMap.get('subId'));
@@ -144,6 +150,7 @@ export class ImageDetailsComponent implements OnInit {
     // if (this.printSize != '' && this.printType != '') {
     if (this.userEmail != null) {
       this.dataSVC.imgListToBePushToServer.push({
+        user_id: this.dataSVC.userId,
         email: this.userEmail,
         imgId: this.imgDataFromServer.id,
         numOfItems: 1,

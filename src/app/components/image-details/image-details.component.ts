@@ -128,22 +128,6 @@ export class ImageDetailsComponent implements OnInit {
     //---------------------------------
     this.newList = this.dataSVC.imgDataList.imgListBySubjects;
 
-    // for (let item of this.newList) {
-    //   if (this.imgSubId == item.subId) {
-    //     this.sub1 = item.imagesSubject;
-
-    //     for (let img of item.listOfImgUrlBysub) {
-    //       if (this.img_id == img.img_id) {
-    //         this.imgUrlToBedisplay1 = img.imgUrl;
-    //         this.desToBeDisplay1 = img.imgDes;
-    //         this.imgPrice1 = img.price;
-    //         this.photographer1 = img.photographer;
-    //         this.imgLongDes1 = img.imgLongDes;
-    //         this.originalPrice1 = img.price;
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   addImgToLoacalList() {
@@ -159,16 +143,11 @@ export class ImageDetailsComponent implements OnInit {
       });
       //  }
       this.newList = this.dataSVC.imgListToBePushToServer;
-      console.log('list to be push to server: ', this.newList);
       this.dataSVC.addImgListToServer(this.newList).subscribe((data) => {
-        console.log('YOUUUUWWWW!!!!', data);
         this.buyingSvc.bagListPerUserFromServer = data
       });
     }
 
-    this.dataSVC.getBag(this.userId).subscribe((data) => {
-      console.log('YOUUUUWWWW@@@@****!!!!$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', data);
-    });
   }
 
   getDecodedAccessToken(token: string): any {

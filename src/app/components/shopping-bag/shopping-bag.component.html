@@ -16,19 +16,13 @@
     </div>
 
     <div class="description">
-      <span>{{item.imgdata.imgDes}}</span>
       <span>{{item.printType}}</span>
       <span>{{item.printSize}}</span>
     </div>
 
     <div class="quantity">
-      <button  class="plus-btn" type="button" name="button">
-        <img src="./assets/plus.svg" alt="" />
-      </button>
-      <input type="text" name="name">
-      <button  class="minus-btn"  type="button" name="button">
-        <img src="./assets/minus.svg" alt="" />
-      </button>
+      <b>{{item.imgdata.imgDes}}</b>
+
     </div>
 
     <div class="total-price">{{item.imgdata.price | currency:'ILS'}}</div>

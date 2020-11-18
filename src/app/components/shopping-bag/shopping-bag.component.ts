@@ -23,6 +23,8 @@ export class ShoppingBagComponent implements OnInit {
 
 
   constructor(public buyerSvc: BuyingProcessService,
+
+
     public dataSVC: ImgDataService,
     ) {
       this.dataSVC.getPaylowdData()
@@ -39,11 +41,10 @@ export class ShoppingBagComponent implements OnInit {
           this.totalPrice += img.imgdata.price
         });
       }
-      console.log('YOUUUU$$$$$$$$$$$$$', data);
+      this.buyerSvc.itemAmount = this.buyingBagPerUser.length
     });
 
     this.buyingBagPerUser = this.buyerSvc.bagListPerUserFromServer;
-    console.log('bag per user', this.buyingBagPerUser);
     
 
 

@@ -52,17 +52,9 @@ export class ImgDataService {
 
 
   addImgListToServer(list) {
-    // let headers = new HttpHeaders()
-    // headers = headers.set(`Authorization`,`Bearer ${localStorage.getItem("accessToken")}` )
-    console.log('ffffffff', localStorage.getItem("accessToken"));
-    
+    // console.log('ffffffff', localStorage.getItem("accessToken"))
     return this.http.post<any>(`${environment.apiUrl}/img-details`, {list}, 
-    // { headers }).pipe( 
-    //   map ( (token) => {
-    //     console.log('token yuri!!!', token);
-    //     localStorage.setItem('accessToken', token.accessToken);
-    //     return token
-    //   } )
+   
     )
   }
 
@@ -70,16 +62,24 @@ export class ImgDataService {
 
   getBag(user_id: number){
     this.shppingcCartOrMainPageUrl = '/img-details/shpping-cart'
-
     this.getPaylowdData()
     return this.http.post(`${environment.apiUrl}${this.shppingcCartOrMainPageUrl}`, {user_id}); 
   }
 
   getBagInHomePage(user_id: number){
-    this.shppingcCartOrMainPageUrl = '/pic-sub-main-page'
-
     this.getPaylowdData()
+    this.shppingcCartOrMainPageUrl = '/pic-sub-main-page'
     return this.http.post(`${environment.apiUrl}${this.shppingcCartOrMainPageUrl}`, {user_id}); 
   }
+
+  //--
+  // this.imgDataService.getBagInHomePage(this.user_id).subscribe(
+  //   data => {
+  //     this.userBag = data
+  //     console.log('main page user bag: ', this.userBag.length);
+  //     this.buyingSvc.itemAmount = this.userBag.length
+  //   }
+  // )
+  //--
     
 }

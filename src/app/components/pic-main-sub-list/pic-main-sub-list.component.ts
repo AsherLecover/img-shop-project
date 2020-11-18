@@ -6,6 +6,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { ImgDataService } from '../../servises/img-data.service';
 import { ImgSubjectDataService } from '../../servises/img-subject-data.service';
 
+
 ImgDataService
 
 @Component({
@@ -20,7 +21,6 @@ export class PicMainSubListComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   imgDataFromServre: [] = []
-
   imgListBySubjects = []
 
 
@@ -36,6 +36,7 @@ export class PicMainSubListComponent implements OnInit {
     this.svc.imgListOrderBySobjects = this.imgListBySubjects;
     this.imgListBySubjects = this.imgDataSVC.imgDataList.imgListBySubjects;
 
+
   }
 
   ngOnInit(): void {
@@ -46,19 +47,14 @@ export class PicMainSubListComponent implements OnInit {
 
     //---------------server side--------------
     this.svc.getImgById().subscribe( data => {
-      // console.log('data from server:', data);
       this.imgDataFromServre = data;
       this.imgListSubject = data[0].imagesSubject
-      
     })
-  
-    // console.log('DATA FROM SERVER',this.imgDataFromServre);
-
   }
 
-  onImgSelected(img) {
-    console.log('img selecteddddd:', img);
-    
+
+
+  onImgSelected(img) {    
     this.router.navigate(['/img-details',this.img_idListSubject,  img.img_id])
     this.svc.imgurlSelected = img.imgUrl;
     this.svc.imgDescription = img.imgDes;
@@ -66,6 +62,7 @@ export class PicMainSubListComponent implements OnInit {
     this.svc.photographer = img.photographer;
     this.svc.imgLongDes = img.imgLongDes;
   }
+
   omImgSelectedToBuy(img) {
     let id = this.buyingSvc.itemimg_idToBeDisplayInBag = img.img_id;
     let des = this.buyingSvc.itemImgDesToBeDisplayInBag = img.imgDes;

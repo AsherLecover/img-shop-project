@@ -32,6 +32,8 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.svcClinet.getusernamePaylowdData()
+
     this.currentUser = this.authSer.currentUser$;
 
     this.registerForm = this.fb.group(

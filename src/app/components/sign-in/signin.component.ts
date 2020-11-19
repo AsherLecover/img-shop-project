@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ClinetsService } from 'src/app/servises/clinets.service';
 import jwt_decode from 'jwt-decode';
 import { BuyingProcessService } from 'src/app/servises/buying-process.service';
@@ -18,7 +18,7 @@ export class SignInComponent implements OnInit {
   submitted = false;
   ctrl: FormControl;
   userName: string;
-  errorMessageFromServerrr:string[]
+  errorMessageFromServerrr: string[]
   buyingBagPerUser
   userId: number
   totalPrice: number = 0
@@ -27,52 +27,54 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public svcClinet:ClinetsService,
+    public svcClinet: ClinetsService,
     public buyerSvc: BuyingProcessService,
     public dataSVC: ImgDataService,
     public buyingSvc: BuyingProcessService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
+    this.svcClinet.username$.subscribe((name: string) => { this.userName = name })
+
     this.userId = this.dataSVC.userId
     this.registerForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6),Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]]
+        password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]]
       });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
       this.submitted = true;
-    
+
       this.signin()
       this.getUserBag()
 
     }
   }
 
-  signin(){
+  signin() {
     this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
-      data =>{
+      data => {
         let ddd = this.getDecodedAccessToken(data.accessToken)
         console.log(ddd);
         this.userId = ddd.id
       },
       error => {
         this.errorMessageFromServerrr = error
-    });
+      });
   }
 
 
 
-  getUserBag(){
+  getUserBag() {
     this.getPaylowdData()
-    this.dataSVC.getBag( this.userId).subscribe((data:[]) => {
-       this.buyingBagPerUser = data
+    this.dataSVC.getBag(this.userId).subscribe((data: []) => {
+      this.buyingBagPerUser = data
       console.log('fucking data', data);
-      this.buyerSvc.sumOfItems.next(data.length) 
-      if(this.buyingBagPerUser.length > 0){
+      this.buyerSvc.sumOfItems.next(data.length)
+      if (this.buyingBagPerUser.length > 0) {
         this.buyingBagPerUser.forEach(img => {
           this.totalPrice += img.imgdata.price
         });
@@ -91,13 +93,22 @@ export class SignInComponent implements OnInit {
     }
   }
 
-    getPaylowdData() {
+  getPaylowdData() {
     if (
       this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null
     ) {
-      this.userId =  this.getDecodedAccessToken(
+      this.userId = this.getDecodedAccessToken(
         localStorage.getItem('accessToken')
       ).id;
+      
+      this.svcClinet.userName = ' ' +  this.getDecodedAccessToken(localStorage.getItem('accessToken')
+      ).username;
+      this.svcClinet.username$.next(
+        this.getDecodedAccessToken(
+          localStorage.getItem('accessToken')
+        ).username
+      );
+
     }
     return this.userId;
   }

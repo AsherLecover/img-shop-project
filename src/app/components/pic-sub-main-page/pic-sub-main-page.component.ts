@@ -6,6 +6,7 @@ import { ImgSubListService } from '../../servises/img-sub-list.service';
 import { ImgSubjectDataService } from '../../servises/img-subject-data.service';
 import jwt_decode from 'jwt-decode';
 import { BuyingProcessService } from 'src/app/servises/buying-process.service';
+import { ClinetsService } from 'src/app/servises/clinets.service';
 
 
 @Component({
@@ -28,11 +29,14 @@ export class PicSubMainPageComponent implements OnInit {
     private imgSubSVC: ImgSubjectDataService,
     private imgDataService: ImgDataService,
     public buyerSvc: BuyingProcessService,
+    public svcClinet: ClinetsService,
+
 
     ) { }
 
   ngOnInit(): void {
     this.getPaylowdData()
+    this.svcClinet.getusernamePaylowdData()
     //lowding in main page user bag if there is valid token
     this.imgDataService.getBagInHomePage(this.user_id).subscribe(
       (data:[]) => {
@@ -72,8 +76,19 @@ export class PicSubMainPageComponent implements OnInit {
       this.user_id = this.getDecodedAccessToken(
         localStorage.getItem('accessToken')
       ).id;
+
+      // this.svcClinet.userName =  this.getDecodedAccessToken(localStorage.getItem('accessToken')
+      // ).username;
+      // this.svcClinet.username$.next(
+      //   this.getDecodedAccessToken(
+      //     localStorage.getItem('accessToken')
+      //   ).username
+      // );
     }
   }
+
+
+  
 
   onImgSubjectSelect(imgIdSubject){
     this.router.navigate(['/pic-main-list-subjects'  ,imgIdSubject])

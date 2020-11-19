@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClinetsService } from './servises/clinets.service';
 
  
 
@@ -10,8 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent  implements OnInit {
   title = 'Pic Pictre';
 
-  constructor(){ }
+  constructor(
+    private svcClinet:ClinetsService
+  ){ }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.svcClinet.getusernamePaylowdData()
+
+  }
   
 }

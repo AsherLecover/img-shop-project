@@ -25,7 +25,7 @@ export class BuyingProcessService {
 
   
 
-  constructor(private ImgDataService: ImgDataService) {
+  constructor() {
 
     // this.ImgDataService.shppingcCartOrMainPageUrl = '/pic-sub-main-page'
     // this.ImgDataService.getBagToHomePage(this.ImgDataService.userId).subscribe( data => {
@@ -35,7 +35,4 @@ export class BuyingProcessService {
 
    // })
    }
-
-  
-  
 }

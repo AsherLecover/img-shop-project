@@ -6,11 +6,13 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import * as firebase from 'firebase';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import jwt_decode from 'jwt-decode';
+
 
 export interface User {
   uid?: string;
@@ -30,8 +32,9 @@ export class ClinetsService {
   private _afAuth: AngularFireAuth;
   private _afStore: AngularFirestore;
   private _router: Router;
-
   readonly courentUser$: Observable<any>;
+  username$ = new Subject();
+
 
   constructor(
     afAuth: AngularFireAuth,
@@ -73,6 +76,30 @@ export class ClinetsService {
         return token
       } )
     )
+  }
+
+  getusernamePaylowdData(){
+    if (
+      this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null
+    ) {
+    
+
+      this.userName = ' ' + this.getDecodedAccessToken(localStorage.getItem('accessToken')
+      ).username;
+      this.username$.next(
+        this.getDecodedAccessToken(
+          localStorage.getItem('accessToken')
+        ).username
+      );
+    }
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 
 

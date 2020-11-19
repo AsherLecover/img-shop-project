@@ -20,10 +20,10 @@ import data from '@iconify/icons-mdi/home';
 export class HedderComponent implements OnInit {
   title = 'Pic Pictre';
   panelOpenState = false;
-  userName: string = '';
+  userName: string = null;
   private authSer: AuthService;
   currentUser: Observable<User>;
-  sumOfItems: number =0;
+  sumOfItems: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -35,6 +35,7 @@ export class HedderComponent implements OnInit {
     this.authSer = authSer;
   }
   ngOnInit(): void {
+
     // google firebase auth
     if (this.authSer.currentUser$) {
       this.currentUser = this.authSer.currentUser$;
@@ -44,21 +45,20 @@ export class HedderComponent implements OnInit {
     // lowd the bag length/num of items
     this.imgDataService.getPaylowdData().then(num => {
       this.imgDataService.getBagInHomePage(num).subscribe(
-        (data:[]) => {
+        (data: []) => {
           this.sumOfItems = data.length;
-          this.buyingSvc.sumOfItems.subscribe((num:number) => {this.sumOfItems = num})
-          // this.sumOfItems.next(this.buyingSvc.numOfItems);
-          console.log('bag data in hedder',data);
-          
+          this.buyingSvc.sumOfItems.subscribe((num: number) => { this.sumOfItems = num })
+          console.log('bag data in hedder', data);
+
         }
       )
     })
- 
+
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(SignupComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
   }
 }

@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ImgData } from '../data/img=dateils-data';
 import jwt_decode from 'jwt-decode';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -18,7 +18,7 @@ export class ImgDataService {
   userId: number;
   userEmail: string;
   shppingcCartOrMainPageUrl = '/img-details/shpping-cart';
-  //  bagSubject = new BehaviorSubject(0); // 0 is the initial value
+
 
 
   constructor(private http: HttpClient) {}

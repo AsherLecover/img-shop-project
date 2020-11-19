@@ -137,17 +137,17 @@ export class ImageDetailsComponent implements OnInit {
         user_id: this.dataSVC.userId,
         email: this.userEmail,
         img_id: this.imgDataFromServer.id,
-        numOfItems: 1,
+        numOfItems: 0,
         printSize: this.printSize,
         printType: this.printType,
       });
-      //  }
       this.newList = this.dataSVC.imgListToBePushToServer;
-      this.dataSVC.addImgListToServer(this.newList).subscribe((data) => {
-        this.buyingSvc.bagListPerUserFromServer = data
+      this.dataSVC.addImgListToServer(this.newList).subscribe((data:[]) => {
+        this.buyingSvc.bagListPerUserFromServer = data;
+        this.buyingSvc.sumOfItems.next(data.length) 
+
       });
     }
-
   }
 
   getDecodedAccessToken(token: string): any {
@@ -188,29 +188,8 @@ export class ImageDetailsComponent implements OnInit {
       this.self = true;
     }
   }
-  addItemToBag() {
-    this.buyingSvc.printSize = this.printSize;
-    this.buyingSvc.itemAmount += 1;
-    let img_id = this.img_id;
-    let url = this.imgUrlToBedisplay1;
-    let price = this.imgPrice1;
-    let originalPrice = this.originalPrice1;
-    let numOfItems = (this.buyingSvc.itemNumOfItemToBeDisplayInBag = this.imgNumOfItemsToBeDisplayInBag);
-    let des = (this.buyingSvc.itemImgDesToBeDisplayInBag = this.desToBeDisplay1);
-    this.buyingSvc.listOfItemToBeDisplay.push([
-      {
-        id: img_id,
-        des: des,
-        price: price,
-        url: url,
-        numOfItems: numOfItems,
-        originalPrice: originalPrice,
-        printType: this.printType,
-        printSize: this.printSize,
-        totalPrice: 0,
-      },
-    ]);
-  }
+  
+
 
   onSubmit() {
     if (this.imgDetailsForm.valid) {
@@ -218,7 +197,6 @@ export class ImageDetailsComponent implements OnInit {
       this.flag = false;
       this.alertBox = true;
       this.addImgToLoacalList();
-      this.addItemToBag();
 
       console.log('on submit: ', this.imgDetailsForm.value);
     }

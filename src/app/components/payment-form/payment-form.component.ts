@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
 import { BuyingProcessService } from 'src/app/servises/buying-process.service';
 import { ViewChild, ElementRef } from '@angular/core';
+import { ImgDataService } from 'src/app/servises/img-data.service';
 
 
 @Component({
@@ -18,15 +19,23 @@ export class PaymentFormComponent implements OnInit {
   monthList:string[] = ['ינואר', 'פבואר', 'מרס', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר', ]
   yearList:string[] = ['2025','2024','2023','2022','2021','2020','2019','2018','2017','2016','2015','2014','2013','2012','2011','2010','2009','2008'];
   @ViewChild('ccNumber') ccNumberField: ElementRef;
+  formIsInValid: boolean = true;
+  userId: number
+  buyingBagPerUser
+  totalPrice: number =0
 
-  formIsInValid: boolean = true
 
 
 
-  constructor(private fb: FormBuilder, public buyerSVC: BuyingProcessService) { }
+  constructor(
+    private fb: FormBuilder,
+     public buyerSVC: BuyingProcessService,
+    public dataSVC: ImgDataService,
+    private buyerSvc: BuyingProcessService
+    ) { }
 
   ngOnInit(): void {
-    
+    this.userId = this.dataSVC.userId
     this.listOfItemsInBag = this.buyerSVC.listOfItemToBeDisplay;
  
     this.paymentForm = this.fb.group({
@@ -44,22 +53,33 @@ export class PaymentFormComponent implements OnInit {
       id: ['',[Validators.required,Validators.minLength(9), Validators.pattern('^[0-9]+$')]],
       
     });
+    this.getUserBag()
+  }
+
+  getUserBag(){
+    this.dataSVC.getBag(this.userId).subscribe((data:[]) => {
+      this.buyingBagPerUser = data
+      if(this.buyingBagPerUser.length > 0){
+        this.buyerSvc.sumOfItems.next(data.length) 
+
+        
+        this.buyingBagPerUser.forEach(img => {
+          console.log(img);
+          
+          this.totalPrice += img.imgdata.price
+        });
+      }
+    });
   }
 
   onSubmit(){
-    console.log('before if ', this.formIsInValid);
     
     if(this.paymentForm.invalid){
       this.formIsInValid = false
-      console.log('after if ', this.formIsInValid);
-      
     }
-    
-    console.log('form', this.paymentForm.value);
     
     if(this.paymentForm.valid){
       this.submited = true;
-      console.log('sumbut form: in if', this.submited);
     }
   }
 

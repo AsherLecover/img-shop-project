@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators,FormBuilder,FormGroup,FormControl } from '@angular/forms';
 import { ClinetsService } from 'src/app/servises/clinets.service';
 import jwt_decode from 'jwt-decode';
+import { BuyingProcessService } from 'src/app/servises/buying-process.service';
+import { ImgDataService } from 'src/app/servises/img-data.service';
 
 
 
@@ -17,12 +19,22 @@ export class SignInComponent implements OnInit {
   ctrl: FormControl;
   userName: string;
   errorMessageFromServerrr:string[]
+  buyingBagPerUser
+  userId: number
+  totalPrice: number = 0
+
+
 
   constructor(
     private fb: FormBuilder,
-    public svcClinet:ClinetsService) { }
+    public svcClinet:ClinetsService,
+    public buyerSvc: BuyingProcessService,
+    public dataSVC: ImgDataService,
+    public buyingSvc: BuyingProcessService,
+    ) { }
 
   ngOnInit(): void {
+    this.userId = this.dataSVC.userId
     this.registerForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -33,32 +45,61 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     if (this.registerForm.valid) {
       this.submitted = true;
-      // this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
-      // this.userName = this.registerForm.value
+    
       this.signin()
+      this.getUserBag()
+
     }
   }
 
   signin(){
     this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
       data =>{
-        console.log('succsessssssssssssssssss', data);
         let ddd = this.getDecodedAccessToken(data.accessToken)
         console.log(ddd);
+        this.userId = ddd.id
       },
       error => {
         this.errorMessageFromServerrr = error
-        console.log('error from server: ', this.errorMessageFromServerrr);
     });
   }
 
+
+
+  getUserBag(){
+    this.getPaylowdData()
+    this.dataSVC.getBag( this.userId).subscribe((data:[]) => {
+       this.buyingBagPerUser = data
+      console.log('fucking data', data);
+      this.buyerSvc.sumOfItems.next(data.length) 
+      if(this.buyingBagPerUser.length > 0){
+        this.buyingBagPerUser.forEach(img => {
+          this.totalPrice += img.imgdata.price
+        });
+      }
+    });
+    this.totalPrice = 0;
+    this.buyingBagPerUser = null
+
+  }
+
   getDecodedAccessToken(token: string): any {
-    try{
-        return jwt_decode(token);
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
     }
-    catch(Error){
-        return null;
+  }
+
+    getPaylowdData() {
+    if (
+      this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null
+    ) {
+      this.userId =  this.getDecodedAccessToken(
+        localStorage.getItem('accessToken')
+      ).id;
     }
+    return this.userId;
   }
 
 

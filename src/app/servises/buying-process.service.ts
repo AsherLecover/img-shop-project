@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ImgModel } from '../models/img-model'
 import { ImgDataService } from './img-data.service';
 
@@ -13,13 +14,15 @@ export class BuyingProcessService {
   itemImgPriceToBeDisplayInBag: number = -1;
   itemimg_idToBeDisplayInBag: number = -1;
   itemNumOfItemToBeDisplayInBag: number = 1;
-  numOfItems: number = 1;
+  numOfItems: number = 0;
   listOfItemToBeDisplay:any[] = [];
   bagIsEmpty: boolean;
   printType: string = ''
   printSize: string = ''
 
   bagListPerUserFromServer = []
+  sumOfItems = new Subject();
+
   
 
   constructor(private ImgDataService: ImgDataService) {

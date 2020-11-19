@@ -379,24 +379,21 @@
             <th>מוצר</th>
             <th>סכום ביניים</th>
           </tr>
-          
-          <tr *ngFor="let item of listOfItemsInBag; let j = index" >
-            <td 
-              *ngFor="let i of item" >
-              <p>{{i.des }}</p>
-              <p>{{i.printType }}</p>
-              <p>{{i.printSize }}</p>
-              <img style="width: 60px; height: 40px;" src={{i.url}} alt="" />
-
-              
+          <tr *ngFor="let item of buyingBagPerUser" >
+            <td >
+              <p>{{item.imgdata.imgDes }}</p>
+              <p>{{item.printType }}</p>
+              <p>{{item.printSize }}</p>
+              <img style="width: 60px; height: 40px;" src={{item.imgdata.imgUrl}} alt="" />
              </td>
-            <td *ngFor="let i of item">{{i.price | currency:'ILS'}}</td>
+
+            <td >{{item.imgdata.price | currency:'ILS'}}</td>
           </tr>
         
           <td>סח"ה</td>
         
-          <ng-container *ngFor="let item of listOfItemsInBag" >
-            <td *ngIf="item.totalPrice "> {{item.totalPrice  | currency:'ILS'}} </td> 
+          <ng-container >
+            <td>{{totalPrice  | currency:'ILS'}} </td> 
          </ng-container>
         </table>
 

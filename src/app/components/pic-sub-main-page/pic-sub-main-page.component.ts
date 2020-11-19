@@ -27,7 +27,7 @@ export class PicSubMainPageComponent implements OnInit {
     public svc: ImgSubListService,
     private imgSubSVC: ImgSubjectDataService,
     private imgDataService: ImgDataService,
-    public buyingSvc: BuyingProcessService,
+    public buyerSvc: BuyingProcessService,
 
     ) { }
 
@@ -35,10 +35,10 @@ export class PicSubMainPageComponent implements OnInit {
     this.getPaylowdData()
     //lowding in main page user bag if there is valid token
     this.imgDataService.getBagInHomePage(this.user_id).subscribe(
-      data => {
+      (data:[]) => {
         this.userBag = data
         console.log('main page user bag: ', this.userBag.length);
-        this.buyingSvc.itemAmount = this.userBag.length
+        this.buyerSvc.sumOfItems.next(data.length) 
       }
     )
     
@@ -47,7 +47,9 @@ export class PicSubMainPageComponent implements OnInit {
     this.imgIdListSubject = id;
     
     // lowding home page images
-    this.imgSubSVC.getAllSubjectsImg().subscribe( data => {
+    this.imgSubSVC.getAllSubjectsImg().subscribe( (data:[]) => {
+      // this.buyerSvc.sumOfItems.next(data.length) 
+
 
       this.cardImgList = data;
       this.imgSubSVC.lliisstt = data

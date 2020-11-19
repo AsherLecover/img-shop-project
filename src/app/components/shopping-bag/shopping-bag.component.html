@@ -5,8 +5,7 @@
 <div  *ngFor="let item of buyingBagPerUser">
   <div class="item">
         <div class="buttons">
-            <span
-             class="material-icons delete-btn"> clear </span>
+            <span (click)="removeItemFromBag(item.id, item.user_id)" class="material-icons delete-btn"> clear </span>
             <span (click)="likeStatus()"class="material-icons like-btn ">favorite</span>
             
         </div>

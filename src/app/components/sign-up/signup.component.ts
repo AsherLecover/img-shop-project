@@ -44,19 +44,7 @@ export class SignupComponent implements OnInit {
       });}
 
   onSubmit() {
-    // console.log("(this.submitted",this.submitted)
-    if (this.registerForm.valid) {
-      this.submitted = true;
-      // console.log(this.submitted)
-      // console.log('form::',this.registerForm.value.firstName);
-      this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
-      this.userName = this.registerForm.value
-      console.log('register datails: ', this.registerForm.value);
-      this.signup();
-     
-  
-   
-    }
+    this.signup();
   }
 
   signup(){
@@ -65,6 +53,13 @@ export class SignupComponent implements OnInit {
       this.registerForm.value.email,
       this.registerForm.value.password).subscribe(
         data =>{
+          if (this.registerForm.valid) {
+            this.submitted = true;
+            this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
+            this.userName = this.registerForm.value
+            console.log('register datails: ', this.registerForm.value);
+          }
+        
           this.dialog.closeAll()
 
         },

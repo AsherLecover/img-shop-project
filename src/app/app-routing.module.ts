@@ -7,6 +7,7 @@ import { ImageDetailsComponent } from './components/image-details/image-details.
 import { ShoppingBagComponent } from './components/shopping-bag/shopping-bag.component';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/img-home-living-room.component';
+import { ManagementComponent } from './components/management/management.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path:'img-home-living-room',   component:ImgHomeLivingRoomComponent},
   { path:'auth/signup',   component:PicSubMainPageComponent},
   { path:'auth/signin',   component:PicSubMainPageComponent},
+  { path:'management',   component:ManagementComponent},
   { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},
 

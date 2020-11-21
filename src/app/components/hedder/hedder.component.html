@@ -1,71 +1,78 @@
 <div class="hedder">
-    
+
     <div class="firstLineHedder" style=" display: flex">
-            <div style=" width: 3%;">
-                <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
-                <mat-menu  #menu="matMenu">
-                  <button routerLink="/option_a" mat-menu-item>Option A</button>
-                  <button routerLink="/option_b" mat-menu-item>Option B</button>
-                  <button routerLink="/option_c" mat-menu-item>Option C</button> 
+        <div style=" width: 3%;">
+            <mat-icon style="cursor: pointer" [matMenuTriggerFor]="menu">menu
+                <mat-menu #menu="matMenu">
+                    <button routerLink="/option_a" mat-menu-item>Option A</button>
+                    <button routerLink="/option_b" mat-menu-item>Option B</button>
+                    <button routerLink="/option_c" mat-menu-item>Option C</button>
                 </mat-menu>
-              </mat-icon>
-          </div>
-
-          <div style=" width: 30%; margin-top: 1%">
-                <button  routerLink="/auth/signup" (click)="openDialog()" >כניסה | הרשמה</button>
-          </div>
-
-        
-
-          <div style=" width: 30%; text-align: left; margin-top:  1%">
-              <h1 >תמונות לסלון לבית ולמשרד</h1>
-          </div>
-
-
-<ng-container *ngIf="currentUser | async as user; then memberLogIn; else loginGust"></ng-container>
-<div *isUser></div>
-<ng-template #loginGust>
-
-  <div style=" width: 40%; text-align: left; margin-top: 1%; display: flex; direction: ltr; ">
-      <div style="padding-right: 5px"><span class="material-icons">face</span> </div>
-      <span style="direction: ltr" *ngIf="svcClinets.userName !='' "> ברוך הבא{{svcClinets.userName}}</span>
-  </div>
-
-</ng-template>
-
-
-<ng-template #memberLogIn let-user>
-    <div (click)="authSer.signOut()" style="width: 30%; text-align: left; padding-left: 1%; margin-top: 1%; display: flex; ; direction: ltr; ">
-        <div style="display: flex; margin-right: 5%; cursor: pointer">
-            <span style="margin-right: 2%; text-align: center"  class="material-icons">exit_to_app</span>
-            <span>יציאה </span>
+            </mat-icon>
         </div>
-        <div style="padding-right: 5px">
-            <img style="border-radius: 50%;" 
-                [src]="user.image_url" alt="" width="25" height="25px;">
+
+        <div style=" width: 30%; margin-top: 1%;">
+            <button routerLink="/auth/signup" (click)="openDialog()">כניסה | הרשמה</button>
+        </div>
+
+
+            <div *ngIf="userRole == 'ADMIN'" style=" width: 24%; margin-top: 1%">
+                <button routerLink="/management">כניסת מנהל </button>
+            </div>
+
+
+
+
+        <div style=" width: 30%; text-align: left; margin-top:  1%">
+            <h1>תמונות לסלון לבית ולמשרד</h1>
+        </div>
+
+
+        <ng-container *ngIf="currentUser | async as user; then memberLogIn; else loginGust"></ng-container>
+        <div *isUser></div>
+        <ng-template #loginGust>
+
+            <div style=" width: 40%; text-align: left; margin-top: 1%; display: flex; direction: ltr; ">
+                <div style="padding-right: 5px"><span class="material-icons">face</span> </div>
+                <span style="direction: ltr" *ngIf="svcClinets.userName !='' "> ברוך הבא{{svcClinets.userName}}</span>
+            </div>
+
+        </ng-template>
+
+
+        <ng-template #memberLogIn let-user>
+            <div (click)="authSer.signOut()"
+                style="width: 30%; text-align: left; padding-left: 1%; margin-top: 1%; display: flex; ; direction: ltr; ">
+                <div style="display: flex; margin-right: 5%; cursor: pointer">
+                    <span style="margin-right: 2%; text-align: center" class="material-icons">exit_to_app</span>
+                    <span>יציאה </span>
+                </div>
+                <div style="padding-right: 5px">
+                    <img style="border-radius: 50%;" [src]="user.image_url" alt="" width="25" height="25px;">
+                </div>
+                <span style="direction: rtl" *ngIf="svcClinets.userName !='' "> ברוך הבא {{ user.display_name}} </span>
+
+            </div>
+        </ng-template>
+
+
+        <div style="text-align:left; width: 10%; margin-top: 1%; cursor: pointer;">
+            <mat-icon style="padding-left: 5%" routerLink="">home</mat-icon>
+        </div>
     </div>
-         <span  style="direction: rtl" *ngIf="svcClinets.userName !='' "> ברוך הבא {{ user.display_name}} </span>
-     
-    </div>
-</ng-template>
 
+    <!-- heeder seconde line----------------------------------------------------- -->
 
-          <div style="text-align:left; width: 10%; margin-top: 1%; cursor: pointer;">
-                <mat-icon style="padding-left: 5%" routerLink="" >home</mat-icon>
-          </div>
-    </div>
+    <div class="secondeLineHedder" style="  display: flex;">
 
-<!-- heeder seconde line----------------------------------------------------- -->
+        <div class="seconeLineMenu" style=" width: 17%;">
+            <span routerLink="/img-home-living-room" style="font-size: 150%; margin-right: 10%;">תמונות לבית
+                ולסלון</span>
+        </div>
+        <div class="seconeLineMenu" style="width: 15%">
+            <span routerLink="/pic-sub-main-page" style="font-size: 150%;">לפי נושאים</span>
 
-      <div class="secondeLineHedder" style="  display: flex;">
-
-          <div class="seconeLineMenu" style=" width: 17%;">
-              <span  routerLink="/img-home-living-room" style="font-size: 150%; margin-right: 10%;">תמונות לבית ולסלון</span>
-          </div>
-           <div class="seconeLineMenu" style="width: 15%" >
-              <span routerLink="/pic-sub-main-page" style="font-size: 150%;">לפי נושאים</span>
-
-                  <!-- <span [matMenuTriggerFor]="menu22" class="material-icons">keyboard_arrow_down
+            <!-- <span [matMenuTriggerFor]="menu22" class="material-icons">keyboard_arrow_down
                       <mat-menu  #menu22="matMenu">
                             <button routerLink="/pic-main-list-subjects/0" mat-menu-item> תמונות נוף</button>
                             <button routerLink="/pic-main-list-subjects/1" mat-menu-item> תמונות רבנים</button>
@@ -78,37 +85,37 @@
                             <button routerLink="/pic-sub-main-page" mat-menu-item> נושאים נוספים  </button>
                      </mat-menu>
                  </span> -->
-         
-         </div>
 
-        <div class="seconeLineMenu" style="width: 17%" >
-            <span  routerLink="/img-home-living-room" style="font-size: 150%; ">מבצעים</span>
         </div>
 
-        <div class="seconeLineMenu"style="width: 17%" >
-               <span  routerLink="/img-home-living-room" style="font-size: 150%; ">חדש</span>
-        </div>
-         <div class="seconeLineMenu"style="width: 17%" >
-               <span  routerLink="/img-home-living-room" style="font-size: 150%; ">צרו קשר</span>
-        </div>
-         <div class="seconeLineMenu"style="width: 17%" >
-                 <span  routerLink="/img-home-living-room" style="font-size: 150%; ">ממליצים</span>
-         </div>
-          <div class="seconeLineMenu"style="width: 17%" >
-                 <span  routerLink="/img-home-living-room" style="font-size: 150%;">אודותינו</span>
+        <div class="seconeLineMenu" style="width: 17%">
+            <span routerLink="/img-home-living-room" style="font-size: 150%; ">מבצעים</span>
         </div>
 
-        <div style="width: 17%; text-align:left; margin-top: 1%" >
+        <div class="seconeLineMenu" style="width: 17%">
+            <span routerLink="/img-home-living-room" style="font-size: 150%; ">חדש</span>
+        </div>
+        <div class="seconeLineMenu" style="width: 17%">
+            <span routerLink="/img-home-living-room" style="font-size: 150%; ">צרו קשר</span>
+        </div>
+        <div class="seconeLineMenu" style="width: 17%">
+            <span routerLink="/img-home-living-room" style="font-size: 150%; ">ממליצים</span>
+        </div>
+        <div class="seconeLineMenu" style="width: 17%">
+            <span routerLink="/img-home-living-room" style="font-size: 150%;">אודותינו</span>
+        </div>
 
-         <p style="margin-left: 10%">עגלת הקניות
+        <div style="width: 17%; text-align:left; margin-top: 1%">
+
+            <p style="margin-left: 10%">עגלת הקניות
                 <mat-icon routerLink="/img-details/shpping-cart"
-                 style=" margin-right: 5% ; font-size: 35px; cursor: pointer;"
-                  [matBadge]="sumOfItems" matBadgeColor="warn">shopping_cart</mat-icon>
+                    style=" margin-right: 5% ; font-size: 35px; cursor: pointer;" [matBadge]="sumOfItems"
+                    matBadgeColor="warn">shopping_cart</mat-icon>
                 <span class="cdk-visually-hidden"></span>
-        </p>
+            </p>
 
 
         </div>
-               
+
     </div>
 </div>

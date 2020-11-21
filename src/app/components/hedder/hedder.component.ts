@@ -24,6 +24,7 @@ export class HedderComponent implements OnInit {
   private authSer: AuthService;
   currentUser: Observable<User>;
   sumOfItems: number = 0;
+  userRole: string;
 
   constructor(
     public dialog: MatDialog,
@@ -42,17 +43,24 @@ export class HedderComponent implements OnInit {
     } else {
       this.userName = this.svcClinets.userName;
     }
-    // lowd the bag length/num of items
+    // lowd the bag length/num of items 
     this.imgDataService.getPaylowdData().then(num => {
       this.imgDataService.getBagInHomePage(num).subscribe(
         (data: []) => {
-          this.sumOfItems = data.length;
+          // this.sumOfItems = data.length;
           this.buyingSvc.sumOfItems.subscribe((num: number) => { this.sumOfItems = num })
           console.log('bag data in hedder', data);
-
         }
       )
     })
+
+    this.imgDataService.userRole$.subscribe( (role:string) => {
+      this.userRole = role
+      console.log('ttttt', role);
+      
+    })
+
+    
 
   }
 

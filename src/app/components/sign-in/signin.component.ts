@@ -22,6 +22,7 @@ export class SignInComponent implements OnInit {
   buyingBagPerUser
   userId: number
   totalPrice: number = 0
+  userRole: string;
 
 
 
@@ -57,9 +58,12 @@ export class SignInComponent implements OnInit {
   signin() {
     this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
       data => {
-        let ddd = this.getDecodedAccessToken(data.accessToken)
-        console.log(ddd);
-        this.userId = ddd.id
+        let payload = this.getDecodedAccessToken(data.accessToken)
+        this.userId = payload.id
+        this.dataSVC.userRole$.next(payload.role)
+       
+          console.log('role in sgin in comp',payload.role);
+        
       },
       error => {
         this.errorMessageFromServerrr = error
@@ -72,7 +76,7 @@ export class SignInComponent implements OnInit {
     this.getPaylowdData()
     this.dataSVC.getBag(this.userId).subscribe((data: []) => {
       this.buyingBagPerUser = data
-      console.log('fucking data', data);
+      console.log(' data from sign in', data);
       this.buyerSvc.sumOfItems.next(data.length)
       if (this.buyingBagPerUser.length > 0) {
         this.buyingBagPerUser.forEach(img => {

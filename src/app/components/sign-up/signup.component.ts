@@ -67,8 +67,6 @@ export class SignupComponent implements OnInit {
           console.log('eeee:', error.error);
           
           this.errorFromServiceEmailExixt = error.error.message;
-     
-
           console.log('error from servic: ', this.errorFromServiceEmailExixt);
           
           

@@ -18,6 +18,9 @@ export class ImgDataService {
   userId: number;
   userEmail: string;
   shppingcCartOrMainPageUrl = '/img-details/shpping-cart';
+  userRole: string;
+  userRole$ = new Subject();
+
 
 
 
@@ -48,6 +51,16 @@ export class ImgDataService {
       this.userId = await this.getDecodedAccessToken(
         localStorage.getItem('accessToken')
       ).id;
+
+      this.userRole$.next(
+        this.getDecodedAccessToken(
+          localStorage.getItem('accessToken')
+        ).role
+      );
+
+      this.userRole = await this.getDecodedAccessToken(
+        localStorage.getItem('accessToken')
+      ).role;
     }
     return await  this.userId;
   }
@@ -83,7 +96,7 @@ export class ImgDataService {
   // }
 
   getBagInHomePage(user_id: number) {
-    this.getPaylowdData();
+    // this.getPaylowdData();
     this.shppingcCartOrMainPageUrl = '/pic-sub-main-page';
     return this.http.post(
       `${environment.apiUrl}${this.shppingcCartOrMainPageUrl}`,

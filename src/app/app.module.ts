@@ -36,6 +36,7 @@ import { SignupComponent } from './components/sign-up/signup.component';
 import { SignInComponent } from './components/sign-in/signin.component';
 import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/img-home-living-room.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ManagementComponent } from './components/management/management.component';
 
  
 @NgModule({
@@ -52,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     ShoppingBagComponent,
     PaymentFormComponent,
     ImgHomeLivingRoomComponent,
+    ManagementComponent,
   ],
   imports: [
     AngularFirestoreModule,

@@ -45,23 +45,22 @@ export class SignInComponent implements OnInit {
       });
   }
 
-  onSubmit() {
+   onSubmit() {
     if (this.registerForm.valid) {
       this.submitted = true;
 
       this.signin()
-      this.getUserBag()
-
+     
     }
   }
 
-  signin() {
-    this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
+    signin() {
+     this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
       data => {
         let payload = this.getDecodedAccessToken(data.accessToken)
         this.userId = payload.id
         this.dataSVC.userRole$.next(payload.role)
-       
+        this.getUserBag()
           console.log('role in sgin in comp',payload.role);
         
       },
@@ -72,7 +71,7 @@ export class SignInComponent implements OnInit {
 
 
 
-  getUserBag() {
+   getUserBag() {
     this.getPaylowdData()
     this.dataSVC.getBag(this.userId).subscribe((data: []) => {
       this.buyingBagPerUser = data

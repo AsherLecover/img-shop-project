@@ -1,0 +1,47 @@
+.container{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+}
+h2{
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+h3{
+    right: 10%;
+    position: absolute;
+    direction: rtl;
+    bottom: 66%;
+
+}
+
+.pic-subject-container{
+    right: 10%;
+    position: absolute;
+    bottom: 65%;
+}
+
+.pic-subject-selcet{
+    direction: rtl;
+    width:100px; 
+    height: 25px;  
+
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 5%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+

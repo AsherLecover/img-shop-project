@@ -10,6 +10,8 @@ import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase';
 import { switchMap } from 'rxjs/operators';
 import { User } from './clinets.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +19,16 @@ import { User } from './clinets.service';
 export class AuthService {
 
 
+
   readonly currentUser$: Observable<any>;
   private _afAuth: AngularFireAuth;
   private _afStore: AngularFirestore;
   private _router: Router;
 
-  constructor(afAuth: AngularFireAuth, afStore: AngularFirestore, router: Router) {
+  constructor(afAuth: AngularFireAuth,
+     afStore: AngularFirestore,
+      router: Router,
+    private http: HttpClient) {
 
     this._afAuth = afAuth;
     this._afStore = afStore;
@@ -42,8 +48,8 @@ export class AuthService {
   public async signInWithGoogle(): Promise<void> {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this._afAuth.signInWithPopup(provider);
-    console.log("this user new ",credential);
-    
+    console.log("this user new ", credential);
+
 
     const userRef: AngularFirestoreDocument<User> = this._afStore.doc(`user/${credential.user.uid}/`);
 
@@ -60,5 +66,10 @@ export class AuthService {
 
   public async signOut() {
     await this._afAuth.signOut();
+  }
+  //------------------------------------------------------------------
+
+  signupWithFaceBook() {
+   return this.http.get(`${environment.apiUrl}/auth/facebook`)
   }
 }

@@ -1,6 +1,6 @@
 .container{
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-bottom: 5%;
 }
 h2{
@@ -24,7 +24,7 @@ h3{
 
 .pic-subject-selcet{
     direction: rtl;
-    width:100px; 
+    width:120px; 
     height: 25px;  
 
 }
@@ -39,9 +39,13 @@ table {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+}
+td{
+    cursor: pointer;
+
   }
   
   tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #fcf8f8;
   }
 

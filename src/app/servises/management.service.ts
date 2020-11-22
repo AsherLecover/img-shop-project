@@ -6,13 +6,13 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class ManagementService {
-  subId: number;
 
-  constructor(private http: HttpClient) {}
 
-  getSubjectImgesById() {
+  constructor(private http: HttpClient) { }
+
+  getSubjectImgesById(subId) {
     return this.http.get<any>(
-      `${environment.apiUrl}management`
+      `${environment.apiUrl}/management/${subId}`
     );
   }
 }

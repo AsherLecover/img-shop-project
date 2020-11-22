@@ -29,24 +29,28 @@ export class ManagementComponent implements OnInit {
     { id: 19, value: ' פיסול באבן' },
     { id: 20, value: 'תמונות נוף' },
   ];
+  imgasListFromServer: []
 
-  selectedIdSubject: number = 0;
+  // selectedIdSubject: number = 0;
 
 
-  constructor(private managementService:ManagementService) {}
+  constructor(private managementService: ManagementService) { }
 
   ngOnInit(): void {
 
-    this.managementService.getSubjectImgesById().subscribe( (data) => {
-      console.log(data);
-      
-    })
+
 
   }
 
-  selectSubject (event: any) {
-    this.selectedIdSubject = event.target.value;
-    this.managementService.subId = event.target.value
+  selectSubject(event: any) {
+    // this.selectedIdSubject = event.target.value;
+    console.log(event.target.value);
+    this.managementService.getSubjectImgesById(event.target.value).subscribe((data) => {
+      this.imgasListFromServer = data
+      console.log(data);
+
+    })
+
   }
 }
 

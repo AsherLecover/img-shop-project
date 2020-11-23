@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ManagementService } from '../../servises/management.service'
+import { ManagementService } from '../../servises/management.service';
 
 @Component({
   selector: 'management',
@@ -29,30 +29,42 @@ export class ManagementComponent implements OnInit {
     { id: 19, value: ' פיסול באבן' },
     { id: 20, value: 'תמונות נוף' },
   ];
-  imgasListFromServer: []
+  imgasListFromServer: [];
+  alertBox: boolean = false;
+  massage: string = "";
+  editMode: boolean = false
 
   // selectedIdSubject: number = 0;
 
+  constructor(private managementService: ManagementService) {}
 
-  constructor(private managementService: ManagementService) { }
-
-  ngOnInit(): void {
-
-
-
-  }
+  ngOnInit(): void {}
 
   selectSubject(event: any) {
     // this.selectedIdSubject = event.target.value;
     console.log(event.target.value);
-    this.managementService.getSubjectImgesById(event.target.value).subscribe((data) => {
-      this.imgasListFromServer = data
-      console.log(data);
+    this.managementService
+      .getSubjectImgesById(event.target.value)
+      .subscribe((data) => {
+        this.imgasListFromServer = data;
+        console.log(data);
+      });
+  }
 
-    })
+  delete(){
+    this.alertBox = true;
+    this.massage = '? האם אתה בטוח שאתה רוצה למחוק תמונה זו '
+
 
   }
+  edit(){
+    this.alertBox = true;
+    this.editMode = true
+    this.massage = 'ניתן לערוך כל אחד מן השדות הללו '
+
+  }
+
+  onClose() {
+    this.alertBox = false;
+  }
 }
-
-
-

@@ -20,6 +20,7 @@
             <th>כתובת URL התמונה</th>
             <th> צלם </th>
             <th> מחיר </th>
+            <th>מחיקה/עריכה</th>
         </tr>
         <tr *ngFor="let img of imgasListFromServer">
             <td>{{img.imgDes}}</td>
@@ -30,6 +31,26 @@
             </td>
             <td>{{img.photographer}}</td>
             <td>{{img.price}}</td>
+            <td>
+
+                <button (click)="delete()" class="delete-btn" >מחיקה</button>
+                <button (click)="edit()" class="edit-btn"> עריכה</button>
+            </td>
+
         </tr>
     </table>
+
+    <div *ngIf="alertBox" class="alert-box">
+        <h2>{{massage}}</h2>
+        <form *ngIf="editMode" action="">
+            <input type="text" value="11111111111111111111111111">
+            <input type="text" value="11111111111111111111111111">
+            <input type="text" value="11111111111111111111111111">
+            <input type="text" value="11111111111111111111111111">
+            <input type="text" value="11111111111111111111111111">
+        </form>
+        <div class="alert-box-actions">
+            <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
+        </div>
+    </div>
 </div>

@@ -98,8 +98,10 @@ export class SignupComponent implements OnInit {
   signOut() {
     this.authSer.signOut();
   }
-  signupWithFaceBook(){
-    this.authSer.signupWithFaceBook().subscribe(
+  signupWithFacebook(){
+    console.log(12121212);
+    
+    this.authSer.signupWithFacebook().subscribe(
       data => {
         console.log('Facebook',data);
         

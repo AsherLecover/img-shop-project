@@ -10,7 +10,7 @@ import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase';
 import { switchMap } from 'rxjs/operators';
 import { User } from './clinets.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -69,7 +69,12 @@ export class AuthService {
   }
   //------------------------------------------------------------------
 
-  signupWithFaceBook() {
-   return this.http.get(`${environment.apiUrl}/auth/facebook`)
+  signupWithFacebook() {
+
+    let headers = new HttpHeaders()
+    headers = headers.set("Access-Control-Allow-Origin","*" )
+    // 'window.location="http://localhost:3000/auth/facebook"';
+    // window.location.href = "http://localhost:3000/auth/facebook"
+   return this.http.get(`${environment.apiUrl}/auth/facebook`, {headers})
   }
 }

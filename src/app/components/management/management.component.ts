@@ -29,35 +29,44 @@ export class ManagementComponent implements OnInit {
     { id: 19, value: ' פיסול באבן' },
     { id: 20, value: 'תמונות נוף' },
   ];
-  imgasListFromServer: [];
+  imgasListFromServer: imgModel[];
   alertBox: boolean = false;
-  massage: string = "";
   editMode: boolean = false
+  massage: string = "";
+  imgSelected: imgModel;
+  imgUrl: string;
 
   // selectedIdSubject: number = 0;
 
-  constructor(private managementService: ManagementService) {}
+  constructor(private managementService: ManagementService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   selectSubject(event: any) {
     // this.selectedIdSubject = event.target.value;
     console.log(event.target.value);
     this.managementService
       .getSubjectImgesById(event.target.value)
-      .subscribe((data) => {
+      .subscribe((data: imgModel[]) => {
         this.imgasListFromServer = data;
         console.log(data);
       });
   }
 
-  delete(){
+  delete(id) {
+    console.log('id selected: ', id);
+
     this.alertBox = true;
-    this.massage = '? האם אתה בטוח שאתה רוצה למחוק תמונה זו '
+    this.editMode = false
+    this.massage = '? האם אתה בטוח שברצונך רוצה למחוק תמונה זו '
 
 
   }
-  edit(){
+  edit(id) {
+    this.imgSelected = this.imgasListFromServer.find((img) => img.id == id)
+    // this.imgSelected.imgUrl = this.imgUrl
+    // console.log('img selected: ', this.imgSelected);
+
     this.alertBox = true;
     this.editMode = true
     this.massage = 'ניתן לערוך כל אחד מן השדות הללו '
@@ -67,4 +76,23 @@ export class ManagementComponent implements OnInit {
   onClose() {
     this.alertBox = false;
   }
+
+  save(event) {
+    this.imgUrl = event.target.value
+    console.log("You entered: ", event.target.value);
+  }
+}
+
+export interface imgModel {
+  id: number
+  imagesSubject: string
+  imgDes: string
+  imgLongDes: string
+  imgUrl: string
+  img_id: number
+  numOfItems: number
+  photographer: string
+  price: string
+  subId: string
+
 }

@@ -3,7 +3,7 @@
   margin-right: 5%;
   margin-bottom: 5%;
 }
-h2 {
+#title {
   text-align: center;
   margin-top: 4%;
   margin-bottom: 3%;
@@ -43,6 +43,9 @@ th {
 td {
   cursor: pointer;
 }
+.td-form{
+  height: 120px;
+}
 
 tr:nth-child(even) {
   background-color: #fcf8f8;
@@ -51,7 +54,7 @@ tr:nth-child(even) {
   margin: 5px;
   padding: 5px;
   background-color: #f44336;
-  border-radius: 3px;
+  border-radius: 10px;
   color: #dddddd;
   width: 80%;
   cursor: pointer;
@@ -60,11 +63,14 @@ tr:nth-child(even) {
 .edit-btn {
   margin: 5px;
   padding: 5px;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: #4caf50;
   color: #dddddd;
   width: 80%;
   cursor: pointer;
+}
+#inp-img{
+  margin-bottom: 26%;
 }
 
 /* //-------------------------------- */
@@ -81,21 +87,29 @@ tr:nth-child(even) {
   
   .alert-box {
     position: fixed;
-    top: 45vh;
-    left: 30vw;
-    width: 35vw;
+    top: 38vh;
+    left: 12vw;
+    width: 70vw;
+    height: 40vh;
     padding: 16px;
     z-index: 100;
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     color: #232d54;;
     text-align: center;
-    border: 2px solid #232d54;;
+    border: 2px solid rgb(221, 207, 207);
     border-radius: 25px;
   }
   
   .alert-box-actions {
     text-align: right;
+  }
+
+  input{
+    direction: rtl;
+    height: 25px;
+    text-align: center;
+    border-radius: 10px;
   }
   /* .closeBtnOrbuy{
       width: 100px;

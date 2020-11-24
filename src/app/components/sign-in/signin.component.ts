@@ -57,11 +57,11 @@ export class SignInComponent implements OnInit {
     signin() {
      this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
       data => {
+        
         let payload = this.getDecodedAccessToken(data.accessToken)
         this.userId = payload.id
         this.dataSVC.userRole$.next(payload.role)
         this.getUserBag()
-          console.log('role in sgin in comp',payload.role);
         
       },
       error => {

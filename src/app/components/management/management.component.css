@@ -43,7 +43,7 @@ th {
 td {
   cursor: pointer;
 }
-.td-form{
+.td-form {
   height: 120px;
 }
 
@@ -69,55 +69,82 @@ tr:nth-child(even) {
   width: 80%;
   cursor: pointer;
 }
-#inp-img{
-  margin-bottom: 26%;
+#inp-img {
+  margin-bottom: 23%;
 }
 
 /* //-------------------------------- */
 
 .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 50;
-  }
-  
-  .alert-box {
-    position: fixed;
-    top: 38vh;
-    left: 12vw;
-    width: 70vw;
-    height: 40vh;
-    padding: 16px;
-    z-index: 100;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    color: #232d54;;
-    text-align: center;
-    border: 2px solid rgb(221, 207, 207);
-    border-radius: 25px;
-  }
-  
-  .alert-box-actions {
-    text-align: right;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 50;
+}
 
-  input{
-    direction: rtl;
-    height: 25px;
-    text-align: center;
-    border-radius: 10px;
-  }
-  /* .closeBtnOrbuy{
-      width: 100px;
-      height: 30px;
+.alert-box-actions-delete {
+  position: fixed;
+  top: 45vh;
+  left: 30vw;
+  width: 35vw;
+  padding: 16px;
+  z-index: 100;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  color: #232d54;
+  text-align: center;
+  border: 2px solid rgb(221, 207, 207);
+  border-radius: 25px;
+}
+
+.alert-box-actions-edit {
+  position: fixed;
+  top: 38vh;
+  left: 12vw;
+  width: 70vw;
+  height: 40vh;
+  padding: 16px;
+  z-index: 100;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  color: #232d54;
+  text-align: center;
+  border: 2px solid rgb(221, 207, 207);
+  border-radius: 25px;
+}
+
+.alert-box-actions {
+  text-align: right;
+}
+
+input {
+  direction: rtl;
+  height: 25px;
+  text-align: center;
+  border-radius: 10px;
+}
+.closeBtnOrbuy {
+  width: 120px;
+  height: 35px;
+  color: white;
+  background-color: #232d54;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+.delete-confirm-btn {
+    width: 120px;
+    height: 35px;
     color: white;
-     background-color: #232d54;
-      cursor: pointer;
-      border-radius: 5px;
-  } */
+    background-color: #4caf50;
+    cursor: pointer;
+    border-radius: 5px;
+}
 
- 
+.btns-container{
+    display: flex;
+    justify-content: space-between;
+}

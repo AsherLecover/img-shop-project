@@ -51,8 +51,8 @@ export class PaymentFormComponent implements OnInit {
       cardValidityYear: ['',[Validators.required]],
       cvv: ['',[Validators.required, Validators.minLength(3),Validators.maxLength(3), Validators.pattern('^[0-9]+$')]],
       id: ['',[Validators.required,Validators.minLength(9), Validators.pattern('^[0-9]+$')]],
-      
     });
+    
     this.getUserBag()
   }
 

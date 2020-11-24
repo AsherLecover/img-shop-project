@@ -208,3 +208,53 @@ export class ImageDetailsComponent implements OnInit {
     this.alertBox = false;
   }
 }
+
+/* .alert-box-actions-delete {
+  position: fixed;
+  top: 38vh;
+  left: 12vw;
+  width: 70vw;
+  height: 40vh;
+  padding: 16px;
+  z-index: 100;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  color: #232d54;
+  text-align: center;
+  border: 2px solid rgb(221, 207, 207);
+  border-radius: 25px;
+}
+
+.alert-box-actions-edit {
+  position: fixed;
+  top: 45vh;
+  left: 30vw;
+  width: 35vw;
+  padding: 16px;
+  z-index: 100;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  color: #232d54;
+  text-align: center;
+  border: 2px solid rgb(221, 207, 207);
+  border-radius: 25px;
+} */
+
+/* .alert-box-actions{
+    position: fixed;
+    top: 38vh;
+    left: 12vw;
+    width: 70vw;
+    height: 40vh;
+    padding: 16px;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    color: #232d54;
+    text-align: center;
+    border: 2px solid rgb(221, 207, 207);
+    border-radius: 25px;
+  }  */
+
+  // <!-- [ngClass]="{'alert-box-actions-delete': editMode, 'alert-box-actions-edit': deleteMode}" -->
+

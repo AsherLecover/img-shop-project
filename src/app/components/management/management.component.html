@@ -32,16 +32,16 @@
             <td>{{img.photographer}}</td>
             <td>{{img.price}}</td>
             <td>
-                <button (click)="delete(img.id)" class="delete-btn">מחיקה</button>
-                <button (click)="edit(img.id)" class="edit-btn"> עריכה</button>
+                <button (click)="deleteOption(img.id)" class="delete-btn">מחיקה</button>
+                <button (click)="editOption(img.id)" class="edit-btn"> עריכה</button>
             </td>
 
         </tr>
     </table>
 
-    <div *ngIf="alertBox" class="alert-box">
+    <div *ngIf="alertBox" [ngClass]="{'alert-box-actions-delete': deleteMode, 'alert-box-actions-edit': editMode}">
         <h2>{{massage}}</h2>
-        <form *ngIf="editMode" action="">
+        <form   [formGroup]="editImgForm"*ngIf="editMode" action="">
             <table>
                 <tr>
 
@@ -50,26 +50,34 @@
                     <th>כתובת URL התמונה</th>
                     <th> צלם </th>
                     <th> מחיר </th>
-                    <th> </th>
                 </tr>
                 <tr>
-                    <td class="td-form"><input type="text" value={{imgSelected.imgDes}}></td>
-                    <td class="td-form"><input type="text" value={{imgSelected.imgLongDes}}></td>
+                    <td class="td-form"><input type="text"  formControlName="imgDes"  ></td>
+                    <td class="td-form"><input type="text"  formControlName="imgLongDes" ></td>
                     <td>
-                        <img src={{imgSelected.imgUrl}} width="60px;" height="40px;" alt="">
+                        <img  src={{imgUrl}} width="60px;" height="40px;" alt="">
                         <br>
-                        <input id="inp-img" type="text" value={{imgSelected.imgUrl}}>
+                        <input id="inp-img" type="text"  formControlName="imgUrl"
+                        [value]="imgUrl" (input)="imgUrl = $event.target.value" >
                     </td>
-                    <td class="td-form"><input type="text" value={{imgSelected.photographer}}>
-                    <td class="td-form"><input type="text" value={{imgSelected.price}}>
-                    <td class="td-form"><button (click)="edit()" class="edit-btn"> שמירת שינויים</button> </td>
+                    <td class="td-form"><input type="text" formControlName="photographer"  >
+                    <td class="td-form"><input type="text" formControlName="price" >
+                   
 
                 </tr>
             </table>
 
         </form>
         <div class="alert-box-actions">
-            <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
+            <br>
+            <div class="btns-container">
+                <div >
+                    <button class="delete-confirm-btn" (click)="onClose()">{{deleteOrEditBtnName}}</button>
+                </div>
+                <div >
+                    <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

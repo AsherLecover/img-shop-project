@@ -1,8 +1,66 @@
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box select {
+  background-color: #0563af;
+  color: white;
+  padding: 12px;
+  width: 250px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
 .container {
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 5%;
 }
+
+.custom-select{
+  position: relative;
+  display: block;
+  max-width: 400px;
+  min-width: 180px;
+  margin: 0 auto;
+  border: 1px solid #3C1C78;
+  background-color: #16013E;
+  z-index: 10;
+}
+
 #title {
   text-align: center;
   margin-top: 4%;
@@ -22,9 +80,7 @@ h3 {
 }
 
 .pic-subject-selcet {
-  direction: rtl;
-  width: 120px;
-  height: 25px;
+  
 }
 table {
   font-family: arial, sans-serif;
@@ -116,6 +172,22 @@ tr:nth-child(even) {
   border-radius: 25px;
 }
 
+.alert-box-actions-add {
+  position: fixed;
+  top: 38vh;
+  left: 12vw;
+  width: 70vw;
+  height: 40vh;
+  padding: 16px;
+  z-index: 100;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  color: #232d54;
+  text-align: center;
+  border: 2px solid rgb(221, 207, 207);
+  border-radius: 25px;
+}
+
 .alert-box-actions {
   text-align: right;
 }
@@ -147,4 +219,21 @@ input {
 .btns-container{
     display: flex;
     justify-content: space-between;
+}
+.add-img-btn{
+  position: relative;
+  width: 24vh;
+  height: 5vh;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #327a32;
+  font-size: larger;
+
+}
+
+.add-img-btn-div{
+  position: absolute;
+  right: 40vh;
+  top: 32.5vh;
 }

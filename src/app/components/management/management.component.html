@@ -1,16 +1,19 @@
 <div class="container">
 
-    <h2 id="title">מנהל יקר ברוך הבא בעמוד זה תוכל לנהל את כל תכני האתר</h2>
+    <h1 id="title">מנהל יקר ברוך הבא בעמוד זה תוכל לנהל את כל תכני האתר</h1>
     <h3>בחר תמונות לפי נושא</h3>
 
     <div class="pic-subject-container">
+        <div class="box">
 
-        <select (change)="selectSubject($event)" name="pic-subject" class="pic-subject-selcet">
-            <option *ngFor="let img of subjectList" value={{img.id}}>{{img.value}}</option>
-        </select>
-
+            <select (change)="selectSubject($event)" name="pic-subject" class="pic-subject-selcet">
+                <option *ngFor="let img of subjectList" value={{img.id}}>{{img.value}}</option>
+            </select>
+        </div>
         <!-- <p><span> נושא נבחר  </span><b>{{selectedIdSubject}}</b></p> -->
-
+    </div>
+    <div class="add-img-btn-div">
+        <button (click)="addOption()" class="add-img-btn"> הוספת תמונה בקטגורית {{categorySelected}}</button>
     </div>
     <table>
         <tr>
@@ -39,9 +42,11 @@
         </tr>
     </table>
 
-    <div *ngIf="alertBox" [ngClass]="{'alert-box-actions-delete': deleteMode, 'alert-box-actions-edit': editMode}">
+    <div *ngIf="alertBox"
+        [ngClass]="{'alert-box-actions-delete': deleteMode, 'alert-box-actions-edit': editMode, 'alert-box-actions-add': addMode }">
         <h2>{{massage}}</h2>
-        <form   [formGroup]="editImgForm"*ngIf="editMode" action="">
+        <form [formGroup]="editImgForm" *ngIf="editMode|| addMode " action="">
+
             <table>
                 <tr>
 
@@ -52,17 +57,17 @@
                     <th> מחיר </th>
                 </tr>
                 <tr>
-                    <td class="td-form"><input type="text"  formControlName="imgDes"  ></td>
-                    <td class="td-form"><input type="text"  formControlName="imgLongDes" ></td>
+                    <td class="td-form"><input type="text" formControlName="imgDes"></td>
+                    <td class="td-form"><input type="text" formControlName="imgLongDes"></td>
                     <td>
-                        <img  src={{imgUrl}} width="60px;" height="40px;" alt="">
+                        <img src={{imgUrl}} width="60px;" height="40px;" alt="">
                         <br>
-                        <input id="inp-img" type="text"  formControlName="imgUrl"
-                        [value]="imgUrl" (input)="imgUrl = $event.target.value" >
+                        <input id="inp-img" type="text" formControlName="imgUrl" [value]="imgUrl"
+                            (input)="imgUrl = $event.target.value">
                     </td>
-                    <td class="td-form"><input type="text" formControlName="photographer"  >
-                    <td class="td-form"><input type="text" formControlName="price" >
-                   
+                    <td class="td-form"><input type="text" formControlName="photographer">
+                    <td class="td-form"><input type="text" formControlName="price">
+
 
                 </tr>
             </table>
@@ -71,10 +76,10 @@
         <div class="alert-box-actions">
             <br>
             <div class="btns-container">
-                <div >
+                <div>
                     <button class="delete-confirm-btn" (click)="onClose()">{{deleteOrEditBtnName}}</button>
                 </div>
-                <div >
+                <div>
                     <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
                 </div>
             </div>

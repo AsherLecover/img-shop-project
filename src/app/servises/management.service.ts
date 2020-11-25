@@ -8,22 +8,28 @@ import { imgModel } from '../components/management/management.component';
   providedIn: 'root',
 })
 export class ManagementService {
-  imgData$ = new Subject< any>();
-  
-  constructor(private http: HttpClient) {}
+
+  imgData$ = new Subject<any>();
+
+  constructor(private http: HttpClient) { }
 
   getSubjectImgesById(subId) {
     return this.http.get<any>(`${environment.apiUrl}/management/${subId}`);
   }
 
-  deleteImg(id: number,subId: number) {
+  deleteImg(id: number, subId: number) {
     return this.http.delete(`${environment.apiUrl}/management/${id}/${subId}`);
   }
 
-  editImgFromServer(id: any, imgDetailsToUpdate: {},subId) {
-    return this.http.patch(`${environment.apiUrl}/management/${id}/${subId}`, {imgDetailsToUpdate});
+  editImgFromServer(id: any, imgDetailsToUpdate: {}, subId) {
+    return this.http.patch(`${environment.apiUrl}/management/${id}/${subId}`, { imgDetailsToUpdate });
   }
   addImgToServer(imgDataToAdd) {
-    return this.http.post(`${environment.apiUrl}/management`,{imgDataToAdd})
+    return this.http.post(`${environment.apiUrl}/management`, { imgDataToAdd })
+  }
+
+  sendEmailToClinet(paymentForm: any, userBag: any) {
+    return this.http.post(`${environment.apiUrl}/management/sendemail`, { paymentForm, userBag })
+
   }
 }

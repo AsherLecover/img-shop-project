@@ -45,11 +45,10 @@
     <div *ngIf="alertBox"
         [ngClass]="{'alert-box-actions-delete': deleteMode, 'alert-box-actions-edit': editMode, 'alert-box-actions-add': addMode }">
         <h2>{{massage}}</h2>
-        <form [formGroup]="editImgForm" *ngIf="editMode|| addMode " action="">
+        <form [formGroup]="editImgForm" *ngIf="editMode|| addMode" action="">
 
             <table>
                 <tr>
-
                     <th>תאור הנושא</th>
                     <th>תאור התמונה</th>
                     <th>כתובת URL התמונה</th>
@@ -80,7 +79,7 @@
                     <button class="delete-confirm-btn" (click)="onClose()">{{deleteOrEditBtnName}}</button>
                 </div>
                 <div>
-                    <button class="closeBtnOrbuy" (click)="onClose()">סגור</button>
+                    <button class="closeBtnOrbuy" (click)="onCloseBox()">סגור</button>
                 </div>
             </div>
         </div>

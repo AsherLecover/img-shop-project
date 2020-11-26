@@ -369,12 +369,13 @@
 <!-- ------------------------------------------------------------------------------------------------------ -->
 
 <div style="width: 35%; margin-left: 10%; margin-right: 10%;margin-top: 3%; margin-bottom: 3%; direction: rtl;">
-  <div class="row">
-    <div class="col-75">
-      <div class="container">
+  <div class="row" >
+    <div class="col-75" >
+      <div class="container"
+       >
 
         <h2 > פרטי ההזמנה  </h2>
-        <table>
+        <table >
           <tr>
             <th>מוצר</th>
             <th>סכום ביניים</th>
@@ -397,9 +398,24 @@
          </ng-container>
         </table>
 
+        <div *ngIf="alertBox" class="alert-box">
+          <br>
+          <img src="../../../assets/pp-logo.jpeg" width="75px" height="75px;" alt="">
+        
+          <h1>{{ message }}</h1>
+          <div class="alert-box-actions">
+            <mat-progress-bar mode="query" style="width: 50vh; margin-left: 10%; margin-right: 10%;"></mat-progress-bar>
+            <br>
+            <img style="margin-right: 35%; margin-left: 30%;" *ngIf="paymentMode" src="../../../assets/visa.jpg" height="70px;" width="130px;" alt="">
+
+
+          </div>
+      </div>
+
 
 
     </div>
   </div>
  </div>
 </div>
+

@@ -124,6 +124,8 @@ body {
   
   a {
     color: #2196F3;
+    
+    
   }
   
   hr {
@@ -159,4 +161,24 @@ body {
   
   tr:nth-child(even) {
     background-color: #dddddd;
+  }
+
+  .alert-box {
+    position: fixed;
+    top: 30vh;
+    left: 30vw;
+    width: 35vw;
+    height: 32vh;
+    padding: 16px;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    color: #232d54;;
+    text-align: center;
+    border: 2px solid #232d54;;
+    border-radius: 25px;
+  }
+  
+  .alert-box-actions {
+    text-align: right;
   }

@@ -180,11 +180,9 @@ export class ManagementComponent implements OnInit {
     }
     else if (this.editMode) {
       this.editImgFromServer(this.idOfImgToAddDeleteEdit, this.editImgForm.value)
-      console.log(222222); 
     }
     else if (this.addMode) {
       this.addImgToServer()
-      console.log(3333333);
     }
   }
 

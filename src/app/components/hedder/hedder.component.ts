@@ -25,6 +25,7 @@ export class HedderComponent implements OnInit {
   currentUser: Observable<User>;
   sumOfItems: number = 0;
   userRole: string;
+  userSighnedIn: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -36,6 +37,12 @@ export class HedderComponent implements OnInit {
     this.authSer = authSer;
   }
   ngOnInit(): void {
+    this.authSer.userSighnedIn.subscribe((userSighnedIn: boolean) => {
+      this.userSighnedIn = userSighnedIn;
+    })
+    if (localStorage.getItem("accessToken") != null) {
+      this.userSighnedIn = true;
+    }
 
     // google firebase auth
     if (this.authSer.currentUser$) {
@@ -49,24 +56,30 @@ export class HedderComponent implements OnInit {
         (data: []) => {
           // this.sumOfItems = data.length;
           this.buyingSvc.sumOfItems.subscribe((num: number) => { this.sumOfItems = num })
-          console.log('bag data in hedder', data);
+          // console.log('bag data in hedder', data);
         }
       )
     })
 
-    this.imgDataService.userRole$.subscribe( (role:string) => {
+    this.imgDataService.userRole$.subscribe((role: string) => {
       this.userRole = role
-      console.log('ttttt', role);
-      
+      // console.log('ttttt', role);
+
     })
-
-    
-
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(SignupComponent);
 
     dialogRef.afterClosed().subscribe((result) => { });
+  }
+
+  sighnOut() {
+    localStorage.removeItem('accessToken')
+    this.userSighnedIn = false;
+    this.svcClinets.userName = ' אורח';
+    this.buyingSvc.sumOfItems.next(0)
+
+
   }
 }

@@ -6,7 +6,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import * as firebase from 'firebase';
 import { switchMap } from 'rxjs/operators';
 import { User } from './clinets.service';
@@ -24,10 +24,12 @@ export class AuthService {
   private _afAuth: AngularFireAuth;
   private _afStore: AngularFirestore;
   private _router: Router;
+  userSighnedIn = new Subject;
+
 
   constructor(afAuth: AngularFireAuth,
-     afStore: AngularFirestore,
-      router: Router,
+    afStore: AngularFirestore,
+    router: Router,
     private http: HttpClient) {
 
     this._afAuth = afAuth;
@@ -72,9 +74,9 @@ export class AuthService {
   signupWithFacebook() {
 
     let headers = new HttpHeaders()
-    headers = headers.set("Access-Control-Allow-Origin","*" )
+    headers = headers.set("Access-Control-Allow-Origin", "*")
     // 'window.location="http://localhost:3000/auth/facebook"';
     // window.location.href = "http://localhost:3000/auth/facebook"
-   return this.http.get(`${environment.apiUrl}/auth/facebook`, {headers})
+    return this.http.get(`${environment.apiUrl}/auth/facebook`, { headers })
   }
 }

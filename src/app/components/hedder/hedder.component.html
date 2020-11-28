@@ -11,14 +11,16 @@
             </mat-icon>
         </div>
 
-        <div style=" width: 10%; margin-top: 1%;">
+        <div *ngIf="!userSighnedIn" style=" width: 10%; margin-top: 1%;">
             <button routerLink="/auth/signup" (click)="openDialog()">כניסה | הרשמה</button>
         </div>
 
 
-            <div *ngIf="userRole == 'ADMIN'" style=" width: 10%; margin-top: 1%;">
-                <button routerLink="/management">כניסת מנהל </button>
-            </div>
+
+
+        <div *ngIf="userRole == 'ADMIN'" style=" width: 10%; margin-top: 1%;">
+            <button routerLink="/management">כניסת מנהל </button>
+        </div>
 
 
 
@@ -36,7 +38,6 @@
                 <div style="padding-right: 5px"><span class="material-icons">face</span> </div>
                 <span style="direction: ltr" *ngIf="svcClinets.userName !='' "> ברוך הבא{{svcClinets.userName}}</span>
             </div>
-
         </ng-template>
 
 
@@ -55,11 +56,24 @@
             </div>
         </ng-template>
 
+        <div style="width: 5%; text-align: left; padding-left: 1%; margin-top: 1%; display: flex; ; direction: ltr;  
+            ">
+            <div *ngIf="userSighnedIn" (click)="sighnOut()"
+                style="display: flex; margin-right: 5%; cursor: pointer; border: 1px solid red; ">
+                <span style="margin-right: 2%; text-align: center;  " class="material-icons">exit_to_app</span>
+                <span style=""> יציאה </span>
+            </div>
+
+
+        </div>
+
 
         <div style="text-align:left; width: 10%; margin-top: 1%; cursor: pointer;">
             <mat-icon style="padding-left: 5%" routerLink="">home</mat-icon>
         </div>
     </div>
+
+
 
     <!-- heeder seconde line----------------------------------------------------- -->
 

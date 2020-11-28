@@ -79,6 +79,8 @@ export class HedderComponent implements OnInit {
     this.userSighnedIn = false;
     this.svcClinets.userName = ' אורח';
     this.buyingSvc.sumOfItems.next(0)
+    this.userRole = ''
+
 
 
   }

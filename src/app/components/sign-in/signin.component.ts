@@ -61,7 +61,9 @@ export class SignInComponent implements OnInit {
     this.svcClinet.signin(this.registerForm.value.email, this.registerForm.value.password).subscribe(
       data => {
 
-        let payload = this.getDecodedAccessToken(data.accessToken)
+        let payload = this.getDecodedAccessToken(data.accessToken);
+        console.log(payload);
+        
         this.userId = payload.id
         this.dataSVC.userRole$.next(payload.role)
         this.getUserBag();

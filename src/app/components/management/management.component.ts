@@ -72,7 +72,7 @@ export class ManagementComponent implements OnInit {
   selectSubject(event: any) {
 
     this.managementService.getSubjectImgesById(event.target.value)
-      .subscribe((data: imgModel[]) => {
+      .subscribe((data: any) => {
         
         this.imgasListFromServer = data;
         this.managementService.imgData$.next(this.imgasListFromServer)

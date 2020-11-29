@@ -168,10 +168,11 @@ export class PaymentFormComponent implements OnInit {
         this.message = 'התשלום בוצע בהצלחה! תודה שרכשת מאיתנו PicPicture';
       }, 11500);
       setTimeout(() => {
-        this.message = 'פרטי הרכישה נשלחו אליך לאמייל';
+        this.message = 'פרטי הרכישה נשלחו אליך לאימייל';
       }, 15000);
       setTimeout(() => {
         this.alertBox = false;
+        this.message = ''
       }, 21000);
 
       // console.log('form: ', this.paymentForm.value);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { AuthService } from '../../servises/auth.service';
 import { Observable, Subject } from 'rxjs';
 import { User } from 'firebase';
@@ -11,6 +11,8 @@ import accountCheck from '@iconify/icons-mdi/account-check';
 import { SignupComponent } from '../sign-up/signup.component';
 import { ImgDataService } from 'src/app/servises/img-data.service';
 import data from '@iconify/icons-mdi/home';
+import { CanActivate, Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-hedder',
@@ -32,11 +34,13 @@ export class HedderComponent implements OnInit {
     public svcClinets: ClinetsService,
     authSer: AuthService,
     public buyingSvc: BuyingProcessService,
-    private imgDataService: ImgDataService
+    private imgDataService: ImgDataService,
+    public managementGuardService: ManagementGuardService
   ) {
     this.authSer = authSer;
   }
   ngOnInit(): void {
+    this.managementGuardService.canRouteToMengerPage = false;
     this.authSer.userSighnedIn.subscribe((userSighnedIn: boolean) => {
       this.userSighnedIn = userSighnedIn;
     })
@@ -62,9 +66,10 @@ export class HedderComponent implements OnInit {
     })
 
     this.imgDataService.userRole$.subscribe((role: string) => {
-      this.userRole = role
-      // console.log('ttttt', role);
-
+      this.userRole = role;
+      if(this.userRole == 'ADMIN'){
+        this.managementGuardService.canRouteToMengerPage = true;
+      }
     })
   }
 
@@ -80,8 +85,27 @@ export class HedderComponent implements OnInit {
     this.svcClinets.userName = ' אורח';
     this.buyingSvc.sumOfItems.next(0)
     this.userRole = ''
+  }
+}
 
+@Injectable({ providedIn: 'root' })
+export class ManagementGuardService implements CanActivate {
+  canRouteToMengerPage: boolean = true;
+  alertMassage : boolean = false;
+  constructor(public router: Router) { }
 
+  canActivate(): boolean {
+    if (this.canRouteToMengerPage == false) {
+      console.log(467647764376747);
+      
 
+      this.router.navigate(['/pic-sub-main-page']);
+      this.alertMassage = true;
+      setTimeout( () => {
+        this.alertMassage = false;
+      },5000)
+      return false;
+    }
+    return true;
   }
 }

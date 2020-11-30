@@ -40,7 +40,7 @@ export class ManagementService {
     return this.http.patch(`${environment.apiUrl}/management/${id}/${subId}`, { imgDetailsToUpdate: imgDetailsToUpdate, role: this.user.role});
   }
   addImgToServer(imgDataToAdd) {
-    return this.http.post(`${environment.apiUrl}/management`, { imgDataToAdd: imgDataToAdd, role: this.user.role  })
+    return this.http.post(`${environment.apiUrl}/management`, { imgDataToAdd: imgDataToAdd, role: this.user.role})
   }
 
   sendEmailToClinet(paymentForm: any, userBag: any) {

@@ -122,7 +122,7 @@ export class ImageDetailsComponent implements OnInit {
 
     this.dataSVC.getImg().subscribe((data) => {
       this.imgDataFromServer = data;
-      console.log(data);
+      console.log('img data:: ',data);
     });
 
     //---------------------------------
@@ -133,7 +133,8 @@ export class ImageDetailsComponent implements OnInit {
   addImgToLoacalList() {
     // if (this.printSize != '' && this.printType != '') {
     if (this.userEmail != null) {
-      this.dataSVC.imgListToBePushToServer.push({
+      this.dataSVC.imgListToBePushToServer.push(
+        {
         user_id: this.dataSVC.userId,
         email: this.userEmail,
         img_id: this.imgDataFromServer.id,
@@ -148,6 +149,7 @@ export class ImageDetailsComponent implements OnInit {
 
       });
     }
+    this.dataSVC.imgListToBePushToServer = []
   }
 
   getDecodedAccessToken(token: string): any {

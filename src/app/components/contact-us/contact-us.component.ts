@@ -8,20 +8,21 @@ import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angula
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  FormData: FormGroup;
+  contactUsForm: FormGroup;
   constructor(private builder: FormBuilder) { }
 
   ngOnInit() {
-    this.FormData = this.builder.group({
+    this.contactUsForm = this.builder.group({
       Fullname: new FormControl('', [Validators.required]),
-      Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
-      Comment: new FormControl('', [Validators.required])
+      Email: new FormControl('', [Validators.required, Validators.email]),
+      title: new FormControl('', [Validators.required]),
+      massage: new FormControl('', [Validators.required])
     });
   }
 
 
-  onSubmit(FormData) {
-    console.log(FormData)
+  onSubmit() {
+    console.log(this.contactUsForm.value)
   //   this.contact.PostMessage(FormData)
   //     .subscribe(response => {
   //       location.href = 'https://mailthis.to/confirm'
@@ -30,5 +31,9 @@ export class ContactUsComponent implements OnInit {
   //       console.warn(error.responseText)
   //       console.log({ error })
   //     })
+  }
+
+  cancel() {
+    this.contactUsForm.reset()
   }
 }

@@ -143,7 +143,7 @@ export class ManagementComponent implements OnInit {
    imgDataToAdd.imagesSubject = this.categorySelected;
    imgDataToAdd.subId = this.subId;
    imgDataToAdd.numOfItems = 1;
-   imgDataToAdd.img_id = this.imgasListFromServer.length;
+   imgDataToAdd.img_id = this.imgasListFromServer.length+1;
    
     this.managementService.addImgToServer(imgDataToAdd).subscribe( (data:any) => {
       this.managementService.imgData$.next(data)

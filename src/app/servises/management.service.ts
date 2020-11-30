@@ -23,14 +23,24 @@ export class ManagementService {
   }
 
   deleteImg(id: number, subId: number) {
-    return this.http.delete(`${environment.apiUrl}/management/${id}/${subId}`);
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        role: this.user.role,
+        name: 'test',
+      },
+    };
+
+    return this.http.delete(`${environment.apiUrl}/management/${id}/${subId}`,options);
   }
 
   editImgFromServer(id: any, imgDetailsToUpdate: {}, subId) {
-    return this.http.patch(`${environment.apiUrl}/management/${id}/${subId}`, { imgDetailsToUpdate });
+    return this.http.patch(`${environment.apiUrl}/management/${id}/${subId}`, { imgDetailsToUpdate: imgDetailsToUpdate, role: this.user.role});
   }
   addImgToServer(imgDataToAdd) {
-    return this.http.post(`${environment.apiUrl}/management`, { imgDataToAdd })
+    return this.http.post(`${environment.apiUrl}/management`, { imgDataToAdd: imgDataToAdd, role: this.user.role  })
   }
 
   sendEmailToClinet(paymentForm: any, userBag: any) {

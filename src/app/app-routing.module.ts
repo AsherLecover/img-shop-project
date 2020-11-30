@@ -9,6 +9,7 @@ import { PaymentFormComponent } from './components/payment-form/payment-form.com
 import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/img-home-living-room.component';
 import { ManagementComponent } from './components/management/management.component';
 import { ManagementGuardService } from './components/hedder/hedder.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path:'img-home-living-room',   component:ImgHomeLivingRoomComponent},
   { path:'auth/signup',   component:PicSubMainPageComponent},
   { path:'auth/signin',   component:PicSubMainPageComponent},
+  { path:'contact-us',   component:ContactUsComponent},
   { path:'management',   component:ManagementComponent, canActivate:[ManagementGuardService]},
   { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},

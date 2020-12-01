@@ -38,6 +38,7 @@ import { ImgHomeLivingRoomComponent } from './components/img-home-living-room/im
 import { HttpClientModule } from '@angular/common/http';
 import { ManagementComponent } from './components/management/management.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
  
 @NgModule({
@@ -56,6 +57,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     ImgHomeLivingRoomComponent,
     ManagementComponent,
     ContactUsComponent,
+    AboutUsComponent,
   ],
   imports: [
     AngularFirestoreModule,

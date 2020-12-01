@@ -1,59 +1,50 @@
-<div class="background">
-    <div class="container">
-      <div class="screen">
-        <div class="screen-header">
-          <div class="screen-header-left">
-            <div class="screen-header-button close"></div>
-            <div class="screen-header-button maximize"></div>
-            <div class="screen-header-button minimize"></div>
-          </div>
-          <div class="screen-header-right">
-            <div class="screen-header-ellipsis"></div>
-            <div class="screen-header-ellipsis"></div>
-            <div class="screen-header-ellipsis"></div>
-          </div>
-        </div>
-        <div class="screen-body">
+<div style="border:rgb(196, 184, 184) 2px solid; width: 35vh; text-align: center; margin-left: 32vh; margin-right: 32vh;">
+  <h1>טופס יצירת קשר</h1>
+  <h3>פנייתך בנושא הנדון: title התקבלה בחברתנו fullName </h3>
+   <b>:פרטי ההודעה</b>
+  <p>message</p>
+  <br> <br>
+  <b> נשוב ונעדכנך התוך  שבעה ימי עסקים <br> צוות PicPicture </b>
+  <img style="width:40px; border-radius: 50%;" src="https://raw.githubusercontent.com/AsherLecover/shop-img-data/master/logo/pp-logo.jpeg"  alt="">
 
-
-          <div class="screen-body-item left">
-            <div class="app-title">
-              <span>יצירת</span>
-              <span>קשר</span>
-            </div>
-            <div class="app-contact"> פרטי יצירת קשר : 03-5784444    </div>
-          </div>
-
-
-          <div class="screen-body-item">
-
-            <form  [formGroup]="contactUsForm" action="">
-
-            <div class="app-form">
-              <div class="app-form-group">
-                <input formControlName="Fullname" class="app-form-control" placeholder="שם מלא" value=" שם מלא">
-              </div>
-              <div class="app-form-group">
-                <input formControlName="Email" class="app-form-control" placeholder="כתובת מייל">
-              </div>
-              <div class="app-form-group">
-                <input formControlName="title" class="app-form-control" placeholder=" נושא">
-              </div>
-              <div class="app-form-group message">
-                
-                <input formControlName="massage" class="app-form-control" placeholder="הודעה">
-              </div>
-              <div class="app-form-group buttons">
-                <button (click)="cancel()" class="app-form-button">ביטול</button>
-                <button (click)="onSubmit()" class="app-form-button-send">שליחה</button>
-              </div>
-            </div>
-        </form>
-            
-          </div>
-        </div>
-      </div>
-   
-    </div>
   </div>
-  
+<div class="contact1">
+  <div class="container-contact1">
+    <div class="contact1-pic js-tilt" data-tilt>
+      <img src="../../../assets/img-01.png" alt="IMG">
+    </div>
+
+    <form [formGroup]="contactUsForm" class="contact1-form validate-form">
+      <h1 class="contact1-form-title">טופס יצירת קשר</h1>
+
+      <div class="wrap-input1 validate-input" data-validate = "Name is required">
+        <input  formControlName="fullName" class="input1" type="text" name="name" placeholder="שם מלא">
+        <span class="shadow-input1"></span>
+      </div>
+
+      <div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+        <input  formControlName="email" class="input1" type="text" name="email" placeholder="כתובת אימייל">
+        <span class="shadow-input1"></span>
+      </div>
+
+      <div class="wrap-input1 validate-input" data-validate = "Subject is required">
+        <input  formControlName="title" class="input1" type="text" name="subject" placeholder="נושא">
+        <span class="shadow-input1"></span>
+      </div>
+
+      <div class="wrap-input1 validate-input" data-validate = "Message is required">
+        <textarea  formControlName="message" class="input1" name="message" placeholder="הודעה"></textarea>
+        <span class="shadow-input1"></span>
+      </div>
+
+      <div class="container-contact1-form-btn">
+        <button (click)="onSubmit()" class="contact1-form-btn">
+          <span>
+            שליחת הודעה
+            <i class="fas fa-envelope"  aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

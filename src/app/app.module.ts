@@ -40,6 +40,7 @@ import { ManagementComponent } from './components/management/management.componen
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { DiscountComponent } from './components/discount/discount.component';
 
  
 @NgModule({
@@ -60,6 +61,7 @@ import { RecommendationsComponent } from './components/recommendations/recommend
     ContactUsComponent,
     AboutUsComponent,
     RecommendationsComponent,
+    DiscountComponent,
   ],
   imports: [
     AngularFirestoreModule,

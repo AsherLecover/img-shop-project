@@ -1,0 +1,29 @@
+<br><br><br>
+<h1><strong>תמונות במבצע</strong></h1> <br><br>
+
+
+<div style="text-align: center ;  display: flex; margin-left: 14%; margin-right: 14%;">
+    <div>
+        <div *ngFor="let i of listToDisplay" style="display: inline-block; margin: 7px; border: whitesmoke solid 1px;">
+            <div class="container-img" style="cursor: pointer; " (click)="onImgSelected(i)">
+
+                <figure>
+                    <img src={{i.imgUrl}} alt="PicPicture" width="307vh" height="222vh" />
+                    <figcaption>במבצע</figcaption>
+                </figure>
+            </div>
+            <div style="display: flex;">
+
+                <mat-icon mat-stroked-button (click)="onImgSelected(i)" style="cursor: pointer;" mat-raised-button
+                    matTooltip=" המשך לרכישה">
+                    shopping_cart
+                </mat-icon>
+
+                <p style="margin-left: 22%;"> {{i.imgDes}}</p>
+            </div>
+            <hr style="width: 50%;">
+            <p>מחיר: {{i.price | currency:'ILS'}}</p>
+
+        </div>
+    </div>
+</div>

@@ -12,6 +12,7 @@ import { ManagementGuardService } from './components/hedder/hedder.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { DiscountComponent } from './components/discount/discount.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path:'contact-us',   component:ContactUsComponent},
   { path:'about-us',   component:AboutUsComponent},
   { path:'recommendations',   component:RecommendationsComponent},
+  { path:'discount',   component:DiscountComponent},
   { path:'management',   component:ManagementComponent, canActivate:[ManagementGuardService]},
   { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},

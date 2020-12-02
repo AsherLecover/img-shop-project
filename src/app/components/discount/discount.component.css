@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+    font-size: 4vh;
+    font-family: 'Brush Script MT', cursive;
+}
+
+figure, figcaption {
+    margin: 0;
+    padding: 0;
+}
+
+figure {
+    display: inline-block;
+    position: relative;
+}
+
+figure img {
+    display: block;
+}
+
+figure figcaption {
+    position: absolute;
+    left: 93%;
+    top: 5%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 1vh;
+    border-radius: 5px;
+}

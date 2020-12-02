@@ -96,9 +96,9 @@ iframe {
   padding: 15px;
 
    background-color: white;
-  background: -o-linear-gradient(left, #0072ff, #00c6ff);
+  /* background: -o-linear-gradient(left, #0072ff, #00c6ff);
   background: -moz-linear-gradient(left, #0072ff, #00c6ff);
-  background: linear-gradient(left, #0072ff, #00c6ff);
+  background: linear-gradient(left, #0072ff, #00c6ff); */
 
   display: -webkit-box;
   display: -webkit-flex;
@@ -112,7 +112,9 @@ iframe {
 
 .container-contact1 {
   width: 1163px;
-  background:    radial-gradient(black, transparent);
+  /* background:    radial-gradient(black, transparent); */
+  box-shadow: 4px 5px 6px 3px rgba(0,0,0,0.10);
+  border-radius: 6px;
   border-radius: 10px;
   overflow: hidden;
   display: -webkit-box;
@@ -183,7 +185,7 @@ textarea.input1 + .shadow-input1 {
 .input1 {
   display: block;
   width: 100%;
-  background: #e6e6e6;
+  background: #e8ebf7;
   font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;

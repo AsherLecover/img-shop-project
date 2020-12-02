@@ -1,0 +1,9 @@
+mat-grid-tile {
+    background: lightblue;
+}
+
+.big-card{
+    /* background-color: greenyellow; */
+    padding: 20%;
+    border: black 2px solid;
+}

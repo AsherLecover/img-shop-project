@@ -39,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ManagementComponent } from './components/management/management.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 
  
 @NgModule({
@@ -58,6 +59,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     ManagementComponent,
     ContactUsComponent,
     AboutUsComponent,
+    RecommendationsComponent,
   ],
   imports: [
     AngularFirestoreModule,

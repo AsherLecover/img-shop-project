@@ -58,8 +58,7 @@
 
         <div style="width: 5%; text-align: left; padding-left: 1%; margin-top: 1%; display: flex; ; direction: ltr;  
             ">
-            <div *ngIf="userSighnedIn" (click)="sighnOut()"
-                style="display: flex; margin-right: 5%; cursor: pointer;">
+            <div *ngIf="userSighnedIn" (click)="sighnOut()" style="display: flex; margin-right: 5%; cursor: pointer;">
                 <span style="margin-right: 2%; text-align: center;  " class="material-icons">exit_to_app</span>
                 <span> יציאה </span>
             </div>
@@ -113,7 +112,7 @@
             <span routerLink="/contact-us" style="font-size: 150%; ">צרו קשר</span>
         </div>
         <div class="seconeLineMenu" style="width: 17%">
-            <span routerLink="/img-home-living-room" style="font-size: 150%; ">ממליצים</span>
+            <span routerLink="/recommendations" style="font-size: 150%; ">ממליצים</span>
         </div>
         <div class="seconeLineMenu" style="width: 17%">
             <span routerLink="/about-us" style="font-size: 150%;">אודותינו</span>
@@ -134,8 +133,8 @@
     </div>
 </div>
 
-<div *ngIf ="managementGuardService.alertMassage" class="alert-box">
+<div *ngIf="managementGuardService.alertMassage" class="alert-box">
     <br>
     <h1 style="color: red;">THIS PAGE IS ONLY FOR MANEGERS!!!</h1>
-   
+
 </div>

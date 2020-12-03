@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
-import { ImgHomeLivingRoomService } from '../../servises/img-home-living-room.service';
+import { ImgHomeLivingRoomService } from '../servises/img-home-living-room.service';
 import { Router } from '@angular/router';
-import { ImgSubListService } from '../../servises/img-sub-list.service';
-import { BuyingProcessService } from '../../servises/buying-process.service';
+import { ImgSubListService } from '../servises/img-sub-list.service';
+import { BuyingProcessService } from '../servises/buying-process.service';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -11,11 +11,11 @@ import {
 } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'img-home-living-room',
-  templateUrl: './img-home-living-room.component.html',
-  styleUrls: ['./img-home-living-room.component.css'],
+  selector: 'new-img',
+  templateUrl: './new-img.component.html',
+  styleUrls: ['./new-img.component.css'],
 })
-export class ImgHomeLivingRoomComponent implements OnInit {
+export class NewImgComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   imgDataFromServrer: [];
@@ -26,7 +26,6 @@ export class ImgHomeLivingRoomComponent implements OnInit {
   constructor(
     private imgHomeLivingRoomService: ImgHomeLivingRoomService,
     private router: Router,
-
     public svc: ImgSubListService,
     public buyingSvc: BuyingProcessService
   ) {}
@@ -54,10 +53,12 @@ export class ImgHomeLivingRoomComponent implements OnInit {
   }
 
   getRandomNumber() {
-    return (this.randomNumber = Math.floor(Math.random() * 55) + 1);
+    return (this.randomNumber = Math.floor(Math.random() * 35) + 1);
   }
 
   onImgSelected(img) {
+    console.log('444444444444444', img);
+
     this.router.navigate(['/img-details', img.subId, img.img_id]);
     this.svc.imgurlSelected = img.imgUrl;
     this.svc.imgDescription = img.imgDes;

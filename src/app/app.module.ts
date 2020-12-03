@@ -41,6 +41,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { DiscountComponent } from './components/discount/discount.component';
+import { NewImgComponent } from './new-img/new-img.component';
 
  
 @NgModule({
@@ -62,6 +63,7 @@ import { DiscountComponent } from './components/discount/discount.component';
     AboutUsComponent,
     RecommendationsComponent,
     DiscountComponent,
+    NewImgComponent,
   ],
   imports: [
     AngularFirestoreModule,

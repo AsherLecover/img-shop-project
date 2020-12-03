@@ -24,8 +24,13 @@
 li{
     cursor: pointer;
 }
+a{
+    text-decoration:none;
+    color: white;
 
-@media screen and (max-width: 500px) {
+}
+
+@media screen and (max-width: 900px) {
     .footer{
         position:relative;
         color: red;

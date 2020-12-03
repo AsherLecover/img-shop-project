@@ -1,6 +1,7 @@
-h1{
+h1 {
     text-align: center;
-  
+    font-size: 4vh;
+    font-family: 'Brush Script MT', cursive;
 }
 h3{
     text-align: center !important;

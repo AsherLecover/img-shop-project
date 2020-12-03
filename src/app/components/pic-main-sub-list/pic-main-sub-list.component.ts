@@ -34,7 +34,6 @@ export class PicMainSubListComponent implements OnInit {
     private imgSubDataSVC: ImgSubjectDataService
   ) {
     this.svc.imgListOrderBySobjects = this.imgListBySubjects;
-    this.imgListBySubjects = this.imgDataSVC.imgDataList.imgListBySubjects;
 
 
   }

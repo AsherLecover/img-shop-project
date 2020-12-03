@@ -49,7 +49,7 @@ export class ImageDetailsComponent implements OnInit {
   originalPrice1: number;
   link: string;
   stst = `whatsapp://send?text=רציתי לשתף אותך בתמונה יפה מהאתר PicPicture www.google.com`;
-  href = 'http://localhost:4200/img-details/0/0';
+  href = window.location.href;
   iframeSrc: SafeUrl;
   flag = true;
   message: string = 'המוצר התווסף לסל בהצלחה!';
@@ -122,16 +122,13 @@ export class ImageDetailsComponent implements OnInit {
 
     this.dataSVC.getImg().subscribe((data) => {
       this.imgDataFromServer = data;
-      console.log('img data:: ',data);
     });
 
-    //---------------------------------
-    this.newList = this.dataSVC.imgDataList.imgListBySubjects;
+
 
   }
 
   addImgToLoacalList() {
-    // if (this.printSize != '' && this.printType != '') {
     if (this.userEmail != null) {
       this.dataSVC.imgListToBePushToServer.push(
         {
@@ -211,52 +208,4 @@ export class ImageDetailsComponent implements OnInit {
   }
 }
 
-/* .alert-box-actions-delete {
-  position: fixed;
-  top: 38vh;
-  left: 12vw;
-  width: 70vw;
-  height: 40vh;
-  padding: 16px;
-  z-index: 100;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  color: #232d54;
-  text-align: center;
-  border: 2px solid rgb(221, 207, 207);
-  border-radius: 25px;
-}
-
-.alert-box-actions-edit {
-  position: fixed;
-  top: 45vh;
-  left: 30vw;
-  width: 35vw;
-  padding: 16px;
-  z-index: 100;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  color: #232d54;
-  text-align: center;
-  border: 2px solid rgb(221, 207, 207);
-  border-radius: 25px;
-} */
-
-/* .alert-box-actions{
-    position: fixed;
-    top: 38vh;
-    left: 12vw;
-    width: 70vw;
-    height: 40vh;
-    padding: 16px;
-    z-index: 100;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    color: #232d54;
-    text-align: center;
-    border: 2px solid rgb(221, 207, 207);
-    border-radius: 25px;
-  }  */
-
-  // <!-- [ngClass]="{'alert-box-actions-delete': editMode, 'alert-box-actions-edit': deleteMode}" -->
 

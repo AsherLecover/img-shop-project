@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ImgData } from '../data/img=dateils-data';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Subject } from 'rxjs';
 
@@ -11,7 +10,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ImgDataService {
-  imgDataList = new ImgData();
   subId: number = 0;
   img_id: number = 0;
   imgListToBePushToServer = [];
@@ -79,24 +77,9 @@ export class ImgDataService {
     );
   }
 
-  // getUserBag(){
-  //   console.log('set user bag func');
-    
-  //   this.dataSVC.getBag(this.userId).subscribe((data:[]) => {
-  //     this.buyingBagPerUser = data
-  //     if(this.buyingBagPerUser.length > 0){
-  //       this.buyerSvc.numOfItems = data.length
-  //       this.buyingBagPerUser.forEach(img => {
-  //         this.totalPrice += img.imgdata.price
-  //       });
-  //     }
-  //   });
-  //   this.totalPrice = 0;
-  //   this.buyingBagPerUser = null
-  // }
+
 
   getBagInHomePage(user_id: number) {
-    // this.getPaylowdData();
     this.shppingcCartOrMainPageUrl = '/pic-sub-main-page';
     return this.http.post(
       `${environment.apiUrl}${this.shppingcCartOrMainPageUrl}`,

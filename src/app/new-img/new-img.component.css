@@ -3,6 +3,7 @@ h1 {
     font-size: 4vh;
     font-family: 'Brush Script MT', cursive;
 }
+
 figure, figcaption {
     margin: 0;
     padding: 0;
@@ -20,11 +21,14 @@ figure img {
 
 figure figcaption {
     position: absolute;
-    left: 5%;
-    top: 94%;
+    left: 92%;
+    top: 5%;
     transform: translate(-50%, -50%);
-    background-color: rgba(31, 30, 30, 0.5);
+    background-color: rgba(37, 121, 20, 0.5);
     color: #fff;
-    padding: 1vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
     border-radius: 5px;
 }

@@ -26,6 +26,10 @@
             <button routerLink="/management">כניסת מנהל </button>
         </div>
 
+        <div *ngIf="userRole == 'CLINET'" style=" width: 10%; margin-top: 1%;">
+            <button routerLink="/private-area">כניסת לאזור האישי </button>
+        </div>
+
 
 
 

@@ -67,6 +67,8 @@ export class HedderComponent implements OnInit {
 
     this.imgDataService.userRole$.subscribe((role: string) => {
       this.userRole = role;
+      console.log('role:::', this.userRole);
+      
       if(this.userRole == 'ADMIN'){
         this.managementGuardService.canRouteToMengerPage = true;
       }

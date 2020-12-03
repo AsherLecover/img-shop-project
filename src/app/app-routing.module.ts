@@ -14,6 +14,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { DiscountComponent } from './components/discount/discount.component';
 import { NewImgComponent } from './new-img/new-img.component';
+import { PrivateAreaComponent } from './components/private-area/private-area.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path:'recommendations',   component:RecommendationsComponent},
   { path:'discount',   component:DiscountComponent},
   { path:'new-img',   component:NewImgComponent},
+  { path:'private-area',   component:PrivateAreaComponent},
   { path:'management',   component:ManagementComponent, canActivate:[ManagementGuardService]},
   { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
   { path:'**',        redirectTo:'home', pathMatch: 'full'},

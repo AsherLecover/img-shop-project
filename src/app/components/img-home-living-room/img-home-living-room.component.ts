@@ -9,6 +9,11 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { ClinetsService } from 'src/app/servises/clinets.service';
+import { ImgDataService } from 'src/app/servises/img-data.service';
+import { AuthService } from 'src/app/servises/auth.service';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'img-home-living-room',
@@ -22,16 +27,24 @@ export class ImgHomeLivingRoomComponent implements OnInit {
   imgListSubject: string = '';
   randomNumber: number = 0;
   listToDisplay: [] = [];
+  userId:number;
+  buyingBagPerUser
 
   constructor(
     private imgHomeLivingRoomService: ImgHomeLivingRoomService,
     private router: Router,
-
+    public svcClinet: ClinetsService,
+    public buyerSvc: BuyingProcessService,
+    public dataSVC: ImgDataService,
+    public authService: AuthService,
     public svc: ImgSubListService,
     public buyingSvc: BuyingProcessService
   ) {}
 
   ngOnInit(): void {
+    this.userId = this.dataSVC.userId
+    this.getUserBag()
+
     if (localStorage.getItem('livingRoomList')) {
       this.listToDisplay = JSON.parse(
         localStorage.getItem('livingRoomList') || '[]'
@@ -66,33 +79,46 @@ export class ImgHomeLivingRoomComponent implements OnInit {
     this.svc.imgLongDes = img.imgLongDes;
   }
 
-  // omImgSelectedToBuy(img) {
-  //   let id = (this.buyingSvc.itemimg_idToBeDisplayInBag = img.img_id);
-  //   let des = (this.buyingSvc.itemImgDesToBeDisplayInBag = img.imgDes);
-  //   let price = (this.buyingSvc.itemImgPriceToBeDisplayInBag = img.price);
-  //   let originalPrice = (this.buyingSvc.itemImgPriceToBeDisplayInBag =
-  //     img.price);
-  //   let url = (this.buyingSvc.itemImgUrlToBeDisplayInBag = img.imgUrl);
-  //   let numOfItems = this.buyingSvc.numOfItems;
-  //   this.buyingSvc.listOfItemToBeDisplay.push([
-  //     {
-  //       id: id,
-  //       des: des,
-  //       price: price,
-  //       url: url,
-  //       numOfItems: numOfItems,
-  //       originalPrice: originalPrice,
-  //     },
-  //   ]);
+ 
 
-  //   this.buyingSvc.itemAmount += 1;
-  // }
+  getUserBag() {
+    this.getPaylowdData()
+    this.dataSVC.getBag(this.userId).subscribe((data: []) => {
+      this.buyingBagPerUser = data
+      console.log(' data from sign in', data);
+      console.log(' data length', data.length);
 
-  // openSnackBar(message: string, action: string) {
-  //   this._snackBar.open(message, action, {
-  //     duration: 2000,
-  //     horizontalPosition: this.horizontalPosition,
-  //     verticalPosition: this.verticalPosition,
-  //   });
-  // }
+      this.buyerSvc.sumOfItems.next(this.buyingBagPerUser.length);
+    
+    });
+    this.buyingBagPerUser = null
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
+  }
+
+  getPaylowdData() {
+    if (
+      this.getDecodedAccessToken(localStorage.getItem('accessToken')) != null
+    ) {
+      this.userId = this.getDecodedAccessToken(
+        localStorage.getItem('accessToken')
+      ).id;
+
+      this.svcClinet.userName = ' ' + this.getDecodedAccessToken(localStorage.getItem('accessToken')
+      ).username;
+      this.svcClinet.username$.next(
+        this.getDecodedAccessToken(
+          localStorage.getItem('accessToken')
+        ).username
+      );
+
+    }
+    return this.userId;
+  }
 }

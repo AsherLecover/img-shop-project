@@ -93,7 +93,6 @@ export class SignInComponent implements OnInit {
     });
     this.totalPrice = 0;
     this.buyingBagPerUser = null
-
   }
 
   getDecodedAccessToken(token: string): any {

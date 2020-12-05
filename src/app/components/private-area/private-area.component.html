@@ -29,8 +29,8 @@
     </div>
     <div class="right-side">
         <p>right</p>
-        <h1>חבר יקר באזור זה תוכל להעלות תמונות לאתר</h1>
-        <button (click)="addImgOption()">לחץ להוספת תמונה לאתר</button>
+        <h1>חבר יקר באזור זה תוכל לנהל את כל התמונות שלך באתר</h1>
+        <button (click)="addImgOption()">להוספה וניהול התמונות</button>
         <div *ngIf="alertBox" class="alert-box">
             <p>helooooooo</p>
 
@@ -47,7 +47,7 @@
             <div class="user-img">
                 <table>
                     <tr>
-            
+                        <th>נושא</th>
                         <th>תאור הנושא</th>
                         <th>תאור התמונה</th>
                         <th>כתובת URL התמונה</th>
@@ -56,6 +56,7 @@
                         <th>מחיקה/עריכה</th>
                     </tr>
                     <tr *ngFor="let img of imgasListFromServer">
+                        <td>{{img.imagesSubject}}</td>
                         <td>{{img.imgDes}}</td>
                         <td>{{img.imgLongDes}}</td>
                         <td>{{img.imgUrl}}<br>
@@ -72,7 +73,9 @@
                     </tr>
                 </table>
             </div>
+            <i class="far fa-window-close" style="font-size: large; color: red;"></i>
             <button (click)="onClose()">סגור</button>
+
         </div>
         
 

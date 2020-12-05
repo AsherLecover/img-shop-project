@@ -15,8 +15,8 @@ export class PrivateAreaService {
 
    }
 
-   getSubjectImgesById(subId) {
-    return this.http.post<any>(`${environment.apiUrl}/private-area/${subId}`,this.user);
+   getAllImgByUserId() {
+    return this.http.post<any>(`${environment.apiUrl}/private-area/`,this.user);
   }
 
    getDecodedAccessToken(token: string): any {

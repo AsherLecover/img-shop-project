@@ -54,17 +54,18 @@ export class PrivateAreaComponent implements OnInit {
   addImgOption() {
     this.alertBox = true;
     this.addMode = true;
+    this.selectSubject()
   }
   onClose() {
     this.alertBox = false;
   }
 
-  selectSubject(event: any) {
-    console.log('event.target.value: ', event.target.value);
+  selectSubject() {
+    // console.log('event.target.value: ', event.target.value);
     // this.selectSubject(event.target.value)
 
 
-    this.privateAreaService.getSubjectImgesById(event.target.value).subscribe((data: any) => {
+    this.privateAreaService.getAllImgByUserId().subscribe((data: any) => {
       console.log('data per userrrr:', data);
       this.imgasListFromServer = data
 

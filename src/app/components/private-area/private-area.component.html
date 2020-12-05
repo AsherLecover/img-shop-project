@@ -1,55 +1,80 @@
+
+
 <div class="container">
-
-    <div class="grid-7 element-animation">
-        <div class="card color-card-2">
-            <ul>
-                <li><i class="fas fa-arrow-left i-l b"></i></li>
-                <li><i class="fas fa-ellipsis-v i-r b"></i></li>
-                <li><i class="far fa-heart i-r b"></i></li>
-            </ul>
-            <div class="img-warpper">
-                <span class="material-icons">
-                    add_a_photo
-                    </span>
-
-                <img src="https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7d5363c18112a02ce22d0c46f8570147&auto=format&fit=crop&w=635&q=80%20635w"
-                    alt="profile-pic" class="profile">
-                    
+    <div class="left-side">
+        <p>left</p>
+        <div class="profile-card">
+            <br><br><br>
+            <div class="container-img">
+                <figure>
+                    <img id="profile-img" src="https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7d5363c18112a02ce22d0c46f8570147&auto=format&fit=crop&w=635&q=80%20635w"
+                        alt="profile-pic" class="profile">
+                    <figcaption> <span class="material-icons">add_a_photo </span> </figcaption>
+                </figure>
             </div>
-            <h1 class="title-2">שמ משתמש </h1>
-            <p class="job-title"> מקצוע\צלם  </p>
-            <div class="desc top">
-                <p> תאור עצמי במשפט...@</p>
+            <h1>yossi kohen </h1>
+            <h2>Amateur photographer </h2><br>
+            <div class="h3-container">
+                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque aliquam aliquid porro!</h3>
             </div>
-            <div class="btn-warpper">
-
-                <button class="btn color-a top"> Hire me</button>
+            <br><br><br>
+            <div class="profile-links">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fa fa-facebook-square" style="font-size:48px;color:#4267B2"></i>
+                <i class="fab fa-linkedin-in" style="font-size: 48px; color: #0e76a8;"></i>
+                <i class="fa fa-twitter"  aria-hidden="true" style="font-size: 48px; color: #00aced"></i>
             </div>
-
-            <hr class="hr-2">
-            <div class="container">
-                <div class="content">
-                    <div class="grid-2">
-                        <button class="color-b circule"> <i class="fab fa-dribbble fa-2x"></i></button>
-                        <h2 class="title-2">12.3k</h2>
-                        <p class="followers">Followers</p>
-                    </div>
-                    <div class="grid-2">
-                        <button class="color-c circule"><i class="fab fa-behance fa-2x"></i></button>
-                        <h2 class="title-2">16k</h2>
-                        <p class="followers">Followers</p>
-                    </div>
-                    <div class="grid-2">
-                        <button class="color-d circule"><i class="fab fa-github-alt fa-2x"></i></button>
-                        <h2 class="title-2">17.8k</h2>
-                        <p class="followers">Followers</p>
-                    </div>
-                </div>
-            </div>
+            <br><br><br>
         </div>
     </div>
-</div>
+    <div class="right-side">
+        <p>right</p>
+        <h1>חבר יקר באזור זה תוכל להעלות תמונות לאתר</h1>
+        <button (click)="addImgOption()">לחץ להוספת תמונה לאתר</button>
+        <div *ngIf="alertBox" class="alert-box">
+            <p>helooooooo</p>
 
-<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet"> -->
+            <div class="pic-subject-container">
+                <div class="box">
+        
+                    <select (change)="selectSubject($event)" name="pic-subject" class="pic-subject-selcet">
+                        <option *ngFor="let img of subjectList" value={{img.id}}>{{img.value}}</option>
+                    </select>
+                </div>
+                <p><span> נושא נבחר  </span><b>{{selectedIdSubject}}</b></p>
+            </div>
+
+            <div class="user-img">
+                <table>
+                    <tr>
+            
+                        <th>תאור הנושא</th>
+                        <th>תאור התמונה</th>
+                        <th>כתובת URL התמונה</th>
+                        <th> צלם </th>
+                        <th> מחיר </th>
+                        <th>מחיקה/עריכה</th>
+                    </tr>
+                    <tr *ngFor="let img of imgasListFromServer">
+                        <td>{{img.imgDes}}</td>
+                        <td>{{img.imgLongDes}}</td>
+                        <td>{{img.imgUrl}}<br>
+                            <img src={{img.imgUrl}} width="60px;" height="40px;" alt="">
+            
+                        </td>
+                        <td>{{img.photographer}}</td>
+                        <td>{{img.price}}</td>
+                        <td>
+                            <button (click)="deleteOption(img.id)" class="delete-btn">מחיקה</button>
+                            <button (click)="editOption(img.id)" class="edit-btn"> עריכה</button>
+                        </td>
+            
+                    </tr>
+                </table>
+            </div>
+            <button (click)="onClose()">סגור</button>
+        </div>
+        
+
+    </div>
+</div>

@@ -119,7 +119,6 @@ export class ManagementComponent implements OnInit {
   }
 
   addOption() {
-    // subId = this.idOfImgToAddDeleteEdit;
     this.massage = ` הוספת תמונה בקטגוריית ${this.categorySelected}`
     this.subId = this.imgSelected.subId;
     this.alertBox = true
@@ -143,7 +142,12 @@ export class ManagementComponent implements OnInit {
    imgDataToAdd.imagesSubject = this.categorySelected;
    imgDataToAdd.subId = this.subId;
    imgDataToAdd.numOfItems = 1;
+   imgDataToAdd.ownerId = 1
+
    imgDataToAdd.img_id = this.imgasListFromServer.length+1;
+   console.log('imgDataToAdd:', imgDataToAdd);
+   
+
    
     this.managementService.addImgToServer(imgDataToAdd).subscribe( (data:any) => {
       this.managementService.imgData$.next(data)
@@ -197,6 +201,7 @@ export class ManagementComponent implements OnInit {
 
 export interface imgModel {
   id: number
+  ownerId: number;
   imagesSubject: string
   imgDes: string
   imgLongDes: string

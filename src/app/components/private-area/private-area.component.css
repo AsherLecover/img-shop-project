@@ -1,6 +1,9 @@
 .container {
     display: flex;
 }
+.user-img{
+  display: flex;
+}
 
 .left-side {
     width: 40%;
@@ -26,22 +29,22 @@
     margin: auto;
 }
 
-figure, figcaption {
+.figure, .figcaption {
     margin: 0;
     padding: 0;
 }
 
-figure {
+.figure {
     display: inline-block;
     position: relative;
 }
 
-figure img {
+.figure img {
     display: block;
     box-shadow: 6px 6px 6px #888;
 }
 
-figure figcaption {
+.figure .figcaption {
     position: absolute;
     left: 59%;
     top: 94%;
@@ -51,6 +54,8 @@ figure figcaption {
     padding: 1vh;
     border-radius: 5px;
 }
+
+
 
 h1 {
     text-align: center;
@@ -91,9 +96,8 @@ margin-left: 20%;
 
 .alert-box {
     position: fixed;
-    top: 30vh;
-    left: 30vw;
-    width: 60vw;
+    top: 20vh;
+    left: 20vw;
     padding: 16px;
     z-index: 100;
     background: white;
@@ -103,6 +107,69 @@ margin-left: 20%;
     border: 2px solid #232d54;;
     border-radius: 25px;
   }
+
+  .add-img-alert-box {
+    position: fixed;
+    top: 20vh;
+    left: 20vw;
+    padding: 16px;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    color: #232d54;;
+    text-align: center;
+    border: 2px solid #232d54;;
+    border-radius: 25px;
+  }
+
+  .delete-alert-box{
+    position: fixed;
+    top: 40vh;
+    left: 40vw;
+    width: 40%;
+    padding: 16px;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    color: #232d54;;
+    text-align: center;
+    border: 2px solid #232d54;;
+    border-radius: 25px;
+  }
+ 
+
+  input, select {
+    direction: rtl;
+    height: 25px;
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .delete-btn {
+    margin: 5px;
+    padding: 5px;
+    background-color: #f44336;
+    border-radius: 10px;
+    color: #dddddd;
+    width: 80%;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #4caf50;
+    color: #dddddd;
+    width: 80%;
+    cursor: pointer;
+  }
+  #inp-img {
+    margin-bottom: 23%;
+  }
+  
+
+  
 
   table {
     font-family: arial, sans-serif;
@@ -147,6 +214,38 @@ margin-left: 20%;
     width: 80%;
     cursor: pointer;
   }
+
+  .btns-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-confirm-btn {
+  width: 120px;
+  height: 35px;
+  color: white;
+  background-color: #4caf50;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.closeBtnOrbuy {
+  width: 120px;
+  height: 35px;
+  color: white;
+  background-color: #232d54;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-btn {
+  width: 120px;
+  height: 35px;
+  color: white;
+  background-color: red;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 
 

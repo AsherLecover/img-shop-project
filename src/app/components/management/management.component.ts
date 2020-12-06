@@ -92,8 +92,6 @@ export class ManagementComponent implements OnInit {
     this.massage = '? האם אתה בטוח שברצונך רוצה למחוק תמונה זו '
     this.deleteOrEditBtnName = 'אשר'
     this.idOfImgToAddDeleteEdit = id
-
-    
   }
 
   deleteImgFromServer(id) {

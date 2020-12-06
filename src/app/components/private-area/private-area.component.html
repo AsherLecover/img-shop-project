@@ -6,10 +6,10 @@
         <div class="profile-card">
             <br><br><br>
             <div class="container-img">
-                <figure>
+                <figure  class="figure">
                     <img id="profile-img" src="https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7d5363c18112a02ce22d0c46f8570147&auto=format&fit=crop&w=635&q=80%20635w"
                         alt="profile-pic" class="profile">
-                    <figcaption> <span class="material-icons">add_a_photo </span> </figcaption>
+                    <figcaption class="figcaption" > <span class="material-icons">add_a_photo </span> </figcaption>
                 </figure>
             </div>
             <h1>yossi kohen </h1>
@@ -30,18 +30,21 @@
     <div class="right-side">
         <p>right</p>
         <h1>חבר יקר באזור זה תוכל לנהל את כל התמונות שלך באתר</h1>
-        <button (click)="addImgOption()">להוספה וניהול התמונות</button>
-        <div *ngIf="alertBox" class="alert-box">
-            <p>helooooooo</p>
+        <button (click)="ManageImgOption()">להוספה וניהול התמונות</button>
+        <div style="overflow-y: scroll;  padding: 1%; height: 70vh; " *ngIf="alertBox" class="alert-box" >
 
-            <div class="pic-subject-container">
-                <div class="box">
-        
-                    <select (change)="selectSubject($event)" name="pic-subject" class="pic-subject-selcet">
-                        <option *ngFor="let img of subjectList" value={{img.id}}>{{img.value}}</option>
-                    </select>
+            <div  class="pic-subject-container ">
+                <div  class="backdrop" class="box">
+                    <div class="containerClose">   
+                       <span (click)="onClose()" class="material-icons" style="color: crimson; font-size: 4vh; position: absolute;
+                       margin-left: 43%; cursor: pointer;"> close</span>
+                    </div><br><br>
+
+                    <div  *ngIf="addImgAlertBox" class="add-img-alert-box"></div>
+
+                    
                 </div>
-                <p><span> נושא נבחר  </span><b>{{selectedIdSubject}}</b></p>
+                <!-- <p><span> נושא נבחר  </span><b>{{selectedIdSubject}}</b></p> -->
             </div>
 
             <div class="user-img">
@@ -71,13 +74,81 @@
                         </td>
             
                     </tr>
-                </table>
+                </table> 
             </div>
-            <i class="far fa-window-close" style="font-size: large; color: red;"></i>
-            <button (click)="onClose()">סגור</button>
+        </div>
 
+        <div style="display: flex; direction: rtl;">
+            <div style="border: 5px solid red;" class="add-btn-container">
+                <button (click)="addOption()"  class="add-btn">להוספת תמונה לחץ כאן</button>
+            </div>
+            
+        </div>
+
+        <div *ngIf="addImgAlertBox" class="add-img-alert-box">
+            <span (click)="onCloseAddAlertBox()" class="material-icons" style="color: crimson; font-size: 4vh; position: absolute;
+                       margin-left: 43%; cursor: pointer;"> close</span>
+
+            <b>הוספת תמונה לאתר</b>
+            <form [formGroup]="editImgForm" *ngIf="editMode|| addMode" action="">
+
+                <table>
+                    <tr>
+                        <th>בחר נושא</th>
+                        <th>תאור הנושא</th>
+                        <th>תאור התמונה</th>
+                        <th>כתובת URL התמונה</th>
+                        <th> צלם </th>
+                        <th> מחיר </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select  (change)="addImgSelected($event)" name="pic-subject" class="pic-subject-selcet">
+                                <option disabled value="בחר נושא">בחר נושא</option>
+                                <option *ngFor="let img of subjectList" value={{img.id}}>{{img.value}}</option>
+                            </select>
+                        </td>
+                        <td class="td-form"><input type="text" formControlName="imgDes"></td>
+                        <td class="td-form"><input type="text" formControlName="imgLongDes"></td>
+                        <td>
+                            <img src={{imgUrl}} width="60px;" height="40px;" alt="">
+                            <br>
+                            <input id="inp-img" type="text" formControlName="imgUrl" [value]="imgUrl"
+                                (input)="imgUrl = $event.target.value">
+                        </td>
+                        <td class="td-form"><input type="text" formControlName="photographer">
+                        <td class="td-form"><input type="text" formControlName="price">
+    
+    
+                    </tr>
+                </table>
+    
+            </form>
+
+            <br>
+            <div class="btns-container">
+                <div>
+                    <button class="delete-confirm-btn" (click)="onClose()">{{deleteOrEditBtnName}}</button>
+                </div>
+                <div>
+                    <button class="closeBtnOrbuy" (click)="onCloseAddAlertBox()">סגור</button>
+                </div>
+            </div>
         </div>
         
 
     </div>
+</div>
+
+<div *ngIf="deleteMode" class="delete-alert-box">
+    <h1>האם אתה בטוח שברצונך למחוק תמונה זו?</h1><br><br>
+    <div class="btns-container">
+        <div>
+            <button class="delete-btn" (click)="onClose()">מחק לצמיתות</button>
+        </div>
+        <div>
+            <button class="closeBtnOrbuy" (click)="onCloseDeleteAlertBox()">סגור</button>
+        </div>
+    </div>
+
 </div>

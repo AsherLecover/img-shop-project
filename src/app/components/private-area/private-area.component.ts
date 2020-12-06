@@ -45,34 +45,121 @@ export class PrivateAreaComponent implements OnInit {
   editImgForm: FormGroup;
   categorySelected: string = ''
   subId: number;
+  addImgAlertBox: boolean = false;
+  imgPerSubjectLength: number = 0
+  
+  constructor(
+    private privateAreaService: PrivateAreaService,
+    private fb: FormBuilder) { }
+    
+    ngOnInit(): void {
+      console.log('userrrrrr:', this.privateAreaService.getUserId());
+      
+      
+      this.editImgForm = this.fb.group({
+        photographer: ['', [Validators.required]],
+        imgDes: ['', [Validators.required]],
+        price: ['', [Validators.required]],
+        imgLongDes: ['', [Validators.required]],
+        imgUrl: ['', [Validators.required]]
+      });
+    }
+    
+    selectManageImgOption() {
+      // console.log('event.target.value: ', event.target.value);
+      // this.selectSubject(event.target.value)
+      this.privateAreaService.getAllImgByUserId().subscribe((data: any) => {
+        console.log('data per userrrr:', data);
+        this.imgasListFromServer = data
+      })
+    }
 
-  constructor(private privateAreaService: PrivateAreaService) { }
-
-  ngOnInit(): void {
-  }
-
-  addImgOption() {
+    ManageImgOption() {
     this.alertBox = true;
+    this.addMode = false;
+    this.selectManageImgOption()
+  }
+
+  
+  addOption(){
     this.addMode = true;
-    this.selectSubject()
+    this.addImgAlertBox = true;
+    this.editImgForm = this.fb.group({
+      photographer: ['', [Validators.required]],
+      imgDes: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      imgLongDes: ['', [Validators.required,]],
+      imgUrl: ['', [Validators.required]]
+    });
+    this.deleteOrEditBtnName = ' הוספה לאתר'
+    
   }
-  onClose() {
-    this.alertBox = false;
+  addImgSelected(event: any){
+    console.log('event: ', event.target.value);
+    this.privateAreaService.getAllSubjectImgesById(event.target.value).subscribe( (data:[]) => {
+      console.log('data img per subject', data);
+      this.imgPerSubjectLength = data.length
+
+      
+      
+    })
+    this.subId = event.target.value;
+    
   }
 
-  selectSubject() {
-    // console.log('event.target.value: ', event.target.value);
-    // this.selectSubject(event.target.value)
-
-
-    this.privateAreaService.getAllImgByUserId().subscribe((data: any) => {
-      console.log('data per userrrr:', data);
-      this.imgasListFromServer = data
-
+  addImgToServer(){
+    let imgDataToAdd = this.editImgForm.value;
+   imgDataToAdd.imagesSubject = this.subjectList[this.subId-1].value;
+   imgDataToAdd.subId = this.subId;
+   imgDataToAdd.numOfItems = 1;
+   imgDataToAdd.ownerId = this.privateAreaService.getUserId()
+   imgDataToAdd.img_id = this.imgPerSubjectLength;
+   console.log('imgDataToAdd:', imgDataToAdd);
+    console.log('this.editImgForm.value', this.editImgForm.value);
+    this.privateAreaService.addImg(imgDataToAdd).subscribe( (data) => {
+      console.log(data);
+      
     })
 
-
-
+     
+  }
+  
+  onCloseAddAlertBox() {
+    this.addImgAlertBox = false;
   }
 
+  deleteOption(id) {
+    console.log('asher');
+    console.log('asher', id);
+    
+    this.alertBox = true;
+    this.deleteMode = true;
+    this.editMode = false;
+    this.addMode = false;
+    this.massage = '? האם אתה בטוח שברצונך רוצה למחוק תמונה זו '
+    this.deleteOrEditBtnName = 'אשר'
+    this.idOfImgToAddDeleteEdit = id
+  }
+
+  deleteFromServer(imgId: any) {
+    this.privateAreaService.deleteFromServer(imgId).subscribe( data=> {
+      console.log(data);
+      
+    })
+  }
+  
+  onClose() {
+    this.alertBox = false;
+    if(this.addMode){
+      this.addImgToServer()
+    }
+    else if(this.deleteMode){
+      this.alertBox = true;
+      this.deleteFromServer(this.idOfImgToAddDeleteEdit)
+    }
+  }
+  onCloseDeleteAlertBox(){
+    this.deleteMode = false;
+  }
+  
 }

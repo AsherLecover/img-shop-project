@@ -18,7 +18,7 @@
   background-color: white;
   width: 70%;
   margin-left: 15%;
-  box-shadow: 3px 5px 6px 5px rgba(0, 0, 0, 0.10);
+  box-shadow: 3px 5px 6px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
@@ -30,7 +30,8 @@
   margin: auto;
 }
 
-.figure, .figcaption {
+.figure,
+.figcaption {
   margin: 0;
   padding: 0;
 }
@@ -79,8 +80,22 @@ h3 {
 
 .fa.fa-instagram {
   color: transparent;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+  background: -webkit-radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   font-size: 48px;
@@ -95,7 +110,7 @@ h3 {
 
 .alert-box {
   position: fixed;
-  top: 20vh;
+  top: 15vh;
   left: 20vw;
   padding: 16px;
   z-index: 100;
@@ -109,18 +124,18 @@ h3 {
   border-radius: 10px;
 }
 
-.massages-alert-box{
+.massages-alert-box {
   position: fixed;
   top: 22vh;
   left: 17vw;
   width: 60%;
-  
+
   z-index: 100;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   color: #232d54;
   text-align: center;
-  border: 2px solid rgb(104,74,104);
+  border: 2px solid rgb(104, 74, 104);
   border-radius: 10px;
   margin-bottom: 5%;
 }
@@ -135,10 +150,8 @@ h3 {
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   color: #232d54;
-  ;
   text-align: center;
   border: 2px solid #232d54;
-  ;
   border-radius: 10px;
 }
 
@@ -152,10 +165,8 @@ h3 {
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   color: #232d54;
-  ;
   text-align: center;
   border: 2px solid #232d54;
-  ;
   border-radius: 10px;
 }
 
@@ -169,14 +180,13 @@ h3 {
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   color: #232d54;
-  ;
   text-align: center;
   border: 2px solid #232d54;
-  ;
   border-radius: 10px;
 }
 
-input, select {
+input,
+select {
   direction: rtl;
   height: 25px;
   text-align: center;
@@ -211,7 +221,6 @@ input, select {
   cursor: pointer;
   border-radius: 10px;
 
-
   /* margin: 5px;
   padding: 5px;
   border-radius: 10px;
@@ -232,7 +241,8 @@ table {
   margin-top: 5%;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -262,7 +272,6 @@ tr:nth-child(even) {
 }
 
 .edit-btn {
-  
   background-color: #4caf50;
   width: 120px;
   height: 35px;
@@ -337,27 +346,127 @@ tr:nth-child(even) {
 }
 
 .alert-box::-webkit-scrollbar {
-  width: 2.5vh; 
-  border-radius: 35px;  
-  height: 5%;   
-        
+  width: 2.5vh;
+  border-radius: 35px;
+  height: 5%;
 }
 .alert-box::-webkit-scrollbar-track {
- 
-  background: rgb(245, 244, 241);   
-  border-radius: 35px;   
-  height: 5%;   
-  
+  background: rgb(245, 244, 241);
+  border-radius: 35px;
+  height: 5%;
 }
 
 .alert-box::-webkit-scrollbar-thumb {
-  background-color: #232d54; 
-  border-radius: 35px;   
-  height: 5%;   
-  
+  background-color: #232d54;
+  border-radius: 35px;
+  height: 5%;
 
- 
   margin-right: 10%;
-   border-radius: 35px;       /* roundness of the scroll thumb */
-  border: 3px solid rgb(240, 239, 243);  /* creates padding around scroll thumb */
+  border-radius: 35px; /* roundness of the scroll thumb */
+  border: 3px solid rgb(240, 239, 243); /* creates padding around scroll thumb */
 }
+
+.header {
+  align-items: center;
+  width: 100%;
+  height: 45%;
+  background-color: rgb(77, 47, 77);
+  padding: 0;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.btn-header {
+  margin-left: 10%; display: flex; justify-content: space-between; padding: 2%; width: 80%;  ;
+}
+.warper-left-nav-bar-users {
+  display: flex;
+}
+
+.left-nav-bar {
+  background-color: rgb(77, 47, 77);
+  width: 16%;
+  height: 60vh;
+  border-radius: 0px 0px 0px 10px;
+  margin: 0;
+}
+
+.main-massage-page {
+  height: fit-content;
+  width: 60%;
+  border: springgreen 1px solid;
+  float: right;
+}
+
+/* .heading-avatar-icon img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.avatar-icon img {
+  border-radius: 50%;
+  height: 49px;
+  width: 49px;
+}
+
+.avatar-icon img {
+  height: 55px;
+  width: 55px;
+}
+
+.heading-avatar-icon img {
+  height: 50px;
+  width: 50px;
+}
+
+.sideBar-main {
+  padding: 0 !important;
+}
+.sideBar-main .row {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sideBar-main {
+  padding: 0 !important;
+}
+
+.sideBar-main .row {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sideBar-main .row {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.name-meta {
+  font-size: 16px;
+  padding: 5% !important;
+  color: whitesmoke;
+}
+
+.name-meta {
+  font-size: 100%;
+  padding: 1% !important;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: whitesmoke;
+}
+
+.heading-name-meta {
+  font-weight: 700;
+  font-size: 100%;
+  padding: 5px;
+  padding-bottom: 0;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: whitesmoke;
+  display: block;
+}
+.time-meta-pull-right{
+  color: whitesmoke;
+} */

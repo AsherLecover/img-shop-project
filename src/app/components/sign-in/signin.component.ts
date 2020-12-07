@@ -63,6 +63,7 @@ export class SignInComponent implements OnInit {
 
         let payload = this.getDecodedAccessToken(data.accessToken);
         console.log(payload);
+        this.svcClinet.userProfileImg$.next(payload.imgProfile)
         
         this.userId = payload.id
         this.dataSVC.userRole$.next(payload.role)

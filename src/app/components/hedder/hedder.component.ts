@@ -28,6 +28,7 @@ export class HedderComponent implements OnInit {
   sumOfItems: number = 0;
   userRole: string;
   userSighnedIn: boolean = false;
+  userProfileImg: string = ''
 
   constructor(
     public dialog: MatDialog,
@@ -40,6 +41,13 @@ export class HedderComponent implements OnInit {
     this.authSer = authSer;
   }
   ngOnInit(): void {
+     this.svcClinets.userProfileImg$.subscribe( (data: string) => {
+       this.userProfileImg = data
+       console.log(data);
+       
+     })
+
+
     this.managementGuardService.canRouteToMengerPage = false;
     this.authSer.userSighnedIn.subscribe((userSighnedIn: boolean) => {
       this.userSighnedIn = userSighnedIn;
@@ -87,6 +95,7 @@ export class HedderComponent implements OnInit {
     this.svcClinets.userName = ' אורח';
     this.buyingSvc.sumOfItems.next(0)
     this.userRole = ''
+    this.svcClinets.userProfileImg$.next('')
   }
 }
 

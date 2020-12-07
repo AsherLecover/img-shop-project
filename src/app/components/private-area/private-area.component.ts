@@ -49,6 +49,7 @@ export class PrivateAreaComponent implements OnInit {
   addImgAlertBox: boolean = false;
   imgPerSubjectLength: number = 0;
   subjetSelected: string = ''
+  userAllData
   
   constructor(
     private privateAreaService: PrivateAreaService,
@@ -59,6 +60,9 @@ export class PrivateAreaComponent implements OnInit {
         this.imgasListFromServer = data;
   })
       console.log('userrrrrr:', this.privateAreaService.getUserId());
+      console.log('userrrrr ALL DATA:', this.privateAreaService.user);
+      this.userAllData = this.privateAreaService.user
+      
       
       
       this.editImgForm = this.fb.group({
@@ -226,6 +230,9 @@ export class PrivateAreaComponent implements OnInit {
 
   massagesBtweenUsersOption(){
     this.massegsesMode = true;
+  }
+  onClosemassagesBox(){
+    this.massegsesMode = false;
   }
   
 }

@@ -28,6 +28,9 @@ export interface User {
 export class ClinetsService {
   clinetList: ClinetModel[];
   userName: string = ' אורח';
+  userProfileImg$ = new Subject()
+
+  
 
   private _afAuth: AngularFireAuth;
   private _afStore: AngularFirestore;

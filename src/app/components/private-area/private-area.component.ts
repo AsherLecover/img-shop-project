@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { imgModel } from '../management/management.component';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl, NgForm } from '@angular/forms';
 import { PrivateAreaService } from '../../servises/private-area.service'
+
+import * as io from 'socket.io-client';
+
 
 @Component({
   selector: 'private-area',
@@ -44,18 +47,28 @@ export class PrivateAreaComponent implements OnInit {
   deleteOrEditBtnName: string = ''
   idOfImgToEdit: number;
   editImgForm: FormGroup;
+  chatMessageForm: FormGroup;
+
   categorySelected: string = ''
   subId: number;
   addImgAlertBox: boolean = false;
   imgPerSubjectLength: number = 0;
   subjetSelected: string = ''
   userAllData
+  socket = null;
+  messageData:string[] = []
   
   constructor(
     private privateAreaService: PrivateAreaService,
     private fb: FormBuilder) { }
     
     ngOnInit(): void {
+      this.chatMessageForm = this.fb.group({
+        message: ['', [Validators.required]],
+
+      })
+
+
       this.privateAreaService.imgData$.subscribe( (data) => {
         this.imgasListFromServer = data;
   })
@@ -233,6 +246,36 @@ export class PrivateAreaComponent implements OnInit {
   }
   onClosemassagesBox(){
     this.massegsesMode = false;
+  }
+
+
+  listen() {
+    this.socket = io('http://localhost:3000', {});
+   
+    this.socket.on('msgToServer', messages => {
+      console.log('fuck off', this.massage);
+      
+      // this.messages.next(messages);
+    })
+  }
+
+  a(){
+    this.socket.on('msgToClinet', (messageData) => {
+      if (messageData.error) { }
+      this.messageData.push(messageData)
+      console.log('fuck off 2', messageData);
+    });
+  }
+
+  sendMessage() {
+    this.listen()
+    let megToServer = this.chatMessageForm.value.message;
+    console.log('from input:', megToServer);
+    
+    // messageForm.reset();
+    this.socket.emit('msgToServer', megToServer );
+    this.a()
+    this.messageData = []
   }
   
 }

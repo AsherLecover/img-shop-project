@@ -4,20 +4,29 @@ import jwt_decode from 'jwt-decode';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { imgModel } from '../components/management/management.component';
+import * as io from 'socket.io-client';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class PrivateAreaService {
+
+  messages = new Subject();
+  private socket = null;
   
- 
   user: UserModel;
   imgData$ = new Subject<any>();
+
 
   
   constructor(private http: HttpClient) {
     this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
   }
+
+ 
+
+
   
   getAllSubjectImgesById(subId) {
     return this.http.get(`${environment.apiUrl}/private-area/${subId}`);

@@ -134,7 +134,7 @@ h3 {
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   color: #232d54;
-  text-align: center;
+  /* text-align: center; */
   border: 2px solid rgb(104, 74, 104);
   border-radius: 10px;
   margin-bottom: 5%;
@@ -391,82 +391,34 @@ tr:nth-child(even) {
 }
 
 .main-massage-page {
-  height: fit-content;
-  width: 60%;
-  border: springgreen 1px solid;
+  height: 72vh;
+  background-color: rgb(233, 225, 233);
+  width: 100%;
   float: right;
 }
 
-/* .heading-avatar-icon img {
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
+.main-massage-page::-webkit-scrollbar-track {
+  background: rgb(245, 244, 241);
+  border-radius: 35px;
+  height: 5%;
 }
 
-.avatar-icon img {
-  border-radius: 50%;
-  height: 49px;
-  width: 49px;
+.main-massage-page::-webkit-scrollbar-thumb {
+  background-color: #232d54;
+  border-radius: 35px;
+  height: 5%;
+
+  margin-right: 10%;
+  border-radius: 35px; /* roundness of the scroll thumb */
+  border: 3px solid rgb(240, 239, 243); /* creates padding around scroll thumb */
 }
 
-.avatar-icon img {
-  height: 55px;
-  width: 55px;
+.message-text{
+  padding: 2%;
+  width: fit-content;
+    background-color: rgb(171, 207, 98);
+  border-radius: 5px;
 }
 
-.heading-avatar-icon img {
-  height: 50px;
-  width: 50px;
-}
 
-.sideBar-main {
-  padding: 0 !important;
-}
-.sideBar-main .row {
-  padding: 0 !important;
-  margin: 0 !important;
-}
 
-.sideBar-main {
-  padding: 0 !important;
-}
-
-.sideBar-main .row {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.sideBar-main .row {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.name-meta {
-  font-size: 16px;
-  padding: 5% !important;
-  color: whitesmoke;
-}
-
-.name-meta {
-  font-size: 100%;
-  padding: 1% !important;
-  text-align: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: whitesmoke;
-}
-
-.heading-name-meta {
-  font-weight: 700;
-  font-size: 100%;
-  padding: 5px;
-  padding-bottom: 0;
-  text-align: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: whitesmoke;
-  display: block;
-}
-.time-meta-pull-right{
-  color: whitesmoke;
-} */

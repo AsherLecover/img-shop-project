@@ -11,12 +11,14 @@ import * as io from 'socket.io-client';
   providedIn: 'root',
 })
 export class PrivateAreaService {
+ 
 
   messages = new Subject();
   private socket = null;
-  
   user: UserModel;
   imgData$ = new Subject<any>();
+  userData$ = new Subject()
+
 
 
   
@@ -69,6 +71,17 @@ export class PrivateAreaService {
       return this.http.patch(`${environment.apiUrl}/private-area/${id}/${this.user.id}`, { imgDetailsToUpdate: imgDetailsToUpdate});
 
     }
+
+    getAllUsers(){
+      return this.http.get(`${environment.apiUrl}/private-area`)
+    }
+
+    setCardProfile(data, userId) {
+      return this.http.patch(`${environment.apiUrl}/private-area`,{data,userId})
+
+    }
+
+   
   }
   
 
@@ -76,7 +89,7 @@ export class PrivateAreaService {
   
   
   export interface UserModel {
-    email: string;
+  email: string;
   exp: number;
   iat: number;
   id: number;

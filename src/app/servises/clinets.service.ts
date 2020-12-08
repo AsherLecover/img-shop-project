@@ -29,6 +29,7 @@ export class ClinetsService {
   clinetList: ClinetModel[];
   userName: string = ' אורח';
   userProfileImg$ = new Subject()
+  userData$ = new Subject()
 
   
 

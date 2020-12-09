@@ -95,4 +95,5 @@ export class PrivateAreaService {
   id: number;
   role: string;
   username: string;
+  imgProfile:string;
 }

@@ -4,11 +4,11 @@
             <br><br><br>
             <div class="container-img">
                 <figure class="figure">
-                    <img id="profile-img" src={{userAllData.imgProfile}} alt="profile-pic" class="profile">
+                    <img id="profile-img" src={{userData.imgProfile}} alt="profile-pic" class="profile">
                     <figcaption class="figcaption"> <span  (click)="setImgProfile()" class="material-icons">add_a_photo </span> </figcaption>
                 </figure>
             </div>
-            <h1>{{userAllData.username}} </h1>
+            <h1>{{userData.username}} </h1>
             <h2 (click)="setProfileProfshanl()" id="profshanl-text">פרסם את המקצוע שלך</h2><br>
             <div id="about-you" class="h3-container">
                 <h3  style="cursor: pointer;" (click)="setAboutYouProfile()" >ספר לכולם על עצמך בשני משפטים</h3>

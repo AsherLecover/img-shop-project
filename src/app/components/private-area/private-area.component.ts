@@ -10,6 +10,7 @@ import {
 import { PrivateAreaService, UserModel } from '../../servises/private-area.service';
 import * as io from 'socket.io-client';
 import {MessagesModel} from '../private-area/messages-model'
+import { ClinetsService } from 'src/app/servises/clinets.service';
 
 @Component({
   selector: 'private-area',
@@ -74,19 +75,34 @@ export class PrivateAreaComponent implements OnInit {
   setLinkedinProfileMode: boolean = false;
   setTwitterProfileMode: boolean = false;
   reciderUserId: number;
-
   imgUrlProfile:string = ""
+  userId
+  userData
 
   constructor(
     private privateAreaService: PrivateAreaService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public svcClinets: ClinetsService,
+
   ) {}
 
   ngOnInit(): void {
+    this.userId = this.privateAreaService.getUserId();
+
+    if(!this.userData){
+      console.log(121212121212121);
+      console.log('12121212 user data',this.userData);
+      
+      
+      this.userData =  this.privateAreaService.user;
+    }
+    // this.userAllData = this.privateAreaService.user;
+
 
     this.privateAreaService.userData$.subscribe( (data:UserModel) => {
-        this.privateAreaService.user = data
-        console.log('ggggggggggggggggg', data);
+        // this.privateAreaService.user = data
+        console.log('gggg', data);
+        this.userData = data;
         
     })
     this.cardProfileForm = this.fb.group({
@@ -98,10 +114,6 @@ export class PrivateAreaComponent implements OnInit {
       facebook_link: ['', [Validators.required]],
       instagram_link: ['', [Validators.required]],
     });
-
-    
-
-    
 
 
     this.privateAreaService.getAllUsers().subscribe((data) => {
@@ -119,8 +131,6 @@ export class PrivateAreaComponent implements OnInit {
       this.imgasListFromServer = data;
     });
 
-    
-    this.userAllData = this.privateAreaService.user;
 
     this.editImgForm = this.fb.group({
       photographer: ['', [Validators.required]],
@@ -129,8 +139,6 @@ export class PrivateAreaComponent implements OnInit {
       imgLongDes: ['', [Validators.required]],
       imgUrl: ['', [Validators.required]],
     });
-
-
 
   }
 
@@ -321,12 +329,19 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   setImgProfileToServer(){
-    console.log('profile img:', this.cardProfileForm.value.imgProfile);
+    console.log('user id:',this.userId );
     this.privateAreaService.setCardProfile
-    (this.cardProfileForm.value.imgProfile, this.privateAreaService.getUserId() ).subscribe ((data:UserModel) => {
-      console.log(data);
-      this.privateAreaService.userData$.next(data)
-      this.privateAreaService.user = data
+    (this.cardProfileForm.value.imgProfile, this.userId ).subscribe ((data:UserModel) => {
+      console.log('aaaaaaaaaaaaaaaaaaa',data);
+      console.log(5555555555555555555555555555);
+      
+      this.privateAreaService.userData$.next(data[0])
+      // this.privateAreaService.user = data
+      // this.userAllData = data
+      console.log('img Profileeeeeeeeeeeeeeeeeeeeeee: ',data[0].imgProfile);
+      this.svcClinets.userProfileImg$.next(data[0].imgProfile)
+
+      
     })
   }
 

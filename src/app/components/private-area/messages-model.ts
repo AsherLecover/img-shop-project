@@ -1,6 +1,6 @@
 export interface MessagesModel {
-  senderId: number;
-  reciverId: number;
-  text: string;
+  sender_id: number;
+  resiver_id: number;
+  message_text: string;
   time: Date;
 }

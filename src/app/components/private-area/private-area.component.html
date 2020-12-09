@@ -2,20 +2,20 @@
     <div class="left-side">
         <div class="profile-card">
             <br><br><br>
-            <div class="container-img">
+            <div class="container-img" style="text-align: center;">
                 <figure class="figure">
                     <img id="profile-img" src={{userData.imgProfile}} alt="profile-pic" class="profile">
                     <figcaption class="figcaption"> <span  (click)="setImgProfile()" class="material-icons">add_a_photo </span> </figcaption>
                 </figure>
             </div>
             <h1>{{userData.username}} </h1>
-            <h2 (click)="setProfileProfshanl()" id="profshanl-text">פרסם את המקצוע שלך</h2><br>
+            <h2 (click)="setProfileProfshanl()" id="profshanl-text">{{profession}} </h2><br>
             <div id="about-you" class="h3-container">
-                <h3  style="cursor: pointer;" (click)="setAboutYouProfile()" >ספר לכולם על עצמך בשני משפטים</h3>
+                <h3  style="cursor: pointer;" (click)="setAboutYouProfile()" >{{about_you}}</h3>
             </div>
             <br><br><br>
             <div class="profile-links">
-                <i (click)="setInstagramProfile()" id="instagram-link" class="fa fa-instagram" aria-hidden="true"></i>
+                <i  (click)="setInstagramProfile()" id="instagram-link" class="fa fa-instagram" aria-hidden="true"></i>
                 <i (click)="setFacebookProfile()" id="facebook-link" class="fa fa-facebook-square" style="font-size:48px;color:#4267B2"></i>
                 <i (click)="setLinkedinProfile()" id="linkedin-link" class="fab fa-linkedin-in" style="font-size: 48px; color: #0e76a8;"></i>
                 <i (click)="setTwitterProfile()" id="twitter-link" class="fa fa-twitter" aria-hidden="true" style="font-size: 48px; color: #00aced"></i>
@@ -208,20 +208,20 @@
     <div class="header">
         <div class="btn-header">
             <span (click)="onClosemassagesBox()" class="material-icons" style="color: white; font-size: 4vh; position: absolute;
-            margin-left: 83%; cursor: pointer;"> close</span>
-            <p style="color: white;"> הודעה חדשה</p>
+            margin-left: 83%; cursor: pointer;"> close</span><br><br><br>
+            <!-- <p style="color: white;"> הודעה חדשה</p>
             <p style="color: white;">כתוב לנו</p>
             <p style="color: white;">דואר יוצא</p>
-            <p style="color: white;">דואר נכנס</p>
+            <p style="color: white;">דואר נכנס</p> -->
         </div>
     </div>
     <div class="warper-left-nav-bar-users ">
         <div class="left-nav-bar">
             <div  *ngFor="let user of allUsers" (click)="sendMsgToUser(user.id)" style="display: flex; margin: 1%; padding: 5%; ">
-                <img style="border-radius: 50px; margin-left: 5%; " height="24%" width="24%"
+                <img style="border-radius: 50%; margin-left: 5%; " height="24%" width="24%"
                     src={{user.imgProfile}}>
                 <div style="width: 70%; ">
-                    <div style="text-align: center; margin-bottom: 5%;">
+                    <div style="text-align: center; margin-bottom: 5%; cursor: pointer;">
                         <span style="color: white; font-size: 1.5vh;" class="name-meta">{{user.username}}</span>
                     </div>
                     <div>
@@ -237,7 +237,7 @@
                 <div *ngFor=" let msg of messageData" style=" padding: 2%;">
                     <div class="message-text">
                         <span style="font-size: x-small; color: rgb(145, 140, 140); margin-right: 5%;">{{msg.time}}</span>
-                        <span>{{msg.text}}</span>
+                        <span>{{msg.message_text}}</span>
                     </div>
                   
                 </div>
@@ -282,7 +282,7 @@
         <input id="inp-img" type="text" formControlName="profession">
             <div class="btns-container">
                 <div>
-                    <button class="delete-confirm-btn" >אשר</button>
+                    <button (click)="setProfileProfshanlToServer()" class="delete-confirm-btn" >אשר</button>
                 </div>
                 <div>
                     <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
@@ -291,12 +291,12 @@
 </div>
 
 <div *ngIf="setProfileMode && setAboutYouProfileMode" class="alert-box-set-profile-About-you">
-    <p>Aboffffffffffffffffffffffffffut-you</p>
+    <p>About-you</p>
     <br>
     <input id="inp-img" type="text" formControlName="about_you">
         <div class="btns-container">
             <div>
-                <button class="delete-confirm-btn" >אשר</button>
+                <button (click)="setAboutYouProfileToServer()" class="delete-confirm-btn" >אשר</button>
             </div>
             <div>
                 <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
@@ -311,7 +311,7 @@
     <input id="inp-img" type="text" formControlName="facebook_link">
         <div class="btns-container">
             <div>
-                <button class="delete-confirm-btn" >אשר</button>
+                <button (click)="setFacebookLinkToServer()" class="delete-confirm-btn" >אשר</button>
             </div>
             <div>
                 <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
@@ -325,7 +325,7 @@
     <input id="inp-img" type="text" formControlName="linkedin_link">
         <div class="btns-container">
             <div>
-                <button class="delete-confirm-btn" >אשר</button>
+                <button  (click)="setLinkedinLinkToServer()" class="delete-confirm-btn" >אשר</button>
             </div>
             <div>
                 <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
@@ -339,7 +339,7 @@
     <input id="inp-img" type="text" formControlName="twitter_link">
         <div class="btns-container">
             <div>
-                <button class="delete-confirm-btn" >אשר</button>
+                <button (click)="setTwitterLinkToServer()" class="delete-confirm-btn" >אשר</button>
             </div>
             <div>
                 <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
@@ -353,7 +353,7 @@
     <input id="inp-img" type="text" formControlName="instagram_link">
         <div class="btns-container">
             <div>
-                <button class="delete-confirm-btn" >אשר</button>
+                <button  (click)="setInstegramLinkToServer()" class="delete-confirm-btn" >אשר</button>
             </div>
             <div>
                 <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>

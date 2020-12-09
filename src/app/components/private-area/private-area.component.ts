@@ -11,6 +11,7 @@ import { PrivateAreaService, UserModel } from '../../servises/private-area.servi
 import * as io from 'socket.io-client';
 import {MessagesModel} from '../private-area/messages-model'
 import { ClinetsService } from 'src/app/servises/clinets.service';
+import { ChatMessagesService } from 'src/app/servises/chat-messages.service';
 
 @Component({
   selector: 'private-area',
@@ -78,33 +79,56 @@ export class PrivateAreaComponent implements OnInit {
   imgUrlProfile:string = ""
   userId
   userData
+  profession: string = 'פרסם את המקצוע שלך לכולם'
+  about_you:string = 'ספר לכולם על עצמך בשני משפטים'
+  instagram_link: string;
+  facebook_link: string;
+  linkedin_link: string;
+  twitter_link: string;
 
   constructor(
     private privateAreaService: PrivateAreaService,
     private fb: FormBuilder,
-    public svcClinets: ClinetsService,
+    private svcClinets: ClinetsService,
+    private chatMessagesService: ChatMessagesService
+
 
   ) {}
 
   ngOnInit(): void {
     this.userId = this.privateAreaService.getUserId();
 
-    if(!this.userData){
-      console.log(121212121212121);
+    if(!this.userData && !localStorage.getItem('userData')){
       console.log('12121212 user data',this.userData);
-      
-      
       this.userData =  this.privateAreaService.user;
+      this.svcClinets.userProfileImg$.next(this.userData.imgProfile)
+    
     }
-    // this.userAllData = this.privateAreaService.user;
+    else if(localStorage.getItem('userData')){
+      this.userData = JSON.parse(
+        localStorage.getItem('userData') || '[]');
+        this.svcClinets.userProfileImg$.next(this.userData.imgProfile);
+        console.log(55555555);
+        console.log('66666666',this.userData);
+        
+        
+        this.profession = this.userData.profession;
+        this.about_you = this.userData.about_you;
+        this.instagram_link = this.userData.instagram_link;
+        this.facebook_link = this.userData.facebook_link;
+        this.linkedin_link = this.userData.linkedin_link;
+        this.twitter_link = this.userData.twitter_link;
+        
+    }
 
 
     this.privateAreaService.userData$.subscribe( (data:UserModel) => {
-        // this.privateAreaService.user = data
+        this.privateAreaService.user = data
         console.log('gggg', data);
         this.userData = data;
         
     })
+
     this.cardProfileForm = this.fb.group({
       imgProfile: ['', [Validators.required]],
       profession: ['', [Validators.required]],
@@ -118,7 +142,6 @@ export class PrivateAreaComponent implements OnInit {
 
     this.privateAreaService.getAllUsers().subscribe((data) => {
       this.allUsers = data
-      console.log('all users', data);
     });
 
     this.listen();
@@ -311,44 +334,40 @@ export class PrivateAreaComponent implements OnInit {
     var d = new Date();
     result += ' ' + d.getHours() + ':' + d.getMinutes();
     let megToServer = {
-      senderId: this.userAllData.id,
-      reciverId: this.reciderUserId,
-      text: this.chatMessageForm.value.message,
+      sender_id: this.userId,
+      resiver_id: this.reciderUserId,
+      message_text: this.chatMessageForm.value.message,
       time: result,
     };
     this.chatMessageForm.value.message;
 
     // messageForm.reset();
     this.socket.emit('msgToServer', megToServer);
+    this.chatMessagesService.sendMessageToServer(megToServer).subscribe( (data)=> {
+      console.log(data);
+      
+    })
+    
     this.chatMessageForm.reset();
   }
-
+  // seting img profile
   setImgProfile() {
     this.setProfileMode = true;
     this.setImgProfileImgMode = true;
   }
 
+  
   setImgProfileToServer(){
-    console.log('user id:',this.userId );
     this.privateAreaService.setCardProfile
-    (this.cardProfileForm.value.imgProfile, this.userId ).subscribe ((data:UserModel) => {
-      console.log('aaaaaaaaaaaaaaaaaaa',data);
-      console.log(5555555555555555555555555555);
-      
+    (this.cardProfileForm.value.imgProfile, this.userId,'imgProfile' ).subscribe ((data:UserModel) => {
+      localStorage.setItem('userData',JSON.stringify(data[0]));
       this.privateAreaService.userData$.next(data[0])
       // this.privateAreaService.user = data
       // this.userAllData = data
-      console.log('img Profileeeeeeeeeeeeeeeeeeeeeee: ',data[0].imgProfile);
       this.svcClinets.userProfileImg$.next(data[0].imgProfile)
 
       
     })
-  }
-
-  setAboutYouProfile(){
-    this.setProfileMode = true;
-    this.setAboutYouProfileMode = true;
-
   }
 
   setProfileProfshanl() {
@@ -356,21 +375,103 @@ export class PrivateAreaComponent implements OnInit {
     this.setProfileProfshanlMode = true;
   }
 
+  setProfileProfshanlToServer(){
+    this.privateAreaService.setCardProfile(
+      this.cardProfileForm.value.profession, this.userId, 'profession').subscribe( (data:UserModel) => {
+        console.log('carf profession change data ', data);
+        localStorage.setItem('userData',JSON.stringify(data[0]));
+        this.profession = data[0].profession;
+    })    
+  }
+  
+  setAboutYouProfile(){
+    this.setProfileMode = true;
+    this.setAboutYouProfileMode = true;
+
+  }
+
+  setAboutYouProfileToServer(){
+    this.privateAreaService.setCardProfile(
+      this.cardProfileForm.value.about_you, this.userId, 'about_you').subscribe( (data:UserModel) => {
+        console.log('carf profession change data ', data);
+        localStorage.setItem('userData',JSON.stringify(data[0]));
+        this.about_you = data[0].about_you;
+    })    
+  }
+
+
   setInstagramProfile() {
     this.setProfileMode = true;
     this.setInstagramProfileMode = true;
   }
+
+  setInstegramLinkToServer(){
+    this.privateAreaService.setCardProfile(
+      this.cardProfileForm.value.instagram_link, this.userId, 'instagram_link').subscribe( (data:UserModel) => {
+        console.log('carf profession change data ', data);
+        localStorage.setItem('userData',JSON.stringify(data[0]));
+        this.instagram_link = data[0].instagram_link;
+    })    
+  }
+
   setFacebookProfile() {
     this.setProfileMode = true;
     this.setFacebookProfileMode = true;
   }
+
+  setFacebookLinkToServer(){
+    console.log(324321542154536437658657546);
+    
+    this.privateAreaService.setCardProfile(
+      this.cardProfileForm.value.facebook_link, this.userId, 'facebook_link').subscribe( (data:UserModel) => {
+        console.log('carf profession change data ', data);
+        localStorage.setItem('userData',JSON.stringify(data[0]));
+        this.facebook_link = data[0].facebook_link;
+    })    
+  }
+
   setLinkedinProfile() {
     this.setProfileMode = true;
     this.setLinkedinProfileMode = true;
   }
+
+  setLinkedinLinkToServer(){
+    console.log(324321542154536437658657546);
+    
+    this.privateAreaService.setCardProfile(
+      this.cardProfileForm.value.linkedin_link, this.userId, 'linkedin_link').subscribe( (data:UserModel) => {
+        if(data){
+          localStorage.setItem('userData',JSON.stringify(data[0]));
+          this.linkedin_link = data[0].linkedin_link;
+          this.cardProfileForm.reset()
+          setTimeout( ()=> {
+            this.setLinkedinProfileMode = false;
+          },500)
+        }
+    })    
+  }
+
   setTwitterProfile() {
     this.setProfileMode = true;
     this.setTwitterProfileMode = true;
+  }
+
+  setTwitterLinkToServer(){
+    console.log(324321542154536437658657546);
+    
+    this.privateAreaService.setCardProfile(
+      this.cardProfileForm.value.twitter_link, this.userId, 'twitter_link').subscribe( (data:UserModel) => {
+        console.log(data[0].twitter_link);
+        
+        if(data[0].twitter_link){
+          localStorage.setItem('userData',JSON.stringify(data[0]));
+          this.twitter_link = data[0].twitter_link;
+          this.cardProfileForm.reset()
+          setTimeout( ()=> {
+            this.setTwitterProfileMode = false;
+          },500)
+        }
+    })    
   }
 
   sendMsgToUser(resiverUserId){

@@ -444,10 +444,6 @@ textarea {
   cursor: pointer;
 
 }
-#facebook-link{
-  cursor: pointer;
-
-}
 #twitter-link{
   cursor: pointer;
 
@@ -455,6 +451,12 @@ textarea {
 #facebook-link{
   cursor: pointer;
 }
+
+#twitter-link{
+  cursor: pointer;
+}
+
+
 .material-icons{
   cursor: pointer;
 }

@@ -40,9 +40,11 @@ export class PicSubMainPageComponent implements OnInit {
     //lowding in main page user bag if there is valid token
     this.imgDataService.getBagInHomePage(this.user_id).subscribe(
       (data:[]) => {
-        this.userBag = data
-        console.log('main page user bag: ', this.userBag.length);
-        this.buyerSvc.sumOfItems.next(data.length) 
+        if(data){
+          this.userBag = data;
+          console.log('main page user bag: ', this.userBag.length);
+          this.buyerSvc.sumOfItems.next(data.length);
+        }
       }
     )
     

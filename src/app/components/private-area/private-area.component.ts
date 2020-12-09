@@ -111,13 +111,22 @@ export class PrivateAreaComponent implements OnInit {
         console.log(55555555);
         console.log('66666666',this.userData);
         
-        
-        this.profession = this.userData.profession;
-        this.about_you = this.userData.about_you;
-        this.instagram_link = this.userData.instagram_link;
-        this.facebook_link = this.userData.facebook_link;
-        this.linkedin_link = this.userData.linkedin_link;
-        this.twitter_link = this.userData.twitter_link;
+        // this.profession =  this.userData.profession  ? '$2.00' : '$10.00';
+        // var x = (x === undefined) ? your_default_value : x;
+
+
+        this.profession = (this.userData.profession == null) ? this.profession : this.userData.profession;
+        this.about_you = (this.userData.about_you == null) ? this.about_you : this.userData.about_you;
+        this.instagram_link = (this.userData.instagram_link == null) ? this.instagram_link : this.userData.instagram_link;
+        this.facebook_link = (this.userData.facebook_link == null) ? this.facebook_link : this.userData.facebook_link;
+        this.linkedin_link = (this.userData.linkedin_link == null) ? this.linkedin_link : this.userData.linkedin_link;
+        this.twitter_link = (this.userData.twitter_link == null) ? this.twitter_link : this.userData.twitter_link;
+
+        // this.about_you = this.userData.about_you;
+        // this.instagram_link = this.userData.instagram_link;
+        // this.facebook_link = this.userData.facebook_link;
+        // this.linkedin_link = this.userData.linkedin_link;
+        // this.twitter_link = this.userData.twitter_link;
         
     }
 
@@ -147,7 +156,7 @@ export class PrivateAreaComponent implements OnInit {
     this.listen();
 
     this.chatMessageForm = this.fb.group({
-      message: ['', [Validators.required]],
+      message: ['', [Validators.required, Validators.minLength(1)]],
     });
 
     this.privateAreaService.imgData$.subscribe((data) => {
@@ -315,6 +324,7 @@ export class PrivateAreaComponent implements OnInit {
   }
   onClosemassagesBox() {
     this.massegsesMode = false;
+    this.reciderUserId = undefined;
   }
 
   listen() {

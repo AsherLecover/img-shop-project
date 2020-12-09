@@ -11,8 +11,7 @@
             
             <label for="fname"><i class="fa fa-user"></i> שם מלא \ שם חברה  <span style="color: red;"> * </span></label> 
 
-            <span *ngIf="( paymentForm.get('fullName').errors &&
-               (paymentForm.get('fullName').dirty) )
+            <span *ngIf="( paymentForm.get('fullName').errors &&(paymentForm.get('fullName').dirty) )
                 || (!formIsInValid &&  paymentForm.get('fullName').errors )">
 
                  <span style="color: red;" *ngIf="paymentForm.get('fullName').errors.required && paymentForm.get('fullName').touched

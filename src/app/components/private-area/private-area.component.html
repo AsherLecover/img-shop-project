@@ -246,7 +246,14 @@
             <div style="height: 59vh; margin-right: 15%;">
                 <form [formGroup]="chatMessageForm"  action="">
                 <textarea formControlName="message" name="" id="" cols="113" rows="2.3"></textarea>
-                <i (click)="sendMessage()" style="position: absolute;  left: 97%; top: 94%; font-size: x-large; color: rgb(11, 92, 52);"  class="fa fa-paper-plane" aria-hidden="true"></i>
+                <i  [disabled]="reciderUserId != undefine"   (click)="sendMessage()" 
+                style="position: absolute;  left: 97%; top: 94%; font-size: x-large;  " 
+                [ngStyle]="{'color': reciderUserId == undefined ||
+                !(chatMessageForm.get('message').dirty) &&
+                (chatMessageForm.get('message').minLength)
+                
+                ? 'rgb(128, 163, 146)' : 'rgb(11, 92, 52)' }"
+                 class="fa fa-paper-plane" aria-hidden="true"></i>
             </form>
             </div>
         </div>

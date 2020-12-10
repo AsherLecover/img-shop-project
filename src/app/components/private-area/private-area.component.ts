@@ -89,6 +89,7 @@ export class PrivateAreaComponent implements OnInit {
   messagesBtweenUsers: MessagesModel[] = []
 
   imageFileProfile 
+  image: any;
 
   constructor(
     private privateAreaService: PrivateAreaService,
@@ -398,12 +399,7 @@ export class PrivateAreaComponent implements OnInit {
       this.svcClinets.userProfileImg$.next(data[0].imgProfile)
     })
   }
-  setFileImgProfileToServer(){
-    this.privateAreaService.sendProfileImgFile(this.imageFileProfile, this.userId, 'imgProfile').subscribe( (data) => {
-      console.log('file img profile back from server', data);
-      
-    })
-  }
+
 
   setProfileProfshanl() {
     this.setProfileMode = true;
@@ -523,17 +519,23 @@ export class PrivateAreaComponent implements OnInit {
   
   }
 
-  upload(imageFileProfile){
-    let image = imageFileProfile.files[0] ;
+  onUpload(e) {
+    let image = e.files[0] ;
     let fileReader = new FileReader() ;
     fileReader.onload = e => {
-      this.imageFileProfile = image;
-      console.log('proile file',this.imageFileProfile);
+      this.image = image;
+      console.log('image::',this.image);
+      
     }  
+    fileReader.readAsDataURL(image) ;
+    let formData = new FormData()
+    formData.append('image', image );
+  }
 
-
-   
-
+  setFileImgProfileToServer(){
+    console.log('oofff', this.image);
+    
+    this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString()) 
   }
 
 

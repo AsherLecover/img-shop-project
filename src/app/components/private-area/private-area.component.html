@@ -272,7 +272,7 @@
        <br>
         <input id="inp-img" type="text" formControlName="imgProfile" [value]="imgUrlProfile"
             (input)="imgUrlProfile = $event.target.value">
-            <input #imgFileProfile type="file" (change)="upload(imgFileProfile)">
+            <input #image  type="file" (change)="onUpload(image)" />
             <div class="btns-container">
                 <div>
                     <button (click)="setFileImgProfileToServer()" class="delete-confirm-btn" >אשר</button>

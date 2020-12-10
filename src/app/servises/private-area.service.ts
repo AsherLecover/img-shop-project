@@ -16,6 +16,7 @@ export class PrivateAreaService {
   user: UserModel;
   imgData$ = new Subject<any>();
   userData$ = new Subject();
+  formData = new FormData()
 
   constructor(private http: HttpClient) {
     this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
@@ -85,15 +86,28 @@ export class PrivateAreaService {
     });
   }
 
-  sendProfileImgFile(imageFileProfile: File,  userId,colomnName) {
-    let imgFileProfile = new FormData()
-    imgFileProfile.append('imageFileProfile', imageFileProfile );
+  sendProfileImgFile(image: any,  userId) {
+    console.log(image); 
+    
+    this.formData.append('image', image );
     console.log(userId);
-    console.log(imgFileProfile);
-    let headers = new HttpHeaders().set('userId','3') 
-     return this.http.post(`${environment.apiUrl}/private-area/set-img-profile`,imgFileProfile, {headers});  
-    // this.http.post(`${this.url}/playrs/upload` , formData,{headers})
-
+    console.log('this.formData: ' ,this.formData);
+    let headers = new HttpHeaders().set('userId',userId.toString()) 
+     this.http.post(`${environment.apiUrl}/private-area/set-img-profile`
+     ,this.formData, {headers}).subscribe(
+       data => {
+         console.log(data);
+       }
+     );  
+  }
+  uploadImage(image: File,id) {
+    console.log(image); 
+    let formData = new FormData()
+    formData.append('image', image );
+    console.log(id);
+    console.log(formData);
+    let headers = new HttpHeaders().set('id',id) 
+    this.http.post(`/playrs/upload` , formData,{headers}).subscribe() ;  
   }
 
 

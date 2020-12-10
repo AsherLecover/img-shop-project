@@ -10,7 +10,7 @@ import * as io from 'socket.io-client';
   providedIn: 'root',
 })
 export class PrivateAreaService {
- 
+
   messages = new Subject();
   private socket = null;
   user: UserModel;
@@ -78,7 +78,7 @@ export class PrivateAreaService {
     return this.http.get(`${environment.apiUrl}/private-area`);
   }
 
-  setCardProfile(data, userId,colomnName) {
+  setCardProfile(data, userId, colomnName) {
     return this.http.patch(`${environment.apiUrl}/private-area`, {
       data,
       userId,
@@ -86,33 +86,20 @@ export class PrivateAreaService {
     });
   }
 
-  sendProfileImgFile(image: any,  userId) {
-    console.log(image); 
-    
-    this.formData.append('image', image );
-    console.log(userId);
-    console.log('this.formData: ' ,this.formData);
-    let headers = new HttpHeaders().set('userId',userId.toString()) 
-     this.http.post(`${environment.apiUrl}/private-area/set-img-profile`
-     ,this.formData, {headers}).subscribe(
-       data => {
-         console.log(data);
-       }
-     );  
-  }
-  uploadImage(image: File,id) {
-    console.log(image); 
+  sendProfileImgFile(image: File, userId) {
+    console.log('image:', image);
     let formData = new FormData()
-    formData.append('image', image );
-    console.log(id);
-    console.log(formData);
-    let headers = new HttpHeaders().set('id',id) 
-    this.http.post(`/playrs/upload` , formData,{headers}).subscribe() ;  
+
+    formData.append('image', image);
+    console.log('userId:', userId);
+    console.log('formData: ', formData);
+    let headers = new HttpHeaders().set('userId', userId.toString())
+    return this.http.post(`${environment.apiUrl}/private-area/set-img-profile`,formData, { headers })
   }
+
 
 
 }
-// profession
 
 export interface UserModel {
   id: number;

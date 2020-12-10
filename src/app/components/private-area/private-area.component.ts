@@ -90,6 +90,7 @@ export class PrivateAreaComponent implements OnInit {
 
   imageFileProfile 
   image: any;
+  test
 
   constructor(
     private privateAreaService: PrivateAreaService,
@@ -521,21 +522,32 @@ export class PrivateAreaComponent implements OnInit {
 
   onUpload(e) {
     let image = e.files[0] ;
-    let fileReader = new FileReader() ;
+    let fileReader = new FileReader();
     fileReader.onload = e => {
       this.image = image;
-      console.log('image::',this.image);
+      console.log('image from component:',this.image);
       
     }  
     fileReader.readAsDataURL(image) ;
     let formData = new FormData()
-    formData.append('image', image );
+    formData.append('image', image);
   }
 
   setFileImgProfileToServer(){
     console.log('oofff', this.image);
+    let a = this.userId.toString()
+    this.test = `http://127.0.0.1:3000/private-area/getFile/${a}`
+    console.log(this.test);
     
-    this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString()) 
+    
+    this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString()).subscribe( data=>{
+      
+    })
+    
+
+
+  
+     
   }
 
 

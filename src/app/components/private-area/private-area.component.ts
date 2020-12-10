@@ -85,6 +85,10 @@ export class PrivateAreaComponent implements OnInit {
   facebook_link: string;
   linkedin_link: string;
   twitter_link: string;
+  messageTo: string = '';
+  messagesBtweenUsers: MessagesModel[] = []
+
+  imageFileProfile 
 
   constructor(
     private privateAreaService: PrivateAreaService,
@@ -325,6 +329,7 @@ export class PrivateAreaComponent implements OnInit {
   onClosemassagesBox() {
     this.massegsesMode = false;
     this.reciderUserId = undefined;
+    this.messageTo = ''
   }
 
   listen() {
@@ -334,12 +339,14 @@ export class PrivateAreaComponent implements OnInit {
       if (!messageData) {
       }
       this.messageData.push(messageData);
-      console.log('reciveMessages', messageData);
+      // console.log('reciveMessages', messageData);
     });
   }
 
   sendMessage() {
     // this.listen();
+    console.log('form valid: ', this.chatMessageForm.valid);
+    
     var result = '';
     var d = new Date();
     result += ' ' + d.getHours() + ':' + d.getMinutes();
@@ -351,15 +358,29 @@ export class PrivateAreaComponent implements OnInit {
     };
     this.chatMessageForm.value.message;
 
-    // messageForm.reset();
     this.socket.emit('msgToServer', megToServer);
     this.chatMessagesService.sendMessageToServer(megToServer).subscribe( (data)=> {
       console.log(data);
-      
     })
     
     this.chatMessageForm.reset();
   }
+
+  getMessage(){
+    this.chatMessagesService.getMessages().subscribe( (data:MessagesModel[]) => {
+      for (const msg of data) {
+        if(msg.resiver_id == this.reciderUserId && msg.sender_id == this.userId||
+          msg.resiver_id == this.userId && msg.sender_id == this.reciderUserId){
+          // console.log('all messages:', data);
+          this.messagesBtweenUsers.push(msg)
+        }
+      }
+    })
+    console.log('arr:', this.messagesBtweenUsers);
+    
+  }
+
+
   // seting img profile
   setImgProfile() {
     this.setProfileMode = true;
@@ -375,7 +396,11 @@ export class PrivateAreaComponent implements OnInit {
       // this.privateAreaService.user = data
       // this.userAllData = data
       this.svcClinets.userProfileImg$.next(data[0].imgProfile)
-
+    })
+  }
+  setFileImgProfileToServer(){
+    this.privateAreaService.sendProfileImgFile(this.imageFileProfile, this.userId, 'imgProfile').subscribe( (data) => {
+      console.log('file img profile back from server', data);
       
     })
   }
@@ -430,7 +455,6 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   setFacebookLinkToServer(){
-    console.log(324321542154536437658657546);
     
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.facebook_link, this.userId, 'facebook_link').subscribe( (data:UserModel) => {
@@ -446,7 +470,6 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   setLinkedinLinkToServer(){
-    console.log(324321542154536437658657546);
     
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.linkedin_link, this.userId, 'linkedin_link').subscribe( (data:UserModel) => {
@@ -467,7 +490,6 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   setTwitterLinkToServer(){
-    console.log(324321542154536437658657546);
     
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.twitter_link, this.userId, 'twitter_link').subscribe( (data:UserModel) => {
@@ -484,9 +506,10 @@ export class PrivateAreaComponent implements OnInit {
     })    
   }
 
-  sendMsgToUser(resiverUserId){
-    this.reciderUserId = resiverUserId
-    console.log('userIdddddd:', resiverUserId); 
+  sendMsgToUser(user){
+    this.reciderUserId = user.id;
+    this.messageTo = `Message ${user.username}` 
+    this.getMessage()
   }
 
   onCloseSetProfile(){
@@ -499,4 +522,19 @@ export class PrivateAreaComponent implements OnInit {
     if(this.setTwitterProfileMode)this.setTwitterProfileMode = false;
   
   }
+
+  upload(imageFileProfile){
+    let image = imageFileProfile.files[0] ;
+    let fileReader = new FileReader() ;
+    fileReader.onload = e => {
+      this.imageFileProfile = image;
+      console.log('proile file',this.imageFileProfile);
+    }  
+
+
+   
+
+  }
+
+
 }

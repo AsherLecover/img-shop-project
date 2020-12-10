@@ -10,6 +10,7 @@ import * as io from 'socket.io-client';
   providedIn: 'root',
 })
 export class PrivateAreaService {
+ 
   messages = new Subject();
   private socket = null;
   user: UserModel;
@@ -83,6 +84,19 @@ export class PrivateAreaService {
       colomnName
     });
   }
+
+  sendProfileImgFile(imageFileProfile: File,  userId,colomnName) {
+    let imgFileProfile = new FormData()
+    imgFileProfile.append('imageFileProfile', imageFileProfile );
+    console.log(userId);
+    console.log(imgFileProfile);
+    let headers = new HttpHeaders().set('userId','3') 
+     return this.http.post(`${environment.apiUrl}/private-area/set-img-profile`,imgFileProfile, {headers});  
+    // this.http.post(`${this.url}/playrs/upload` , formData,{headers})
+
+  }
+
+
 }
 // profession
 

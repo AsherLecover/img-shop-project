@@ -217,7 +217,7 @@
     </div>
     <div class="warper-left-nav-bar-users ">
         <div class="left-nav-bar">
-            <div  *ngFor="let user of allUsers" (click)="sendMsgToUser(user.id)" style="display: flex; margin: 1%; padding: 5%; ">
+            <div  *ngFor="let user of allUsers" (click)="sendMsgToUser(user)" style="display: flex; margin: 1%; padding: 5%; ">
                 <img style="border-radius: 50%; margin-left: 5%; " height="24%" width="24%"
                     src={{user.imgProfile}}>
                 <div style="width: 70%; ">
@@ -239,21 +239,22 @@
                         <span style="font-size: x-small; color: rgb(145, 140, 140); margin-right: 5%;">{{msg.time}}</span>
                         <span>{{msg.message_text}}</span>
                     </div>
-                  
                 </div>
-         
             </div>
+
+
+
             <div style="height: 59vh; margin-right: 15%;">
                 <form [formGroup]="chatMessageForm"  action="">
-                <textarea formControlName="message" name="" id="" cols="113" rows="2.3"></textarea>
-                <i  [disabled]="reciderUserId != undefine"   (click)="sendMessage()" 
+                <textarea formControlName="message" name="" id="" cols="113" rows="2.3" placeholder="{{messageTo}}"></textarea>
+                    <button [disabled]="reciderUserId == undefined || reciderUserId == null|| chatMessageForm.invalid" (click)="sendMessage()">
+                <i   
                 style="position: absolute;  left: 97%; top: 94%; font-size: x-large;  " 
-                [ngStyle]="{'color': reciderUserId == undefined ||
-                !(chatMessageForm.get('message').dirty) &&
-                (chatMessageForm.get('message').minLength)
-                
-                ? 'rgb(128, 163, 146)' : 'rgb(11, 92, 52)' }"
+                [ngStyle]="{'color': reciderUserId == undefined ||  reciderUserId == null || chatMessageForm.invalid
+                 ? 'rgb(128, 163, 146)' : 'rgb(11, 92, 52)' }"
+               
                  class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
             </form>
             </div>
         </div>
@@ -271,9 +272,10 @@
        <br>
         <input id="inp-img" type="text" formControlName="imgProfile" [value]="imgUrlProfile"
             (input)="imgUrlProfile = $event.target.value">
+            <input #imgFileProfile type="file" (change)="upload(imgFileProfile)">
             <div class="btns-container">
                 <div>
-                    <button (click)="setImgProfileToServer()" class="delete-confirm-btn" >אשר</button>
+                    <button (click)="setFileImgProfileToServer()" class="delete-confirm-btn" >אשר</button>
                 </div>
                 <div>
                     <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>

@@ -14,7 +14,10 @@ export class ChatMessagesService {
     console.log(" return  this.http.post ");
     
     return this.http.post(`${environment.apiUrl}/chat-messages`,{msg})
+  }
 
+  getMessages(){
+    return this.http.get(`${environment.apiUrl}/chat-messages`)
   }
 
 }

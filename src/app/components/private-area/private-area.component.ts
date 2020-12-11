@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { imgModel } from '../management/management.component';
 import {
   Validators,
@@ -91,18 +91,23 @@ export class PrivateAreaComponent implements OnInit {
   imageFileProfile 
   image: any;
   test
+  clock_tick
 
   constructor(
     private privateAreaService: PrivateAreaService,
     private fb: FormBuilder,
     private svcClinets: ClinetsService,
-    private chatMessagesService: ChatMessagesService
+    private chatMessagesService: ChatMessagesService,
 
 
   ) {}
 
   ngOnInit(): void {
+
     this.userId = this.privateAreaService.getUserId();
+
+    this.test = `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
+    this.clock_tick = Date.now()
 
     if(!this.userData && !localStorage.getItem('userData')){
       console.log('12121212 user data',this.userData);
@@ -535,8 +540,13 @@ export class PrivateAreaComponent implements OnInit {
 
   setFileImgProfileToServer(){
     console.log('oofff', this.image);
-    let a = this.userId.toString()
-    this.test = `http://127.0.0.1:3000/private-area/getFile/${a}`
+    this.test =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
+    // this.cdRef.detectChanges();
+    this.clock_tick = Date.now()
+      this.setProfileMode = false;
+
+
+
     console.log(this.test);
     
     

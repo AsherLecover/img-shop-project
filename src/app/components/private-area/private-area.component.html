@@ -5,7 +5,9 @@
             <div class="container-img" style="text-align: center;">
                 <figure class="figure">
                     <!-- <img id="profile-img" src={{userData.imgProfile}} alt="profile-pic" class="profile"> -->
-                    <img id="profile-img" src={{test}} alt="profile-pic" class="profile">
+                    <img id="profile-img"
+                     src='{{test}}?d={{clock_tick}}'
+                      alt="profile-pic" class="profile">
                     <figcaption class="figcaption"> <span  (click)="setImgProfile()" class="material-icons">add_a_photo </span> </figcaption>
                 </figure>
             </div>

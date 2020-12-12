@@ -88,10 +88,14 @@ export class PrivateAreaComponent implements OnInit {
   messageTo: string = '';
   messagesBtweenUsers: MessagesModel[] = []
 
-  imageFileProfile 
   image: any;
-  test
-  clock_tick
+  userImgProfile
+
+  public imagePath;
+  imgURL: any;
+  public message: string;
+  
+
 
   constructor(
     private privateAreaService: PrivateAreaService,
@@ -106,8 +110,7 @@ export class PrivateAreaComponent implements OnInit {
 
     this.userId = this.privateAreaService.getUserId();
 
-    this.test = `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
-    this.clock_tick = Date.now()
+    this.userImgProfile = `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
 
     if(!this.userData && !localStorage.getItem('userData')){
       console.log('12121212 user data',this.userData);
@@ -525,46 +528,47 @@ export class PrivateAreaComponent implements OnInit {
   
   }
 
-  onUpload(e) {
+
+
+  setFileImgProfileToServer(){
+    setTimeout( () => {
+      this.userImgProfile =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`
+      console.log('userImgProfiletttttttt', this.userImgProfile);
+    },50)
+      this.setProfileMode = false;
+
+    this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString(), 'imgProfile').subscribe( (data:UserModel)=>{
+      console.log('data from server:::::::', data);
+      localStorage.setItem('userData',JSON.stringify(data[0]));
+      this.privateAreaService.userData$.next(data[0])
+      this.svcClinets.userProfileImg$.next(`http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`)
+
+      
+      
+    })
+  }
+  preview(e) {
+    if (e.files.length === 0)
+      return;
+    let mimeType = e.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
     let image = e.files[0] ;
     let fileReader = new FileReader();
-    fileReader.onload = e => {
+
+    this.imagePath = e.files;
+    fileReader.onload = (e) => { 
       this.image = image;
-      console.log('image from component:',this.image);
-      
-    }  
-    fileReader.readAsDataURL(image) ;
+      this.imgURL = fileReader.result; 
+    }
+   
+    fileReader.readAsDataURL(image);
     let formData = new FormData()
     formData.append('image', image);
   }
 
-  setFileImgProfileToServer(){
-    console.log('oofff', this.image);
-    setTimeout( () => {
-      this.test =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now}`
-      console.log('testtttttttt', this.test);
-      
-    },3000)
-    // this.imgSrc +=`?d=${Date.now}`
-
-    // this.cdRef.detectChanges();
-    // this.clock_tick = Date.now()
-      this.setProfileMode = false;
-
-
-
-    console.log(this.test);
-    
-    
-    this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString()).subscribe( data=>{
-      
-    })
-    
-
-
   
-     
-  }
-
 
 }

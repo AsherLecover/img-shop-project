@@ -86,7 +86,7 @@ export class PrivateAreaService {
     });
   }
 
-  sendProfileImgFile(image: File, userId) {
+  sendProfileImgFile(image: File, userId, clomnName) {
     console.log('image:', image);
     let formData = new FormData()
 
@@ -94,7 +94,8 @@ export class PrivateAreaService {
     console.log('userId:', userId);
     console.log('formData: ', formData);
     let headers = new HttpHeaders().set('userId', userId.toString())
-    return this.http.post(`${environment.apiUrl}/private-area/set-img-profile`,formData, { headers })
+    headers.set('clomnName', clomnName)
+    return this.http.post(`${environment.apiUrl}/private-area/set-img-profile`,formData, { headers})
   }
 
 

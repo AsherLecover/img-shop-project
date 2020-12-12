@@ -2,11 +2,13 @@
     <div class="left-side">
         <div class="profile-card">
             <br><br><br>
+
+            
             <div class="container-img" style="text-align: center;">
                 <figure  #value class="figure">
                     <!-- <img id="profile-img" src={{userData.imgProfile}} alt="profile-pic" class="profile"> -->
                     <img id="profile-img"
-                     src='{{test}}' alt="pic picture"
+                     src='{{userImgProfile}}' alt="pic picture"
                        class="profile">
                     <figcaption class="figcaption"> <span  (click)="setImgProfile()" class="material-icons">add_a_photo </span> </figcaption>
                 </figure>
@@ -270,12 +272,21 @@
 <form [formGroup]="cardProfileForm" action="">
 
 <div *ngIf="setProfileMode && setImgProfileImgMode" class="alert-box-set-profile-img">
-    <p>הזן כתובת של  תמונת הפרופיל שלך</p>
-    <img src={{imgUrlProfile}} width="60px;" height="40px;" alt="">
+    <p>בחר את תמונת הפרופיל שלך</p>
+    <img  [src]="imgURL" height="40" width="60" *ngIf="imgURL">
        <br>
-        <input id="inp-img" type="text" formControlName="imgProfile" [value]="imgUrlProfile"
-            (input)="imgUrlProfile = $event.target.value">
-            <input #image  type="file" (change)="onUpload(image)" />
+            <span style="color:red;" *ngIf="message">{{message}}</span>
+
+            
+                <input #file type="file" accept='image/*' (change)="preview(file)" class="hide_file" />
+
+              <!-- <div class="choose-file" >
+                בחר קובץ
+                <input #file type="file" accept='image/*' (change)="preview(file)" class="hide_file"/>
+               <input type="file" class="hide_file">
+              </div> -->
+
+           
             <div class="btns-container">
                 <div>
                     <button (click)="setFileImgProfileToServer()" class="delete-confirm-btn" >אשר</button>

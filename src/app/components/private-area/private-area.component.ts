@@ -540,9 +540,15 @@ export class PrivateAreaComponent implements OnInit {
 
   setFileImgProfileToServer(){
     console.log('oofff', this.image);
-    this.test =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
+    setTimeout( () => {
+      this.test =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now}`
+      console.log('testtttttttt', this.test);
+      
+    },3000)
+    // this.imgSrc +=`?d=${Date.now}`
+
     // this.cdRef.detectChanges();
-    this.clock_tick = Date.now()
+    // this.clock_tick = Date.now()
       this.setProfileMode = false;
 
 

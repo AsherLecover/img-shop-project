@@ -1,5 +1,5 @@
-.hedder{
-    position:relative;
+.hedder {
+    position: relative;
     color: #fff;
     bottom: 0;
     width: 100%;
@@ -9,10 +9,29 @@
     background-color: #232d54;
 }
 
-.firstLineHedder{
+.title {
+    width: 60%;
+    text-align: left;
+    margin-top: 1%;
+}
+.shiping-card-warpper{
+    margin-left: 10%;
+}
+.bag-icon{
+    margin-right: 5% ; font-size: 35px; cursor: pointer;
+
+}
+
+.private-btn {
+    width: 10%;
+    margin-top: 1%;
+}
+
+.firstLineHedder {
     height: 50%;
 }
-.secondeLineHedder{
+
+.secondeLineHedder {
     height: 50%;
 }
 
@@ -20,31 +39,34 @@
     background: #232d54;
     color: #fff;
 }
-.seconeLineMenu{
+
+.seconeLineMenu {
     justify-content: space-between;
     cursor: pointer;
 }
-.firstLine{
-    cursor: pointer;  
+
+.firstLine {
+    cursor: pointer;
     display: flex;
 }
-::ng-deep .mat-menu-content{
-    background-color:floralwhite
-  }
 
-  ::ng-deep .mat-menu-item{
-      color: #404e88;
-  }
+::ng-deep .mat-menu-content {
+    background-color: floralwhite
+}
 
-  button.mat-menu-item:hover {
+::ng-deep .mat-menu-item {
+    color: #404e88;
+}
+
+button.mat-menu-item:hover {
     color: red !important;
 }
 
-.mat-dialog-container{
+.mat-dialog-container {
     background: #fff !important;
 }
 
-.alert-box{
+.alert-box {
     position: fixed;
     top: 45vh;
     left: 30vw;
@@ -57,12 +79,39 @@
     text-align: center;
     border: 2px solid rgb(221, 207, 207);
     border-radius: 25px;
-  }
+}
 
-  @media screen and (max-width: 900px) {
-  
-    .seconeLineMenu{
+@media screen and (max-width: 900px) {
+    .seconeLineMenu {
         display: none;
+    }
+    .title {
+        display: none;
+    }
+    .private-btn {
+        display: none;
+    }
+    .shiping-card-warpper{
+        margin-left: 0vh;
+        display: flex;
+        margin-right: 0vh;
+        padding: 1vh;
+        direction: rtl;
+        padding: 1vh;
+    }
+    .bag-icon{
+        font-size: 4vh;
+
        
     }
+    .secondeLineHedder {
+        display: flex;
+        direction: ltr;
+
+    }
+    .firstLineHedder{
+        justify-content: space-between;
+    }
+
+        
 }

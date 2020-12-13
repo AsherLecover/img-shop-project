@@ -534,7 +534,7 @@ export class PrivateAreaComponent implements OnInit {
     setTimeout( () => {
       this.userImgProfile =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`
       console.log('userImgProfiletttttttt', this.userImgProfile);
-    },50)
+    },250)
       this.setProfileMode = false;
 
     this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString(), 'imgProfile').subscribe( (data:UserModel)=>{

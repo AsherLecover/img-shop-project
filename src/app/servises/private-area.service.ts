@@ -100,7 +100,7 @@ export class PrivateAreaService {
       setTimeout( ()=> {
         console.log('dataaaaaaaaaaaaaarrrr', data);
         
-      },1200)
+      },2000)
 
       // console.log(data);
     })

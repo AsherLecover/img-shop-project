@@ -304,7 +304,7 @@ export class PrivateAreaComponent implements OnInit {
       });
       setTimeout( ()=> {
         this.editMode = false;
-      },1200)
+      },2000)
   }
 
   onClose() {

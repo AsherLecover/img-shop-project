@@ -108,10 +108,7 @@ export class ManagementComponent implements OnInit {
 
   editImgFromServer(id, imgDetailsToUpdate) {
     id = this.idOfImgToAddDeleteEdit;
-    this.managementService.editImgFromServer(id, imgDetailsToUpdate, this.subId).subscribe((data:any) => {
-      this.managementService.imgData$.next(data)
-
-
+    this.managementService.editImgFromServer(id, imgDetailsToUpdate, this.subId).subscribe(() => {
     })
   }
 

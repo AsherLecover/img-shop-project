@@ -82,12 +82,10 @@ export class PrivateAreaService {
   }
 
   editImgToServer(image: File, id: any, imgDetailsToUpdate: any) {
-    // console.log('imgDetailsToUpdate servic8888888888888888888888e::::', imgDetailsToUpdate.imgUrl);
     let imgId = imgDetailsToUpdate.imgUrl.substr(imgDetailsToUpdate.imgUrl.length - 36)
     
     let formData = new FormData()
     formData.append('image', image);
-    // this.uuid = uuid.v4()
     let headers = new HttpHeaders().set('uuid',imgId);
     this.editImgOtherData(id, imgDetailsToUpdate)
 
@@ -97,12 +95,12 @@ export class PrivateAreaService {
 
   editImgOtherData( id: any, imgDetailsToUpdate: any) {
     return this.http.patch( `${environment.apiUrl}/private-area/${id}/${this.user.id}`,
-    { imgDetailsToUpdate: imgDetailsToUpdate }).subscribe( data => {
+    { imgDetailsToUpdate: imgDetailsToUpdate }).subscribe( (data:imgModel[]) => {
+      this.imgData$.next(data);
       setTimeout( ()=> {
         console.log('dataaaaaaaaaaaaaarrrr', data);
         
-        this.imgData$.next(data);
-      },2000)
+      },1200)
 
       // console.log(data);
     })

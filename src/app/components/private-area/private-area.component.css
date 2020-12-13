@@ -112,7 +112,7 @@ h3 {
 .alert-box {
   position: fixed;
   top: 15vh;
-  left: 20vw;
+  left: 10vw;
   padding: 16px;
   z-index: 100;
   background: white;

@@ -96,6 +96,7 @@ export class PrivateAreaComponent implements OnInit {
 
   imgAddImgURL: string | ArrayBuffer = '';
   addImagePath: any;
+  time = Date.now().toString()
   
 
 
@@ -188,10 +189,9 @@ export class PrivateAreaComponent implements OnInit {
   selectManageImgOption() {
     // console.log('event.target.value: ', event.target.value);
     // this.selectSubject(event.target.value)
-    this.privateAreaService.getAllImgByUserId().subscribe((data: any) => {
+    this.privateAreaService.getAllImgByUserId().subscribe((data: imgModel[]) => {
       console.log('data per userrrr:', data);
       this.imgasListFromServer = data;
-      // this.imgasListFromServer.map( img => {img.imgUrl = img.imgUrl + '?d='+Date.now().toString()})
 
     });
   }
@@ -248,7 +248,6 @@ export class PrivateAreaComponent implements OnInit {
     this.addImgAlertBox = false;
     this.alertBox = false;
     this.addMode = false;
-    console.log(4332153465746643534);
   }
 
   deleteOption(id) {
@@ -272,6 +271,8 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   editOption(id) {
+    console.log(123456789);
+    
     this.imgSelected = this.imgasListFromServer.find((img) => img.id == id);
 
     this.idOfImgToEdit = this.imgSelected.id;
@@ -299,12 +300,11 @@ export class PrivateAreaComponent implements OnInit {
     id = this.idOfImgToEdit;
     this.privateAreaService
       .editImgToServer(this.imgUrl, id, imgDetailsToUpdate)
-      .subscribe((data: any) => {
-        // this.privateAreaService.imgData$.next(data);
+      .subscribe(() => {
       });
       setTimeout( ()=> {
         this.editMode = false;
-      },1900)
+      },1200)
   }
 
   onClose() {

@@ -49,7 +49,7 @@ export class PrivateAreaComponent implements OnInit {
   massegsesMode: boolean = false;
   massage: string = '';
   imgSelected: imgModel;
-  imgUrl: string;
+  imgUrl: any;
   deleteOrEditBtnName: string = '';
   idOfImgToEdit: number;
   allUsers
@@ -90,10 +90,12 @@ export class PrivateAreaComponent implements OnInit {
 
   image: any;
   userImgProfile
-
-  public imagePath;
-  imgURL: any;
+  public imageProfilePath;
+  imgProfileURL: any;
   public message: string;
+
+  imgAddImgURL: string | ArrayBuffer = '';
+  addImagePath: any;
   
 
 
@@ -136,12 +138,6 @@ export class PrivateAreaComponent implements OnInit {
         this.linkedin_link = (this.userData.linkedin_link == null) ? this.linkedin_link : this.userData.linkedin_link;
         this.twitter_link = (this.userData.twitter_link == null) ? this.twitter_link : this.userData.twitter_link;
 
-        // this.about_you = this.userData.about_you;
-        // this.instagram_link = this.userData.instagram_link;
-        // this.facebook_link = this.userData.facebook_link;
-        // this.linkedin_link = this.userData.linkedin_link;
-        // this.twitter_link = this.userData.twitter_link;
-        
     }
 
 
@@ -175,6 +171,7 @@ export class PrivateAreaComponent implements OnInit {
 
     this.privateAreaService.imgData$.subscribe((data) => {
       this.imgasListFromServer = data;
+      // this.imgasListFromServer.map( img => {img.imgUrl = img.imgUrl + '?d='+Date.now().toString()})
     });
 
 
@@ -194,6 +191,8 @@ export class PrivateAreaComponent implements OnInit {
     this.privateAreaService.getAllImgByUserId().subscribe((data: any) => {
       console.log('data per userrrr:', data);
       this.imgasListFromServer = data;
+      // this.imgasListFromServer.map( img => {img.imgUrl = img.imgUrl + '?d='+Date.now().toString()})
+
     });
   }
 
@@ -208,6 +207,7 @@ export class PrivateAreaComponent implements OnInit {
     this.deleteMode = false;
     this.editMode = false;
     this.addImgAlertBox = true;
+    
     this.editImgForm = this.fb.group({
       photographer: ['', [Validators.required]],
       imgDes: ['', [Validators.required]],
@@ -217,6 +217,7 @@ export class PrivateAreaComponent implements OnInit {
     });
     this.deleteOrEditBtnName = ' הוספה לאתר';
   }
+
   addImgSelected(event: any) {
     console.log('event: ', event.target.value);
     this.privateAreaService
@@ -237,7 +238,7 @@ export class PrivateAreaComponent implements OnInit {
     imgDataToAdd.img_id = this.imgPerSubjectLength;
     console.log('imgDataToAdd:', imgDataToAdd);
     console.log('this.editImgForm.value', this.editImgForm.value);
-    this.privateAreaService.addImg(imgDataToAdd).subscribe((data) => {
+    this.privateAreaService.addImg(this.imgUrl,imgDataToAdd).subscribe((data) => {
       console.log(data);
     });
     this.addMode = false;
@@ -275,6 +276,7 @@ export class PrivateAreaComponent implements OnInit {
 
     this.idOfImgToEdit = this.imgSelected.id;
     this.imgUrl = this.imgSelected.imgUrl;
+    this.imgAddImgURL = this.imgSelected.imgUrl;
     this.alertBox = true;
     this.editMode = true;
     this.deleteMode = false;
@@ -296,11 +298,13 @@ export class PrivateAreaComponent implements OnInit {
 
     id = this.idOfImgToEdit;
     this.privateAreaService
-      .editImgToServer(id, imgDetailsToUpdate)
+      .editImgToServer(this.imgUrl, id, imgDetailsToUpdate)
       .subscribe((data: any) => {
-        this.privateAreaService.imgData$.next(data);
+        // this.privateAreaService.imgData$.next(data);
       });
-    this.editMode = false;
+      setTimeout( ()=> {
+        this.editMode = false;
+      },1900)
   }
 
   onClose() {
@@ -309,13 +313,13 @@ export class PrivateAreaComponent implements OnInit {
       this.deleteMode = false;
       this.editMode = false;
       this.addImgToServer();
+
     } else if (this.deleteMode) {
       this.addMode = false;
       this.editMode = false;
-
       this.alertBox = true;
-
       this.deleteFromServer(this.idOfImgToEdit);
+
     } else if (this.editMode) {
       this.addMode = false;
       this.deleteMode = false;
@@ -547,7 +551,8 @@ export class PrivateAreaComponent implements OnInit {
       
     })
   }
-  preview(e) {
+  previewImgProfile(e) {
+
     if (e.files.length === 0)
       return;
     let mimeType = e.files[0].type;
@@ -558,15 +563,39 @@ export class PrivateAreaComponent implements OnInit {
     let image = e.files[0] ;
     let fileReader = new FileReader();
 
-    this.imagePath = e.files;
-    fileReader.onload = (e) => { 
-      this.image = image;
-      this.imgURL = fileReader.result; 
+      
+      this.imageProfilePath = e.files;
+      fileReader.onload = (e) => { 
+        this.image = image;
+        this.imgProfileURL = fileReader.result; 
+      }
+     
+      fileReader.readAsDataURL(image);
+      let formData = new FormData()
+      formData.append('image', image);
+  }
+
+  previewAddImg(e) {
+    if (e.files.length === 0)
+      return;
+    let mimeType = e.files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
     }
-   
-    fileReader.readAsDataURL(image);
-    let formData = new FormData()
-    formData.append('image', image);
+    let image = e.files[0] ;
+    let fileReader = new FileReader();
+
+      
+      this.addImagePath = e.files;
+      fileReader.onload = (e) => { 
+        this.imgUrl = image;
+        this.imgAddImgURL = fileReader.result; 
+      }
+     
+      fileReader.readAsDataURL(image);
+      let formData = new FormData()
+      formData.append('image', image);
   }
 
   

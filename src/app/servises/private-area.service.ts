@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { imgModel } from '../components/management/management.component';
 import * as io from 'socket.io-client';
+import * as uuid from 'uuid';
+
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +19,7 @@ export class PrivateAreaService {
   imgData$ = new Subject<any>();
   userData$ = new Subject();
   formData = new FormData()
+  uuid
 
   constructor(private http: HttpClient) {
     this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
@@ -45,11 +48,22 @@ export class PrivateAreaService {
     return this.user.id;
   }
 
-  addImg(imgDataToAdd: imgModel) {
+  addImg(image: File, imgDataToAdd: imgModel) {
+    let formData = new FormData()
+    formData.append('image', image);
+    this.uuid = uuid.v4()
+    let headers = new HttpHeaders().set('uuid',this.uuid)
+
+    
+    this.addImgOtherData(imgDataToAdd)
     return this.http.post<any>(
-      `${environment.apiUrl}/private-area/${this.user.id}`,
-      { imgDataToAdd }
-    );
+      `${environment.apiUrl}/private-area/${this.user.id}`,formData,{headers});
+  }
+
+  addImgOtherData(imgDataToAdd: imgModel) {
+    return this.http.post( `${environment.apiUrl}/private-area/${this.user.id}/other-data`,{imgDataToAdd,uuid:this.uuid}).subscribe( data => {
+      console.log(data);
+    })
   }
 
   deleteFromServer(imgId: number) {
@@ -67,11 +81,31 @@ export class PrivateAreaService {
     );
   }
 
-  editImgToServer(id: any, imgDetailsToUpdate: any) {
-    return this.http.patch(
-      `${environment.apiUrl}/private-area/${id}/${this.user.id}`,
-      { imgDetailsToUpdate: imgDetailsToUpdate }
-    );
+  editImgToServer(image: File, id: any, imgDetailsToUpdate: any) {
+    // console.log('imgDetailsToUpdate servic8888888888888888888888e::::', imgDetailsToUpdate.imgUrl);
+    let imgId = imgDetailsToUpdate.imgUrl.substr(imgDetailsToUpdate.imgUrl.length - 36)
+    
+    let formData = new FormData()
+    formData.append('image', image);
+    // this.uuid = uuid.v4()
+    let headers = new HttpHeaders().set('uuid',imgId);
+    this.editImgOtherData(id, imgDetailsToUpdate)
+
+    return this.http.post<any>(
+      `${environment.apiUrl}/private-area/${this.user.id}`,formData,{headers});
+  }
+
+  editImgOtherData( id: any, imgDetailsToUpdate: any) {
+    return this.http.patch( `${environment.apiUrl}/private-area/${id}/${this.user.id}`,
+    { imgDetailsToUpdate: imgDetailsToUpdate }).subscribe( data => {
+      setTimeout( ()=> {
+        console.log('dataaaaaaaaaaaaaarrrr', data);
+        
+        this.imgData$.next(data);
+      },2000)
+
+      // console.log(data);
+    })
   }
 
   getAllUsers() {
@@ -87,14 +121,12 @@ export class PrivateAreaService {
   }
 
   sendProfileImgFile(image: File, userId, clomnName) {
-    console.log('image:', image);
-    let formData = new FormData()
 
+    let formData = new FormData()
     formData.append('image', image);
-    console.log('userId:', userId);
-    console.log('formData: ', formData);
+
     let headers = new HttpHeaders().set('userId', userId.toString())
-    headers.set('clomnName', clomnName)
+    // headers.set('clomnName', clomnName)
     return this.http.post(`${environment.apiUrl}/private-area/set-img-profile`,formData, { headers})
   }
 

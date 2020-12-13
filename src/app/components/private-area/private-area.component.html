@@ -54,6 +54,7 @@
 
             <div class="user-img">
                 <table>
+                    <h1>lkjlkjlkjlkjlkj;lkj</h1>
                     <tr>
                         <th>נושא</th>
                         <th>תאור הנושא</th>
@@ -120,10 +121,13 @@
                         <td class="td-form"><input type="text" formControlName="imgDes"></td>
                         <td class="td-form"><input type="text" formControlName="imgLongDes"></td>
                         <td>
-                            <img src={{imgUrl}} width="60px;" height="40px;" alt="">
+
+                            <img  [src]="imgAddImgURL" height="40" width="60" *ngIf="imgAddImgURL">
                             <br>
-                            <input id="inp-img" type="text" formControlName="imgUrl" [value]="imgUrl"
-                                (input)="imgUrl = $event.target.value">
+                             <span style="color:red;" *ngIf="message">{{message}}</span>
+                             <input #file type="file" accept='image/*' (change)="previewAddImg(file)" class="hide_file" />
+
+                        
                         </td>
                         <td class="td-form"><input type="text" formControlName="photographer">
                         <td class="td-form"><input type="text" formControlName="price">
@@ -183,10 +187,10 @@
                 <td class="td-form"><input type="text" formControlName="imgDes"></td>
                 <td class="td-form"><input type="text" formControlName="imgLongDes"></td>
                 <td>
-                    <img src={{imgUrl}} width="60px;" height="40px;" alt="">
+                    <img  [src]="imgAddImgURL" height="40" width="60" *ngIf="imgAddImgURL">
                     <br>
-                    <input id="inp-img" type="text" formControlName="imgUrl" [value]="imgUrl"
-                        (input)="imgUrl = $event.target.value">
+                     <span style="color:red;" *ngIf="message">{{message}}</span>
+                     <input #file type="file" accept='image/*' (change)="previewAddImg(file)" class="hide_file" />
                 </td>
                 <td class="td-form"><input type="text" formControlName="photographer">
                 <td class="td-form"><input type="text" formControlName="price">
@@ -273,18 +277,12 @@
 
 <div *ngIf="setProfileMode && setImgProfileImgMode" class="alert-box-set-profile-img">
     <p>בחר את תמונת הפרופיל שלך</p>
-    <img  [src]="imgURL" height="40" width="60" *ngIf="imgURL">
+    <img  [src]="imgProfileURL" height="40" width="60" *ngIf="imgProfileURL">
        <br>
             <span style="color:red;" *ngIf="message">{{message}}</span>
 
             
-                <input #file type="file" accept='image/*' (change)="preview(file)" class="hide_file" />
-
-              <!-- <div class="choose-file" >
-                בחר קובץ
-                <input #file type="file" accept='image/*' (change)="preview(file)" class="hide_file"/>
-               <input type="file" class="hide_file">
-              </div> -->
+                <input #file type="file" accept='image/*' (change)="previewImgProfile(file)" class="hide_file" />
 
            
             <div class="btns-container">

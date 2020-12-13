@@ -43,6 +43,7 @@ import { RecommendationsComponent } from './components/recommendations/recommend
 import { DiscountComponent } from './components/discount/discount.component';
 import { NewImgComponent } from './new-img/new-img.component';
 import { PrivateAreaComponent } from './components/private-area/private-area.component';
+import { ProfileCardComponent } from './profile-card/profile-card.component';
 
  
 @NgModule({
@@ -66,6 +67,7 @@ import { PrivateAreaComponent } from './components/private-area/private-area.com
     DiscountComponent,
     NewImgComponent,
     PrivateAreaComponent,
+    ProfileCardComponent,
   ],
   imports: [
     AngularFirestoreModule,

@@ -85,7 +85,6 @@ export class PrivateAreaService {
   editImgToServer(image: File, id: any, imgDetailsToUpdate: any) {
     let imgId =  imgDetailsToUpdate.imgUrl.substring(43, 79);
     // let imgId1 = path.parse(imgDetailsToUpdate.imgUrl)
-    console.log('5555555555555555555', imgId);
     
 
     

@@ -83,7 +83,9 @@ export class ChatRoomComponent implements OnInit {
     private fb: FormBuilder,
     public chatMessagesService: ChatMessagesService,
 
-  ) { }
+  ) { 
+    this.userId = this.privateAreaService.getUserId();
+  }
 
   ngOnInit(): void {
 
@@ -101,15 +103,6 @@ export class ChatRoomComponent implements OnInit {
     this.chatMessagesService.massegsesMode$.subscribe( (data: boolean)=> {
       this.massegsesMode = data;
     })
-
-
-    this.userId = this.privateAreaService.getUserId();
-
-
-
-    // this.privateAreaService.getAllUsers().subscribe((data) => {
-    //   this.allUsers = data;
-    // });
 
     this.listen();
 
@@ -142,7 +135,14 @@ export class ChatRoomComponent implements OnInit {
     this.socket = io('http://localhost:3000', {});
 
     this.socket.on('msgToClinet', (messageData:MessagesModel) => {
-      if (!messageData) {
+      console.log('testtttttttttttttttttttttt (-:::::::', messageData);
+      
+     
+      
+      if (
+        messageData.resiver_id == this.reciderUserId && messageData.sender_id == this.userId||
+        messageData.resiver_id == this.userId && messageData.sender_id == this.reciderUserId
+        ){
       }
       this.messageData.push(messageData);
     });
@@ -154,7 +154,7 @@ export class ChatRoomComponent implements OnInit {
     var result = '';
     var d = new Date();
     result += ' ' + d.getHours() + ':' + d.getMinutes();
-    let megToServer = {
+    let msgToServer = {
       sender_id: this.userId,
       resiver_id: this.reciderUserId,
       message_text: this.chatMessageForm.value.message,
@@ -162,9 +162,11 @@ export class ChatRoomComponent implements OnInit {
     };
     this.chatMessageForm.value.message;
 
-    this.socket.emit('msgToServer', megToServer);
-    this.chatMessagesService.sendMessageToServer(megToServer).subscribe( (data)=> {
-      console.log(data);
+    this.socket.emit('msgToServer', msgToServer);
+    this.chatMessagesService.sendMessageToServer(msgToServer).subscribe( (data:MessagesModel)=> {
+      console.log('msg data: after emited to server', data);
+      // this.messageData.push(data);
+
     })
     
     this.chatMessageForm.reset();
@@ -179,7 +181,7 @@ export class ChatRoomComponent implements OnInit {
         }
       }
     })
-    console.log('arr:', this.messagesBtweenUsers);
+    console.log('arr: messages Btween Users::::', this.messagesBtweenUsers);
   }
 
   sendMsgToUser(user){

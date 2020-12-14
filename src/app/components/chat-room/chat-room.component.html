@@ -19,7 +19,7 @@
                         <span style="color: white; font-size: 1.5vh;" class="name-meta">{{user.username}}</span>
                     </div>
                     <div>
-                        <span style="color: white; font-size: small;" class="time-meta-pull-right">{{user.profession}} </span>
+                        <!-- <span style="color: white; font-size: small;" class="time-meta-pull-right">{{user.profession}} </span> -->
                     </div>
                 </div>
             </div>
@@ -29,10 +29,24 @@
 
             <div style="overflow-y: scroll; height: 55vh;" class="main-massage-page">
                 <div *ngFor=" let msg of messageData" style=" padding: 2%;">
-                    <div class="message-text">
+                    <div 
+                    [ngStyle]="{'background-color':
+                    msg.sender_id == userId
+                    ? '#dcf8c6' : '#f1f3f0'}  "
+
+                     *ngIf="
+                    msg.resiver_id == reciderUserId && msg.sender_id == userId||
+                    msg.resiver_id == userId && msg.sender_id == reciderUserId
+                    "  class="message-text">
                         <span style="font-size: x-small; color: rgb(145, 140, 140); margin-right: 5%;">{{msg.time}}</span>
                         <span>{{msg.message_text}}</span>
                     </div>
+
+                    <!-- <p [ngStyle]="{'background-color': masseage.userId == userId && masseage.clinetId == clinetId ? '#dcf8c6' : '#f1f3f0'}  "
+                    ngClass="masseages" *ngIf="masseage.userId == userId && masseage.clinetId == clinetId
+                    || masseage.userId == clinetId && masseage.clinetId == userId">
+                    {{masseage.massege}}</p> -->
+
                 </div>
             </div>
 

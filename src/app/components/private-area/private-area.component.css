@@ -1,5 +1,10 @@
+@media screen and (max-width: 4000px) and (min-width: 901px) {
+
+
 .container {
   display: flex;
+  /* background-color: #4caf50; */
+  border: #d6249f 3px solid;
 }
 
 .user-img {
@@ -590,6 +595,18 @@ input[type=file]::-webkit-file-upload-button {
   border-radius: .3em;
   background-color: #a29bfe;
   transition: 1s;
+}
+
+}
+@media screen and (max-width: 900px) {
+  .container{
+    border: #f44336 13px solid;
+  }
+  h1{
+    font-size: 3vh;
+    text-align: center;
+    margin: 1%;
+  }
 }
 
 

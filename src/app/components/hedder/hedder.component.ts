@@ -41,12 +41,9 @@ export class HedderComponent implements OnInit {
     this.authSer = authSer;
   }
   ngOnInit(): void {
-    console.log('user img profile headerrrrrrrrrrrrr:', this.userProfileImg);
     
      this.svcClinets.userProfileImg$.subscribe( (data: string) => {
        this.userProfileImg = data
-       console.log(data);
-       
      })
 
 

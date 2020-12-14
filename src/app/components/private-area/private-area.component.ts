@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { imgModel } from '../management/management.component';
 import {
   Validators,
@@ -107,72 +107,76 @@ export class PrivateAreaComponent implements OnInit {
     private chatMessagesService: ChatMessagesService,
 
 
-  ) {}
+  ) {
+
+    this.userId = this.privateAreaService.getUserId();
+  }
 
   ngOnInit(): void {
 
-    this.userId = this.privateAreaService.getUserId();
-
-    this.userImgProfile = `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
-
-    if(!this.userData && !localStorage.getItem('userData')){
-      console.log('12121212 user data',this.userData);
-      this.userData =  this.privateAreaService.user;
-      this.svcClinets.userProfileImg$.next(this.userData.imgProfile)
-    
-    }
-    else if(localStorage.getItem('userData')){
-      this.userData = JSON.parse(
-        localStorage.getItem('userData') || '[]');
-        this.svcClinets.userProfileImg$.next(this.userData.imgProfile);
-        console.log(55555555);
-        console.log('66666666',this.userData);
-        
-        // this.profession =  this.userData.profession  ? '$2.00' : '$10.00';
-        // var x = (x === undefined) ? your_default_value : x;
-
-
-        this.profession = (this.userData.profession == null) ? this.profession : this.userData.profession;
-        this.about_you = (this.userData.about_you == null) ? this.about_you : this.userData.about_you;
-        this.instagram_link = (this.userData.instagram_link == null) ? this.instagram_link : this.userData.instagram_link;
-        this.facebook_link = (this.userData.facebook_link == null) ? this.facebook_link : this.userData.facebook_link;
-        this.linkedin_link = (this.userData.linkedin_link == null) ? this.linkedin_link : this.userData.linkedin_link;
-        this.twitter_link = (this.userData.twitter_link == null) ? this.twitter_link : this.userData.twitter_link;
-
-    }
-
-
-    this.privateAreaService.userData$.subscribe( (data:UserModel) => {
-        this.privateAreaService.user = data
-        console.log('gggg', data);
-        this.userData = data;
-        
+    this.chatMessagesService.massegsesMode$.subscribe( (data:boolean) => {
+      this.massegsesMode = data;
     })
 
-    this.cardProfileForm = this.fb.group({
-      imgProfile: ['', [Validators.required]],
-      profession: ['', [Validators.required]],
-      about_you: ['', [Validators.required]],
-      twitter_link: ['', [Validators.required]],
-      linkedin_link: ['', [Validators.required]],
-      facebook_link: ['', [Validators.required]],
-      instagram_link: ['', [Validators.required]],
-    });
 
 
-    this.privateAreaService.getAllUsers().subscribe((data) => {
-      this.allUsers = data
-    });
+    // this.userImgProfile = `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
 
-    this.listen();
+    // if(!this.userData && !localStorage.getItem('userData')){
+    //   console.log('12121212 user data',this.userData);
+    //   this.userData =  this.privateAreaService.user;
+    //   this.svcClinets.userProfileImg$.next(this.userData.imgProfile)
+    
+    // }
+    // else if(localStorage.getItem('userData')){
+    //   this.userData = JSON.parse(
+    //     localStorage.getItem('userData') || '[]');
+    //     this.svcClinets.userProfileImg$.next(this.userData.imgProfile);
+    //     console.log(55555555);
+    //     console.log('66666666',this.userData);
+        
 
-    this.chatMessageForm = this.fb.group({
-      message: ['', [Validators.required, Validators.minLength(1)]],
-    });
+    //     this.profession = (this.userData.profession == null) ? this.profession : this.userData.profession;
+    //     this.about_you = (this.userData.about_you == null) ? this.about_you : this.userData.about_you;
+    //     this.instagram_link = (this.userData.instagram_link == null) ? this.instagram_link : this.userData.instagram_link;
+    //     this.facebook_link = (this.userData.facebook_link == null) ? this.facebook_link : this.userData.facebook_link;
+    //     this.linkedin_link = (this.userData.linkedin_link == null) ? this.linkedin_link : this.userData.linkedin_link;
+    //     this.twitter_link = (this.userData.twitter_link == null) ? this.twitter_link : this.userData.twitter_link;
+
+    // }
+
+
+    // this.privateAreaService.userData$.subscribe( (data:UserModel) => {
+    //     this.privateAreaService.user = data
+    //     console.log('gggg', data);
+    //     this.userData = data;
+        
+    // })
+
+    // this.cardProfileForm = this.fb.group({
+    //   imgProfile: ['', [Validators.required]],
+    //   profession: ['', [Validators.required]],
+    //   about_you: ['', [Validators.required]],
+    //   twitter_link: ['', [Validators.required]],
+    //   linkedin_link: ['', [Validators.required]],
+    //   facebook_link: ['', [Validators.required]],
+    //   instagram_link: ['', [Validators.required]],
+    // });
+
+
+    // this.privateAreaService.getAllUsers().subscribe((data) => {
+    //   this.allUsers = data
+    // });
+
+    // this.listen();
+
+    // this.chatMessageForm = this.fb.group({
+    //   message: ['', [Validators.required, Validators.minLength(1)]],
+    // });
 
     this.privateAreaService.imgData$.subscribe((data) => {
+      this.imgasListFromServer.map( img => {img.imgUrl = img.imgUrl + '?d='+Date.now().toString()})
       this.imgasListFromServer = data;
-      // this.imgasListFromServer.map( img => {img.imgUrl = img.imgUrl + '?d='+Date.now().toString()})
     });
 
 
@@ -187,10 +191,9 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   selectManageImgOption() {
-    // console.log('event.target.value: ', event.target.value);
-    // this.selectSubject(event.target.value)
     this.privateAreaService.getAllImgByUserId().subscribe((data: imgModel[]) => {
       console.log('data per userrrr:', data);
+      data.map( img => img.imgUrl + `?d=${Date.now()}`)
       this.imgasListFromServer = data;
 
     });
@@ -271,8 +274,7 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   editOption(id) {
-    console.log(123456789);
-    
+
     this.imgSelected = this.imgasListFromServer.find((img) => img.id == id);
 
     this.idOfImgToEdit = this.imgSelected.id;
@@ -294,8 +296,7 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   editImgToServer(id, imgDetailsToUpdate) {
-    console.log('edit id', id);
-    console.log('edit imgDetailsToUpdate', imgDetailsToUpdate);
+    console.log('imgDetailsToUpdate!!!! ', imgDetailsToUpdate);
 
     id = this.idOfImgToEdit;
     this.privateAreaService
@@ -338,242 +339,253 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   massagesBtweenUsersOption() {
-    this.massegsesMode = true;
+    console.log(87987987987987878787878787878787);
+    this.chatMessagesService.getAllUsers().subscribe((data:UserModel[]) => {
+      console.log('allll userssss:::', data);
+      data.map( img => {img.imgProfile = img.imgProfile + '?d='+Date.now().toString()})
+      setTimeout( () => {
+        this.allUsers = data
+        this.chatMessagesService.allUsers$.next(data);
+
+      },2000)
+    });
+
+    this.chatMessagesService.massegsesMode$.next(true);
+    // this.massegsesMode = true;
   }
+
   onClosemassagesBox() {
-    this.massegsesMode = false;
+    this.chatMessagesService.massegsesMode$.next(false);
+    // this.massegsesMode = false;
     this.reciderUserId = undefined;
     this.messageTo = ''
   }
 
-  listen() {
-    this.socket = io('http://localhost:3000', {});
+  // listen() {
+  //   this.socket = io('http://localhost:3000', {});
 
-    this.socket.on('msgToClinet', (messageData:MessagesModel) => {
-      if (!messageData) {
-      }
-      this.messageData.push(messageData);
-      // console.log('reciveMessages', messageData);
-    });
-  }
+  //   this.socket.on('msgToClinet', (messageData:MessagesModel) => {
+  //     if (!messageData) {
+  //     }
+  //     this.messageData.push(messageData);
+  //   });
+  // }
 
-  sendMessage() {
-    // this.listen();
-    console.log('form valid: ', this.chatMessageForm.valid);
+  // sendMessage() {
+  //   console.log('form valid: ', this.chatMessageForm.valid);
     
-    var result = '';
-    var d = new Date();
-    result += ' ' + d.getHours() + ':' + d.getMinutes();
-    let megToServer = {
-      sender_id: this.userId,
-      resiver_id: this.reciderUserId,
-      message_text: this.chatMessageForm.value.message,
-      time: result,
-    };
-    this.chatMessageForm.value.message;
+  //   var result = '';
+  //   var d = new Date();
+  //   result += ' ' + d.getHours() + ':' + d.getMinutes();
+  //   let megToServer = {
+  //     sender_id: this.userId,
+  //     resiver_id: this.reciderUserId,
+  //     message_text: this.chatMessageForm.value.message,
+  //     time: result,
+  //   };
+  //   this.chatMessageForm.value.message;
 
-    this.socket.emit('msgToServer', megToServer);
-    this.chatMessagesService.sendMessageToServer(megToServer).subscribe( (data)=> {
-      console.log(data);
-    })
+  //   this.socket.emit('msgToServer', megToServer);
+  //   this.chatMessagesService.sendMessageToServer(megToServer).subscribe( (data)=> {
+  //     console.log(data);
+  //   })
     
-    this.chatMessageForm.reset();
-  }
+  //   this.chatMessageForm.reset();
+  // }
 
-  getMessage(){
-    this.chatMessagesService.getMessages().subscribe( (data:MessagesModel[]) => {
-      for (const msg of data) {
-        if(msg.resiver_id == this.reciderUserId && msg.sender_id == this.userId||
-          msg.resiver_id == this.userId && msg.sender_id == this.reciderUserId){
-          // console.log('all messages:', data);
-          this.messagesBtweenUsers.push(msg)
-        }
-      }
-    })
-    console.log('arr:', this.messagesBtweenUsers);
+  // getMessage(){
+  //   this.chatMessagesService.getMessages().subscribe( (data:MessagesModel[]) => {
+  //     for (const msg of data) {
+  //       if(msg.resiver_id == this.reciderUserId && msg.sender_id == this.userId||
+  //         msg.resiver_id == this.userId && msg.sender_id == this.reciderUserId){
+  //         this.messagesBtweenUsers.push(msg)
+  //       }
+  //     }
+  //   })
+  //   console.log('arr:', this.messagesBtweenUsers);
     
-  }
+  // }
 
 
   // seting img profile
-  setImgProfile() {
-    this.setProfileMode = true;
-    this.setImgProfileImgMode = true;
-  }
+  // setImgProfile() {
+  //   this.setProfileMode = true;
+  //   this.setImgProfileImgMode = true;
+  // }
 
   
-  setImgProfileToServer(){
-    this.privateAreaService.setCardProfile
-    (this.cardProfileForm.value.imgProfile, this.userId,'imgProfile' ).subscribe ((data:UserModel) => {
-      localStorage.setItem('userData',JSON.stringify(data[0]));
-      this.privateAreaService.userData$.next(data[0])
-      // this.privateAreaService.user = data
-      // this.userAllData = data
-      this.svcClinets.userProfileImg$.next(data[0].imgProfile)
-    })
-  }
+  // setImgProfileToServer(){
+  //   this.privateAreaService.setCardProfile
+  //   (this.cardProfileForm.value.imgProfile, this.userId,'imgProfile' ).subscribe ((data:UserModel) => {
+  //     localStorage.setItem('userData',JSON.stringify(data[0]));
+  //     this.privateAreaService.userData$.next(data[0])
+  //     // this.privateAreaService.user = data
+  //     // this.userAllData = data
+  //     this.svcClinets.userProfileImg$.next(data[0].imgProfile)
+  //   })
+  // }
 
 
-  setProfileProfshanl() {
-    this.setProfileMode = true;
-    this.setProfileProfshanlMode = true;
-  }
+  // setProfileProfshanl() {
+  //   this.setProfileMode = true;
+  //   this.setProfileProfshanlMode = true;
+  // }
 
-  setProfileProfshanlToServer(){
-    this.privateAreaService.setCardProfile(
-      this.cardProfileForm.value.profession, this.userId, 'profession').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
-        localStorage.setItem('userData',JSON.stringify(data[0]));
-        this.profession = data[0].profession;
-    })    
-  }
+  // setProfileProfshanlToServer(){
+  //   this.privateAreaService.setCardProfile(
+  //     this.cardProfileForm.value.profession, this.userId, 'profession').subscribe( (data:UserModel) => {
+  //       console.log('carf profession change data ', data);
+  //       localStorage.setItem('userData',JSON.stringify(data[0]));
+  //       this.profession = data[0].profession;
+  //   })    
+  // }
   
-  setAboutYouProfile(){
-    this.setProfileMode = true;
-    this.setAboutYouProfileMode = true;
+  // setAboutYouProfile(){
+  //   this.setProfileMode = true;
+  //   this.setAboutYouProfileMode = true;
 
-  }
+  // }
 
-  setAboutYouProfileToServer(){
-    this.privateAreaService.setCardProfile(
-      this.cardProfileForm.value.about_you, this.userId, 'about_you').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
-        localStorage.setItem('userData',JSON.stringify(data[0]));
-        this.about_you = data[0].about_you;
-    })    
-  }
+  // setAboutYouProfileToServer(){
+  //   this.privateAreaService.setCardProfile(
+  //     this.cardProfileForm.value.about_you, this.userId, 'about_you').subscribe( (data:UserModel) => {
+  //       console.log('carf profession change data ', data);
+  //       localStorage.setItem('userData',JSON.stringify(data[0]));
+  //       this.about_you = data[0].about_you;
+  //   })    
+  // }
 
 
-  setInstagramProfile() {
-    this.setProfileMode = true;
-    this.setInstagramProfileMode = true;
-  }
+  // setInstagramProfile() {
+  //   this.setProfileMode = true;
+  //   this.setInstagramProfileMode = true;
+  // }
 
-  setInstegramLinkToServer(){
-    this.privateAreaService.setCardProfile(
-      this.cardProfileForm.value.instagram_link, this.userId, 'instagram_link').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
-        localStorage.setItem('userData',JSON.stringify(data[0]));
-        this.instagram_link = data[0].instagram_link;
-    })    
-  }
+  // setInstegramLinkToServer(){
+  //   this.privateAreaService.setCardProfile(
+  //     this.cardProfileForm.value.instagram_link, this.userId, 'instagram_link').subscribe( (data:UserModel) => {
+  //       console.log('carf profession change data ', data);
+  //       localStorage.setItem('userData',JSON.stringify(data[0]));
+  //       this.instagram_link = data[0].instagram_link;
+  //   })    
+  // }
 
-  setFacebookProfile() {
-    this.setProfileMode = true;
-    this.setFacebookProfileMode = true;
-  }
+  // setFacebookProfile() {
+  //   this.setProfileMode = true;
+  //   this.setFacebookProfileMode = true;
+  // }
 
-  setFacebookLinkToServer(){
+  // setFacebookLinkToServer(){
     
-    this.privateAreaService.setCardProfile(
-      this.cardProfileForm.value.facebook_link, this.userId, 'facebook_link').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
-        localStorage.setItem('userData',JSON.stringify(data[0]));
-        this.facebook_link = data[0].facebook_link;
-    })    
-  }
+  //   this.privateAreaService.setCardProfile(
+  //     this.cardProfileForm.value.facebook_link, this.userId, 'facebook_link').subscribe( (data:UserModel) => {
+  //       console.log('carf profession change data ', data);
+  //       localStorage.setItem('userData',JSON.stringify(data[0]));
+  //       this.facebook_link = data[0].facebook_link;
+  //   })    
+  // }
 
-  setLinkedinProfile() {
-    this.setProfileMode = true;
-    this.setLinkedinProfileMode = true;
-  }
+  // setLinkedinProfile() {
+  //   this.setProfileMode = true;
+  //   this.setLinkedinProfileMode = true;
+  // }
 
-  setLinkedinLinkToServer(){
+  // setLinkedinLinkToServer(){
     
-    this.privateAreaService.setCardProfile(
-      this.cardProfileForm.value.linkedin_link, this.userId, 'linkedin_link').subscribe( (data:UserModel) => {
-        if(data){
-          localStorage.setItem('userData',JSON.stringify(data[0]));
-          this.linkedin_link = data[0].linkedin_link;
-          this.cardProfileForm.reset()
-          setTimeout( ()=> {
-            this.setLinkedinProfileMode = false;
-          },500)
-        }
-    })    
-  }
+  //   this.privateAreaService.setCardProfile(
+  //     this.cardProfileForm.value.linkedin_link, this.userId, 'linkedin_link').subscribe( (data:UserModel) => {
+  //       if(data){
+  //         localStorage.setItem('userData',JSON.stringify(data[0]));
+  //         this.linkedin_link = data[0].linkedin_link;
+  //         this.cardProfileForm.reset()
+  //         setTimeout( ()=> {
+  //           this.setLinkedinProfileMode = false;
+  //         },500)
+  //       }
+  //   })    
+  // }
 
-  setTwitterProfile() {
-    this.setProfileMode = true;
-    this.setTwitterProfileMode = true;
-  }
+  // setTwitterProfile() {
+  //   this.setProfileMode = true;
+  //   this.setTwitterProfileMode = true;
+  // }
 
-  setTwitterLinkToServer(){
+  // setTwitterLinkToServer(){
     
-    this.privateAreaService.setCardProfile(
-      this.cardProfileForm.value.twitter_link, this.userId, 'twitter_link').subscribe( (data:UserModel) => {
-        console.log(data[0].twitter_link);
+  //   this.privateAreaService.setCardProfile(
+  //     this.cardProfileForm.value.twitter_link, this.userId, 'twitter_link').subscribe( (data:UserModel) => {
+  //       console.log(data[0].twitter_link);
         
-        if(data[0].twitter_link){
-          localStorage.setItem('userData',JSON.stringify(data[0]));
-          this.twitter_link = data[0].twitter_link;
-          this.cardProfileForm.reset()
-          setTimeout( ()=> {
-            this.setTwitterProfileMode = false;
-          },500)
-        }
-    })    
-  }
+  //       if(data[0].twitter_link){
+  //         localStorage.setItem('userData',JSON.stringify(data[0]));
+  //         this.twitter_link = data[0].twitter_link;
+  //         this.cardProfileForm.reset()
+  //         setTimeout( ()=> {
+  //           this.setTwitterProfileMode = false;
+  //         },500)
+  //       }
+  //   })    
+  // }
 
-  sendMsgToUser(user){
-    this.reciderUserId = user.id;
-    this.messageTo = `Message ${user.username}` 
-    this.getMessage()
-  }
+  // sendMsgToUser(user){
+  //   this.reciderUserId = user.id;
+  //   this.messageTo = `Message ${user.username}` 
+  //   this.getMessage()
+  // }
 
-  onCloseSetProfile(){
-    if(this.setImgProfileImgMode)this.setImgProfileImgMode = false;
-    if(this.setProfileProfshanlMode)this.setProfileProfshanlMode = false;
-    if(this.setAboutYouProfileMode)this.setAboutYouProfileMode = false;
-    if(this.setInstagramProfileMode)this.setInstagramProfileMode = false;
-    if(this.setFacebookProfileMode)this.setFacebookProfileMode = false;
-    if(this.setLinkedinProfileMode)this.setLinkedinProfileMode = false;
-    if(this.setTwitterProfileMode)this.setTwitterProfileMode = false;
+  // onCloseSetProfile(){
+  //   if(this.setImgProfileImgMode)this.setImgProfileImgMode = false;
+  //   if(this.setProfileProfshanlMode)this.setProfileProfshanlMode = false;
+  //   if(this.setAboutYouProfileMode)this.setAboutYouProfileMode = false;
+  //   if(this.setInstagramProfileMode)this.setInstagramProfileMode = false;
+  //   if(this.setFacebookProfileMode)this.setFacebookProfileMode = false;
+  //   if(this.setLinkedinProfileMode)this.setLinkedinProfileMode = false;
+  //   if(this.setTwitterProfileMode)this.setTwitterProfileMode = false;
   
-  }
+  // }
 
 
 
-  setFileImgProfileToServer(){
-    setTimeout( () => {
-      this.userImgProfile =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`
-      console.log('userImgProfiletttttttt', this.userImgProfile);
-    },250)
-      this.setProfileMode = false;
+  // setFileImgProfileToServer(){
+  //   setTimeout( () => {
+  //     this.userImgProfile =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`
+  //     console.log('userImgProfiletttttttt', this.userImgProfile);
+  //   },250)
+  //     this.setProfileMode = false;
 
-    this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString(), 'imgProfile').subscribe( (data:UserModel)=>{
-      console.log('data from server:::::::', data);
-      localStorage.setItem('userData',JSON.stringify(data[0]));
-      this.privateAreaService.userData$.next(data[0])
-      this.svcClinets.userProfileImg$.next(`http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`)
-
-      
-      
-    })
-  }
-  previewImgProfile(e) {
-
-    if (e.files.length === 0)
-      return;
-    let mimeType = e.files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
-    let image = e.files[0] ;
-    let fileReader = new FileReader();
+  //   this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString(), 'imgProfile').subscribe( (data:UserModel)=>{
+  //     console.log('data from server:::::::', data);
+  //     localStorage.setItem('userData',JSON.stringify(data[0]));
+  //     this.privateAreaService.userData$.next(data[0])
+  //     this.svcClinets.userProfileImg$.next(`http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`)
 
       
-      this.imageProfilePath = e.files;
-      fileReader.onload = (e) => { 
-        this.image = image;
-        this.imgProfileURL = fileReader.result; 
-      }
+      
+  //   })
+  // }
+  // previewImgProfile(e) {
+
+  //   if (e.files.length === 0)
+  //     return;
+  //   let mimeType = e.files[0].type;
+  //   if (mimeType.match(/image\/*/) == null) {
+  //     this.message = "Only images are supported.";
+  //     return;
+  //   }
+  //   let image = e.files[0] ;
+  //   let fileReader = new FileReader();
+
+      
+  //     this.imageProfilePath = e.files;
+  //     fileReader.onload = (e) => { 
+  //       this.image = image;
+  //       this.imgProfileURL = fileReader.result; 
+  //     }
      
-      fileReader.readAsDataURL(image);
-      let formData = new FormData()
-      formData.append('image', image);
-  }
+  //     fileReader.readAsDataURL(image);
+  //     let formData = new FormData()
+  //     formData.append('image', image);
+  // }
 
   previewAddImg(e) {
     if (e.files.length === 0)

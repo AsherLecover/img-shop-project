@@ -1,0 +1,56 @@
+<div *ngIf="massegsesMode" class="massages-alert-box">
+    <div class="header">
+        <div class="btn-header">
+            <span (click)="onClosemassagesBox()" class="material-icons" style="color: white; font-size: 4vh; position: absolute;
+            margin-left: 83%; cursor: pointer;"> close</span><br><br><br>
+            <p style="color: white;"> הודעה חדשה</p>
+            <p style="color: white;">כתוב לנו</p>
+            <p style="color: white;">דואר יוצא</p>
+            <p style="color: white;">דואר נכנס</p>
+        </div>
+    </div>
+    <div class="warper-left-nav-bar-users ">
+        <div class="left-nav-bar">
+            <div  *ngFor="let user of allUsers" (click)="sendMsgToUser(user)" style="display: flex; margin: 1%; padding: 5%; ">
+                <img style="border-radius: 50%; margin-left: 5%; " height="24%" width="24%"
+                    src={{user.imgProfile}}>
+                <div style="width: 70%; ">
+                    <div style="text-align: center; margin-bottom: 5%; cursor: pointer;">
+                        <span style="color: white; font-size: 1.5vh;" class="name-meta">{{user.username}}</span>
+                    </div>
+                    <div>
+                        <span style="color: white; font-size: small;" class="time-meta-pull-right">{{user.profession}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div  style=" width: 100%;" >
+
+            <div style="overflow-y: scroll; height: 55vh;" class="main-massage-page">
+                <div *ngFor=" let msg of messageData" style=" padding: 2%;">
+                    <div class="message-text">
+                        <span style="font-size: x-small; color: rgb(145, 140, 140); margin-right: 5%;">{{msg.time}}</span>
+                        <span>{{msg.message_text}}</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div style="height: 59vh; margin-right: 15%;">
+                <form [formGroup]="chatMessageForm"  action="">
+                <textarea formControlName="message" name="" id="" cols="113" rows="2.3" placeholder="{{messageTo}}"></textarea>
+                    <button [disabled]="reciderUserId == undefined || reciderUserId == null|| chatMessageForm.invalid" (click)="sendMessage()">
+                <i   
+                style="position: absolute;  left: 97%; top: 94%; font-size: x-large;  " 
+                [ngStyle]="{'color': reciderUserId == undefined ||  reciderUserId == null || chatMessageForm.invalid
+                 ? 'rgb(128, 163, 146)' : 'rgb(11, 92, 52)' }"
+               
+                 class="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

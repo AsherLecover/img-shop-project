@@ -44,6 +44,7 @@ import { DiscountComponent } from './components/discount/discount.component';
 import { NewImgComponent } from './new-img/new-img.component';
 import { PrivateAreaComponent } from './components/private-area/private-area.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component';
+import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 
  
 @NgModule({
@@ -68,6 +69,7 @@ import { ProfileCardComponent } from './profile-card/profile-card.component';
     NewImgComponent,
     PrivateAreaComponent,
     ProfileCardComponent,
+    ChatRoomComponent,
   ],
   imports: [
     AngularFirestoreModule,

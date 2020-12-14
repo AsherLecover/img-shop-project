@@ -1,1 +1,139 @@
-<p>profile-card works!</p>
+<div class="profile-card">
+    <br><br><br>
+
+    
+    <div class="container-img" style="text-align: center;">
+        <figure  #value class="figure">
+            <img id="profile-img"
+             [src]='userImgProfile' onError="this.src='http://127.0.0.1:3000/private-area/getFile/default-avatar'" alt="pic picture"
+               class="profile">
+            <figcaption class="figcaption"> <span  (click)="setImgProfile()" class="material-icons">add_a_photo </span> </figcaption>
+        </figure>
+    </div>
+    <h1>{{userData.username}} </h1>
+    <h2 (click)="setProfileProfshanl()" id="profshanl-text">{{profession}} </h2><br>
+    <div id="about-you" class="h3-container">
+        <h3  style="cursor: pointer;" (click)="setAboutYouProfile()" >{{about_you}}</h3>
+    </div>
+    <br><br><br>
+    <div class="profile-links">
+        <i  (click)="setInstagramProfile()" id="instagram-link" class="fa fa-instagram" aria-hidden="true"></i>
+        <i (click)="setFacebookProfile()" id="facebook-link" class="fa fa-facebook-square" style="font-size:48px;color:#4267B2"></i>
+        <i (click)="setLinkedinProfile()" id="linkedin-link" class="fab fa-linkedin-in" style="font-size: 48px; color: #0e76a8;"></i>
+        <i (click)="setTwitterProfile()" id="twitter-link" class="fa fa-twitter" aria-hidden="true" style="font-size: 48px; color: #00aced"></i>
+    </div>
+    <br><br><br>
+</div>
+
+<form [formGroup]="cardProfileForm" action="">
+
+    <div *ngIf="setProfileMode && setImgProfileImgMode" class="alert-box-set-profile-img">
+        <p>בחר את תמונת הפרופיל שלך</p>
+        <img  [src]="imgProfileURL" height="40" width="60" *ngIf="imgProfileURL">
+           <br>
+                <span style="color:red;" *ngIf="message">{{message}}</span>
+    
+                
+                    <input #file type="file" accept='image/*' (change)="previewImgProfile(file)" class="hide_file" />
+    
+               
+                <div class="btns-container">
+                    <div>
+                        <button (click)="setFileImgProfileToServer()" class="delete-confirm-btn" >אשר</button>
+                    </div>
+                    <div>
+                        <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
+                    </div>
+                </div>
+       
+    </div>
+    
+    
+    <div *ngIf="setProfileMode && setProfileProfshanlMode" class="alert-box-set-profile-Profshanl">
+        <p>Profshanl</p>
+           <br>
+            <input id="inp-img" type="text" formControlName="profession">
+                <div class="btns-container">
+                    <div>
+                        <button (click)="setProfileProfshanlToServer()" class="delete-confirm-btn" >אשר</button>
+                    </div>
+                    <div>
+                        <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
+                    </div>
+                </div>
+    </div>
+    
+    <div *ngIf="setProfileMode && setAboutYouProfileMode" class="alert-box-set-profile-About-you">
+        <p>About-you</p>
+        <br>
+        <input id="inp-img" type="text" formControlName="about_you">
+            <div class="btns-container">
+                <div>
+                    <button (click)="setAboutYouProfileToServer()" class="delete-confirm-btn" >אשר</button>
+                </div>
+                <div>
+                    <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
+                </div>
+            </div>
+      
+    </div>
+    
+    <div *ngIf="setProfileMode && setFacebookProfileMode" class="alert-box-set-profile-Facebook">
+        <p>Facebook</p>
+        <br>
+        <input id="inp-img" type="text" formControlName="facebook_link">
+            <div class="btns-container">
+                <div>
+                    <button (click)="setFacebookLinkToServer()" class="delete-confirm-btn" >אשר</button>
+                </div>
+                <div>
+                    <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
+                </div>
+            </div>
+    </div>
+    
+    <div *ngIf="setProfileMode && setLinkedinProfileMode" class="alert-box-set-profile-Linkedin">
+        <p>Linkedin</p>
+        <br>
+        <input id="inp-img" type="text" formControlName="linkedin_link">
+            <div class="btns-container">
+                <div>
+                    <button  (click)="setLinkedinLinkToServer()" class="delete-confirm-btn" >אשר</button>
+                </div>
+                <div>
+                    <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
+                </div>
+            </div>
+    </div>
+    
+    <div *ngIf="setProfileMode && setTwitterProfileMode" class="alert-box-set-profile-Twitter">
+        <p>Twitter</p>
+        <br>
+        <input id="inp-img" type="text" formControlName="twitter_link">
+            <div class="btns-container">
+                <div>
+                    <button (click)="setTwitterLinkToServer()" class="delete-confirm-btn" >אשר</button>
+                </div>
+                <div>
+                    <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
+                </div>
+            </div>
+    </div>
+    
+    <div *ngIf="setProfileMode  && setInstagramProfileMode" class="alert-box-set-profile-instegram">
+        <p>instegram</p>
+        <br>
+        <input id="inp-img" type="text" formControlName="instagram_link">
+            <div class="btns-container">
+                <div>
+                    <button  (click)="setInstegramLinkToServer()" class="delete-confirm-btn" >אשר</button>
+                </div>
+                <div>
+                    <button  (click)="onCloseSetProfile()" class="closeBtnOrbuy" >סגור</button>
+                </div>
+            </div>
+    </div>
+    
+    </form>
+    
+    

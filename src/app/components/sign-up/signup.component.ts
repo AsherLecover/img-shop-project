@@ -55,12 +55,12 @@ export class SignupComponent implements OnInit {
         data =>{
           if (this.registerForm.valid) {
             this.submitted = true;
-            this.svcClinet.userName = ' ' + this.registerForm.value.firstName;
             this.userName = this.registerForm.value
             console.log('register datails: ', this.registerForm.value);
           }
         
           this.dialog.closeAll()
+          this.openDialog()
 
         },
         error => {

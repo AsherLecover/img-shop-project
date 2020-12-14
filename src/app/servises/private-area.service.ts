@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { imgModel } from '../components/management/management.component';
 import * as io from 'socket.io-client';
 import * as uuid from 'uuid';
+// import * as path from 'path'
 
 
 @Injectable({
@@ -82,7 +83,11 @@ export class PrivateAreaService {
   }
 
   editImgToServer(image: File, id: any, imgDetailsToUpdate: any) {
-    let imgId = imgDetailsToUpdate.imgUrl.substr(imgDetailsToUpdate.imgUrl.length - 36)
+    let imgId =  imgDetailsToUpdate.imgUrl.substring(43, 79);
+    // let imgId1 = path.parse(imgDetailsToUpdate.imgUrl)
+    console.log('5555555555555555555', imgId);
+    
+
     
     let formData = new FormData()
     formData.append('image', image);
@@ -96,9 +101,10 @@ export class PrivateAreaService {
   editImgOtherData( id: any, imgDetailsToUpdate: any) {
     return this.http.patch( `${environment.apiUrl}/private-area/${id}/${this.user.id}`,
     { imgDetailsToUpdate: imgDetailsToUpdate }).subscribe( (data:imgModel[]) => {
-      this.imgData$.next(data);
       setTimeout( ()=> {
         console.log('dataaaaaaaaaaaaaarrrr', data);
+      data.map( img => {img.imgUrl = img.imgUrl + '?d='+Date.now().toString()})
+        this.imgData$.next(data);
         
       },2000)
 
@@ -106,9 +112,9 @@ export class PrivateAreaService {
     })
   }
 
-  getAllUsers() {
-    return this.http.get(`${environment.apiUrl}/private-area`);
-  }
+  // getAllUsers() {
+  //   return this.http.get(`${environment.apiUrl}/private-area`);
+  // }
 
   setCardProfile(data, userId, colomnName) {
     return this.http.patch(`${environment.apiUrl}/private-area`, {

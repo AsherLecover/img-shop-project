@@ -54,7 +54,8 @@
 
             <div style="height: 59vh; margin-right: 15%;">
                 <form [formGroup]="chatMessageForm"  action="">
-                <textarea formControlName="message" name="" id="" cols="113" rows="2.3" placeholder="{{messageTo}}"></textarea>
+                <textarea (keyup)="$event.keyCode == 13 && sendMessage()"
+                formControlName="message" name="" id="" cols="113" rows="2.3" placeholder="{{messageTo}}"></textarea>
                     <button [disabled]="reciderUserId == undefined || reciderUserId == null|| chatMessageForm.invalid" (click)="sendMessage()">
                 <i   
                 style="position: absolute;  left: 97%; top: 94%; font-size: x-large;  " 

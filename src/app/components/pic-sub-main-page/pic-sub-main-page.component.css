@@ -1,27 +1,62 @@
-h1 {
-    text-align: center;
-    font-size: 4vh;
-    font-family: 'Brush Script MT', cursive;
-}
-h3{
-    text-align: center !important;
+@media screen and (max-width: 4000px) and (min-width: 901px) {
+    .left-add {
+        margin-top: 5%;
+    }
+    .right-add {
+        margin-right: 5%;
+        margin-top: 5%;
+    }
+    h1 {
+        text-align: center;
+        font-size: 4vh;
+        font-family: 'Brush Script MT', cursive;
+    }
+    h3 {
+        text-align: center !important;
+    }
+    .main-pic-sub-card {
+        max-width: 200px;
+        height: 154px;
+        width: 170px;
+        margin: 25px;
+        border-radius: 2px;
+    }
+    .sub-img {
+        height: 130px;
+        width: 202px;
+    }
+    div {
+        /* background-color: aqua */
+    }
 }
 
-.main-pic-sub-card {
-    max-width: 200px;
-    height: 154px;
-    width: 170px;
-    margin: 25px;
-    border-radius: 2px;
-  }
-  .sub-img{
-      height: 130px;
-      width: 202px;
-  }
- 
-
-div {
-    /* background-color: aqua */
+@media screen and (max-width: 900px) {
+    h1 {
+        text-align: center;
+        font-size: 4vh;
+        font-family: 'Brush Script MT', cursive;
+    }
+    h3 {
+        text-align: center !important;
+    }
+    .main-pic-sub-card {
+        max-width: 200px;
+        height: 154px;
+        width: 170px;
+        margin: 25px;
+        border-radius: 2px;
+    }
+    .sub-img {
+        height: 130px;
+        width: 202px;
+    }
+    div {
+        /* background-color: aqua */
+    }
+    .left-add {
+        display: none;
+    }
+    .right-add {
+        display: none;
+    }
 }
-  
-

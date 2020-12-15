@@ -1,9 +1,35 @@
-.primary-tooltip {
+@media screen and (max-width: 4000px) and (min-width: 901px) {
+  .primary-tooltip {
     background-color: #3F51B5;
+  }
+  h1 {
+    text-align: center;
+    font-size: 4vh;
+    font-family: 'Audiowide', cursive;
+  }
+  .container {
+    text-align: center;
+    display: flex;
+    margin-left: 14%;
+    margin-right: 14%;
+  }
 }
 
-h1 {
-  text-align: center;
-  font-size: 4vh;
-  font-family: 'Audiowide', cursive;
+@media screen and (max-width: 900px) {
+  .primary-tooltip {
+    background-color: #3F51B5;
+  }
+  h1 {
+    text-align: center;
+    font-size: 4vh;
+    font-family: 'Audiowide', cursive;
+  }
+
+  .container {
+    /* text-align: center; */
+    display: flex;
+  }
+  .warpper-container{
+    text-align: center;
+  }
 }

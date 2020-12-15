@@ -132,7 +132,7 @@ export class ChatRoomComponent implements OnInit {
   }
 
   listen() {
-    this.socket = io('http://localhost:3000', {});
+    this.socket = io('https://picpicture.herokuapp.com', {});
 
     this.socket.on('msgToClinet', (messageData:MessagesModel) => {
       console.log('testtttttttttttttttttttttt (-:::::::', messageData);

@@ -79,18 +79,8 @@ export class PicSubMainPageComponent implements OnInit {
         localStorage.getItem('accessToken')
       ).id;
 
-      // this.svcClinet.userName =  this.getDecodedAccessToken(localStorage.getItem('accessToken')
-      // ).username;
-      // this.svcClinet.username$.next(
-      //   this.getDecodedAccessToken(
-      //     localStorage.getItem('accessToken')
-      //   ).username
-      // );
     }
   }
-
-
-  
 
   onImgSubjectSelect(imgIdSubject){
     this.router.navigate(['/pic-main-list-subjects'  ,imgIdSubject])

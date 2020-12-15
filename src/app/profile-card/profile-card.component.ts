@@ -298,7 +298,7 @@ export class ProfileCardComponent implements OnInit {
 
   setFileImgProfileToServer(){
     setTimeout( () => {
-      this.userImgProfile =  `http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`
+      this.userImgProfile =  `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}?d=${Date.now()}`
       console.log('userImgProfiletttttttt', this.userImgProfile);
     },250)
       this.setProfileMode = false;
@@ -307,7 +307,7 @@ export class ProfileCardComponent implements OnInit {
       console.log('data from server:::::::', data);
       localStorage.setItem('userData',JSON.stringify(data[0]));
       this.privateAreaService.userData$.next(data[0])
-      this.svcClinets.userProfileImg$.next(`http://127.0.0.1:3000/private-area/getFile/${this.userId}?d=${Date.now()}`)
+      this.svcClinets.userProfileImg$.next(`https://picpicture.herokuapp.com/private-area/getFile/${this.userId}?d=${Date.now()}`)
 
       
       

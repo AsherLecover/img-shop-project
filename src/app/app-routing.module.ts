@@ -32,9 +32,10 @@ const routes: Routes = [
   { path:'discount',   component:DiscountComponent},
   { path:'new-img',   component:NewImgComponent},
   { path:'private-area',   component:PrivateAreaComponent},
+  { path:'',   component:PicSubMainPageComponent},
   { path:'management',   component:ManagementComponent, canActivate:[ManagementGuardService]},
   { path:'',          redirectTo:'pic-sub-main-page', pathMatch: 'full'},
-  { path:'**',        redirectTo:'home', pathMatch: 'full'},
+  { path:'**',        redirectTo:'pic-sub-main-page', pathMatch: 'full'},
 
  
 ];

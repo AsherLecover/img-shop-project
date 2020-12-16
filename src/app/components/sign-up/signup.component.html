@@ -1,12 +1,16 @@
 <h1 style="text-align: center; margin: 0%; color: #232d54;">כניסת חברים – ברוכים הבאים</h1><br>
 
-<h3 style="color: #232d54;">.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם
+<h3 class="sub-title-big" >.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם
   (חינם) כעת ולקבל הטבות שוות במיוחד</h3>
 
+  <h3 class="sub-title-small" style="color: #232d54;">
+    הרשם כעת
+  </h3>
 
-<div style="background-color: #f2f2f2; display: flex;">
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 40%; margin: 24px;" dir="rtl" action="">
+<div    class="container-main">
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" dir="rtl" action=" ">
 
     <input  id="inputs0"  formControlName="firstName" type="text" placeholder="הזן שם משתמש" [ngClass]="{'has-error' :
 

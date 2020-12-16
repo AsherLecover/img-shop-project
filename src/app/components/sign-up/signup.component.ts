@@ -108,6 +108,9 @@ export class SignupComponent implements OnInit {
       }
     )
   }
+  closeDialog(){
+    this.dialog.closeAll()
+  }
 }
 
 

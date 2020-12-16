@@ -16,6 +16,7 @@
 }
 .shiping-card-warpper{
     margin-left: 10%;
+    padding: 5%;
 }
 .bag-icon{
     margin-right: 5% ; font-size: 35px; cursor: pointer;
@@ -84,6 +85,10 @@ button.mat-menu-item:hover {
 @media screen and (max-width: 900px) {
     .seconeLineMenu {
         display: none;
+    }
+
+    .secondeLineHedder{
+        padding-left: 5%;
     }
     .title {
         display: none;

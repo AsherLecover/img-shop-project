@@ -5,6 +5,8 @@ import jwt_decode from 'jwt-decode';
 import { BuyingProcessService } from 'src/app/servises/buying-process.service';
 import { ImgDataService } from 'src/app/servises/img-data.service';
 import { AuthService } from 'src/app/servises/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SignupComponent } from '../sign-up/signup.component';
 
 
 
@@ -34,7 +36,8 @@ export class SignInComponent implements OnInit {
     public buyerSvc: BuyingProcessService,
     public dataSVC: ImgDataService,
     public buyingSvc: BuyingProcessService,
-    public authService: AuthService
+    public authService: AuthService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +55,11 @@ export class SignInComponent implements OnInit {
     if (this.registerForm.valid) {
       this.submitted = true;
 
-      this.signin()
+      this.signin();
+      setTimeout( ()=> {
+        this.dialog.closeAll()
+      },1000)
+
 
     }
   }
@@ -124,5 +131,15 @@ export class SignInComponent implements OnInit {
     return this.userId;
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(SignupComponent);
+     dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
 
+  }
+
+  closeDialog(){
+    this.dialog.closeAll()
+  }
 }

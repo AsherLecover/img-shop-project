@@ -1,9 +1,35 @@
-h1 {
+@media screen and (max-width: 4000px) and (min-width: 901px) {
+  h1 {
     text-align: center;
     font-size: 4vh;
-    font-family: 'Brush Script MT', cursive;
+    font-family: "Brush Script MT", cursive;
+  }
+
+  img {
+    box-shadow: 6px 6px 6px #888;
+  }
+
+  .container {
+    text-align: center;
+    display: flex;
+    margin-left: 14%;
+    margin-right: 14%;
+  }
 }
 
-img{
+@media screen and (max-width: 900px) {
+  h1 {
+    text-align: center;
+    font-size: 4vh;
+    font-family: "Brush Script MT", cursive;
+  }
+
+  img {
     box-shadow: 6px 6px 6px #888;
+  }
+
+  .container {
+    text-align: center;
+    display: flex;
+  }
 }

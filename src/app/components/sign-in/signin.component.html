@@ -1,12 +1,26 @@
+<div (click)="closeDialog()" style="direction: rtl;">
+
+<span class="material-icons"  style="color: red; font-size: 4vh;
+cursor: pointer; direction: rtl;" > close</span>
+</div>
+
 <h1 style="text-align: center; margin: 0%; color: #232d54;">כניסת חברים – ברוכים הבאים</h1><br>
 
-<h3 style="color: #232d54;">.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם
+<h3 class="sub-title-big" >.על מנת להכנס לאזור האישי שלך - אנא מלא שם משתמש וסיסמה. אם אינך רשום עדיין, מומלץ להרשם
   (חינם) כעת ולקבל הטבות שוות במיוחד</h3>
 
+  <h3 class="sub-title-small" style="color: #232d54;">
+    כניסה לחשבונך
+  </h3>
 
-<div style="background-color: #f2f2f2; display: flex;">
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 40%; margin: 24px;" dir="rtl" action="">
+<div  class="container-main">
+
+  
+
+ 
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" dir="rtl" action="">
 
     <input id="inputs2" formControlName="email" type="text" placeholder='הזן כתובת דוא"ל' [ngClass]="{'has-error' :
     registerForm.get('email').errors &&
@@ -37,12 +51,12 @@
       </span><br>
 
       <span style="color: red;" *ngIf="registerForm.get('password').errors.pattern">
-    סיסמה חייבת להיות לפחות בעלת אות גדולה אות קטנה מספר   
+    סיסמה חייבת להיות לפחות בעלת אות גדולה אות קטנה ומספר   
       </span>
     </span>
 
     <br>
-    <button [disabled]="!registerForm.valid"  (click)="onSubmit()" type="submit"   style="background-color: #232d54; width: 77%; height: 45px;" mat-raised-button
+    <button  class="rgs-btn" [disabled]="!registerForm.valid"  (click)="onSubmit()" type="submit"   mat-raised-button
       color="primary">כניסה</button>
 
   </form>
@@ -61,9 +75,6 @@
           <a href="#" class="fb btn">
             <i class="fa fa-facebook fa-fw"></i>כניסה מהירה עם פייסבוק
           </a>
-          <a href="#" class="twitter btn">
-            <i class="fa fa-twitter fa-fw"></i> כניסה מהירה עם טוויטר
-          </a>
           <a  style="cursor: pointer;"  class="google btn">
             <i class="fa fa-google fa-fw">
             </i>כניסה מהירה עם גוגל
@@ -77,29 +88,12 @@
 </div>
 <div style="text-align: center; margin: 0%; background-color: #f2f2f2"> 
   <i>עדיין לא רשום? הרשם בקלות </i><br>
-  <button style="color: red; cursor: pointer;" mat-button mat-dialog-close> מכאן</button>
+  <button style="color: red; cursor: pointer;" (click)="openDialog()" mat-button mat-dialog-close> מכאן</button>
   <!-- <h1>PicPicture הצטרף עכשיו חינם למועדון הלקוחות של </h1> -->
   <br>
 
 
   <hr>
-  <!-- <div class="usertips-block  padding-bottom-40">
-    <div class="usertips-block__label text-center">הצטרף עכשיו חינם למועדון הלקוחות של מסגרת וקבל:</div>
 
-          <div class="table">
-              <div class="cell">
-            <ul class="usertips-list usertips-list_do">
-              <li>25% הנחה מיידית בקנייה זו!</li>
-                      <li>5% צבירת נקודות להזמנה הבאה! (1 נק'=1₪)</li>
-            </ul>
-              </div>
-              <div class="cell">
-            <ul class="usertips-list usertips-list_do">
-                      <li>כרטיס מועדון אישי המקנה הנחה קבועה באתר!</li>
-                      <li>הפתעה ביום ההולדת!</li>
-            </ul>
-              </div>
-          </div>
-                  </div> -->
 
 </div>

@@ -76,10 +76,13 @@ export class ProfileCardComponent implements OnInit {
     this.userId = this.privateAreaService.getUserId();
     // this.userImgProfile = 'https://www.w3schools.com/w3images/avatar2.png'
 
-    try {
-      this.userImgProfile = `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}`
-    } catch (error) {
-      
+    if(this.userId!=null){
+
+      try {
+        this.userImgProfile = `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}`
+      } catch (error) {
+        
+      }
     }
 
    }

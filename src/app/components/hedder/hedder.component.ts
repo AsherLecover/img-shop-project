@@ -1,18 +1,19 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { AuthService } from '../../servises/auth.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from 'firebase';
 import { MatDialog } from '@angular/material/dialog';
 import { ClinetsService } from '../../servises/clinets.service';
 import { BuyingProcessService } from '../../servises/buying-process.service';
 
-import home from '@iconify/icons-mdi/home';
-import accountCheck from '@iconify/icons-mdi/account-check';
-import { SignupComponent } from '../sign-up/signup.component';
 import { ImgDataService } from 'src/app/servises/img-data.service';
-import data from '@iconify/icons-mdi/home';
 import { CanActivate, Router } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { SignInComponent } from '../sign-in/signin.component';
+import {
+  PrivateAreaService,
+  UserModel,
+} from 'src/app/servises/private-area.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-hedder',
@@ -28,7 +29,9 @@ export class HedderComponent implements OnInit {
   sumOfItems: number = 0;
   userRole: string;
   userSighnedIn: boolean = false;
-  userProfileImg: string = ''
+  userProfileImg: string = '';
+  userId: number;
+  user: UserModel;
 
   constructor(
     public dialog: MatDialog,
@@ -36,22 +39,29 @@ export class HedderComponent implements OnInit {
     authSer: AuthService,
     public buyingSvc: BuyingProcessService,
     private imgDataService: ImgDataService,
-    public managementGuardService: ManagementGuardService
+    public managementGuardService: ManagementGuardService,
+    private privateAreaService: PrivateAreaService
   ) {
+    this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
+
     this.authSer = authSer;
+    this.userId = this.user.id;
+    if (this.user) {
+      this.userProfileImg = `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}`;
+    }
+
   }
   ngOnInit(): void {
-    
-     this.svcClinets.userProfileImg$.subscribe( (data: string) => {
-       this.userProfileImg = data
-     })
 
+    this.svcClinets.userProfileImg$.subscribe((data: string) => {
+      this.userProfileImg = data;
+    });
 
     this.managementGuardService.canRouteToMengerPage = false;
     this.authSer.userSighnedIn.subscribe((userSighnedIn: boolean) => {
       this.userSighnedIn = userSighnedIn;
-    })
-    if (localStorage.getItem("accessToken") != null) {
+    });
+    if (localStorage.getItem('accessToken') != null) {
       this.userSighnedIn = true;
     }
 
@@ -61,58 +71,65 @@ export class HedderComponent implements OnInit {
     } else {
       this.userName = this.svcClinets.userName;
     }
-    // lowd the bag length/num of items 
-    this.imgDataService.getPaylowdData().then(num => {
-      this.imgDataService.getBagInHomePage(num).subscribe(
-        (data: []) => {
-          // this.sumOfItems = data.length;
-          this.buyingSvc.sumOfItems.subscribe((num: number) => { this.sumOfItems = num })
-          // console.log('bag data in hedder', data);
-        }
-      )
-    })
+    // lowd the bag length/num of items
+    this.imgDataService.getPaylowdData().then((num) => {
+      this.imgDataService.getBagInHomePage(num).subscribe((data: []) => {
+        // this.sumOfItems = data.length;
+        this.buyingSvc.sumOfItems.subscribe((num: number) => {
+          this.sumOfItems = num;
+        });
+        // console.log('bag data in hedder', data);
+      });
+    });
 
     this.imgDataService.userRole$.subscribe((role: string) => {
       this.userRole = role;
-      
-      if(this.userRole == 'ADMIN'){
+
+      if (this.userRole == 'ADMIN') {
         this.managementGuardService.canRouteToMengerPage = true;
       }
-    })
+    });
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(SignupComponent);
+    const dialogRef = this.dialog.open(SignInComponent);
 
-    dialogRef.afterClosed().subscribe((result) => { });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   sighnOut() {
-    localStorage.removeItem('accessToken')
+    localStorage.removeItem('accessToken');
     this.userSighnedIn = false;
     this.svcClinets.userName = ' אורח';
-    this.buyingSvc.sumOfItems.next(0)
-    this.userRole = ''
-    this.svcClinets.userProfileImg$.next('')
+    this.buyingSvc.sumOfItems.next(0);
+    this.userRole = '';
+    this.svcClinets.userProfileImg$.next('');
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 }
 
 @Injectable({ providedIn: 'root' })
 export class ManagementGuardService implements CanActivate {
   canRouteToMengerPage: boolean = true;
-  alertMassage : boolean = false;
-  constructor(public router: Router) { }
+  alertMassage: boolean = false;
+  constructor(public router: Router) {}
 
   canActivate(): boolean {
     if (this.canRouteToMengerPage == false) {
       console.log(467647764376747);
-      
 
       this.router.navigate(['/pic-sub-main-page']);
       this.alertMassage = true;
-      setTimeout( () => {
+      setTimeout(() => {
         this.alertMassage = false;
-      },5000)
+      }, 5000);
       return false;
     }
     return true;

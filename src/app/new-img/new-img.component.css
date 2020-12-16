@@ -1,34 +1,83 @@
-h1 {
-    text-align: center;
-    font-size: 4vh;
-    font-family: 'Brush Script MT', cursive;
+@media screen and (max-width: 4000px) and (min-width: 901px) {
+
+    h1 {
+        text-align: center;
+        font-size: 4vh;
+        font-family: 'Brush Script MT', cursive;
+    }
+    figure, figcaption {
+        margin: 0;
+        padding: 0;
+    }
+    
+    figure {
+        display: inline-block;
+        position: relative;
+    }
+    
+    figure img {
+        display: block;
+        box-shadow: 6px 6px 6px #888;
+    }
+    
+    figure figcaption {
+        position: absolute;
+        left: 5%;
+        top: 94%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(31, 30, 30, 0.5);
+        color: #fff;
+        padding: 1vh;
+        border-radius: 5px;
+    }
+
+    .container {
+        text-align: center;
+        display: flex;
+        margin-left: 14%;
+        margin-right: 14%;
+      }
+
 }
 
-figure, figcaption {
-    margin: 0;
-    padding: 0;
-}
+    @media screen and (max-width: 900px) {
 
-figure {
-    display: inline-block;
-    position: relative;
-}
+        h1 {
+            text-align: center;
+            font-size: 4vh;
+            font-family: 'Brush Script MT', cursive;
+        }
+        figure, figcaption {
+            margin: 0;
+            padding: 0;
+        }
+        
+        figure {
+            display: inline-block;
+            position: relative;
+        }
+        
+        figure img {
+            display: block;
+            box-shadow: 6px 6px 6px #888;
+        }
+        
+        figure figcaption {
+            position: absolute;
+            left: 5%;
+            top: 94%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(31, 30, 30, 0.5);
+            color: #fff;
+            padding: 1vh;
+            border-radius: 5px;
+        }
 
-figure img {
-    display: block;
-    box-shadow: 6px 6px 6px #888;
-}
+        .container {
+            text-align: center;
+            display: flex;
+          }
 
-figure figcaption {
-    position: absolute;
-    left: 92%;
-    top: 5%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(37, 121, 20, 0.5);
-    color: #fff;
-    padding-left: 2vh;
-    padding-right: 2vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    border-radius: 5px;
-}
+    }
+
+

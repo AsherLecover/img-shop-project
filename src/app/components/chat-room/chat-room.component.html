@@ -1,12 +1,14 @@
-<div *ngIf="massegsesMode" class="massages-alert-box">
-    <div class="header">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div *ngIf="massegsesMode">
+
+
+
+    <!-- <div class="header">
         <div class="btn-header">
             <span (click)="onClosemassagesBox()" class="material-icons" style="color: white; font-size: 4vh; position: absolute;
             margin-left: 83%; cursor: pointer;"> close</span><br><br><br>
-            <p style="color: white;"> הודעה חדשה</p>
-            <p style="color: white;">כתוב לנו</p>
-            <p style="color: white;">דואר יוצא</p>
-            <p style="color: white;">דואר נכנס</p>
         </div>
     </div>
     <div class="warper-left-nav-bar-users ">
@@ -19,15 +21,14 @@
                         <span style="color: white; font-size: 1.5vh;" class="name-meta">{{user.username}}</span>
                     </div>
                     <div>
-                        <!-- <span style="color: white; font-size: small;" class="time-meta-pull-right">{{user.profession}} </span> -->
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
 
         <div  style=" width: 100%;" >
 
-            <div style="overflow-y: scroll; height: 55vh;" class="main-massage-page">
+            <div class="chat-main-page-scroll" style="overflow-y: scroll; height: 100%;" class="main-massage-page">
                 <div *ngFor=" let msg of messageData" style=" padding: 2%;">
                     <div 
                     [ngStyle]="{'background-color':
@@ -42,11 +43,7 @@
                         <span>{{msg.message_text}}</span>
                     </div>
 
-                    <!-- <p [ngStyle]="{'background-color': masseage.userId == userId && masseage.clinetId == clinetId ? '#dcf8c6' : '#f1f3f0'}  "
-                    ngClass="masseages" *ngIf="masseage.userId == userId && masseage.clinetId == clinetId
-                    || masseage.userId == clinetId && masseage.clinetId == userId">
-                    {{masseage.massege}}</p> -->
-
+                
                 </div>
             </div>
 
@@ -67,5 +64,133 @@
             </form>
             </div>
         </div>
-    </div>
-</div>
+    </div> -->
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
+    <div   class="container app">
+        <div class="row app-one">
+          <div class="col-sm-4 side">
+            <div class="side-one">
+              <div class="row heading">
+                <div class="col-sm-3 col-xs-3 heading-avatar">
+                  <div class="heading-avatar-icon">
+                    <img src={{userImgProfile}} alt="">
+                    <!-- <img src="https://bootdey.com/img/Content/avatar/avatar1.png"> -->
+                  </div>
+                </div>
+                <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+                  <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                </div>
+                <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                  <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
+                </div>
+              </div>
+      
+              <div class="row searchBox">
+                <div class="col-sm-12 searchBox-inner">
+                  <div class="form-group has-feedback">
+                    <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Search">
+                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row sideBar">
+      
+                <!-- ------------------------------------------------------------------------------------------ -->
+                <div  *ngFor="let user of allUsers" (click)="sendMsgToUser(user)" class="row sideBar-body">
+                  <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                    <div class="avatar-icon">
+                      <img src={{user.imgProfile}}>
+                    </div>
+                  </div>
+                  <div class="col-sm-9 col-xs-9 sideBar-main">
+                    <div class="row">
+                      <div class="col-sm-8 col-xs-8 sideBar-name">
+                        <span class="name-meta">
+                          {{ user.username }}</span>
+                      </div>
+                      <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                        <span class="time-meta pull-right">18:18
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              
+            </div>
+          </div>
+          <div class="col-sm-8 conversation">
+            <div class="row heading">
+              <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+                <div class="heading-avatar-icon">
+                  <img src={{reciverImgProfile}} alt="">
+                  <!-- <img src="https://bootdey.com/img/Content/avatar/avatar6.png"> -->
+                </div>
+              </div>
+              <div class="col-sm-8 col-xs-7 heading-name">
+                <a class="heading-name-meta">{{messageTo}}
+                </a>
+                <span class="heading-online">Online</span>
+              </div>
+              <div class="col-sm-1 col-xs-1  heading-dot pull-right">
+                <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+              </div>
+            </div>
+       
+      
+            <div class="row message" id="conversation">
+              <div class="row message-previous">
+                <div class="col-sm-12 previous">
+                  <a onclick="previous(this)" id="ankitjain28" name="20">
+                    Show Previous Message!
+                  </a>
+                </div>
+              </div>
+              <div  style="overflow-y: scroll; background-color: rgb(222, 235, 222);
+              height: 5%;" class="row message-body">
+                <div class="col-sm-12 message-main-receiver">
+                  <div>
+                    <div *ngFor="let masseage of messageData" class="message-text">
+
+                      <p [ngStyle]="{'background-color': masseage.sender_id == userId && masseage.resiver_id == reciderUserId ? '#dcf8c6' : '#f1f3f0'} "
+                        class="masseages" *ngIf="masseage.sender_id == userId && masseage.resiver_id == reciderUserId
+                     || masseage.sender_id == reciderUserId && masseage.resiver_id == userId">
+                        {{masseage.message_text}}
+                      </p>
+                      
+                    </div>
+                    <span class="message-time pull-right"> Sun</span>
+                  </div>
+                </div>
+              </div>
+      
+            </div>
+      
+      
+            <div class="row reply">
+              <div class="col-sm-1 col-xs-1 reply-emojis">
+                <i class="fa fa-smile-o fa-2x"></i>
+              </div>
+              <div class="col-sm-9 col-xs-9 reply-main">
+                <form   [formGroup]="chatMessageForm"  action="">
+                <textarea  formControlName="message" rows="1" id="comment" placeholder={{messageTo}}></textarea>
+                </form>
+              </div>
+              <div class="col-sm-1 col-xs-1 reply-recording">
+                <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+              </div>
+              <div class="col-sm-1 col-xs-1 reply-send">
+
+           
+
+                      <i  (click)="sendMessage()"  massege.value = '' class="fa fa-send fa-2x" aria-hidden="true"></i>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br><br><br><br><br><br><br>

@@ -12,6 +12,8 @@ import * as io from 'socket.io-client';
 import {MessagesModel} from '../private-area/messages-model'
 import { ClinetsService } from 'src/app/servises/clinets.service';
 import { ChatMessagesService } from 'src/app/servises/chat-messages.service';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'chat-room',
@@ -56,8 +58,8 @@ export class ChatRoomComponent implements OnInit {
   setTwitterProfileMode: boolean = false;
   reciderUserId: number;
   imgUrlProfile:string = ""
-  userId
-  userData
+  userId:number
+  userData:UserModel
   profession: string = 'פרסם את המקצוע שלך לכולם'
   about_you:string = 'ספר לכולם על עצמך בשני משפטים'
   instagram_link: string;
@@ -76,6 +78,7 @@ export class ChatRoomComponent implements OnInit {
   imgAddImgURL: string | ArrayBuffer = '';
   addImagePath: any;
   time = Date.now().toString()
+  reciverImgProfile: string = 'https://picpicture.herokuapp.com/private-area/getFile/default-avatar?d=1608217331505';
   
 
   constructor(
@@ -84,7 +87,9 @@ export class ChatRoomComponent implements OnInit {
     public chatMessagesService: ChatMessagesService,
 
   ) { 
-    this.userId = this.privateAreaService.getUserId();
+    this.userData = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
+    this.userId = this.userData.id
+    this.userImgProfile = this.userData.imgProfile
   }
 
   ngOnInit(): void {
@@ -135,7 +140,7 @@ export class ChatRoomComponent implements OnInit {
     this.socket = io('https://picpicture.herokuapp.com', {});
 
     this.socket.on('msgToClinet', (messageData:MessagesModel) => {
-      console.log('testtttttttttttttttttttttt (-:::::::', messageData);
+      console.log('testtttttttttttttttttttttt (-:::::::', messageData.message_text);
          
       this.messageData.push(messageData);
     });
@@ -158,7 +163,7 @@ export class ChatRoomComponent implements OnInit {
     this.socket.emit('msgToServer', msgToServer);
     this.chatMessagesService.sendMessageToServer(msgToServer).subscribe( (data:MessagesModel)=> {
       console.log('msg data: after emited to server', data);
-      // this.messageData.push(data);
+      this.messageData.push(data);
 
     })
     
@@ -168,15 +173,14 @@ export class ChatRoomComponent implements OnInit {
   getMessage(sender_id, resiver_id){
     this.messageData = this.messagesBtweenUsers;
 
-    this.chatMessagesService.getMessages(sender_id, resiver_id).subscribe( (data:MessagesModel[]) => {
+    this.chatMessagesService.getMessages(sender_id, resiver_id)
+    .subscribe( (data:MessagesModel[]) => {
       console.log('all msgggg:', data);
 
-     
         this.messagesBtweenUsers = data
     
-      
-
     })
+    
     console.log('arr: messages Btween Users::::', this.messagesBtweenUsers);
   }
 
@@ -184,12 +188,19 @@ export class ChatRoomComponent implements OnInit {
   sendMsgToUser(user:UserModel){
     this.reciderUserId = user.id;
 
-    console.log('user:::::', user.username);
     
-    // this.reciderUserId = user.id;
     this.messageTo = `Message ${user.username}` 
-    this.getMessage(this.userId, user.id)
+    this.reciverImgProfile = user.imgProfile
+    
+    this.getMessage(this.userData.id, user.id)
+  }
 
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 
 

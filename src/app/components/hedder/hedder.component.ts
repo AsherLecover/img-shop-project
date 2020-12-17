@@ -43,11 +43,15 @@ export class HedderComponent implements OnInit {
     private privateAreaService: PrivateAreaService
   ) {
     this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
+    console.log('hhaddeerrr::', this.user);
+    
 
     this.authSer = authSer;
     if (this.user) {
+      console.log(57647457547457542675, 'dfhfdhfdshd');
+      
       this.userId = this.user.id;
-      this.userProfileImg = `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}`;
+      this.userProfileImg = `https://picpicture.herokuapp.com/private-area/getFile/${this.user.id}`;
     }
 
   }

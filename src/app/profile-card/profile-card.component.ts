@@ -77,13 +77,18 @@ export class ProfileCardComponent implements OnInit {
   ) {
 
     this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
-
-    this.userId = this.user.id
-
+    console.log('user:', this.user);
+    
+    this.userId = this.user.id;
+    console.log('user ID', this.userId);
+    
     if(this.userId!=null){
-
       try {
-        this.userImgProfile = `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}`
+        this.svcClinets.userProfileImg$.next(this.user.imgProfile);
+setTimeout( ()=> {
+
+  this.userImgProfile = `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}`
+},2000)
       } catch (error) {
         
       }
@@ -95,12 +100,12 @@ export class ProfileCardComponent implements OnInit {
  
     
 
-    if(!this.userData && !localStorage.getItem('userData')){
-      this.userData =  this.privateAreaService.user;
-      this.svcClinets.userProfileImg$.next(this.userData.imgProfile)
+    // if(!this.userData && !localStorage.getItem('userData')){
+    //   this.userData =  this.privateAreaService.user;
+    //   this.svcClinets.userProfileImg$.next(this.userData.imgProfile)
     
-    }
-    else if(localStorage.getItem('userData')){
+    // }
+     if(localStorage.getItem('userData')){
       this.userData = JSON.parse(
         localStorage.getItem('userData') || '[]');
         this.svcClinets.userProfileImg$.next(this.userData.imgProfile);
@@ -118,7 +123,6 @@ export class ProfileCardComponent implements OnInit {
 
     this.privateAreaService.userData$.subscribe( (data:UserModel) => {
         this.privateAreaService.user = data
-        console.log('gggg', data);
         this.userData = data;
         
     })
@@ -137,14 +141,14 @@ export class ProfileCardComponent implements OnInit {
 
   selectManageImgOption() {
     this.privateAreaService.getAllImgByUserId().subscribe((data: imgModel[]) => {
-      console.log('data per userrrr:', data);
+//console.log('data per userrrr:', data);
       data.map( img => img.imgUrl + `?d=${Date.now()}`)
       this.imgasListFromServer = data;
     });
 
     this.chatMessagesService.getAllUsers().subscribe((data:UserModel[]) => {
       data.map( img => {img.imgProfile = img.imgProfile + '?d='+Date.now().toString()})
-      console.log('allll userssss:::', data);
+      //.log('allll userssss:::', data);
       this.chatMessagesService.allUsers$.next(data);
     });
     // data.map( img => {img.imgProfile = img.imgProfile + '?d='+Date.now().toString()})
@@ -197,7 +201,7 @@ export class ProfileCardComponent implements OnInit {
   setProfileProfshanlToServer(){
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.profession, this.userId, 'profession').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
+      //  console.log('carf profession change data ', data);
         localStorage.setItem('userData',JSON.stringify(data[0]));
         this.profession = data[0].profession;
     })    
@@ -212,7 +216,7 @@ export class ProfileCardComponent implements OnInit {
   setAboutYouProfileToServer(){
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.about_you, this.userId, 'about_you').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
+       // console.log('carf profession change data ', data);
         localStorage.setItem('userData',JSON.stringify(data[0]));
         this.about_you = data[0].about_you;
     })    
@@ -227,7 +231,7 @@ export class ProfileCardComponent implements OnInit {
   setInstegramLinkToServer(){
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.instagram_link, this.userId, 'instagram_link').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
+       // console.log('carf profession change data ', data);
         localStorage.setItem('userData',JSON.stringify(data[0]));
         this.instagram_link = data[0].instagram_link;
     })    
@@ -242,7 +246,7 @@ export class ProfileCardComponent implements OnInit {
     
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.facebook_link, this.userId, 'facebook_link').subscribe( (data:UserModel) => {
-        console.log('carf profession change data ', data);
+        //console.log('carf profession change data ', data);
         localStorage.setItem('userData',JSON.stringify(data[0]));
         this.facebook_link = data[0].facebook_link;
     })    
@@ -277,7 +281,7 @@ export class ProfileCardComponent implements OnInit {
     
     this.privateAreaService.setCardProfile(
       this.cardProfileForm.value.twitter_link, this.userId, 'twitter_link').subscribe( (data:UserModel) => {
-        console.log(data[0].twitter_link);
+        //console.log(data[0].twitter_link);
         
         if(data[0].twitter_link){
           localStorage.setItem('userData',JSON.stringify(data[0]));
@@ -306,12 +310,12 @@ export class ProfileCardComponent implements OnInit {
   setFileImgProfileToServer(){
     setTimeout( () => {
       this.userImgProfile =  `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}?d=${Date.now()}`
-      console.log('userImgProfiletttttttt', this.userImgProfile);
+     // console.log('userImgProfiletttttttt', this.userImgProfile);
     },250)
       this.setProfileMode = false;
 
     this.privateAreaService.sendProfileImgFile(this.image, this.userId.toString(), 'imgProfile').subscribe( (data:UserModel)=>{
-      console.log('data from server:::::::', data);
+     // console.log('data from server:::::::', data);
       localStorage.setItem('userData',JSON.stringify(data[0]));
       this.privateAreaService.userData$.next(data[0])
       this.svcClinets.userProfileImg$.next(`https://picpicture.herokuapp.com/private-area/getFile/${this.userId}?d=${Date.now()}`)

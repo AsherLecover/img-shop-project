@@ -147,6 +147,8 @@ export class ChatRoomComponent implements OnInit {
   }
 
   sendMessage() {
+    console.log('asher hanuka');
+    
     console.log('form valid: ', this.chatMessageForm.valid);
     
     var result = '';
@@ -171,6 +173,8 @@ export class ChatRoomComponent implements OnInit {
   }
 
   getMessage(sender_id, resiver_id){
+    console.log('asasasasasasasas 123');
+    
     this.messageData = this.messagesBtweenUsers;
 
     this.chatMessagesService.getMessages(sender_id, resiver_id)

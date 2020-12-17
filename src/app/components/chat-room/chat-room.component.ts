@@ -136,14 +136,7 @@ export class ChatRoomComponent implements OnInit {
 
     this.socket.on('msgToClinet', (messageData:MessagesModel) => {
       console.log('testtttttttttttttttttttttt (-:::::::', messageData);
-      
-     
-      
-      if (
-        messageData.resiver_id == this.reciderUserId && messageData.sender_id == this.userId||
-        messageData.resiver_id == this.userId && messageData.sender_id == this.reciderUserId
-        ){
-      }
+         
       this.messageData.push(messageData);
     });
   }
@@ -172,22 +165,32 @@ export class ChatRoomComponent implements OnInit {
     this.chatMessageForm.reset();
   }
 
-  getMessage(){
-    this.chatMessagesService.getMessages().subscribe( (data:MessagesModel[]) => {
-      for (const msg of data) {
-        if(msg.resiver_id == this.reciderUserId && msg.sender_id == this.userId||
-          msg.resiver_id == this.userId && msg.sender_id == this.reciderUserId){
-          this.messagesBtweenUsers.push(msg)
-        }
-      }
+  getMessage(sender_id, resiver_id){
+    this.messageData = this.messagesBtweenUsers;
+
+    this.chatMessagesService.getMessages(sender_id, resiver_id).subscribe( (data:MessagesModel[]) => {
+      console.log('all msgggg:', data);
+
+     
+        this.messagesBtweenUsers = data
+    
+      
+
     })
     console.log('arr: messages Btween Users::::', this.messagesBtweenUsers);
   }
 
-  sendMsgToUser(user){
+
+  sendMsgToUser(user:UserModel){
     this.reciderUserId = user.id;
+
+    console.log('user:::::', user.username);
+    
+    // this.reciderUserId = user.id;
     this.messageTo = `Message ${user.username}` 
-    this.getMessage()
+    this.getMessage(this.userId, user.id)
+
   }
+
 
 }

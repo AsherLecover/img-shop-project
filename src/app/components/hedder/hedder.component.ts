@@ -45,8 +45,8 @@ export class HedderComponent implements OnInit {
     this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
 
     this.authSer = authSer;
-    this.userId = this.user.id;
     if (this.user) {
+      this.userId = this.user.id;
       this.userProfileImg = `https://picpicture.herokuapp.com/private-area/getFile/${this.userId}`;
     }
 

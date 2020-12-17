@@ -12,6 +12,8 @@ import * as io from 'socket.io-client';
 import {MessagesModel} from '../private-area/messages-model'
 import { ClinetsService } from 'src/app/servises/clinets.service';
 import { ChatMessagesService } from 'src/app/servises/chat-messages.service';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'private-area',
@@ -97,19 +99,19 @@ export class PrivateAreaComponent implements OnInit {
   imgAddImgURL: string | ArrayBuffer = '';
   addImagePath: any;
   time = Date.now().toString()
+  user: UserModel;
   
 
 
   constructor(
     private privateAreaService: PrivateAreaService,
     private fb: FormBuilder,
-    private svcClinets: ClinetsService,
     private chatMessagesService: ChatMessagesService,
-
-
   ) {
 
-    this.userId = this.privateAreaService.getUserId();
+    this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
+
+    this.userId = this.user.id;
   }
 
   ngOnInit(): void {
@@ -117,62 +119,6 @@ export class PrivateAreaComponent implements OnInit {
     this.chatMessagesService.massegsesMode$.subscribe( (data:boolean) => {
       this.massegsesMode = data;
     })
-
-
-
-    // this.userImgProfile = `http://127.0.0.1:3000/private-area/getFile/${this.userId}`
-
-    // if(!this.userData && !localStorage.getItem('userData')){
-    //   console.log('12121212 user data',this.userData);
-    //   this.userData =  this.privateAreaService.user;
-    //   this.svcClinets.userProfileImg$.next(this.userData.imgProfile)
-    
-    // }
-    // else if(localStorage.getItem('userData')){
-    //   this.userData = JSON.parse(
-    //     localStorage.getItem('userData') || '[]');
-    //     this.svcClinets.userProfileImg$.next(this.userData.imgProfile);
-    //     console.log(55555555);
-    //     console.log('66666666',this.userData);
-        
-
-    //     this.profession = (this.userData.profession == null) ? this.profession : this.userData.profession;
-    //     this.about_you = (this.userData.about_you == null) ? this.about_you : this.userData.about_you;
-    //     this.instagram_link = (this.userData.instagram_link == null) ? this.instagram_link : this.userData.instagram_link;
-    //     this.facebook_link = (this.userData.facebook_link == null) ? this.facebook_link : this.userData.facebook_link;
-    //     this.linkedin_link = (this.userData.linkedin_link == null) ? this.linkedin_link : this.userData.linkedin_link;
-    //     this.twitter_link = (this.userData.twitter_link == null) ? this.twitter_link : this.userData.twitter_link;
-
-    // }
-
-
-    // this.privateAreaService.userData$.subscribe( (data:UserModel) => {
-    //     this.privateAreaService.user = data
-    //     console.log('gggg', data);
-    //     this.userData = data;
-        
-    // })
-
-    // this.cardProfileForm = this.fb.group({
-    //   imgProfile: ['', [Validators.required]],
-    //   profession: ['', [Validators.required]],
-    //   about_you: ['', [Validators.required]],
-    //   twitter_link: ['', [Validators.required]],
-    //   linkedin_link: ['', [Validators.required]],
-    //   facebook_link: ['', [Validators.required]],
-    //   instagram_link: ['', [Validators.required]],
-    // });
-
-
-    // this.privateAreaService.getAllUsers().subscribe((data) => {
-    //   this.allUsers = data
-    // });
-
-    // this.listen();
-
-    // this.chatMessageForm = this.fb.group({
-    //   message: ['', [Validators.required, Validators.minLength(1)]],
-    // });
 
     this.privateAreaService.imgData$.subscribe((data) => {
       this.imgasListFromServer.map( img => {img.imgUrl = img.imgUrl + '?d='+Date.now().toString()})
@@ -188,6 +134,14 @@ export class PrivateAreaComponent implements OnInit {
       imgUrl: ['', [Validators.required]],
     });
 
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 
   selectManageImgOption() {

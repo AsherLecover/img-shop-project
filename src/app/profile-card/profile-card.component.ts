@@ -12,6 +12,8 @@ import * as io from 'socket.io-client';
 import {MessagesModel} from '../components/private-area/messages-model'
 import { ClinetsService } from 'src/app/servises/clinets.service';
 import { ChatMessagesService } from 'src/app/servises/chat-messages.service';
+import jwt_decode from 'jwt-decode';
+
 
 
 @Component({
@@ -65,6 +67,7 @@ export class ProfileCardComponent implements OnInit {
   imgAddImgURL: string | ArrayBuffer = '';
   addImagePath: any;
   time = Date.now().toString()
+  user: UserModel;
 
   constructor(
     private privateAreaService: PrivateAreaService,
@@ -73,8 +76,9 @@ export class ProfileCardComponent implements OnInit {
     private chatMessagesService: ChatMessagesService,
   ) {
 
-    this.userId = this.privateAreaService.getUserId();
-    // this.userImgProfile = 'https://www.w3schools.com/w3images/avatar2.png'
+    this.user = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
+
+    this.userId = this.user.id
 
     if(this.userId!=null){
 
@@ -338,6 +342,14 @@ export class ProfileCardComponent implements OnInit {
       fileReader.readAsDataURL(image);
       let formData = new FormData()
       formData.append('image', image);
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 
 }

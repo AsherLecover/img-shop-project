@@ -29,8 +29,8 @@ export class ChatMessagesService {
     return this.http.post(`${environment.apiUrl}/chat-messages`,{msg})
   }
 
-  getMessages(){
-    return this.http.get(`${environment.apiUrl}/chat-messages`)
+  getMessages(sender_id, resiver_id){
+    return this.http.get(`${environment.apiUrl}/chat-messages/${sender_id.toString()}/${resiver_id.toString()}`)
   }
 
 }

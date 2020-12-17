@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { imgModel } from '../management/management.component';
 import {
   Validators,
@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { PrivateAreaService, UserModel } from '../../servises/private-area.service';
 import * as io from 'socket.io-client';
-import {MessagesModel} from '../private-area/messages-model'
+import { MessagesModel } from '../private-area/messages-model'
 import { ClinetsService } from 'src/app/servises/clinets.service';
 import { ChatMessagesService } from 'src/app/servises/chat-messages.service';
 import jwt_decode from 'jwt-decode';
@@ -57,11 +57,11 @@ export class ChatRoomComponent implements OnInit {
   setLinkedinProfileMode: boolean = false;
   setTwitterProfileMode: boolean = false;
   reciderUserId: number;
-  imgUrlProfile:string = ""
-  userId:number
-  userData:UserModel
+  imgUrlProfile: string = ""
+  userId: number
+  userData: UserModel
   profession: string = 'פרסם את המקצוע שלך לכולם'
-  about_you:string = 'ספר לכולם על עצמך בשני משפטים'
+  about_you: string = 'ספר לכולם על עצמך בשני משפטים'
   instagram_link: string;
   facebook_link: string;
   linkedin_link: string;
@@ -79,33 +79,46 @@ export class ChatRoomComponent implements OnInit {
   addImagePath: any;
   time = Date.now().toString()
   reciverImgProfile: string = 'https://picpicture.herokuapp.com/private-area/getFile/default-avatar?d=1608217331505';
-  
+  closeUsersScreen: boolean = false;
+  innerWidth: number;
+  isMobile: boolean = false;
+
 
   constructor(
     private privateAreaService: PrivateAreaService,
     private fb: FormBuilder,
     public chatMessagesService: ChatMessagesService,
 
-  ) { 
+  ) {
     this.userData = this.getDecodedAccessToken(localStorage.getItem('accessToken'));
     this.userId = this.userData.id
     this.userImgProfile = this.userData.imgProfile
   }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+
+    console.log('   this.innerWidth: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', this.innerWidth);
+    console.log('is MOBILE??????????????????????????????????????????????????????????????', this.isMobile);
+
+    if (this.innerWidth < 767) {
+      this.isMobile = true;
+      console.log('is MOBILE??????????????????????????????????????????????????????????????', this.isMobile);
+
+    }
 
     this.chatMessagesService.getAllUsers()
-    .subscribe( (data:UserModel[]) => {
-      this.allUsers = data;
-      data.map( img => {img.imgProfile = img.imgProfile + '?d='+Date.now().toString()})
-      this.chatMessagesService.allUsers$.next(data)
-    })
+      .subscribe((data: UserModel[]) => {
+        this.allUsers = data;
+        data.map(img => { img.imgProfile = img.imgProfile + '?d=' + Date.now().toString() })
+        this.chatMessagesService.allUsers$.next(data)
+      })
 
     // this.chatMessagesService.allUsers$.subscribe( data => {
     //   this.allUsers = data;
     // })
 
-    this.chatMessagesService.massegsesMode$.subscribe( (data: boolean)=> {
+    this.chatMessagesService.massegsesMode$.subscribe((data: boolean) => {
       this.massegsesMode = data;
     })
 
@@ -116,14 +129,28 @@ export class ChatRoomComponent implements OnInit {
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if(this.innerWidth < 767){
+      this.isMobile = true;
+    }
+    else{
+      this.isMobile = false;
+    }
+    console.log('this.innerWidth::::::!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1',this.innerWidth);
+    console.log('this.is MOBILE::::::!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1',this.isMobile);
+    
+  }
+
   massagesBtweenUsersOption() {
     this.chatMessagesService.massegsesMode$.next(true);
 
-    this.chatMessagesService.getAllUsers().subscribe((data:UserModel[]) => {
-      data.map( img => {img.imgProfile = img.imgProfile + '?d='+Date.now().toString()})
+    this.chatMessagesService.getAllUsers().subscribe((data: UserModel[]) => {
+      data.map(img => { img.imgProfile = img.imgProfile + '?d=' + Date.now().toString() })
 
       console.log('allll userssss:::', data);
-      
+
       this.chatMessagesService.allUsers$.next(data);
     });
 
@@ -139,18 +166,15 @@ export class ChatRoomComponent implements OnInit {
   listen() {
     this.socket = io('https://picpicture.herokuapp.com', {});
 
-    this.socket.on('msgToClinet', (messageData:MessagesModel) => {
+    this.socket.on('msgToClinet', (messageData: MessagesModel) => {
       console.log('testtttttttttttttttttttttt (-:::::::', messageData.message_text);
-         
+
       this.messageData.push(messageData);
     });
   }
 
   sendMessage() {
     console.log('asher hanuka');
-    
-    console.log('form valid: ', this.chatMessageForm.valid);
-    
     var result = '';
     var d = new Date();
     result += ' ' + d.getHours() + ':' + d.getMinutes();
@@ -161,41 +185,42 @@ export class ChatRoomComponent implements OnInit {
       time: result,
     };
     this.chatMessageForm.value.message;
-
     this.socket.emit('msgToServer', msgToServer);
-    this.chatMessagesService.sendMessageToServer(msgToServer).subscribe( (data:MessagesModel)=> {
+    this.chatMessagesService.sendMessageToServer(msgToServer).subscribe((data: MessagesModel) => {
       console.log('msg data: after emited to server', data);
       this.messageData.push(data);
-
     })
-    
     this.chatMessageForm.reset();
   }
 
-  getMessage(sender_id, resiver_id){
-    console.log('asasasasasasasas 123');
-    
+  backInChatRoom() {
+    this.closeUsersScreen = !this.closeUsersScreen;
+  }
+
+  getMessage(sender_id, resiver_id) {
+    this.closeUsersScreen = true;
+
     this.messageData = this.messagesBtweenUsers;
 
     this.chatMessagesService.getMessages(sender_id, resiver_id)
-    .subscribe( (data:MessagesModel[]) => {
-      console.log('all msgggg:', data);
+      .subscribe((data: MessagesModel[]) => {
+        console.log('all msgggg:', data);
 
         this.messagesBtweenUsers = data
-    
-    })
-    
+
+      })
+
     console.log('arr: messages Btween Users::::', this.messagesBtweenUsers);
   }
 
 
-  sendMsgToUser(user:UserModel){
+  sendMsgToUser(user: UserModel) {
     this.reciderUserId = user.id;
 
-    
-    this.messageTo = `Message ${user.username}` 
+
+    this.messageTo = `Message ${user.username}`
     this.reciverImgProfile = user.imgProfile
-    
+
     this.getMessage(this.userData.id, user.id)
   }
 

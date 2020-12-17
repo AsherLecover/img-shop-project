@@ -1,6 +1,3 @@
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <div *ngIf="massegsesMode">
 
 
@@ -71,7 +68,7 @@
     <div   class="container app">
         <div class="row app-one">
           <div class="col-sm-4 side">
-            <div class="side-one">
+            <div [ngStyle]="{'display': closeUsersScreen && isMobile ? 'none' : '' }" class="side-one">
               <div class="row heading">
                 <div class="col-sm-3 col-xs-3 heading-avatar">
                   <div class="heading-avatar-icon">
@@ -79,12 +76,17 @@
                     <!-- <img src="https://bootdey.com/img/Content/avatar/avatar1.png"> -->
                   </div>
                 </div>
-                <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+                <!-- <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
                   <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                </div> -->
+                <div *ngIf="isMobile" (click)="backInChatRoom()" class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                  <i class="fas fa-arrow-right fa-2x  pull-right" aria-hidden="true"></i>
                 </div>
                 <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
                   <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
                 </div>
+
+               
               </div>
       
               <div class="row searchBox">
@@ -95,7 +97,8 @@
                   </div>
                 </div>
               </div>
-              <div class="row sideBar">
+          <div 
+           class="row sideBar">
       
                 <!-- ------------------------------------------------------------------------------------------ -->
                 <div  *ngFor="let user of allUsers" (click)="sendMsgToUser(user)" class="row sideBar-body">
@@ -122,7 +125,7 @@
               
             </div>
           </div>
-          <div class="col-sm-8 conversation">
+          <div  [ngStyle]="{'display': !closeUsersScreen && isMobile ? 'none' : '' }" class="side-one" class="col-sm-8 conversation">
             <div class="row heading">
               <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
                 <div class="heading-avatar-icon">
@@ -135,9 +138,10 @@
                 </a>
                 <span class="heading-online">Online</span>
               </div>
-              <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-                <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+              <div *ngIf="isMobile"  (click)="backInChatRoom()" class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                <i class="fas fa-arrow-right fa-2x  pull-right" aria-hidden="true"></i>
               </div>
+              
             </div>
        
       
@@ -152,12 +156,14 @@
               <div  style="overflow-y: scroll; height:400px;" class="row message-body">
                 <div class="col-sm-12 message-main-receiver">
                   <div>
-                    <div *ngFor="let masseage of messageData" class="message-text">
+                    <div *ngFor="let msg of messageData" class="message-text">
 
                       <p [ngStyle]="{'background-color': masseage.sender_id == userId && masseage.resiver_id == reciderUserId ? '#dcf8c6' : '#f1f3f0'} "
-                        class="masseages" *ngIf="masseage.sender_id == userId && masseage.resiver_id == reciderUserId
-                     || masseage.sender_id == reciderUserId && masseage.resiver_id == userId">
-                        {{masseage.message_text}}
+                        class="masseages" 
+                        *ngIf="
+                    msg.resiver_id == reciderUserId && msg.sender_id == userId||
+                    msg.resiver_id == userId && msg.sender_id == reciderUserId">
+                        {{msg.message_text}}
                       </p>
                       
                     </div>
@@ -183,9 +189,7 @@
               </div>
               <div class="col-sm-1 col-xs-1 reply-send">
 
-           
-
-                      <i  (click)="sendMessage()"  massege.value = '' class="fa fa-send fa-2x" aria-hidden="true"></i>
+                      <i (click)="sendMessage()"  class="fa fa-send fa-2x" aria-hidden="true"></i>
                   
               </div>
             </div>

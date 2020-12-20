@@ -17,19 +17,19 @@
             </mat-icon>
         </div>
 
-        <div *ngIf="!userSighnedIn" style=" width: 10%; margin-top: 1%;">
+        <div *ngIf="!userSighnedIn" style=" width: 10%; margin-top: 1%; color: rgb(5, 5, 51);">
             <button routerLink="/auth/signup" (click)="openDialog()">כניסה | הרשמה</button>
         </div>
 
 
 
 
-        <div *ngIf="userRole == 'ADMIN'" style=" width: 10%; margin-top: 1%;">
+        <div *ngIf="userRole == 'ADMIN'" style=" width: 10%; margin-top: 1%;  color: rgb(5, 5, 51);">
             <button routerLink="/management">כניסת מנהל </button>
         </div>
 
         <div class="private-btn" *ngIf="userRole == 'CLINET'">
-            <button routerLink="/private-area">כניסת לאזור האישי </button>
+            <button  style=" color: rgb(5, 5, 51);" routerLink="/private-area">כניסת לאזור האישי </button>
         </div>
 
 

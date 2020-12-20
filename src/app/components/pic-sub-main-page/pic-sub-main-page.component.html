@@ -7,18 +7,15 @@
         <img src="https://images.squarespace-cdn.com/content/v1/5ab6bae8266c0754d1c897dc/1566774152245-51Z7LW27AHLVNNSUSJRQ/ke17ZwdGBToddI8pDm48kKUnzI79RF14iA7fQAm4thV7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmm5NrA3QQNVxzooaWnmi1jMH1sJeZgVax_8IRrkZF4jFpDTO41rUNODcGfilNFRdf/MINDBODY-Salon-Ad-animated-1080x1920-Instagram-v1.gif" alt="" width="270px;" height="800px">
      
     </div>
-    <div  style="margin-left: 1% ; margin-right: 1%; "  >
+    <div >
         <div (click)="onImgSubjectSelect(img.img_id)" *ngFor="let img of cardImgList" style="display: inline-block">
 
-            <mat-card style="cursor: pointer; background: rgba(255,255,255,.7); color: #0c2468;"
-                [class.mat-elevation-z2]="!isActive" 
-                [class.mat-elevation-z20]="isActive"
-                class="main-pic-sub-card" >
-                    <img class="sub-img" mat-card-image src={{img.imgUrl}}>
-                        <mat-card-content>
+            <div style="cursor: pointer; background: rgba(255,255,255,.7); color: #0c2468;"  class="main-pic-sub-card" >
+                    <img class="sub-img" src={{img.imgUrl}}>
+                        <div>
                             <h3>{{img.subject}}</h3>
-                        </mat-card-content>
-            </mat-card>
+                        </div>
+                    </div>
         </div>
     </div>
     <div class="right-add" >

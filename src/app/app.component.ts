@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ChatMessagesService } from './servises/chat-messages.service';
 import { ClinetsService } from './servises/clinets.service';
 
  
@@ -10,14 +11,24 @@ import { ClinetsService } from './servises/clinets.service';
 })
 export class AppComponent  implements OnInit {
   title = 'Pic Pictre';
+  massegsesMode: boolean = false;
+  innerWidth: number;
+  isMobile: boolean = false;
 
   constructor(
-    private svcClinet:ClinetsService
+    private svcClinet:ClinetsService,
+    private chatMessagesService: ChatMessagesService,
+
   ){ }
 
   ngOnInit(): void {
+  
     this.svcClinet.getusernamePaylowdData()
 
   }
+
+ 
+    
+  
   
 }

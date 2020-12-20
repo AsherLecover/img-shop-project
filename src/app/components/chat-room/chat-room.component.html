@@ -67,24 +67,38 @@
     <!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
     <div   class="container app">
         <div class="row app-one">
+
+          <!-- <div class="col-sm-2 col-xs-4 heading-compose  pull-right">
+            <i class="fas fa-times pull-right" aria-hidden="true" ></i>
+          </div> -->
+
+          
           <div class="col-sm-4 side">
             <div [ngStyle]="{'display': closeUsersScreen && isMobile ? 'none' : '' }" class="side-one">
               <div class="row heading">
+
+               
+
                 <div class="col-sm-3 col-xs-3 heading-avatar">
                   <div class="heading-avatar-icon">
                     <img src={{userImgProfile}} alt="">
                     <!-- <img src="https://bootdey.com/img/Content/avatar/avatar1.png"> -->
                   </div>
                 </div>
-                <!-- <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
-                  <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
-                </div> -->
+
+                <div  *ngIf="isMobile"  (click)="closeChatRoom()" class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                  <i class="fas fa-times fa-2x  pull-right" aria-hidden="true"></i>
+                </div>
+
                 <div *ngIf="isMobile" (click)="backInChatRoom()" class="col-sm-2 col-xs-2 heading-compose  pull-right">
                   <i class="fas fa-arrow-right fa-2x  pull-right" aria-hidden="true"></i>
                 </div>
-                <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                <!-- <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
                   <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
-                </div>
+                </div> -->
+
+              
+                
 
                
               </div>
@@ -138,9 +152,16 @@
                 </a>
                 <span class="heading-online">Online</span>
               </div>
+              
+              <div  (click)="closeChatRoom()" class="col-sm-2 col-xs-2 heading-compose  pull-right">
+              
+                <i class="fas fa-times fa-2x  pull-right"  aria-hidden="true"></i>
+              </div>
+
               <div *ngIf="isMobile"  (click)="backInChatRoom()" class="col-sm-2 col-xs-2 heading-compose  pull-right">
                 <i class="fas fa-arrow-right fa-2x  pull-right" aria-hidden="true"></i>
               </div>
+
               
             </div>
        
@@ -157,8 +178,9 @@
                 <div class="col-sm-12 message-main-receiver">
                   <div>
                     <div *ngFor="let msg of messageData" class="message-text">
+                   
 
-                      <p [ngStyle]="{'background-color': masseage.sender_id == userId && masseage.resiver_id == reciderUserId ? '#dcf8c6' : '#f1f3f0'} "
+                      <p  [ngStyle]="{'background-color': msg.sender_id == userId && msg.resiver_id == reciderUserId ? '#dcf8c6' : '#f1f3f0'} "
                         class="masseages" 
                         *ngIf="
                     msg.resiver_id == reciderUserId && msg.sender_id == userId||
@@ -181,7 +203,7 @@
               </div>
               <div class="col-sm-9 col-xs-9 reply-main">
                 <form   [formGroup]="chatMessageForm"  action="">
-                <textarea  formControlName="message" rows="1" id="comment" placeholder={{messageTo}}></textarea>
+                <textarea  (keyup)="$event.keyCode == 13 && sendMessage()" formControlName="message" rows="1" id="comment" placeholder={{messageTo}}></textarea>
                 </form>
               </div>
               <div class="col-sm-1 col-xs-1 reply-recording">

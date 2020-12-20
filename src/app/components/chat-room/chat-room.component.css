@@ -227,6 +227,7 @@ body{
   height: 100%;
   position: relative;
   left: -100%;
+  background-color: black;
 }
 .newMessage-heading {
   padding: 10px 16px 10px 15px !important;

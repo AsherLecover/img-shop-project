@@ -82,6 +82,8 @@ export class ChatRoomComponent implements OnInit {
   closeUsersScreen: boolean = false;
   innerWidth: number;
   isMobile: boolean = false;
+  lastMassageTime: Date;
+
 
 
   constructor(
@@ -97,6 +99,7 @@ export class ChatRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
+    
 
     console.log('   this.innerWidth: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', this.innerWidth);
     console.log('is MOBILE??????????????????????????????????????????????????????????????', this.isMobile);
@@ -104,7 +107,9 @@ export class ChatRoomComponent implements OnInit {
     if (this.innerWidth < 767) {
       this.isMobile = true;
       console.log('is MOBILE??????????????????????????????????????????????????????????????', this.isMobile);
-
+    }
+    else{
+      this.isMobile= false;
     }
 
     this.chatMessagesService.getAllUsers()
@@ -127,6 +132,13 @@ export class ChatRoomComponent implements OnInit {
     this.chatMessageForm = this.fb.group({
       message: ['', [Validators.required, Validators.minLength(1)]],
     });
+  }
+
+  closeChatRoom(){
+    console.log('asher kugel!!!!!');
+    
+    this.massegsesMode = false;
+    this.chatMessagesService.massegsesMode$.next(false);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -170,6 +182,10 @@ export class ChatRoomComponent implements OnInit {
       console.log('testtttttttttttttttttttttt (-:::::::', messageData.message_text);
 
       this.messageData.push(messageData);
+
+      
+
+      this.lastMassageTime = messageData.time
     });
   }
 
@@ -188,29 +204,31 @@ export class ChatRoomComponent implements OnInit {
     this.socket.emit('msgToServer', msgToServer);
     this.chatMessagesService.sendMessageToServer(msgToServer).subscribe((data: MessagesModel) => {
       console.log('msg data: after emited to server', data);
-      this.messageData.push(data);
+      // this.messageData.push(data);
     })
     this.chatMessageForm.reset();
   }
 
-  backInChatRoom() {
-    this.closeUsersScreen = !this.closeUsersScreen;
-  }
+ 
 
   getMessage(sender_id, resiver_id) {
     this.closeUsersScreen = true;
 
-    this.messageData = this.messagesBtweenUsers;
+    // this.messageData = this.messagesBtweenUsers;
 
     this.chatMessagesService.getMessages(sender_id, resiver_id)
       .subscribe((data: MessagesModel[]) => {
         console.log('all msgggg:', data);
 
-        this.messagesBtweenUsers = data
+        this.messageData = data
 
       })
 
     console.log('arr: messages Btween Users::::', this.messagesBtweenUsers);
+  }
+
+  backInChatRoom() {
+    this.closeUsersScreen = !this.closeUsersScreen;
   }
 
 
